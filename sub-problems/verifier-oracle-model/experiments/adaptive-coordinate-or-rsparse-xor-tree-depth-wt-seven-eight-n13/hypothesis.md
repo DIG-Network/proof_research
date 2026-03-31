@@ -36,7 +36,8 @@ Compare **min_d(r)** row to **n=12 {6,7}** and test whether **union r≤5** dept
 
 # Outcome (post-run)
 
-**PASS** **(** **baseline** **only** **)** **—** **2026-03-31** **.**
+**PASS** **(** **full** **row** **+** **unions** **)** **—** **2026-03-31** **.**
 
-- **H1** **:** **Confirmed** **(** **`min_d_coord=13`**, **`min_d_full_13xor=1`** **)** **.**
-- **H2** **/** **H3** **:** **Deferred** **—** **no** **`min_d(r)`** **/** **union** **table** **yet** **(** **next** **session** **/** **shard** **runs** **)** **.**
+- **H1:** Confirmed (`min_d_coord=13`, `min_d_full_13xor=1`).
+- **H2:** Full **`min_d(r)`** for **`r=2..12`:** **`7,5,4,3,3,3,4,3,4,3,2`** (non-monotone in **`r`**).
+- **H3:** **`{2,3,4,5}→3`**, full **`{2..12}→2`**; triple **`{2,3,4}→4`**. Same union depths as **`(n=13,{6,7})`**; entire **`min_d(r)`** vector **matches** that experiment despite **`|domain|=3003`** vs **3432**.

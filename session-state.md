@@ -1,12 +1,12 @@
 # Session State
 
 **Last updated:** 2026-03-31 (automation)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13` (resolved PASS — see `…-n13-resolved` journal entry)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13` (full row + unions — see `…-seven-eight-n13-resolved` journal entry)
 **Last outcome:** PASS
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Continue **`wt-seven-eight-n13`** sharded **`r=2..12`** if still incomplete; or scale adjacent-shell sweep to **`n=14`** **`{7,8}`** / other open verifier-oracle-model threads per digest.
+**Next action:** Scale adjacent-shell coord+XOR sweep to **`n=14`**, **`|S|∈{7,8}`** (**`t=8`**, **C(14,7)+C(14,8)** masks) or **`{8,9}`** / next slice per digest; compare whether **`min_d(r)`** row matches **`n=13`** patterns.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)

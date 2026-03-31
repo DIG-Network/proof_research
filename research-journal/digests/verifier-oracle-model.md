@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-03-31 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13-resolved
+**Last updated:** 2026-03-31 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13-resolved
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13-resolved` | PASS | **`n=13`**, **wt∈{7,8}** **(** **3003** **masks** **)** **:** **same** **`min_d(r)`** **vector** **and** **union** **depths** **as** **`{6,7}`** **on** **n=13** **(** **3432** **masks** **)** **—** **`7,5,4,3,3,3,4,3,4,3,2`** **;** **`{2,3,4}→4`**, **`{2..5}→3`**, **`{2..12}→2`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13-resolved` | PASS | **`n=13`**, **wt∈{6,7}** **:** **full** **`min_d(r)`** **`r=2..12`:** **`7,5,4,3,3,3,4,3,4,3,2`** **;** **unions** **`{2,3,4}→4`**, **`{2..5}→3`**, **`{2..12}→2`** **(** **vs** **n=12** **triple** **union** **`3`** **)** **;** **loop** **OOM** **on** **`r=8`** **once** **—** **isolated** **rerun** **OK** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13` | INCONCLUSIVE | **Superseded** **by** **`…-n13-resolved`** **(** **partial** **baseline** **+** **`r=2`** **only** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13-baseline` | PASS | **`n=13`**, **wt∈{7,8}** **(** **3003** **masks** **)** **:** **coord** **`min_d=13`**, **full** **13-XOR** **`min_d=1`** **(** **`--baseline-only`** **~31s** **here** **)** **—** **full** **`min_d(r)`** **deferred** **(** **shard** **next** **)** |
