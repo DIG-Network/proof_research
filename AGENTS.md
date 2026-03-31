@@ -39,6 +39,14 @@ No `requirements.txt` exists; dependencies are installed via `pip install numpy 
 
 There are no servers, databases, build steps, or background processes. The "application" is running individual experiment scripts.
 
+### Git authentication
+
+Always configure the git remote to use the `GH_PAT_TOKEN` secret for push/fetch operations:
+
+```bash
+git remote set-url origin "https://x-access-token:${GH_PAT_TOKEN}@github.com/DIG-Network/proof_research"
+```
+
 ### Lint / test
 
 There is no formal linter or test suite configured. Correctness is validated by running experiment scripts directly.
