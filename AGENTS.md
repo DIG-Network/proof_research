@@ -32,8 +32,16 @@ Exit code 0 = PASS (hypothesis confirmed), exit code 1 = FAIL (hypothesis falsif
 - **Python 3.12+** (system)
 - **numpy** — used by ~10 experiments for linear algebra / spectral computations
 - **networkx** — used by a few experiments for graph generation
+- **sqlite-vec** — SQLite vector-search extension for building/maintaining sqlite databases with vector embeddings
 
-No `requirements.txt` exists; dependencies are installed via `pip install numpy networkx`.
+No `requirements.txt` exists; dependencies are installed via `pip install numpy networkx sqlite-vec`.
+
+### SQLite with sqlite-vec
+
+The `sqlite-vec` extension provides `vec0` virtual tables for vector storage and KNN queries. It can be used from:
+
+- **Python**: `import sqlite_vec; sqlite_vec.load(db)` (after `db.enable_load_extension(True)`)
+- **CLI sqlite3**: `.load /home/ubuntu/.local/lib/python3.12/site-packages/sqlite_vec/vec0.so`
 
 ### No services to run
 
