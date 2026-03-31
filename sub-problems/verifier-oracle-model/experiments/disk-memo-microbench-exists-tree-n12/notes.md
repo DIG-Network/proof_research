@@ -1,0 +1,2 @@
+- Full `exists_tree` with `--disk-memo` was prototyped then reverted: SQLite still too slow even with `BEGIN`/`COMMIT` per depth; `dbm` likewise — confirmed by this microbench’s order-of-magnitude gap vs `dict`.
+- **Not tested:** memory-mapped structures, RocksDB with bulk load, or algorithmic reduction of distinct `(bits, depth)` count for `r=5`.
