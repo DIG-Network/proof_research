@@ -36,8 +36,10 @@ Identical DP to **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-five-six-n11
 
 # Outcome (post-run)
 
-**PASS** (with **OOM** caveat on **standalone** **r=5** **and** **r=7**).
+**PASS** — **full** **`r=2..11`** **table** **(** **2026-03-31** **,** **`--r-single`** **shards** **)** **.**
 
-- **H1** (**coord** **`12`**, **full** **parity** **`1`**): **Confirmed** (`--baseline-only`).
-- **H2** (**prefix** **`min_d(r)`** **shape**): **Partially** **filled** **—** **non-monotone** **sequence** **on** **observed** **`r`**, **with** **`r=6`** **and** **`r=11`** **at** **`2`** **(** **not** **a** **099-style** **`r=6,7`** **regression** **above** **`r=5`** **in** **the** **rows** **we** **have** **)** **.**
-- **H3** (**union** **`r≤5`** **≥** **`3`** **like** **`n=11`** **): **Falsified** **in** **the** **union** **sense** **—** **`coord + r∈{2,3,4,5}`** **still** **`min_d=3`**, **but** **`coord + r∈{2,…,11}`** **`min_d=2`** **(** **same** **as** **`n=11`** **full** **union** **)** **.**
+- **H1** **:** **Confirmed** **(** **`min_d_coord=12`**, **`min_d_full_12xor=1`** **)** **.**
+- **H2** **:** **Falsified** **—** **prefix** **`r=2..5`** **is** **`6,4,3,4`** **(** **not** **non-increasing** **;** **`r=5`** **>** **`r=4`** **)** **.**
+- **H3** **:** **`coord+r∈{2,3,4,5}`** **`min_d=3`** **(** **matches** **`n=11`** **`r≤5`** **union** **)** **;** **full** **`r∈{2..11}`** **union** **`min_d=2`** **.**
+
+**Full** **`min_d(r)`** **:** **`6,4,3,4,2,4,3,4,3,2`** **for** **`r=2..11`** **.** **See** **`results.md`** **and** **journal** **entry** **`…-n12-r5-r7-resolved`** **.**
