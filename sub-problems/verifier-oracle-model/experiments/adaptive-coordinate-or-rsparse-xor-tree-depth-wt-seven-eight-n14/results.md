@@ -19,7 +19,7 @@ Completed shards (PASS printed by script; baseline not re-run):
 | 12 | 91 | 3 | |
 | 11 | 364 | 4 | |
 | 10 | 1001 | 3 | dp ~46 s |
-| 9 | — | — | **Not completed:** after >17 min CPU on `d=3` with LRU 4M, job killed (likely cache-thrash / extreme subproblem) |
+| 9 | 1001 | — | **Still incomplete:** `timeout 1200` (**20 min**) on **`d=3`** with **`--lru-maxsize 0`** (unbounded memo) on **~15 GiB RAM** host — no PASS line (same stuck probe as LRU 4M, not merely eviction) |
 | 8 | 3003 | 3 | dp ~397 s |
 | 7 | 3432 | 2 | |
 | 6 | 3003 | 3 | dp ~419 s |
@@ -32,7 +32,7 @@ Completed shards (PASS printed by script; baseline not re-run):
 
 `min_d(13)=2, min_d(12)=3, min_d(11)=4, min_d(10)=3, min_d(9)=?, min_d(8)=3, min_d(7)=2, min_d(6)=3`.
 
-Equivalently, scanning `r=2..13` left-to-right, positions **r=2..5** and **r=9** are **unknown** from this session.
+Equivalently, scanning `r=2..13` left-to-right, positions **r=2..5** are **unknown**; **`r=9`** is **partially probed** (**`d=1,2` false**, **`d=3` not decided** within **20 min** unbounded memo).
 
 ## Unions (all `--skip-baseline`, LRU 4M)
 
@@ -55,6 +55,6 @@ The **completed tail** `r∈{6,7,8,10,11,12,13}` on **`n=14`** does **not** matc
 
 ## Next steps
 
-1. **Dedicated host** with **large RAM** and **unbounded memo** (`--lru-maxsize 0`) for **`r=2,3,4,5,9`** one shard per process (as for **`n=12` `r=5,7`**).
+1. **Dedicated host** with **large RAM** (likely **≫15 GiB** or **long wall-clock** tolerance) and **unbounded memo** (`--lru-maxsize 0`) for **`r=2,3,4,5,9`** one shard per process — **`r=9`** already shows **`d=3`** can dominate **20+ CPU-minutes** even without LRU cap.
 2. Optional: **disk-backed** or **distributed** memo (prior **`disk-memo-microbench`** was negative for this DP shape — sharding preferred).
 3. If **`n=14`** row stabilizes, compare to **`n=13`** and **`n=12 {6,7}`** for scaling trends.
