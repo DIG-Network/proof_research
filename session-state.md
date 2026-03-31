@@ -1,12 +1,12 @@
 # Session State
 
 **Last updated:** 2026-03-31 (automation)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13`
-**Last outcome:** PASS (baseline only)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13`
+**Last outcome:** INCONCLUSIVE (baseline + r=2 only; full r-row pending)
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Run sharded **`--r-single r`** for **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13`** (**`r=2..12`**, **`--skip-baseline`**) to complete the **`min_d(r)`** row and unions (expect heavier mid-**r** than n=12; **C(13,6)=C(13,7)=1716** splits each).
+**Next action:** Complete **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13`** by running **`python -u script.py --skip-baseline --r-single R`** for **`R=3..12`** (then union probes). Optionally finish **`wt-seven-eight-n13`** sharded **`r=2..12`** if that thread is still open.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)

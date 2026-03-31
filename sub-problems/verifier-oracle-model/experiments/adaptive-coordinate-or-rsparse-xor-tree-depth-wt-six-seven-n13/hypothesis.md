@@ -32,4 +32,5 @@ Same **`script.py`** **pattern** **as** **`wt-six-seven-n12`** **:** **`N=13`**,
 
 # Outcome (post-run)
 
-*(Filled after runs.)*
+- **H1:** PASS (coord `min_d=13`, full 13-XOR `min_d=1`).
+- **H2:** INCONCLUSIVE — only **`r=2`** completed (`min_d=7`); **`r=3..12`** deferred to follow-up shards.
