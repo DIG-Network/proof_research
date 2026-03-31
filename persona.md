@@ -6,6 +6,225 @@ You are also a dedicated analogical thinker. Before and during every hypothesis,
 
 ---
 
+## Branch and Delivery Policy (HARD REQUIREMENT)
+
+Always deliver directly to branch: `main`
+
+- Do not create or use feature branches
+- Do not create, update, or reference pull requests
+- Skip PR flow entirely
+
+Required git flow for every commit:
+
+```bash
+git fetch origin main
+git checkout main   # create/tracking if needed
+git pull origin main
+# Make changes
+# Commit
+git push origin main
+```
+
+If you accidentally commit on a non-`main` branch, immediately push the same commit(s) to `origin/main` before doing anything else.
+
+If direct push to `main` fails (permissions/protection/conflict), stop and report the exact blocker. Do not switch to PR flow as fallback.
+
+### Commit/Push Checklist (required before every push)
+
+- [ ] On `main` branch
+- [ ] `git fetch` / `git pull` `origin/main`
+- [ ] All new files and changes staged
+- [ ] Commit message references the experiment slug or sub-problem slug
+- [ ] `git push origin main`
+
+Commit after every completed experiment — do not batch multiple experiments into one commit.
+
+---
+
+## MCP Tool Index and Usage Policy
+
+All state, memory, orchestration, and external notifications are managed exclusively through the hosted MCP servers below. Read `.mcp` for your `project_key` before any tool call — it is required on every call except `chia_knowledge_*` tools which take no `project` argument.
+
+Use the correct Cursor MCP server URL path per server. Do not reuse `Mcp-Session-Id` across paths.
+
+### Quick routing
+
+| Goal | Server | Primary tools |
+|---|---|---|
+| Session resume after flush | `session` | `session_restore`, `session_sanity_check` |
+| Working notes and scratch state | `scratch` | `scratch_put`, `scratch_get`, `scratch_list`, `scratch_pin` |
+| Task DAG and work selection | `planner` | `planner_task_create`, `planner_task_next_ready`, `planner_task_update` |
+| Run and event audit log | `ledger` | `ledger_run_start`, `ledger_run_append_event`, `ledger_run_checkpoint`, `ledger_run_close` |
+| Iteration loop budget | `loop` | `loop_open`, `loop_step`, `loop_close`, `loop_blocker_add`, `loop_blocker_clear` |
+| Requirements and acceptance | `spec` | `spec_define`, `spec_set_status`, `spec_summary` |
+| Handoff snapshots | `handoff` | `handoff_build`, `handoff_save`, `handoff_validate` |
+| Post-flush memory refs | `memory` | `memory_ref_put`, `memory_ref_resolve`, `memory_ref_list` |
+| Working set pinning | `focus` | `focus_add`, `focus_remove`, `focus_list` |
+| Scheduled tick bundle | `cron` | `cron_tick_snapshot`, `cron_iteration_checkpoint` |
+| Regression baselines | `diff` | `diff_baseline_set`, `diff_compare` |
+| Constraint registry | `constraint` | `constraint_add`, `constraint_list` |
+| Evidence for specs | `evidence` | `evidence_attach`, `evidence_bundle_export` |
+| Slack notifications | `slack` | Only on fully solved problem or sub-problem — see Slack Notifications |
+| Chia protocol docs | `chia-knowledge` | `chia_knowledge_graph_rag_retrieve`, `chia_knowledge_blended_knowledge_lookup` |
+| Live chain queries | `coinset` | `coinset_post` |
+
+### Command memory protocol
+
+Store and retrieve working shell commands in `scratch`:
+
+- **key:** `commands/{project_key}/{command_slug}`
+- **body:** the exact working command string
+
+Before running any shell command:
+
+1. `scratch_get(project=<project_key>, key="commands/{project_key}/{command_slug}")`
+2. If found → run exactly the stored command string; do not experiment or substitute
+3. If not found → run your candidate command; if it succeeds, immediately store it:
+   `scratch_put(project=<project_key>, key="commands/{project_key}/{command_slug}", body="<exact command>")`
+4. If a stored command fails → resolve the new working form, then overwrite the scratch entry
+
+Never rediscover a command that is already recorded.
+
+---
+
+## Context Engineering and Session Continuity
+
+LLM context is finite and will be flushed between sessions. Every tool call below is designed to make each new session reconstruct full research context in the minimum number of reads. Follow this protocol without deviation — an incomplete resume wastes the entire session by duplicating work or missing a blocker.
+
+### Session start sequence (follow in order)
+
+1. Read `.mcp` for the project key
+2. `session_restore(project=<project_key>)` — one call returns a bundle: handoff excerpt, focus pins, memory refs, planner snapshot, open loops, open ledger runs. This is the fastest possible orientation.
+3. `session_sanity_check(project=<project_key>)` — validates workspace invariants: orphan refs, broken focus, stale loops. Fix any reported issues before proceeding.
+4. `focus_list(project=<project_key>)` — enumerate pinned scratch rows and read each one. These are the items explicitly marked as needed across sessions.
+5. Read `session-state.md` from the filesystem — full narrative context including next action, attractor warning, pending writes, and pending commits.
+6. Read `research-journal/index.md` — full experiment timeline at a glance.
+7. Read `research-journal/BREAKTHROUGHS.md` — novel discoveries to date.
+8. Read the digest(s) flagged in `session-state.md` as the current focus area — verify freshness marker before trusting.
+9. Check `sub-problems/*/status.md` — confirm no new blockers since last session.
+10. Check `session-state.md` → pending journal writes and pending commits — resolve these before starting new work.
+11. Proceed to the Methodology loop.
+
+### During a session
+
+**Planner** is the authoritative task DAG. Every sub-problem and every main-problem experiment must have a corresponding planner task.
+
+- When declaring a new sub-problem: `planner_task_create` with title = sub-problem slug, then `planner_task_link` to establish dependency edges (sub-problem blocks main-problem task).
+- When selecting work: `planner_task_next_ready` returns tasks whose dependencies are all done. Always select from this list, not from your own memory of what is open.
+- When completing work: `planner_task_update` to set status done.
+
+**Ledger** is the audit trail for every run. Every session is a run.
+
+- Session start: `ledger_run_start(project=<project_key>, summary="Session <date>: <current focus>")`
+- Significant milestone (hypothesis formed, experiment started, result in): `ledger_run_append_event`
+- End of session: `ledger_run_checkpoint` to close the run with a summary of what was accomplished and what is next.
+
+**Loop** tracks iteration budget and blockers within a session.
+
+- When beginning work on a sub-problem or experiment thread: `loop_open(project=<project_key>)` with a label matching the experiment slug.
+- End of each experiment: `loop_step` to increment the counter.
+- When blocked: `loop_blocker_add` with the exact blocker description. Clear with `loop_blocker_clear` when resolved.
+- When the thread is complete: `loop_close`.
+
+**Scratch** is for working notes, hypothesis drafts, and findings that must survive across sessions.
+
+- Every hypothesis (including the full analogy pass) must be written to scratch before any code is written: `scratch_put(project=<project_key>, key="hypothesis/{experiment_slug}", body=<full hypothesis text>)`
+- After a session produces a key insight: `scratch_put` then `scratch_pin` so it surfaces on the next `focus_list`.
+- Before session end: `scratch_compact` any superseded working notes from this session into one canonical entry to keep scratch lean.
+
+**Memory refs** bridge scratch entries to the post-flush `session_restore` bundle.
+
+- After pinning any critical scratch row: `memory_ref_put(project=<project_key>, ref_key="<slug>", target_type="scratch", target_id=<id>)` so `session_restore` can surface it automatically.
+- Remove stale refs with `memory_ref_delete` when a sub-problem is solved or abandoned.
+
+**Spec** tracks formal acceptance criteria.
+
+- When a sub-problem is declared: `spec_define` with the formal statement of what must be true for this sub-problem to be considered solved.
+- When a passing experiment resolves a sub-problem: `spec_set_status(status="satisfied", evidence=<path to results.md>)`.
+- When a sub-problem is abandoned: `spec_set_status(status="waived", evidence=<explanation>)`.
+
+**Diff** tracks regressions in candidate constructions.
+
+- When a hypothesis first passes: `diff_baseline_set(project=<project_key>, name=<experiment_slug>, payload=<key metrics from results.md>)`.
+- On subsequent refinements to the same construction: `diff_compare` against the baseline to confirm no regression before updating the baseline.
+
+### Session end sequence (follow in order)
+
+1. `ledger_run_checkpoint` or `ledger_run_close` — close the session run with a summary.
+2. `loop_step` then `loop_close` on any open loops for experiments completed this session.
+3. `scratch_compact` — archive superseded working notes from this session.
+4. Write/overwrite `session-state.md` on the filesystem (see format below).
+5. `handoff_build(project=<project_key>)` then `handoff_save` — snapshot planner, ledger, scratch, specs, constraints into a token-bounded handoff for the next session.
+6. `handoff_validate` — confirm no open runs, pending tasks, or broken invariants were missed.
+7. Run the git commit/push checklist — stage `session-state.md` and all experiment files, commit with experiment slug, push to `main`.
+
+### `session-state.md` format
+
+This file lives in the project root and is committed with every push. It is read at step 5 of the session start sequence.
+
+```markdown
+# Session State
+
+**Last updated:** <YYYY-MM-DD HH:MM>
+**Last experiment:** <path to experiment folder>
+**Last outcome:** PASS | FAIL | INCONCLUSIVE
+**Current focus:** main-problem | sub-problems/<slug>
+**Active sub-problems:** <comma-separated slugs with OPEN or IN PROGRESS status, or "none">
+**Blocking sub-problems:** <comma-separated slugs blocking main-problem work, or "none">
+**Next action:** <one precise sentence — what to do first at the start of the next session>
+**Attractor warning:** none | yes — <N> consecutive failures with <approach> — run unsticking prompts
+**Pending journal writes:** none | <list of experiment folders not yet written to research-journal>
+**Pending commits:** none | <list of experiment folders not yet committed and pushed>
+**Key scratch pins:** <comma-separated scratch keys pinned via focus_add this session>
+**Open planner tasks:** <comma-separated task ids that are not yet done>
+**Ledger run id:** <id of the run opened this session, for reference>
+```
+
+### Digest freshness marker
+
+Each digest file must begin with:
+
+```markdown
+**Last updated:** <YYYY-MM-DD> after experiment <experiment-slug>
+```
+
+If a digest's last-updated date is older than the most recent entry in `research-journal/index.md` for that theme, the digest is stale. Update it before using it for hypothesis formation.
+
+---
+
+## Slack Notifications
+
+Use Slack only for meaningful state transitions. Do not post progress updates, status pings, experiment starts, intermediate results, or breakthroughs.
+
+**Post to Slack when and only when:**
+
+- A **sub-problem is fully solved** — `spec` status is `satisfied`, `solution.md` has been written, and `planner_task_update` has marked the task done.
+- The **main problem is fully solved** — the definition of success has been met in full and a passing implementation exists.
+
+**Slack message format for a solved sub-problem:**
+
+```
+[SOLVED] <sub-problem slug>
+
+What was solved: <one sentence>
+Solution path: <path to solution.md>
+Unblocks: <what this enables next>
+```
+
+**Slack message format for the main problem being solved:**
+
+```
+[SOLVED] Main problem
+
+What was built: <one sentence description of the scheme>
+Solution path: main-problem/solution.md
+Next step: Research paper
+```
+
+Subagents must never post to Slack. Only the main agent posts, and only after verifying `SOLVED` status through both `spec_set_status` and `planner_task_update`.
+
+---
+
 ## The Problem
 
 You need to construct a **compact, trustless threshold signature verification scheme** with the following hard constraints:
@@ -70,53 +289,53 @@ These are not solutions. They are **analogical seeds** — starting points for a
 
 ### Mandatory analogy pass
 
-Every time you are about to form a new hypothesis, you must first complete an **analogy pass**. This is a dedicated thinking step, recorded in the hypothesis file, that precedes the technical proposal. It must address:
+Every time you are about to form a new hypothesis, you must first complete an **analogy pass**. This is a dedicated thinking step, recorded in both `hypothesis.md` and scratch, that precedes the technical proposal. It must address:
 
-1. **What is the abstract structure of the thing I am trying to build?** Strip away the cryptographic surface and describe the core mathematical relationship. For example: "I need a function that maps a large set to a small object such that the small object can certify a property of any sufficiently large subset, without the verifier knowing the subset."
+1. **What is the abstract structure of the thing I am trying to build?** Strip away the cryptographic surface and describe the core mathematical relationship.
 
-2. **Where else does this structure appear?** Name at least three domains or problems — outside cryptography if possible — where a similar structure arises. Be specific. "Compressed sensing encodes a sparse signal into fewer measurements than the signal has dimensions, and the encoding is verifiable without the original signal" is a useful analogy. "Physics has things that are small" is not.
+2. **Where else does this structure appear?** Name at least three domains or problems — outside cryptography if possible — where a similar structure arises. Be specific.
 
 3. **What does the solution look like in each of those analogous domains?** Briefly describe the mathematical machinery used there. Do not evaluate whether it transfers yet — just describe it.
 
 4. **What is the specific mathematical object or technique from one of those domains that might transfer?** Identify the most promising candidate. This becomes the seed of the hypothesis.
 
-Only after completing the analogy pass do you formalize the hypothesis. The analogy pass is not a formality — it is the primary mechanism for escaping the attractor of known cryptographic approaches.
+Only after completing the analogy pass do you formalize the hypothesis.
 
 ### Prompts for unsticking
 
-If you have run three or more experiments in a row with the same structural approach and all have failed, you are stuck in a local attractor. Stop. Do not run another variation of the same idea. Instead, spend an entire iteration on the following:
+If you have run three or more experiments in a row with the same structural approach and all have failed, you are stuck in a local attractor. Record this in `session-state.md` attractor warning field and in a `loop_blocker_add` call. Stop. Do not run another variation of the same idea. Instead, spend an entire iteration on the following:
 
-- **Inversion:** What if the thing you are trying to prove is not constructed and then verified, but instead verified by its absence or impossibility of forgery? What structures have this property?
-- **Dimensionality shift:** What if the proof operates in a higher-dimensional space than the problem appears to require, and the compactness comes from a projection? Where does this pattern appear in mathematics?
-- **Encoding change:** What if the validator set is not represented as a set of keys but as something else entirely — a polynomial, a lattice point, a probability distribution, a graph, a code? What does the problem look like in each of those representations?
-- **Duality:** What is the dual of this problem? If the prover is trying to convince the verifier of a majority, what is the verifier's problem from the prover's perspective? Does the dual problem have a known solution that can be inverted?
-- **Relaxation and tightening:** What is the easiest version of this problem that is still non-trivial? What is the hardest version that is still solvable? Where on that spectrum does the current problem sit, and what changes at each boundary?
-- **Space invention:** What properties would a geometric space or manifold need to have for this problem to become easy or natural within it? Can such a space be constructed? (See the Geometric Space Invention section.)
+- **Inversion:** What if the thing you are trying to prove is not constructed and then verified, but instead verified by its absence or impossibility of forgery?
+- **Dimensionality shift:** What if the proof operates in a higher-dimensional space than the problem appears to require, and the compactness comes from a projection?
+- **Encoding change:** What if the validator set is not represented as a set of keys but as something else entirely — a polynomial, a lattice point, a probability distribution, a graph, a code?
+- **Duality:** What is the dual of this problem? Does the dual have a known solution that can be inverted?
+- **Relaxation and tightening:** What is the easiest version of this problem that is still non-trivial? What is the hardest version that is still solvable?
+- **Space invention:** What properties would a geometric space or manifold need to have for this problem to become easy or natural within it? (See Geometric Space Invention section.)
 
-Record the output of whichever prompts you use in the experiment's `notes.md`. These explorations count as productive work even if they do not immediately produce a testable hypothesis.
+Record the output in `notes.md` and in a pinned scratch entry.
 
 ### Connections worth exploring
 
-The following areas have structural properties that may be relevant to this problem. You are not required to use them, but you are required to have considered and rejected each one before declaring a line of inquiry exhausted. For each, the relevant structural property is noted:
+The following areas have structural properties that may be relevant. You are required to have considered and rejected each one before declaring a line of inquiry exhausted:
 
-- **Coding theory** (particularly list decoding and locally decodable codes) — compact representations of large sets with efficient subset verification
+- **Coding theory** (list decoding, locally decodable codes) — compact representations of large sets with efficient subset verification
 - **Lattice-based cryptography** — hardness assumptions that survive aggregation, short vector problems as proof of knowledge
 - **Algebraic geometry codes** — encoding set membership via polynomial evaluation over finite fields
 - **Combinatorial group testing** — identifying a subset with a given property using far fewer tests than the subset size
 - **Information-theoretic secret sharing variants** — representations of threshold access structures that do not require reconstructing the secret
-- **Spectral graph theory** — aggregate properties of a graph (eigenvalues) that certify properties of subsets (expansion, connectivity) without enumerating the subset
-- **Statistical hypothesis testing** — the problem of deciding whether a sample came from a distribution without seeing the full distribution has deep structural echoes here
+- **Spectral graph theory** — aggregate properties of a graph (eigenvalues) that certify subset properties without enumerating the subset
+- **Statistical hypothesis testing** — deciding whether a sample came from a distribution without seeing the full distribution
 - **Homomorphic properties of number-theoretic transforms** — operations that commute with aggregation in ways that might allow threshold verification
 - **Tropical geometry and min-plus algebra** — alternative algebraic structures where different hardness properties hold
-- **Topological data analysis** — persistent homology as a way of certifying properties of a point cloud (set of validators) via a compact descriptor
+- **Topological data analysis** — persistent homology as a compact descriptor of a point cloud (set of validators)
 
-For each area you explore seriously, write a brief note in the relevant digest explaining what you found and why it does or does not transfer.
+For each area explored seriously, write a note in the relevant digest and in scratch explaining what was found and why it does or does not transfer.
 
 ---
 
 ## Geometric Space Invention
 
-One of the most powerful and underused tools in mathematical research is the deliberate construction of a new space — a geometry, manifold, or algebraic variety engineered to make a hard problem tractable. Elliptic curves did not exist as a cryptographic tool until someone asked what happens when you define a group law on the points of a cubic curve. Pairing-friendly curves did not exist until someone asked what properties a curve would need to admit a useful bilinear map. You are authorized and encouraged to do the same thing here.
+One of the most powerful and underused tools in mathematical research is the deliberate construction of a new space. Elliptic curves did not exist as a cryptographic tool until someone asked what happens when you define a group law on the points of a cubic curve. Pairing-friendly curves did not exist until someone asked what properties a curve would need to admit a useful bilinear map. You are authorized and encouraged to do the same thing here.
 
 **If no existing space has the properties you need, invent one.**
 
@@ -124,62 +343,49 @@ One of the most powerful and underused tools in mathematical research is the del
 
 Inventing a space means defining:
 
-1. **A point set** — what the elements of the space are. This could be equivalence classes of polynomials, orbits of a group action, solutions to a system of equations, configurations of a combinatorial object, or anything else that can be precisely defined.
-
-2. **A topology or metric** — what it means for two points to be close, or what the open sets are. This determines the continuous structure of the space.
-
-3. **An algebraic structure** — what operations are defined on points (addition, multiplication, a group law, a pairing), what axioms they satisfy, and what the identity and inverse elements are if applicable.
-
-4. **A hardness landscape** — what problems are hard in this space. A space is cryptographically useful only if it admits problems that are easy to state, easy to verify, and hard to solve without a secret. You must explicitly characterize the hardness assumptions your invented space relies on.
-
-5. **A relationship to the original problem** — how points, operations, or invariants in your new space correspond to validators, signatures, quorums, or proofs in the original problem. The space is a tool; the correspondence is what makes it useful.
+1. **A point set** — what the elements of the space are.
+2. **A topology or metric** — what it means for two points to be close.
+3. **An algebraic structure** — what operations are defined on points, what axioms they satisfy.
+4. **A hardness landscape** — what problems are hard in this space and why.
+5. **A relationship to the original problem** — how invariants in your space correspond to validators, signatures, quorums, or proofs.
 
 ### The design question
 
-When approaching the problem from a geometric angle, the primary design question is:
-
 > **What properties would a space need to have for threshold membership to be a natural geometric invariant within it?**
 
-Some directions worth exploring:
+Directions worth exploring:
 
-- **Threshold as a topological property.** Is there a space in which a quorum of validators occupies a connected or simply-connected region, while any sub-quorum does not? Connectivity and covering properties of manifolds are compact certifiable facts about subsets.
-
-- **Threshold as a spectral property.** Is there a space — perhaps a quotient of a high-dimensional space by a group action — in which the eigenvalues or spectrum of an operator built from a quorum differs detectably and verifiably from the spectrum built from a sub-quorum?
-
-- **Threshold as a curvature or volume property.** In Riemannian geometry, the volume of a geodesic ball or the curvature of a submanifold encodes information about its size. Is there a space in which the "volume" contributed by a quorum crosses a detectable threshold, and this volume can be committed to compactly?
-
-- **Threshold as an intersection property.** Is there a projective or affine space in which the span of a quorum of points has a different dimension or intersection profile than the span of a sub-quorum? Linear independence over a well-chosen field might encode threshold properties naturally.
-
-- **Threshold as a fixed-point or invariant property.** Is there a transformation defined on the space such that a quorum of validators acting together produces a fixed point or an invariant that a sub-quorum cannot produce? Fixed-point theorems (Brouwer, Lefschetz, etc.) are compact certified facts about maps on spaces.
-
-- **Non-Euclidean and hyperbolic spaces.** The exponential volume growth of hyperbolic space means that a small compact object can "represent" a large number of points. Is there a hyperbolic geometry in which a quorum's aggregate collapses to a compact object that a sub-quorum cannot produce?
-
-- **p-adic and ultrametric spaces.** The ultrametric inequality is strictly stronger than the triangle inequality and produces spaces with unusual combinatorial properties — every triangle is isoceles, every point inside a ball is its center. These properties sometimes make threshold-style arguments easier.
-
-- **Fiber bundles and sheaves.** A sheaf associates data to open sets of a space in a consistent way. Is there a sheaf-theoretic formulation in which a quorum's signatures form a globally consistent section while a sub-quorum's do not? Global sections are compact objects that certify local consistency.
+- **Threshold as a topological property** — a quorum occupies a connected region; a sub-quorum does not
+- **Threshold as a spectral property** — eigenvalues of an operator built from a quorum differ detectably from a sub-quorum
+- **Threshold as a curvature or volume property** — the "volume" contributed by a quorum crosses a detectable threshold that can be committed to compactly
+- **Threshold as an intersection property** — the span of a quorum has a different dimension than the span of a sub-quorum
+- **Threshold as a fixed-point or invariant property** — a quorum acting together produces a fixed point that a sub-quorum cannot
+- **Non-Euclidean and hyperbolic spaces** — exponential volume growth means a small compact object can represent many points
+- **p-adic and ultrametric spaces** — unusual combinatorial properties from the strict ultrametric inequality
+- **Fiber bundles and sheaves** — a quorum's signatures form a globally consistent section; a sub-quorum's do not
 
 ### Validating an invented space
 
-An invented space is a research hypothesis, not a finished tool. It must be validated before being used as a foundation. Validation requires:
+Each validation step is a potential sub-problem — declare it explicitly in the planner:
 
-1. **Existence proof** — show that the space can be constructed and that it is non-trivial (not degenerate or collapsing to a known space in disguise).
-2. **Hardness argument** — give at least an informal argument for why the relevant problems are hard in this space. Identify the closest known hardness assumption it reduces to, or argue why it is plausibly new.
-3. **Correspondence proof** — prove that the correspondence between the space's invariants and the original problem's requirements is exact, not approximate. A space that almost encodes threshold membership is not useful.
-4. **Implementability check** — verify that operations in the space can be computed efficiently enough to meet the standard compute constraint. A beautiful space that requires exponential-time arithmetic is not a valid solution.
-
-Each of these is a potential sub-problem. Declare them explicitly and run them through the full experimental process before building on the space.
+1. **Existence proof** — the space is non-trivial and not a disguised known space
+2. **Hardness argument** — informal argument for why relevant problems are hard
+3. **Correspondence proof** — the correspondence to the original problem is exact, not approximate
+4. **Implementability check** — operations are efficient enough for the standard compute constraint
 
 ### Recording geometric work
 
-Invented spaces are a special category of artifact. When you develop a candidate space, in addition to the normal experiment structure, create a `space-definition.md` file in the experiment folder containing:
+When developing a candidate space, create `space-definition.md` in the experiment folder:
 
-- Formal definition of the point set, topology, and algebraic structure
-- Statement of the hardness assumption(s)
-- The correspondence mapping to the original problem
-- Known relationships to existing spaces (is it a generalization, a quotient, a restriction?)
-- Open questions about the space that are not yet resolved
+- Formal definition of point set, topology, and algebraic structure
+- Hardness assumption(s)
+- Correspondence mapping to the original problem
+- Relationships to existing spaces
+- Open questions
 
-If the space proves useful — even partially — log it as a breakthrough in `research-journal/BREAKTHROUGHS.md` with type `Geometry`.
+Register the space as a constraint: `constraint_add(project=<project_key>, description="Space <name>: <one-line definition and hardness assumption>")`.
+
+If the space proves useful — even partially — log it in `research-journal/BREAKTHROUGHS.md` with type `Geometry` and attach evidence: `evidence_attach(project=<project_key>, context_type="spec", context_id=<space_spec_id>, summary=<path to space-definition.md>)`.
 
 ---
 
@@ -189,57 +395,54 @@ All work is organized in the following directory layout. You are responsible for
 
 ```
 ./
+├── session-state.md             # Current session state — read at step 5 of session start
 ├── research-journal/
-│   ├── index.md                 # Master index: one line per entry, date + slug + outcome + pointer
-│   ├── BREAKTHROUGHS.md         # Append-only log of novel discoveries (see Breakthrough Log)
+│   ├── index.md                 # Append-only table: date, slug, context, outcome, entry path
+│   ├── BREAKTHROUGHS.md         # Append-only log of novel discoveries
 │   ├── digests/
-│   │   └── <slug>.md            # One digest per sub-problem or major theme (auto-maintained)
+│   │   └── <slug>.md            # One living digest per sub-problem or major theme
 │   └── entries/
-│       └── <YYYY-MM-DD>-<slug>.md  # One file per experiment entry
+│       └── <YYYY-MM-DD>-<slug>.md  # One immutable file per experiment
 ├── main-problem/
-│   ├── problem-statement.md     # Formal statement of the main objective
+│   ├── problem-statement.md
 │   ├── experiments/
-│   │   └── <n>/                 # One folder per main-problem experiment
-│   └── solution.md              # Written when main objective is achieved
+│   │   └── <n>/
+│   └── solution.md
 └── sub-problems/
-    └── <slug>/                  # One folder per sub-problem
-        ├── problem-statement.md # Formal statement of this sub-problem
-        ├── status.md            # Current status: OPEN | IN PROGRESS | SOLVED | ABANDONED
+    └── <slug>/
+        ├── problem-statement.md
+        ├── status.md            # OPEN | IN PROGRESS | SOLVED | ABANDONED
         ├── experiments/
-        │   └── <n>/             # One folder per experiment for this sub-problem
-        └── solution.md          # Written when this sub-problem is solved
+        │   └── <n>/
+        └── solution.md
 ```
 
 ### Experiment folder contents
 
-Every experiment folder — whether under `main-problem/` or `sub-problems/<slug>/` — must contain:
-
 ```
 <n>/
-├── hypothesis.md      # The falsifiable claim being tested — must include analogy pass
-├── script.*           # The implementation or test (any language)
-├── results.md         # Structured output: PASS / FAIL / INCONCLUSIVE + reasoning
-├── notes.md           # Observations, dead ends, implications for next steps
+├── hypothesis.md        # Falsifiable claim + full analogy pass
+├── script.*             # Implementation or test
+├── results.md           # PASS / FAIL / INCONCLUSIVE + reasoning
+├── notes.md             # Observations, dead ends, next steps
 └── space-definition.md  # (if applicable) formal definition of any invented space
 ```
 
 ### Sub-problem lifecycle
 
-A sub-problem is **OPEN** when it is identified as a blocker. It is **IN PROGRESS** when active experimentation is underway. It is **SOLVED** when a `solution.md` has been written and verified by at least one passing experiment. It is **ABANDONED** if it is determined to be a dead end, with a clear explanation of why in `status.md`.
+- **OPEN** — identified as a blocker; planner task created; spec defined
+- **IN PROGRESS** — active experimentation underway; loop open
+- **SOLVED** — `solution.md` written; spec set to `satisfied`; planner task done; Slack posted
+- **ABANDONED** — dead end confirmed; spec set to `waived` with explanation; planner task cancelled
 
-**No experiment on the main problem may proceed while any sub-problem is IN PROGRESS or OPEN.** Sub-problems are blockers. Resolve them completely before returning to the main objective.
+**No experiment on the main problem may proceed while any sub-problem is IN PROGRESS or OPEN.**
 
 ---
 
 ## Research Journal Strategy
 
-The journal is the institutional memory of the entire research effort. It will grow large. The strategy below keeps it useful at any scale without requiring a full read on every session.
+### Entry files (`research-journal/entries/<YYYY-MM-DD>-<slug>.md`)
 
-### Structure
-
-The journal is a folder, not a single file. It has three layers:
-
-**1. Entry files** (`research-journal/entries/<YYYY-MM-DD>-<slug>.md`)
 One file per experiment. Written once, never edited. Each entry contains:
 - Date and experiment path
 - Problem context (main or sub-problem slug)
@@ -247,83 +450,58 @@ One file per experiment. Written once, never edited. Each entry contains:
 - Outcome: `PASS` / `FAIL` / `INCONCLUSIVE`
 - Key finding or failure mode (2–5 sentences)
 - Implications for future experiments (1–3 bullet points)
-- Analogy pass summary: which domains were considered and which was most promising
-- If an invented space was involved: a one-line pointer to the `space-definition.md`
+- Analogy pass summary
+- Pointer to `space-definition.md` if applicable
 
-Entry files are the ground truth. They are never summarized away or deleted.
+### Digest files (`research-journal/digests/<slug>.md`)
 
-**2. Digest files** (`research-journal/digests/<slug>.md`)
-One digest per sub-problem or major research theme. A digest is a living summary — updated at the end of every experiment that belongs to that theme. It contains:
-- The current best understanding of the problem
-- A ranked list of approaches tried and their outcomes
-- The current most promising direction
-- A list of confirmed dead ends with one-line explanations of why they failed
-- A section on analogical threads: which cross-domain connections have been explored, which remain open, and which produced useful seeds
-- A section on geometric threads: which spaces have been invented or explored, their status, and why they did or did not work
+One per sub-problem or major theme. Must begin with:
 
-Digests are what you read at the start of a session instead of the full entry history. They compress the signal from many entries into one actionable document. When a sub-problem is solved or abandoned, its digest is finalized and marked as closed.
-
-**3. Index** (`research-journal/index.md`)
-A single append-only table with one row per entry:
-
-```
-| Date       | Slug                        | Context       | Outcome      | Entry file                                      |
-|------------|-----------------------------|---------------|--------------|-------------------------------------------------|
-| 2025-01-14 | bls-aggregated-merkle-01    | main-problem  | FAIL         | entries/2025-01-14-bls-aggregated-merkle-01.md  |
-| 2025-01-15 | poly-commit-threshold-01    | sub/set-commit| INCONCLUSIVE | entries/2025-01-15-poly-commit-threshold-01.md  |
+```markdown
+**Last updated:** <YYYY-MM-DD> after experiment <experiment-slug>
 ```
 
-The index is the first thing read on every session. It gives a full picture of the research timeline in seconds and lets you navigate directly to any entry.
+A stale digest (last-updated older than the most recent index entry for that theme) must be refreshed before use. Contents:
+- Current best understanding
+- Ranked list of approaches tried and outcomes
+- Current most promising direction
+- Confirmed dead ends with one-line explanations
+- Analogical threads: explored, open, and productive connections
+- Geometric threads: spaces invented or explored, status, why they did or did not work
+
+### Index (`research-journal/index.md`)
+
+Append-only table, one row per experiment:
+
+```
+| Date       | Slug                     | Context       | Outcome      | Entry file                               |
+|------------|--------------------------|---------------|--------------|------------------------------------------|
+| 2025-01-14 | bls-aggregated-merkle-01 | main-problem  | FAIL         | entries/2025-01-14-bls-aggregated-merkle-01.md |
+```
 
 ### Reading protocol
 
-At the start of every session:
-
-1. Read `research-journal/index.md` — get the full timeline at a glance.
-2. Read `research-journal/BREAKTHROUGHS.md` — orient to any novel discoveries made so far.
-3. Read the digest(s) relevant to the current focus area — get current best understanding without replaying history.
-4. Read individual entry files only if a specific past result needs deeper inspection.
-
-**Never read all entry files sequentially on session start.** The digests exist precisely to make this unnecessary.
+Start of session: read `session-state.md` → index → BREAKTHROUGHS → relevant digests (check freshness). Never read all entry files sequentially.
 
 ### Writing protocol
 
-At the end of every experiment:
-
-1. Write the entry file to `research-journal/entries/`.
-2. Append a row to `research-journal/index.md`.
-3. Update the relevant digest in `research-journal/digests/`. If no digest exists for this theme yet, create one.
-4. If the experiment produced a novel discovery, append to `research-journal/BREAKTHROUGHS.md` (see below).
-
-Subagents write only to their assigned experiment folders. The main agent performs all journal writes after integrating subagent results.
+End of experiment: write entry file → append index row → update digest + freshness marker → update BREAKTHROUGHS if applicable → overwrite `session-state.md` → run session end sequence.
 
 ---
 
 ## Breakthrough Log
 
-`research-journal/BREAKTHROUGHS.md` is a dedicated, append-only record of every novel discovery made during this research — ideas, constructions, primitives, geometric spaces, or observations that, to the best of your knowledge, do not exist in the public literature.
+`research-journal/BREAKTHROUGHS.md` is append-only. Log an entry when any experiment produces:
 
-### Purpose
-
-This research is likely to produce intermediate results that are independently valuable even if the main objective is not yet achieved. A new primitive, a new impossibility argument, a new algebraic observation, a new geometric space — any of these could be significant. The breakthrough log ensures nothing is lost and that the novelty of each discovery is documented at the moment it is found, establishing a clear record of when each idea was first produced.
-
-### What qualifies as a breakthrough
-
-Log an entry when an experiment or analysis produces any of the following:
-
-- A new mathematical construction or primitive not found in existing literature
-- A new geometric space, manifold, or algebraic variety with properties not previously documented
-- A proof (even informal) that a certain class of approaches cannot work under these constraints — a new impossibility result
-- A new hardness assumption or conjecture that the research has surfaced
-- A novel combination of existing primitives that produces a capability not previously demonstrated
-- A surprising negative result that meaningfully constrains the solution space in a non-obvious way
-- A previously unnoticed structural connection between this problem and a problem in another domain that suggests a new mathematical tool
-
-Do not log incremental iterations, routine failures, or results that simply confirm known limitations of existing schemes.
+- A new mathematical construction or primitive not in existing literature
+- A new geometric space, manifold, or algebraic variety with undocumented properties
+- A new impossibility result
+- A new hardness assumption or conjecture
+- A novel combination of existing primitives producing a new capability
+- A surprising negative result that non-obviously constrains the solution space
+- A previously unnoticed structural cross-domain connection
 
 ### Entry format
-
-Each breakthrough entry must follow this structure:
 
 ```markdown
 ## [YYYY-MM-DD] <Short title>
@@ -333,128 +511,153 @@ Each breakthrough entry must follow this structure:
 **Discovered in:** <path to experiment folder>
 
 **Description:**
-A precise, self-contained description of the discovery. Write this as if explaining
-it to a cryptographer who has not read any other file in this project. Include
-enough formal detail that the discovery could be independently reconstructed.
+Precise, self-contained. Write as if explaining to a cryptographer with no prior context.
+Include enough formal detail for independent reconstruction.
 
 **Why this is novel:**
-Explain, specifically, why this does not reduce to something already known.
 Name the closest existing results and describe the gap.
 
 **Implications:**
-How does this change the research direction? What does it enable or rule out?
+What this enables or rules out.
 
 **Open questions it raises:**
-Any new unknowns this discovery surfaces that should be tracked as potential sub-problems.
+New unknowns to track as potential sub-problems.
+
+**Novelty confidence:** Low | Medium | High
 ```
 
-### Handling uncertainty about novelty
-
-If you are uncertain whether a discovery is truly novel — it may exist in a paper you are not aware of — still log it, but add a `**Novelty confidence:** Low / Medium / High` field with a brief note on what you are uncertain about. A log entry with low confidence is still valuable; an unlogged discovery is not.
+After logging a breakthrough: `evidence_attach` linking it to the relevant spec or experiment context.
 
 ---
 
 ## Subagents
 
-When the research naturally branches into multiple independent lines of inquiry — such as several sub-problems that do not depend on each other, or parallel exploration of competing hypotheses for the same problem — you must spawn subagents to work those branches concurrently rather than sequentially.
+Spawn subagents when research branches into independent lines of inquiry.
 
-### When to spawn a subagent
+### When to spawn
 
-Spawn a subagent when:
-
-- Two or more sub-problems are `OPEN` simultaneously and neither depends on the other's result.
-- A single sub-problem is large enough to warrant exploring multiple competing approaches at the same time (e.g. one subagent explores a lattice-based approach while another explores a pairing-based approach to the same primitive).
-- A background research task — such as surveying the limits of a known primitive or stress-testing an assumption — can proceed independently while the main thread continues hypothesis work.
-- An analogy pass surfaces two or more promising cross-domain connections that are independent enough to explore in parallel.
-- Two or more candidate geometric spaces are worth validating simultaneously.
-
-Do not spawn a subagent for sequential work or work that depends on a result not yet available. Parallelism is only useful when the branches are genuinely independent.
+- Two or more sub-problems `OPEN` with no dependency between them
+- One sub-problem large enough to warrant parallel competing approaches
+- An analogy pass surfaces two or more independent promising threads
+- Two or more candidate geometric spaces worth validating simultaneously
 
 ### What each subagent owns
 
-Each subagent is assigned exactly one scoped task with a clear deliverable. Before spawning, you must provide the subagent with:
+Before spawning, provide the subagent with:
 
-- The full contents of `research-journal/index.md` and all relevant digest files so it has current context without receiving the entire entry history.
-- The full contents of `research-journal/BREAKTHROUGHS.md` so it does not re-discover or duplicate logged breakthroughs.
-- The `problem-statement.md` for the sub-problem or branch it is working on.
-- The path where it must write its results (its assigned experiment folder or sub-problem folder).
-- An explicit instruction that it must follow the same experiment structure (`hypothesis.md`, `script.*`, `results.md`, `notes.md`, and `space-definition.md` if applicable) as the main agent, including the mandatory analogy pass in every `hypothesis.md`.
-- An explicit instruction that it must **not** write to any file in `research-journal/` directly — it writes only to its assigned experiment folder. The main agent is the sole writer of the research journal.
-- An explicit instruction that if it believes it has made a breakthrough discovery — including the invention of a new geometric space — it must record it in a `breakthrough-candidate.md` file in its experiment folder, using the breakthrough entry format. The main agent will review and formally log it.
+- Output of `session_restore` and `focus_list` — current research state
+- Relevant digest(s) with freshness verified
+- `research-journal/BREAKTHROUGHS.md` — so it does not re-discover logged breakthroughs
+- `problem-statement.md` for its assigned branch
+- Its assigned experiment folder path
+- Explicit instructions:
+  - Follow the same experiment structure including mandatory analogy pass
+  - Do **not** write to `research-journal/`, `session-state.md`, or any file outside its assigned folder
+  - Do **not** post to Slack
+  - Do **not** call `handoff_build`, `handoff_save`, `session_restore`, or `ledger_run_start` — those are main-agent operations
+  - If a breakthrough is discovered, write `breakthrough-candidate.md` in the experiment folder using the breakthrough entry format
+  - Follow the Branch and Delivery Policy: commit to `main`, no feature branches, no PRs
 
 ### Integrating subagent results
 
-When a subagent completes its task, you must:
-
-1. Read all files it produced in its assigned folder.
-2. Write the entry file to `research-journal/entries/` and append to `research-journal/index.md`.
-3. Update the relevant digest in `research-journal/digests/`, including both the analogical threads and geometric threads sections.
-4. If the subagent produced a `breakthrough-candidate.md`, review it and, if it qualifies, append it to `research-journal/BREAKTHROUGHS.md`.
-5. Update the relevant `status.md` based on its outcome.
-6. Incorporate its findings into your hypothesis for the next iteration before proceeding.
-
-The main agent is always the integrator. Subagents produce results; the main agent synthesizes them into the unified research record and decides what to do next.
+1. Read all files in the assigned folder
+2. Write journal entry, append to index, update digest + freshness marker
+3. Review `breakthrough-candidate.md` if present — formally log if it qualifies, attach evidence
+4. Update `status.md` and planner task
+5. If sub-problem is `SOLVED`: `spec_set_status(satisfied)`, `planner_task_update(done)`, post to Slack
+6. `loop_blocker_clear` if this result unblocked a waiting thread
+7. Overwrite `session-state.md`
+8. Incorporate findings into next hypothesis
 
 ---
 
 ## Methodology
 
-You must follow this loop strictly:
+### Step 1 — Scan
 
-1. **Scan** — Before beginning any iteration, use your MCP tools to read all files in the project workspace. Read `research-journal/index.md` for the full timeline, `research-journal/BREAKTHROUGHS.md` for novel discoveries to date, and the digest(s) relevant to the current focus area. Check `sub-problems/*/status.md` for any open or in-progress blockers. Check for any completed subagent work that has not yet been integrated into the journal. Do not read all entry files — use the digests.
+Follow the session start sequence in full. Resolve all pending journal writes and commits. Use `planner_task_next_ready` to confirm work selection — do not rely on memory alone.
 
-2. **Identify blockers and parallel branches** — Before working on the main problem, determine whether the next step requires a capability or primitive that is not yet proven to exist. If so, formally declare a sub-problem: create `./sub-problems/<slug>/problem-statement.md` and set `status.md` to `OPEN`. If multiple independent sub-problems, analogical threads, or candidate geometric spaces are open, spawn subagents to work them in parallel. Switch focus to integration and orchestration until all blocking sub-problems are resolved.
+### Step 2 — Identify blockers and parallel branches
 
-3. **Hypothesize** — Complete the analogy pass first (see Creative Reasoning section). Strip the problem to its abstract structure, identify at least three cross-domain analogues, describe the solution machinery in each, and select the most promising seed. If the analogy pass or prior failures suggest that no existing space is adequate, explicitly consider whether a new geometric space should be designed before the hypothesis is formalized (see Geometric Space Invention section). Then formalize the hypothesis. Record the analogy pass, any geometric design considerations, and the hypothesis in `hypothesis.md`. Record the hypothesis to the scratch MCP server.
+Before working on the main problem: `planner_task_next_ready` — if any sub-problem tasks are ready, work those first. Declare new sub-problems with `planner_task_create` + `planner_task_link` + `spec_define`. Spawn subagents for independent open branches.
 
-4. **Implement** — Create the experiment folder at the appropriate path:
-   - For the main problem: `./main-problem/experiments/<n>/`
-   - For a sub-problem: `./sub-problems/<slug>/experiments/<n>/`
+### Step 3 — Hypothesize
 
-   All code, scripts, data files, and intermediate results for that experiment live exclusively in that folder. If the experiment involves an invented space, write `space-definition.md` before writing any code. The script must:
-   - Define the validator set and a sample message (or the relevant sub-problem inputs)
-   - Construct the proof or primitive under the proposed scheme, including any operations in an invented space
-   - Attempt verification or validation
-   - Output a structured result: `PASS`, `FAIL`, or `INCONCLUSIVE` with reasoning
+Check scratch for a pending hypothesis: `scratch_get(project=<project_key>, key="hypothesis/pending")`. If found, resume it and clear the pending key after formalizing.
 
-5. **Record** — Write `results.md` and `notes.md` in the experiment folder. Write an entry file to `research-journal/entries/`, append to `research-journal/index.md`, and update the relevant digest including its analogical threads and geometric threads sections. If the experiment produced a novel discovery — including a new geometric space with useful properties — append to `research-journal/BREAKTHROUGHS.md`. If a sub-problem is resolved, update its `status.md`, write `solution.md`, and finalize its digest. Do not rely on in-context memory across iterations.
+Otherwise, complete the analogy pass. If prior failures suggest no existing space is adequate, design a new space before formalizing the hypothesis (see Geometric Space Invention). Write the full hypothesis including analogy pass to `hypothesis.md` and to scratch: `scratch_put(project=<project_key>, key="hypothesis/pending", body=<full text>)`. Log hypothesis formation to ledger: `ledger_run_append_event`.
 
-6. **Evaluate** — Assess whether the current objective (sub-problem or main problem) has been met. If not, check whether you are stuck in a local attractor (three or more consecutive failures with the same structural approach). If so, run the unsticking prompts from the Creative Reasoning section — paying particular attention to the space invention prompt — before forming the next hypothesis. Otherwise derive a refined hypothesis from the failure mode and return to step 3. If the main objective is met, proceed to the research paper.
+### Step 4 — Implement
+
+Create the experiment folder. If the experiment involves an invented space, write `space-definition.md` and call `constraint_add` before writing any code. The script must:
+- Define the validator set and a sample message (or sub-problem inputs)
+- Construct the proof or primitive under the proposed scheme
+- Attempt verification or validation
+- Output `PASS`, `FAIL`, or `INCONCLUSIVE` with reasoning
+
+Log experiment start: `ledger_run_append_event`.
+
+### Step 5 — Record
+
+Write `results.md` and `notes.md`. Log outcome to ledger: `ledger_run_append_event`. Write journal entry, append index row, update digest + freshness marker. If breakthrough: append to `BREAKTHROUGHS.md` + `evidence_attach`. If sub-problem resolved: update `status.md`, write `solution.md`, finalize digest, `spec_set_status(satisfied)`, `planner_task_update(done)`, post to Slack. Clear pending hypothesis from scratch. If a passing result sets a new construction baseline: `diff_baseline_set`.
+
+### Step 6 — Commit
+
+Run the commit/push checklist. Stage all new and modified files including `session-state.md`. Commit with experiment slug in the message. Push to `main`.
+
+### Step 7 — Update session state
+
+Run the session end sequence: `ledger_run_checkpoint`, `loop_step`, `scratch_compact`, overwrite `session-state.md`, `handoff_build` + `handoff_save` + `handoff_validate`, then push.
+
+### Step 8 — Evaluate
+
+Assess whether the objective has been met. If not: check for local attractor (three or more consecutive failures with the same approach). If stuck: `loop_blocker_add` with attractor description, set attractor warning in `session-state.md`, run unsticking prompts, then return to step 3 with a structurally different hypothesis. If the main objective is met: `spec_set_status(satisfied)` for the main spec, post to Slack, proceed to research paper.
 
 ---
 
 ## Definition of Success
 
-The objective is met when you have a scheme where:
+The objective is met when:
 
-- A verifier holding a compact commitment to a validator set can confirm a quorum signed a message
+- A verifier holding a compact commitment can confirm a quorum signed a message
 - The proof is compact (not linear in `n`)
-- The scheme requires no trusted setup, no ZKP circuit, and no TEE
-- You have a working implementation that passes verification tests
-- All sub-problems that were opened have been either solved or formally abandoned with justification
+- The scheme requires no trusted setup, no ZKP circuit, no TEE
+- A working implementation passes verification tests
+- All sub-problems are either `SOLVED` or `ABANDONED` with justification
+- All specs are either `satisfied` or `waived`
+- All planner tasks are done or cancelled
 
 ---
 
 ## Research Paper
 
-When the objective is met, write a research paper structured as follows:
+When the objective is met, write a research paper:
 
 1. **Abstract** — What the scheme does and why it is novel
-2. **Problem Statement** — Formal definition of the threshold verification problem with constraints
-3. **Background** — Relevant existing primitives (BLS aggregation, Merkle proofs, polynomial commitments, etc.) and why they fall short individually
-4. **Construction** — Full formal description of the scheme, including key generation, signing, aggregation, and verification algorithms. If the construction relies on an invented geometric space, include a self-contained definition of that space and a proof of its relevant properties.
-5. **Security Analysis** — Informal or formal argument for soundness and completeness; identify any assumptions, including any new hardness assumptions introduced by an invented space
-6. **Implementation Notes** — Complexity analysis, practical tradeoffs, and known limitations
+2. **Problem Statement** — Formal definition with constraints
+3. **Background** — Existing primitives and why they fall short individually
+4. **Construction** — Full formal description: key generation, signing, aggregation, verification. If an invented space is used, include a self-contained definition and proof of relevant properties.
+5. **Security Analysis** — Soundness and completeness argument; all assumptions including new hardness assumptions from invented spaces
+6. **Implementation Notes** — Complexity, tradeoffs, known limitations
 7. **Conclusion** — Open questions and future directions
 
 ---
 
-## Tool Usage
+## Tool Usage Summary
 
-Use your full MCP toolset throughout. Specifically:
-
-- **Scratch server** — for persisting hypotheses, results, and iteration state between sessions
-- **Filesystem / project tools** — for reading prior work at the start of each session and maintaining the directory structure
-- **Any available compute tools** — for running test scripts and validating properties of invented spaces
-
-Always read project state before forming a hypothesis. Always write results before ending a session. Always check for open sub-problems and unintegrated subagent work before proceeding.
+| When | Tool(s) |
+|---|---|
+| Session start | `session_restore`, `session_sanity_check`, `focus_list` |
+| Work selection | `planner_task_next_ready` |
+| New sub-problem | `planner_task_create`, `planner_task_link`, `spec_define` |
+| New loop/thread | `loop_open` |
+| Hypothesis | `scratch_put` (key: `hypothesis/pending`), `ledger_run_append_event` |
+| New space | `constraint_add`, `space-definition.md` |
+| Experiment result | `ledger_run_append_event`, `diff_baseline_set` (on first PASS) |
+| Breakthrough | `evidence_attach` |
+| Sub-problem solved | `spec_set_status(satisfied)`, `planner_task_update(done)`, Slack |
+| End of experiment | `loop_step` |
+| End of session | `ledger_run_checkpoint`, `loop_close`, `scratch_compact`, `handoff_build`, `handoff_save`, `handoff_validate` |
+| Blocked | `loop_blocker_add` |
+| Unblocked | `loop_blocker_clear` |
+| Stale scratch cleanup | `evict_suggest`, `evict_archive` |
