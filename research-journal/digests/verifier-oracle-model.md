@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-03-31 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13
+**Last updated:** 2026-03-31 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13-resolved
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,7 +12,8 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
-| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13` | INCONCLUSIVE | **`n=13`**, **wt∈{6,7}** **(** **3432** **masks** **,** **`t=7`** **)** **:** **baseline** **PASS** **(** **coord** **`13`**, **full** **13-XOR** **`1`**, **~27s** **)** **;** **`r=2`** **`min_d=7`** **(** **~1356s** **DP** **)** **;** **`r=3..12`** **+** **unions** **not** **finished** **(** **shard** **w/** **`python` `-u`** **)** |
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13-resolved` | PASS | **`n=13`**, **wt∈{6,7}** **:** **full** **`min_d(r)`** **`r=2..12`:** **`7,5,4,3,3,3,4,3,4,3,2`** **;** **unions** **`{2,3,4}→4`**, **`{2..5}→3`**, **`{2..12}→2`** **(** **vs** **n=12** **triple** **union** **`3`** **)** **;** **loop** **OOM** **on** **`r=8`** **once** **—** **isolated** **rerun** **OK** |
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n13` | INCONCLUSIVE | **Superseded** **by** **`…-n13-resolved`** **(** **partial** **baseline** **+** **`r=2`** **only** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13-baseline` | PASS | **`n=13`**, **wt∈{7,8}** **(** **3003** **masks** **)** **:** **coord** **`min_d=13`**, **full** **13-XOR** **`min_d=1`** **(** **`--baseline-only`** **~31s** **here** **)** **—** **full** **`min_d(r)`** **deferred** **(** **shard** **next** **)** |
 | `lru-memo-exists-tree-n12-r5-r7` | FAIL | **LRU** **cap** **on** **`(bits,depth)`** **memo** **:** **`r=6`** **cross-check** **`min_d=2` OK** **;** **`r=5`** **`d=3`** **does** **not** **finish** **in** **`timeout 120`/`900`** **—** **not** **a** **practical** **bounded-RAM** **alternative** **to** **unbounded** **memo** **(** **distinct** **from** **resolved** **shard** **runs** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12-r5-r7-resolved` | PASS | **Full** **`min_d(r)`** **`r=2..11`:** **`6,4,3,4,2,4,3,4,3,2`** **(** **`r=5,7`** **via** **fresh** **`--r-single`** **shards** **~400s** **each** **)** **;** **unions** **`r≤5`** **`→3`**, **`r∈{2..11}`** **`→2`** **—** **supersedes** **partial** **101** **table** |

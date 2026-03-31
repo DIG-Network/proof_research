@@ -33,4 +33,4 @@ Same **`script.py`** **pattern** **as** **`wt-six-seven-n12`** **:** **`N=13`**,
 # Outcome (post-run)
 
 - **H1:** PASS (coord `min_d=13`, full 13-XOR `min_d=1`).
-- **H2:** INCONCLUSIVE — only **`r=2`** completed (`min_d=7`); **`r=3..12`** deferred to follow-up shards.
+- **H2:** PASS — full **`min_d(r)`** for **`r=2..12`:** **`7,5,4,3,3,3,4,3,4,3,2`**; unions **`{2,3,4}→4`**, **`{2..5}→3`**, **`{2..12}→2`**.

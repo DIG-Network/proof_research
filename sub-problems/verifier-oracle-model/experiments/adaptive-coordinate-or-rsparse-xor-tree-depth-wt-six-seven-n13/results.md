@@ -1,34 +1,49 @@
-# Outcome: INCONCLUSIVE (partial single-arity row)
+# Outcome: PASS
 
-## Baseline (`--baseline-only`): PASS
+## Baseline (`--baseline-only`)
 
-- **Domain:** `n=13`, `|S| ∈ {6,7}`, `|masks| = C(13,6)+C(13,7) = 3432`, majority `t=7`.
-- **coord-only:** `min_d = 13` (needs full depth `d_max=n`).
+- **Domain:** `n=13`, `|S| ∈ {6,7}`, `|masks| = 3432`, majority `t=7`.
+- **coord-only:** `min_d = 13`.
 - **coord + full 13-XOR:** `min_d = 1`.
-- **Wall time (one run):** ~27 s total for baseline (coord sweep + full XOR).
+- **Wall time:** ~27 s (earlier run).
 
-## Single-arity shards (`--skip-baseline --r-single r`)
+## Single-arity row (`--skip-baseline --r-single r`)
 
-| r | XOR splits | min_d | dp_sec (total) | Status |
-|---|------------|-------|----------------|--------|
-| 2 | 78 | 7 | 1355.55 | DONE |
-| 3..12 | — | — | — | Not finished this session |
+| r | XOR splits | min_d | dp_sec (approx) | Notes |
+|---|------------|-------|-----------------|-------|
+| 2 | 78 | 7 | 1356 | |
+| 3 | 286 | 5 | 3645 | |
+| 4 | 715 | 4 | 459 | |
+| 5 | 1287 | 3 | 42 | |
+| 6 | 1716 | 3 | 10 | |
+| 7 | 1716 | 3 | 6 | |
+| 8 | 1287 | 4 | 2071 | |
+| 9 | 715 | 3 | 14 | |
+| 10 | 286 | 4 | 23 | |
+| 11 | 78 | 3 | 0.04 | |
+| 12 | 13 | 2 | 0.002 | |
 
-**r=2 per-depth times (sec):** d1 0.0003, d2 0.014, d3 0.42, d4 6.10, d5 67.26, d6 585.32, d7 692.50.
+**Canonical row `min_d(r)` for `r=2..12`:** `7,5,4,3,3,3,4,3,4,3,2`.
 
-## Comparison to n=12 same slice
+## Unions (`--skip-baseline --union-rs`)
 
-- n=12 `{6,7}`: `min_d(2)=6`; here `min_d(2)=7` (consistent with larger `n` / deeper coord-only barrier).
-- Full `min_d(r)` row for n=12: `6,4,3,4,2,4,3,4,3,2` for r=2..11.
+| RS | total XOR splits | min_d | dp_sec (approx) |
+|----|------------------|-------|-----------------|
+| 2,3,4 | 1079 | 4 | 1532 |
+| 2,3,4,5 | 2366 | 3 | 484 |
+| 2..12 (all) | 8177 | 2 | 0.06 |
+
+## Comparison to n=12 `{6,7}`
+
+- n=12 `min_d(r)` for `r=2..11`: `6,4,3,4,2,4,3,4,3,2`.
+- n=13 row is **not** prefix-monotone in `r` (e.g. `7→5→4→3` then `3,3,4,3,4,3,2`) — same qualitative behavior as n=12 (local non-monotonicity).
+- **Unions:** n=12 had `r∈{2,3,4}→3`, `r∈{2..5}→3`, `r∈{2..11}→2`. Here `r∈{2,3,4}→4`, `r∈{2..5}→3`, `r∈{2..12}→2`.
 
 ## Hypothesis verdict
 
-- **H1 (baseline):** PASS.
-- **H2 (existence of cheap r):** Partially supported (`r=2` gives finite `min_d=7`); full row **not** computed.
+- **H1:** PASS.
+- **H2:** PASS (full finite row; smallest `min_d` among single-arity is **2** at `r=12`).
 
-## Next steps
+## Operational note
 
-- Finish `r=3..12` in **separate processes** (same pattern as n=12):  
-  `python -u script.py --skip-baseline --r-single R`  
-  (`-u` recommended so each **d** line appears as soon as that depth finishes.)
-- Then run union probes (`--union-rs`) if the full row completes.
+Chaining several heavy shards in **one** shell loop caused **MemoryError** once (after `r=11,10,9` before `r=8`). **Re-running `r=8` alone** succeeded. Prefer **one `python` process per `r`** on large split counts.
