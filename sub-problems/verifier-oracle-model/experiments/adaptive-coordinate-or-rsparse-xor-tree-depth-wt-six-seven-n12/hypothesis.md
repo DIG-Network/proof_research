@@ -36,4 +36,8 @@ Identical DP to **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-five-six-n11
 
 # Outcome (post-run)
 
-*(Filled after `script.py`.)*
+**PASS** (with **OOM** caveat on **standalone** **r=5** **and** **r=7**).
+
+- **H1** (**coord** **`12`**, **full** **parity** **`1`**): **Confirmed** (`--baseline-only`).
+- **H2** (**prefix** **`min_d(r)`** **shape**): **Partially** **filled** **—** **non-monotone** **sequence** **on** **observed** **`r`**, **with** **`r=6`** **and** **`r=11`** **at** **`2`** **(** **not** **a** **099-style** **`r=6,7`** **regression** **above** **`r=5`** **in** **the** **rows** **we** **have** **)** **.**
+- **H3** (**union** **`r≤5`** **≥** **`3`** **like** **`n=11`** **): **Falsified** **in** **the** **union** **sense** **—** **`coord + r∈{2,3,4,5}`** **still** **`min_d=3`**, **but** **`coord + r∈{2,…,11}`** **`min_d=2`** **(** **same** **as** **`n=11`** **full** **union** **)** **.**

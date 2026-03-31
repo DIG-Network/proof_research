@@ -145,25 +145,112 @@ def main() -> None:
         default=N - 1,
         help="max r for single-arity sweep (default n-1)",
     )
+    p.add_argument(
+        "--r-single",
+        type=int,
+        default=None,
+        metavar="R",
+        help="only run coord/full + single-arity language for this r (fresh process; lowers peak RAM)",
+    )
+    p.add_argument(
+        "--union-rs",
+        type=str,
+        default=None,
+        metavar="LIST",
+        help='comma-separated r values for one mixed language, e.g. "2,3,4,5" (coord + those r-sparse XOR menus)',
+    )
+    p.add_argument(
+        "--skip-baseline",
+        action="store_true",
+        help="with --r-single or --union-rs, skip coord-only and full-n-XOR checks",
+    )
+    p.add_argument(
+        "--baseline-only",
+        action="store_true",
+        help="only run coord-only + coord+full-n-XOR (no r sweep; fast sanity)",
+    )
     args = p.parse_args()
     r_max = min(args.r_max, N - 1)
 
     masks = build_masks()
     coord_parts = build_coord_partition_masks(masks)
 
-    md0, log0 = min_depth_for_language(masks, coord_parts, [], N)
-    print(f"coord_only min_d={md0} (d_max={N})")
-    for d, ok, sec in log0:
-        print(f"  d={d} feasible={ok} sec={sec:.4f}")
+    def baseline() -> tuple[int | None, int | None]:
+        md0, log0 = min_depth_for_language(masks, coord_parts, [], N)
+        print(f"coord_only min_d={md0} (d_max={N})")
+        for d, ok, sec in log0:
+            print(f"  d={d} feasible={ok} sec={sec:.4f}")
 
-    full_par_parts = build_r_xor_partition_masks(masks, N)
-    assert len(full_par_parts) == 1
-    md_full, log_full = min_depth_for_language(
-        masks, coord_parts, [full_par_parts], N
-    )
-    print(f"coord_plus_full_{N}xor min_d={md_full}")
-    for d, ok, sec in log_full:
-        print(f"  d={d} feasible={ok} sec={sec:.4f}")
+        full_par_parts = build_r_xor_partition_masks(masks, N)
+        assert len(full_par_parts) == 1
+        md_full, log_full = min_depth_for_language(
+            masks, coord_parts, [full_par_parts], N
+        )
+        print(f"coord_plus_full_{N}xor min_d={md_full}")
+        for d, ok, sec in log_full:
+            print(f"  d={d} feasible={ok} sec={sec:.4f}")
+        return md0, md_full
+
+    md0: int | None = None
+    md_full: int | None = None
+    if not args.skip_baseline:
+        md0, md_full = baseline()
+    else:
+        print("skip_baseline=1 (coord-only and full parity not run)")
+
+    if args.baseline_only:
+        if md0 is None or md_full is None or md_full != 1:
+            print("FAIL", flush=True)
+            sys.exit(1)
+        print("PASS", flush=True)
+        return
+
+    if args.r_single is not None:
+        r = args.r_single
+        if not (2 <= r <= N - 1):
+            print(f"FAIL: r-single must be in 2..{N-1}", flush=True)
+            sys.exit(1)
+        t0 = time.perf_counter()
+        xp = build_r_xor_partition_masks(masks, r)
+        t1 = time.perf_counter()
+        md, lg = min_depth_for_language(masks, coord_parts, [xp], N)
+        t2 = time.perf_counter()
+        print(
+            f"coord_plus_{r}xor count={len(xp)} min_d={md} "
+            f"build_sec={t1-t0:.3f} dp_sec={t2-t1:.3f}"
+        )
+        for d, ok, sec in lg:
+            print(f"  d={d} feasible={ok} sec={sec:.4f}")
+        if not args.skip_baseline and (
+            md0 is None or md_full is None or md_full != 1
+        ):
+            print("FAIL", flush=True)
+            sys.exit(1)
+        print("PASS", flush=True)
+        return
+
+    if args.union_rs is not None:
+        rs = [int(x.strip()) for x in args.union_rs.split(",") if x.strip()]
+        for r in rs:
+            if not (2 <= r <= N - 1):
+                print(f"FAIL: union-rs entries must be in 2..{N-1}", flush=True)
+                sys.exit(1)
+        xor_lists = [build_r_xor_partition_masks(masks, r) for r in rs]
+        total = sum(len(x) for x in xor_lists)
+        t0 = time.perf_counter()
+        md_u, _ = min_depth_for_language(masks, coord_parts, xor_lists, N)
+        t1 = time.perf_counter()
+        print(
+            f"coord_plus_union_rs={rs} total_splits={total} min_d={md_u} "
+            f"dp_sec={t1-t0:.3f}"
+        )
+        if not args.skip_baseline and (
+            md0 is None or md_full is None or md_full != 1
+        ):
+            print("FAIL", flush=True)
+            sys.exit(1)
+        print("PASS", flush=True)
+        return
 
     for r in range(2, r_max + 1):
         t0 = time.perf_counter()
@@ -179,11 +266,15 @@ def main() -> None:
             print(f"  d={d} feasible={ok} sec={sec:.4f}")
 
     parts_by_r = {r: build_r_xor_partition_masks(masks, r) for r in range(2, r_max + 1)}
-    p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
-    md_234, _ = min_depth_for_language(masks, coord_parts, [p2, p3, p4], N)
-    print(f"coord_plus_r2_r3_r4 min_d={md_234}")
+    if r_max >= 4:
+        p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
+        md_234, _ = min_depth_for_language(masks, coord_parts, [p2, p3, p4], N)
+        print(f"coord_plus_r2_r3_r4 min_d={md_234}")
+    else:
+        print("coord_plus_r2_r3_r4 skipped (r-max < 4)")
 
     if r_max >= 5:
+        p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
         md_2345, _ = min_depth_for_language(
             masks, coord_parts, [p2, p3, p4, parts_by_r[5]], N
         )
