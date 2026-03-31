@@ -1,12 +1,12 @@
 # Session State
 
 **Last updated:** 2026-03-31 (automation)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/lru-memo-exists-tree-n12-r5-r7`
-**Last outcome:** FAIL
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13`
+**Last outcome:** PASS (baseline only)
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **Canonical** **`(12,{6,7})`** **`min_d(r)`** **row** **is** **complete** **(** **`…-n12-r5-r7-resolved`** **)** **;** **continue** **verifier-oracle** **scaling** **(** **e.g.** **`n=13`** **`{7,8}`** **)** **or** **Grassmannian** **tier-1** **thread** **per** **persona.** **Engineering** **note:** **LRU-bounded** **`exists_tree`** **memo** **does** **not** **replace** **unbounded** **memo** **(** **`lru-memo-exists-tree-n12-r5-r7`** **)** **;** **disk** **per-state** **memo** **also** **ruled** **out** **(** **`disk-memo-microbench-exists-tree-n12`** **)** **.**
+**Next action:** Run sharded **`--r-single r`** for **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n13`** (**`r=2..12`**, **`--skip-baseline`**) to complete the **`min_d(r)`** row and unions (expect heavier mid-**r** than n=12; **C(13,6)=C(13,7)=1716** splits each).
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
