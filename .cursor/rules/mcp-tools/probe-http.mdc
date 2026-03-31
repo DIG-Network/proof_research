@@ -1,0 +1,52 @@
+---
+description: "MCP tool probe_http (Cursor server \"probe\", HTTP mount /mcp/probe). Args include required project id. When: Stateless GET/POST to a URL with timeout and body snippet (no persistent run record). Slugs: probe-http, probe_http, mcp-probe-http, tool-probe-http, probe/probe-http. Relevance phrases: User or agent explicitly names `probe_http` or equivalent (probe http) · Workflow step that matches this capability: probe http · Stateless GET/POST to a URL with timeout and body snippet (no persistent run record). · One-off HTTP GET/POST probe with timeout; assert status or body substring (no DB run row). Keyword index: probe_http probe /mcp/probe probe-http probe_http mcp-probe-http tool-probe-http probe/probe-http user or agent explicitly names `probe_http` or equivalent (probe http) workflow step that matches this capability: probe http stateless get/post to a url with timeout and body snippet (no persistent run record). one-off http get/post probe with timeout; assert status or body substring (no db run row) stateless get/post to a url with timeout and body snippet (no persistent run record)."
+alwaysApply: false
+---
+
+# `probe_http`
+
+**Cursor MCP server:** `probe`  
+**HTTP mount:** `/mcp/probe`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `probe-http`
+- `probe_http`
+- `mcp-probe-http`
+- `tool-probe-http`
+- `probe/probe-http`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `probe_http` or equivalent (probe http)
+- Workflow step that matches this capability: probe http
+- Stateless GET/POST to a URL with timeout and body snippet (no persistent run record).
+- One-off HTTP GET/POST probe with timeout; assert status or body substring (no DB run row)
+
+### Summary
+
+Stateless GET/POST to a URL with timeout and body snippet (no persistent run record).
+
+## How to use
+
+- Required: `project`, `url`. Optional `method`, `headers`, `body`, `timeout_ms`, `max_body_chars`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

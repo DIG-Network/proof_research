@@ -1,0 +1,54 @@
+---
+description: "MCP tool focus_remove (Cursor server \"focus\", HTTP mount /mcp/focus). Args include required project id. When: Drop a scratch id from the focus set. Slugs: focus-remove, focus_remove, mcp-focus-remove, tool-focus-remove, focus/focus-remove, remove, focus/remove. Relevance phrases: User or agent explicitly names `focus_remove` or equivalent (focus remove) · Workflow step that matches this capability: focus remove · Drop a scratch id from the focus set. · Working set of scratch ids to rehydrate after context window flush. Keyword index: focus_remove focus /mcp/focus focus-remove focus_remove mcp-focus-remove tool-focus-remove focus/focus-remove remove focus/remove user or agent explicitly names `focus_remove` or equivalent (focus remove) workflow step that matches this capability: focus remove drop a scratch id from the focus set. working set of scratch ids to rehydrate after context window flush drop a scratch id from the focus set."
+alwaysApply: false
+---
+
+# `focus_remove`
+
+**Cursor MCP server:** `focus`  
+**HTTP mount:** `/mcp/focus`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `focus-remove`
+- `focus_remove`
+- `mcp-focus-remove`
+- `tool-focus-remove`
+- `focus/focus-remove`
+- `remove`
+- `focus/remove`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `focus_remove` or equivalent (focus remove)
+- Workflow step that matches this capability: focus remove
+- Drop a scratch id from the focus set.
+- Working set of scratch ids to rehydrate after context window flush
+
+### Summary
+
+Drop a scratch id from the focus set.
+
+## How to use
+
+- Required fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,55 @@
+---
+description: "MCP tool spec_summary (Cursor server \"spec\", HTTP mount /mcp/spec). Args include required project id. When: Roll up spec counts/status for dashboards or cron hints. Slugs: spec-summary, spec_summary, mcp-spec-summary, tool-spec-summary, spec/spec-summary, summary, spec/summary. Relevance phrases: User or agent explicitly names `spec_summary` or equivalent (spec summary) · Workflow step that matches this capability: spec summary · Roll up spec counts/status for dashboards or cron hints. · Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status · Spec rollup summary for dashboards or cron hints. Keyword index: spec_summary spec /mcp/spec spec-summary spec_summary mcp-spec-summary tool-spec-summary spec/spec-summary summary spec/summary user or agent explicitly names `spec_summary` or equivalent (spec summary) workflow step that matches this capability: spec summary roll up spec counts/status for dashboards or cron hints. requirements / acceptance criteria: define, link to planner tasks, set satisfaction status spec rollup summary for dashboards or cron hints roll up spec counts/status for dashboards or cron hints."
+alwaysApply: false
+---
+
+# `spec_summary`
+
+**Cursor MCP server:** `spec`  
+**HTTP mount:** `/mcp/spec`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `spec-summary`
+- `spec_summary`
+- `mcp-spec-summary`
+- `tool-spec-summary`
+- `spec/spec-summary`
+- `summary`
+- `spec/summary`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `spec_summary` or equivalent (spec summary)
+- Workflow step that matches this capability: spec summary
+- Roll up spec counts/status for dashboards or cron hints.
+- Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status
+- Spec rollup summary for dashboards or cron hints
+
+### Summary
+
+Roll up spec counts/status for dashboards or cron hints.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

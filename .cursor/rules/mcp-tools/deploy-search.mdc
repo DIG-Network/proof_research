@@ -1,0 +1,54 @@
+---
+description: "MCP tool deploy_search (Cursor server \"deploy\", HTTP mount /mcp/deploy). Args include required project id. When: Search deployment history text/metadata. Slugs: deploy-search, deploy_search, mcp-deploy-search, tool-deploy-search, deploy/deploy-search, search, deploy/search. Relevance phrases: User or agent explicitly names `deploy_search` or equivalent (deploy search) · Workflow step that matches this capability: deploy search · Search deployment history text/metadata. · Record or search deployment history; latest per environment; update metadata. Keyword index: deploy_search deploy /mcp/deploy deploy-search deploy_search mcp-deploy-search tool-deploy-search deploy/deploy-search search deploy/search user or agent explicitly names `deploy_search` or equivalent (deploy search) workflow step that matches this capability: deploy search search deployment history text/metadata. record or search deployment history; latest per environment; update metadata search deployment history text/metadata."
+alwaysApply: false
+---
+
+# `deploy_search`
+
+**Cursor MCP server:** `deploy`  
+**HTTP mount:** `/mcp/deploy`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `deploy-search`
+- `deploy_search`
+- `mcp-deploy-search`
+- `tool-deploy-search`
+- `deploy/deploy-search`
+- `search`
+- `deploy/search`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `deploy_search` or equivalent (deploy search)
+- Workflow step that matches this capability: deploy search
+- Search deployment history text/metadata.
+- Record or search deployment history; latest per environment; update metadata
+
+### Summary
+
+Search deployment history text/metadata.
+
+## How to use
+
+- Required: `project`, query fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

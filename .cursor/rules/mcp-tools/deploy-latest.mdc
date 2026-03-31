@@ -1,0 +1,54 @@
+---
+description: "MCP tool deploy_latest (Cursor server \"deploy\", HTTP mount /mcp/deploy). Args include required project id. When: Get latest deployment for an environment. Slugs: deploy-latest, deploy_latest, mcp-deploy-latest, tool-deploy-latest, deploy/deploy-latest, latest, deploy/latest. Relevance phrases: User or agent explicitly names `deploy_latest` or equivalent (deploy latest) · Workflow step that matches this capability: deploy latest · Get latest deployment for an environment. · Record or search deployment history; latest per environment; update metadata. Keyword index: deploy_latest deploy /mcp/deploy deploy-latest deploy_latest mcp-deploy-latest tool-deploy-latest deploy/deploy-latest latest deploy/latest user or agent explicitly names `deploy_latest` or equivalent (deploy latest) workflow step that matches this capability: deploy latest get latest deployment for an environment. record or search deployment history; latest per environment; update metadata get latest deployment for an environment."
+alwaysApply: false
+---
+
+# `deploy_latest`
+
+**Cursor MCP server:** `deploy`  
+**HTTP mount:** `/mcp/deploy`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `deploy-latest`
+- `deploy_latest`
+- `mcp-deploy-latest`
+- `tool-deploy-latest`
+- `deploy/deploy-latest`
+- `latest`
+- `deploy/latest`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `deploy_latest` or equivalent (deploy latest)
+- Workflow step that matches this capability: deploy latest
+- Get latest deployment for an environment.
+- Record or search deployment history; latest per environment; update metadata
+
+### Summary
+
+Get latest deployment for an environment.
+
+## How to use
+
+- Required: `project` and environment field per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

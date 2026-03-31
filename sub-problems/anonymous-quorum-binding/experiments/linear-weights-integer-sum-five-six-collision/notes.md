@@ -1,0 +1,5 @@
+# Notes — linear-weights-integer-sum-five-six-collision
+
+- **Relation** **to** **034:** **034** **exhibited** **mod-2** **agreement;** **035** **shows** **the** **collision** **is** **not** **an** **artifact** **of** **choosing** **a** **small** **modulus** **—** **the** **same** **weights** **admit** **exact** **integer** **equality** **21** **for** **5** **vs** **6** **participants.**
+- **Binding** **lesson:** **Any** **π** **that** **only** **reveals** **one** **homomorphic** **integer** **sum** **of** **fixed** **public** **scalars** **per** **signer** **must** **pair** **with** **extra** **structure** **(Merkle** **on** **who** **signed,** **range** **proofs** **on** **count,** **etc.)** **—** **not** **new** **cryptographically,** **but** **pinned** **to** **this** **repo’s** **threshold** **story.**
+- **Next** **axis:** **verifier-oracle** **non-spectral** **toy** **or** **random** **weights** **mod** **large** **p** **if** **we** **want** **a** **“generic”** **collision** **search** **(heavier).**

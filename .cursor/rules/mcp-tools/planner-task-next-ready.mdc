@@ -1,0 +1,56 @@
+---
+description: "MCP tool planner_task_next_ready (Cursor server \"planner\", HTTP mount /mcp/planner). Args include required project id. When: Pick work: list tasks not done/cancelled whose dependencies are all done. Slugs: planner-task-next-ready, planner_task_next_ready, mcp-planner-task-next-ready, tool-planner-task-next-ready, planner/planner-task-next-ready, task-next-ready, planner/task-next-ready. Relevance phrases: User or agent explicitly names `planner_task_next_ready` or equivalent (planner task next ready) · Workflow step that matches this capability: planner task next ready · Pick work: list tasks not done/cancelled whose dependencies are all done. · Task DAG: dependencies, ready work, blocking relationships, multi-step implementation plans · Export/import task graph JSON for backup or migration · Task backlogs, roadmaps, agent task files, or issue breakdowns in any editor or folder. Keyword index: planner_task_next_ready planner /mcp/planner planner-task-next-ready planner_task_next_ready mcp-planner-task-next-ready tool-planner-task-next-ready planner/planner-task-next-ready task-next-ready planner/task-next-ready user or agent explicitly names `planner_task_next_ready` or equivalent (planner task next ready) workflow step that matches this capability: planner task next ready pick work: list tasks not done/cancelled whose dependencies are all done. task dag: dependencies, ready work, blocking relationships, multi-step implementation plans export/import task graph json for backup or migration task backlogs, roadmaps, agent task files, or issue breakdowns in any editor or folder pick work: list tasks not done/cancelled whose dependencies are all done."
+alwaysApply: false
+---
+
+# `planner_task_next_ready`
+
+**Cursor MCP server:** `planner`  
+**HTTP mount:** `/mcp/planner`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `planner-task-next-ready`
+- `planner_task_next_ready`
+- `mcp-planner-task-next-ready`
+- `tool-planner-task-next-ready`
+- `planner/planner-task-next-ready`
+- `task-next-ready`
+- `planner/task-next-ready`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `planner_task_next_ready` or equivalent (planner task next ready)
+- Workflow step that matches this capability: planner task next ready
+- Pick work: list tasks not done/cancelled whose dependencies are all done.
+- Task DAG: dependencies, ready work, blocking relationships, multi-step implementation plans
+- Export/import task graph JSON for backup or migration
+- Task backlogs, roadmaps, agent task files, or issue breakdowns in any editor or folder
+
+### Summary
+
+Pick work: list tasks not done/cancelled whose dependencies are all done.
+
+## How to use
+
+- Required: `project`. Optional `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

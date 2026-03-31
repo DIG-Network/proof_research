@@ -1,0 +1,55 @@
+---
+description: "MCP tool spec_unlink_task (Cursor server \"spec\", HTTP mount /mcp/spec). Args include required project id. When: Remove spec↔task association. Slugs: spec-unlink-task, spec_unlink_task, mcp-spec-unlink-task, tool-spec-unlink-task, spec/spec-unlink-task, unlink-task, spec/unlink-task. Relevance phrases: User or agent explicitly names `spec_unlink_task` or equivalent (spec unlink task) · Workflow step that matches this capability: spec unlink task · Remove spec↔task association. · Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status · Spec rollup summary for dashboards or cron hints. Keyword index: spec_unlink_task spec /mcp/spec spec-unlink-task spec_unlink_task mcp-spec-unlink-task tool-spec-unlink-task spec/spec-unlink-task unlink-task spec/unlink-task user or agent explicitly names `spec_unlink_task` or equivalent (spec unlink task) workflow step that matches this capability: spec unlink task remove spec↔task association. requirements / acceptance criteria: define, link to planner tasks, set satisfaction status spec rollup summary for dashboards or cron hints remove spec↔task association."
+alwaysApply: false
+---
+
+# `spec_unlink_task`
+
+**Cursor MCP server:** `spec`  
+**HTTP mount:** `/mcp/spec`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `spec-unlink-task`
+- `spec_unlink_task`
+- `mcp-spec-unlink-task`
+- `tool-spec-unlink-task`
+- `spec/spec-unlink-task`
+- `unlink-task`
+- `spec/unlink-task`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `spec_unlink_task` or equivalent (spec unlink task)
+- Workflow step that matches this capability: spec unlink task
+- Remove spec↔task association.
+- Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status
+- Spec rollup summary for dashboards or cron hints
+
+### Summary
+
+Remove spec↔task association.
+
+## How to use
+
+- Required fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,6 @@
+# Notes — random-cubic-10-laplacian-sixset-injective
+
+- **Why not configuration model in final script:** First draft used a **configuration-model** **reject** **loop** **—** **too** **many** **failed** **shuffles** **per** **trial;** **`networkx.random_regular_graph`** **matches** **the** **“random** **labeled** **cubic”** **intent** **with** **fixed** **seeds** **and** **fast** **generation.**
+- **Heuristic mechanism:** **Isomorphic** **induced** **subgraphs** **on** **6** **vertices** **(or** **cospectral** **non-isomorphic** **mates)** **force** **identical** **Laplacian** **spectra;** **210** **subsets** **in** **a** **fixed** **G** **greatly** **outrun** **the** **number** **of** **abstract** **6**-**vertex** **patterns** **that** **can** **arise** **—** **so** **collisions** **are** **expected** **generically.**
+- **Not a proof of impossibility:** **FAIL** **only** **means** **no** **hit** **in** **100 k** **seeds;** **a** **carefully** **crafted** **non-cubic** **or** **larger** **n** **host** **might** **still** **behave** **differently.**
+- **Next:** **If** **spectral** **π** **is** **revived,** **combine** **with** **vertex**-**specific** **weights** **/ ** **side** **information** **/ ** **non-spectral** **glue** **—** **pure** **unweighted** **induced** **L** **alone** **looks** **fragile.**

@@ -1,0 +1,56 @@
+---
+description: "MCP tool ledger_run_checkpoint (Cursor server \"ledger\", HTTP mount /mcp/ledger). Args include required project id. When: Append a compact checkpoint event and optionally refresh run summary / close run in one call. Slugs: ledger-run-checkpoint, ledger_run_checkpoint, mcp-ledger-run-checkpoint, tool-ledger-run-checkpoint, ledger/ledger-run-checkpoint, run-checkpoint, ledger/run-checkpoint. Relevance phrases: User or agent explicitly names `ledger_run_checkpoint` or equivalent (ledger run checkpoint) · Workflow step that matches this capability: ledger run checkpoint · Append a compact checkpoint event and optionally refresh run summary / close run in one call. · Episodic run log: start run, append events, search history, close run · Audit trail for cron ticks, deploys, long agent loops · Checkpoint + optional close in one ledger call. Keyword index: ledger_run_checkpoint ledger /mcp/ledger ledger-run-checkpoint ledger_run_checkpoint mcp-ledger-run-checkpoint tool-ledger-run-checkpoint ledger/ledger-run-checkpoint run-checkpoint ledger/run-checkpoint user or agent explicitly names `ledger_run_checkpoint` or equivalent (ledger run checkpoint) workflow step that matches this capability: ledger run checkpoint append a compact checkpoint event and optionally refresh run summary / close run in one call. episodic run log: start run, append events, search history, close run audit trail for cron ticks, deploys, long agent loops checkpoint + optional close in one ledger call append a compact checkpoint event and optionally refresh run summary / close run in one call."
+alwaysApply: false
+---
+
+# `ledger_run_checkpoint`
+
+**Cursor MCP server:** `ledger`  
+**HTTP mount:** `/mcp/ledger`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `ledger-run-checkpoint`
+- `ledger_run_checkpoint`
+- `mcp-ledger-run-checkpoint`
+- `tool-ledger-run-checkpoint`
+- `ledger/ledger-run-checkpoint`
+- `run-checkpoint`
+- `ledger/run-checkpoint`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `ledger_run_checkpoint` or equivalent (ledger run checkpoint)
+- Workflow step that matches this capability: ledger run checkpoint
+- Append a compact checkpoint event and optionally refresh run summary / close run in one call.
+- Episodic run log: start run, append events, search history, close run
+- Audit trail for cron ticks, deploys, long agent loops
+- Checkpoint + optional close in one ledger call
+
+### Summary
+
+Append a compact checkpoint event and optionally refresh run summary / close run in one call.
+
+## How to use
+
+- Required: `project`, `run_id`, `checkpoint_summary`. See tool schema for `update_run_summary`, `close_run`, `detail`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

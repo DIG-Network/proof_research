@@ -1,0 +1,55 @@
+---
+description: "MCP tool cron_tick_snapshot (Cursor server \"cron\", HTTP mount /mcp/cron). Args include required project id. When: Start of a scheduled agent tick: one JSON bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth. Slugs: cron-tick-snapshot, cron_tick_snapshot, mcp-cron-tick-snapshot, tool-cron-tick-snapshot, cron/cron-tick-snapshot, tick-snapshot, cron/tick-snapshot. Relevance phrases: User or agent explicitly names `cron_tick_snapshot` or equivalent (cron tick snapshot) · Workflow step that matches this capability: cron tick snapshot · Start of a scheduled agent tick: one JSON bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth. · Scheduled tick: single snapshot of planner + loops + approvals + specs + ledger + queue depth · End-of-tick checkpoint: loop_step and/or ledger append in one call. Keyword index: cron_tick_snapshot cron /mcp/cron cron-tick-snapshot cron_tick_snapshot mcp-cron-tick-snapshot tool-cron-tick-snapshot cron/cron-tick-snapshot tick-snapshot cron/tick-snapshot user or agent explicitly names `cron_tick_snapshot` or equivalent (cron tick snapshot) workflow step that matches this capability: cron tick snapshot start of a scheduled agent tick: one json bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth. scheduled tick: single snapshot of planner + loops + approvals + specs + ledger + queue depth end-of-tick checkpoint: loop_step and/or ledger append in one call start of a scheduled agent tick: one json bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth."
+alwaysApply: false
+---
+
+# `cron_tick_snapshot`
+
+**Cursor MCP server:** `cron`  
+**HTTP mount:** `/mcp/cron`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `cron-tick-snapshot`
+- `cron_tick_snapshot`
+- `mcp-cron-tick-snapshot`
+- `tool-cron-tick-snapshot`
+- `cron/cron-tick-snapshot`
+- `tick-snapshot`
+- `cron/tick-snapshot`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `cron_tick_snapshot` or equivalent (cron tick snapshot)
+- Workflow step that matches this capability: cron tick snapshot
+- Start of a scheduled agent tick: one JSON bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth.
+- Scheduled tick: single snapshot of planner + loops + approvals + specs + ledger + queue depth
+- End-of-tick checkpoint: loop_step and/or ledger append in one call
+
+### Summary
+
+Start of a scheduled agent tick: one JSON bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth.
+
+## How to use
+
+- Required: `project`. Tune `ready_task_limit`, `loop_limit`, `approval_limit`, `ledger_open_limit`, `include_prompt_queue`, `hint_format`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

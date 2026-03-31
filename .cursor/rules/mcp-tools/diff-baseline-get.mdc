@@ -1,0 +1,54 @@
+---
+description: "MCP tool diff_baseline_get (Cursor server \"diff\", HTTP mount /mcp/diff). Args include required project id. When: Fetch one baseline by name. Slugs: diff-baseline-get, diff_baseline_get, mcp-diff-baseline-get, tool-diff-baseline-get, diff/diff-baseline-get, baseline-get, diff/baseline-get. Relevance phrases: User or agent explicitly names `diff_baseline_get` or equivalent (diff baseline get) · Workflow step that matches this capability: diff baseline get · Fetch one baseline by name. · Named JSON baselines for regression-style before/after comparison. Keyword index: diff_baseline_get diff /mcp/diff diff-baseline-get diff_baseline_get mcp-diff-baseline-get tool-diff-baseline-get diff/diff-baseline-get baseline-get diff/baseline-get user or agent explicitly names `diff_baseline_get` or equivalent (diff baseline get) workflow step that matches this capability: diff baseline get fetch one baseline by name. named json baselines for regression-style before/after comparison fetch one baseline by name."
+alwaysApply: false
+---
+
+# `diff_baseline_get`
+
+**Cursor MCP server:** `diff`  
+**HTTP mount:** `/mcp/diff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `diff-baseline-get`
+- `diff_baseline_get`
+- `mcp-diff-baseline-get`
+- `tool-diff-baseline-get`
+- `diff/diff-baseline-get`
+- `baseline-get`
+- `diff/baseline-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `diff_baseline_get` or equivalent (diff baseline get)
+- Workflow step that matches this capability: diff baseline get
+- Fetch one baseline by name.
+- Named JSON baselines for regression-style before/after comparison
+
+### Summary
+
+Fetch one baseline by name.
+
+## How to use
+
+- Required: `project` + baseline key per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

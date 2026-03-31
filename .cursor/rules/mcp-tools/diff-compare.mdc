@@ -1,0 +1,54 @@
+---
+description: "MCP tool diff_compare (Cursor server \"diff\", HTTP mount /mcp/diff). Args include required project id. When: Compare current JSON object to a stored baseline. Slugs: diff-compare, diff_compare, mcp-diff-compare, tool-diff-compare, diff/diff-compare, compare, diff/compare. Relevance phrases: User or agent explicitly names `diff_compare` or equivalent (diff compare) · Workflow step that matches this capability: diff compare · Compare current JSON object to a stored baseline. · Named JSON baselines for regression-style before/after comparison. Keyword index: diff_compare diff /mcp/diff diff-compare diff_compare mcp-diff-compare tool-diff-compare diff/diff-compare compare diff/compare user or agent explicitly names `diff_compare` or equivalent (diff compare) workflow step that matches this capability: diff compare compare current json object to a stored baseline. named json baselines for regression-style before/after comparison compare current json object to a stored baseline."
+alwaysApply: false
+---
+
+# `diff_compare`
+
+**Cursor MCP server:** `diff`  
+**HTTP mount:** `/mcp/diff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `diff-compare`
+- `diff_compare`
+- `mcp-diff-compare`
+- `tool-diff-compare`
+- `diff/diff-compare`
+- `compare`
+- `diff/compare`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `diff_compare` or equivalent (diff compare)
+- Workflow step that matches this capability: diff compare
+- Compare current JSON object to a stored baseline.
+- Named JSON baselines for regression-style before/after comparison
+
+### Summary
+
+Compare current JSON object to a stored baseline.
+
+## How to use
+
+- Required: `project` + baseline key + current payload per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,52 @@
+---
+description: "MCP tool loop_open (Cursor server \"loop\", HTTP mount /mcp/loop). Args include required project id. When: Start an iteration-budget loop tied optionally to a ledger run. Slugs: loop-open, loop_open, mcp-loop-open, tool-loop-open, loop/loop-open. Relevance phrases: User or agent explicitly names `loop_open` or equivalent (loop open) · Workflow step that matches this capability: loop open · Start an iteration-budget loop tied optionally to a ledger run. · Agent iteration budget: open/close loop, step counter, blockers on long-running work. Keyword index: loop_open loop /mcp/loop loop-open loop_open mcp-loop-open tool-loop-open loop/loop-open user or agent explicitly names `loop_open` or equivalent (loop open) workflow step that matches this capability: loop open start an iteration-budget loop tied optionally to a ledger run. agent iteration budget: open/close loop, step counter, blockers on long-running work start an iteration-budget loop tied optionally to a ledger run."
+alwaysApply: false
+---
+
+# `loop_open`
+
+**Cursor MCP server:** `loop`  
+**HTTP mount:** `/mcp/loop`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `loop-open`
+- `loop_open`
+- `mcp-loop-open`
+- `tool-loop-open`
+- `loop/loop-open`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `loop_open` or equivalent (loop open)
+- Workflow step that matches this capability: loop open
+- Start an iteration-budget loop tied optionally to a ledger run.
+- Agent iteration budget: open/close loop, step counter, blockers on long-running work
+
+### Summary
+
+Start an iteration-budget loop tied optionally to a ledger run.
+
+## How to use
+
+- Required: `project`. Optional `max_iterations`, `ledger_run_id`, `metadata`, etc.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

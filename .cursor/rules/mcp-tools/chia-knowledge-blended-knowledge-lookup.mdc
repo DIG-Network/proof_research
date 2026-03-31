@@ -1,0 +1,62 @@
+---
+description: "MCP tool chia_knowledge_blended_knowledge_lookup (Cursor server \"chia-knowledge\", HTTP mount /mcp/chia). No project argument (Chia graph only). When: You want a single synthesized article-style answer (overview → prerequisites → core → related), not a flat list of nugget blocks. Slugs: chia-knowledge-blended-knowledge-lookup, chia_knowledge_blended_knowledge_lookup, mcp-chia-knowledge-blended-knowledge-lookup, tool-chia-knowledge-blended-knowledge-lookup, chia-knowledge/chia-knowledge-blended-knowledge-lookup, blended-knowledge-lookup, ckg-blended-knowledge-lookup, ckg/blended-knowledge-lookup. Relevance phrases: Tutorial or narrative answer; user wants one flowing doc not raw nugget blocks · User or agent explicitly names `chia_knowledge_blended_knowledge_lookup` or equivalent (chia knowledge blended knowledge lookup) · Workflow step that matches this capability: chia knowledge blended knowledge lookup · You want a single synthesized article-style answer (overview → prerequisites → core → related), not a flat list of nugget blocks. · User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync · Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements · CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers · Mempool policy, fees, replacement, block creation (documentation — not live mempool queries) · Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout · Need grounded citations from the knowledge graph before stating protocol facts. Keyword index: chia_knowledge_blended_knowledge_lookup chia-knowledge /mcp/chia chia-knowledge-blended-knowledge-lookup chia_knowledge_blended_knowledge_lookup mcp-chia-knowledge-blended-knowledge-lookup tool-chia-knowledge-blended-knowledge-lookup chia-knowledge/chia-knowledge-blended-knowledge-lookup blended-knowledge-lookup ckg-blended-knowledge-lookup ckg/blended-knowledge-lookup tutorial or narrative answer; user wants one flowing doc not raw nugget blocks user or agent explicitly names `chia_knowledge_blended_knowledge_lookup` or equivalent (chia knowledge blended knowledge lookup) workflow step that matches this capability: chia knowledge blended knowledge lookup you want a single synthesized article-style answer (overview → prerequisites → core → related), not a flat list of nugget blocks. user asks about chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync chialisp, clvm, opcodes, currying, standard puzzles, p2 conditions, agg_sig, announcements cats, offers, nfts, did, custody, asset issuance, wallet sdk, driver layers mempool policy, fees, replacement, block creation (documentation — not live mempool queries) editing or reading documentation, k…"
+alwaysApply: false
+---
+
+# `chia_knowledge_blended_knowledge_lookup`
+
+**Cursor MCP server:** `chia-knowledge`  
+**HTTP mount:** `/mcp/chia`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `chia-knowledge-blended-knowledge-lookup`
+- `chia_knowledge_blended_knowledge_lookup`
+- `mcp-chia-knowledge-blended-knowledge-lookup`
+- `tool-chia-knowledge-blended-knowledge-lookup`
+- `chia-knowledge/chia-knowledge-blended-knowledge-lookup`
+- `blended-knowledge-lookup`
+- `ckg-blended-knowledge-lookup`
+- `ckg/blended-knowledge-lookup`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Tutorial or narrative answer; user wants one flowing doc not raw nugget blocks
+- User or agent explicitly names `chia_knowledge_blended_knowledge_lookup` or equivalent (chia knowledge blended knowledge lookup)
+- Workflow step that matches this capability: chia knowledge blended knowledge lookup
+- You want a single synthesized article-style answer (overview → prerequisites → core → related), not a flat list of nugget blocks.
+- User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync
+- Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements
+- CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers
+- Mempool policy, fees, replacement, block creation (documentation — not live mempool queries)
+- Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout
+- Need grounded citations from the knowledge graph before stating protocol facts
+
+### Summary
+
+You want a single synthesized article-style answer (overview → prerequisites → core → related), not a flat list of nugget blocks.
+
+## How to use
+
+- Pass `query`. Same retrieval knobs as graph RAG; output is reorganized for readability.
+- Use for explanations and tutorials; use `graph_rag_retrieve` when you need explicit per-nugget structure.
+
+## Project
+
+Chia graph tools do **not** take `project`.

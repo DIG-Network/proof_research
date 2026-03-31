@@ -1,0 +1,54 @@
+---
+description: "MCP tool loop_blocker_add (Cursor server \"loop\", HTTP mount /mcp/loop). Args include required project id. When: Record why the loop cannot advance (human input, failing verify, etc.). Slugs: loop-blocker-add, loop_blocker_add, mcp-loop-blocker-add, tool-loop-blocker-add, loop/loop-blocker-add, blocker-add, loop/blocker-add. Relevance phrases: User or agent explicitly names `loop_blocker_add` or equivalent (loop blocker add) · Workflow step that matches this capability: loop blocker add · Record why the loop cannot advance (human input, failing verify, etc.). · Agent iteration budget: open/close loop, step counter, blockers on long-running work. Keyword index: loop_blocker_add loop /mcp/loop loop-blocker-add loop_blocker_add mcp-loop-blocker-add tool-loop-blocker-add loop/loop-blocker-add blocker-add loop/blocker-add user or agent explicitly names `loop_blocker_add` or equivalent (loop blocker add) workflow step that matches this capability: loop blocker add record why the loop cannot advance (human input, failing verify, etc.). agent iteration budget: open/close loop, step counter, blockers on long-running work record why the loop cannot advance (human input, failing verify, etc.)."
+alwaysApply: false
+---
+
+# `loop_blocker_add`
+
+**Cursor MCP server:** `loop`  
+**HTTP mount:** `/mcp/loop`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `loop-blocker-add`
+- `loop_blocker_add`
+- `mcp-loop-blocker-add`
+- `tool-loop-blocker-add`
+- `loop/loop-blocker-add`
+- `blocker-add`
+- `loop/blocker-add`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `loop_blocker_add` or equivalent (loop blocker add)
+- Workflow step that matches this capability: loop blocker add
+- Record why the loop cannot advance (human input, failing verify, etc.).
+- Agent iteration budget: open/close loop, step counter, blockers on long-running work
+
+### Summary
+
+Record why the loop cannot advance (human input, failing verify, etc.).
+
+## How to use
+
+- Required fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

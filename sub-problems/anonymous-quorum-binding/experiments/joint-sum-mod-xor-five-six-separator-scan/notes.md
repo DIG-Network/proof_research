@@ -1,0 +1,5 @@
+# Notes — joint sum-mod + XOR
+
+- **061** **suggested** **pairing** **XOR** **with** **Σ mod M** **to** **break** **the** **single-coordinate** **collisions.** **062** **shows** **that** **for** **this** **fixed** **public** **weight** **vector** **1..10** **and** **threshold** **gap** **5** **vs** **6,** **the** **pair** **(integer** **sum,** **XOR)** **already** **has** **57** **shared** **values** **across** **shells** **—** **so** **modding** **the** **sum** **never** **helps.**
+- **Mechanism:** **035** **already** **noted** **equal** **integer** **sums** **across** **sizes;** **here** **we** **add** **XOR** **and** **still** **get** **many** **simultaneous** **matches** **(not** **only** **the** **(0..5)** **attractor).**
+- **Next** **(if** **staying** **toy** **binding):** **vectors** **beyond** **(sum,** **xor)** **with** **no** **exact** **cross-shell** **collision** **on** **C(10,5)∪C(10,6),** **or** **weights** **/ ** **message-linked** **tags** **not** **fixed** **to** **i+1.** **Otherwise** **pivot** **to** **verifier-oracle-model** **or** **commitment-coupled** **summaries.**

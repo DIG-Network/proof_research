@@ -1,0 +1,5 @@
+# Notes
+
+- **Unsticking** **rationale:** **After** **087–088** **(** **bitwise** **+** **sum** **),** **this** **experiment** **switches** **to** **divisibility** **/** **number-theoretic** **symmetric** **function** **gcd** **—** **same** **shell** **collision** **methodology** **but** **different** **algebra** **than** **&** **/** **|.**
+- **Why** **6-shell** **gcd** **is** **constant** **1:** **For** **any** **six** **distinct** **integers** **in** **[1,10],** **their** **gcd** **is** **1** **(** **e.g.** **consecutive** **triples** **include** **coprime** **pair;** **exhaustive** **check** **is** **the** **script** **output** **).** **So** **h_gcd** **cannot** **distinguish** **any** **two** **6-sets** **on** **this** **universe** **—** **useless** **as** **a** **rich** **6-shell** **label** **without** **a** **different** **weight** **embedding.**
+- **Next** **if** **continuing** **binding** **toys:** **change** **weight** **law** **(** **e.g.** **pairwise** **coprime** **w_i** **)** **so** **gcd** **tracks** **subset** **support,** **or** **abandon** **scalar** **summaries** **for** **this** **sub-problem** **thread.**

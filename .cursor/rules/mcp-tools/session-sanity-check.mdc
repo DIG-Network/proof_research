@@ -1,0 +1,54 @@
+---
+description: "MCP tool session_sanity_check (Cursor server \"session\", HTTP mount /mcp/session). Args include required project id. When: Validate workspace invariants after restore (orphan refs, broken focus, etc.). Slugs: session-sanity-check, session_sanity_check, mcp-session-sanity-check, tool-session-sanity-check, session/session-sanity-check, sanity-check, session/sanity-check. Relevance phrases: User or agent explicitly names `session_sanity_check` or equivalent (session sanity check) · Workflow step that matches this capability: session sanity check · Validate workspace invariants after restore (orphan refs, broken focus, etc.). · New session after flush: restore bundle; sanity-check orphaned refs and broken focus. Keyword index: session_sanity_check session /mcp/session session-sanity-check session_sanity_check mcp-session-sanity-check tool-session-sanity-check session/session-sanity-check sanity-check session/sanity-check user or agent explicitly names `session_sanity_check` or equivalent (session sanity check) workflow step that matches this capability: session sanity check validate workspace invariants after restore (orphan refs, broken focus, etc.). new session after flush: restore bundle; sanity-check orphaned refs and broken focus validate workspace invariants after restore (orphan refs, broken focus, etc.)."
+alwaysApply: false
+---
+
+# `session_sanity_check`
+
+**Cursor MCP server:** `session`  
+**HTTP mount:** `/mcp/session`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `session-sanity-check`
+- `session_sanity_check`
+- `mcp-session-sanity-check`
+- `tool-session-sanity-check`
+- `session/session-sanity-check`
+- `sanity-check`
+- `session/sanity-check`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `session_sanity_check` or equivalent (session sanity check)
+- Workflow step that matches this capability: session sanity check
+- Validate workspace invariants after restore (orphan refs, broken focus, etc.).
+- New session after flush: restore bundle; sanity-check orphaned refs and broken focus
+
+### Summary
+
+Validate workspace invariants after restore (orphan refs, broken focus, etc.).
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

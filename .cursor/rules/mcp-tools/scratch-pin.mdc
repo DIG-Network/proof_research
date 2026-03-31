@@ -1,0 +1,55 @@
+---
+description: "MCP tool scratch_pin (Cursor server \"scratch\", HTTP mount /mcp/scratch). Args include required project id. When: Pin important scratch rows so they surface in focus/session flows. Slugs: scratch-pin, scratch_pin, mcp-scratch-pin, tool-scratch-pin, scratch/scratch-pin, pin, scratch/pin. Relevance phrases: User or agent explicitly names `scratch_pin` or equivalent (scratch pin) · Workflow step that matches this capability: scratch pin · Pin important scratch rows so they surface in focus/session flows. · Short-lived notes, hypotheses, snippets, draft bullets during an agent turn · TTL, importance, pin/unpin, compaction into one canonical scratch key. Keyword index: scratch_pin scratch /mcp/scratch scratch-pin scratch_pin mcp-scratch-pin tool-scratch-pin scratch/scratch-pin pin scratch/pin user or agent explicitly names `scratch_pin` or equivalent (scratch pin) workflow step that matches this capability: scratch pin pin important scratch rows so they surface in focus/session flows. short-lived notes, hypotheses, snippets, draft bullets during an agent turn ttl, importance, pin/unpin, compaction into one canonical scratch key pin important scratch rows so they surface in focus/session flows."
+alwaysApply: false
+---
+
+# `scratch_pin`
+
+**Cursor MCP server:** `scratch`  
+**HTTP mount:** `/mcp/scratch`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `scratch-pin`
+- `scratch_pin`
+- `mcp-scratch-pin`
+- `tool-scratch-pin`
+- `scratch/scratch-pin`
+- `pin`
+- `scratch/pin`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `scratch_pin` or equivalent (scratch pin)
+- Workflow step that matches this capability: scratch pin
+- Pin important scratch rows so they surface in focus/session flows.
+- Short-lived notes, hypotheses, snippets, draft bullets during an agent turn
+- TTL, importance, pin/unpin, compaction into one canonical scratch key
+
+### Summary
+
+Pin important scratch rows so they surface in focus/session flows.
+
+## How to use
+
+- Required: `project` and scratch selector per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,56 @@
+---
+description: "MCP tool ledger_run_get_summary (Cursor server \"ledger\", HTTP mount /mcp/ledger). Args include required project id. When: Inspect run header and last N events. Slugs: ledger-run-get-summary, ledger_run_get_summary, mcp-ledger-run-get-summary, tool-ledger-run-get-summary, ledger/ledger-run-get-summary, run-get-summary, ledger/run-get-summary. Relevance phrases: User or agent explicitly names `ledger_run_get_summary` or equivalent (ledger run get summary) · Workflow step that matches this capability: ledger run get summary · Inspect run header and last N events. · Episodic run log: start run, append events, search history, close run · Audit trail for cron ticks, deploys, long agent loops · Checkpoint + optional close in one ledger call. Keyword index: ledger_run_get_summary ledger /mcp/ledger ledger-run-get-summary ledger_run_get_summary mcp-ledger-run-get-summary tool-ledger-run-get-summary ledger/ledger-run-get-summary run-get-summary ledger/run-get-summary user or agent explicitly names `ledger_run_get_summary` or equivalent (ledger run get summary) workflow step that matches this capability: ledger run get summary inspect run header and last n events. episodic run log: start run, append events, search history, close run audit trail for cron ticks, deploys, long agent loops checkpoint + optional close in one ledger call inspect run header and last n events."
+alwaysApply: false
+---
+
+# `ledger_run_get_summary`
+
+**Cursor MCP server:** `ledger`  
+**HTTP mount:** `/mcp/ledger`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `ledger-run-get-summary`
+- `ledger_run_get_summary`
+- `mcp-ledger-run-get-summary`
+- `tool-ledger-run-get-summary`
+- `ledger/ledger-run-get-summary`
+- `run-get-summary`
+- `ledger/run-get-summary`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `ledger_run_get_summary` or equivalent (ledger run get summary)
+- Workflow step that matches this capability: ledger run get summary
+- Inspect run header and last N events.
+- Episodic run log: start run, append events, search history, close run
+- Audit trail for cron ticks, deploys, long agent loops
+- Checkpoint + optional close in one ledger call
+
+### Summary
+
+Inspect run header and last N events.
+
+## How to use
+
+- Required: `project`, `run_id`. Optional `last_n_events`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

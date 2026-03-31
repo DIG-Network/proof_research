@@ -1,0 +1,52 @@
+---
+description: "MCP tool focus_list (Cursor server \"focus\", HTTP mount /mcp/focus). Args include required project id. When: List scratch ids currently in focus. Slugs: focus-list, focus_list, mcp-focus-list, tool-focus-list, focus/focus-list. Relevance phrases: User or agent explicitly names `focus_list` or equivalent (focus list) · Workflow step that matches this capability: focus list · List scratch ids currently in focus. · Working set of scratch ids to rehydrate after context window flush. Keyword index: focus_list focus /mcp/focus focus-list focus_list mcp-focus-list tool-focus-list focus/focus-list user or agent explicitly names `focus_list` or equivalent (focus list) workflow step that matches this capability: focus list list scratch ids currently in focus. working set of scratch ids to rehydrate after context window flush list scratch ids currently in focus."
+alwaysApply: false
+---
+
+# `focus_list`
+
+**Cursor MCP server:** `focus`  
+**HTTP mount:** `/mcp/focus`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `focus-list`
+- `focus_list`
+- `mcp-focus-list`
+- `tool-focus-list`
+- `focus/focus-list`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `focus_list` or equivalent (focus list)
+- Workflow step that matches this capability: focus list
+- List scratch ids currently in focus.
+- Working set of scratch ids to rehydrate after context window flush
+
+### Summary
+
+List scratch ids currently in focus.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,56 @@
+---
+description: "MCP tool planner_export_json (Cursor server \"planner\", HTTP mount /mcp/planner). Args include required project id. When: Snapshot the project task graph for backup or migration. Slugs: planner-export-json, planner_export_json, mcp-planner-export-json, tool-planner-export-json, planner/planner-export-json, export-json, planner/export-json. Relevance phrases: User or agent explicitly names `planner_export_json` or equivalent (planner export json) · Workflow step that matches this capability: planner export json · Snapshot the project task graph for backup or migration. · Task DAG: dependencies, ready work, blocking relationships, multi-step implementation plans · Export/import task graph JSON for backup or migration · Task backlogs, roadmaps, agent task files, or issue breakdowns in any editor or folder. Keyword index: planner_export_json planner /mcp/planner planner-export-json planner_export_json mcp-planner-export-json tool-planner-export-json planner/planner-export-json export-json planner/export-json user or agent explicitly names `planner_export_json` or equivalent (planner export json) workflow step that matches this capability: planner export json snapshot the project task graph for backup or migration. task dag: dependencies, ready work, blocking relationships, multi-step implementation plans export/import task graph json for backup or migration task backlogs, roadmaps, agent task files, or issue breakdowns in any editor or folder snapshot the project task graph for backup or migration."
+alwaysApply: false
+---
+
+# `planner_export_json`
+
+**Cursor MCP server:** `planner`  
+**HTTP mount:** `/mcp/planner`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `planner-export-json`
+- `planner_export_json`
+- `mcp-planner-export-json`
+- `tool-planner-export-json`
+- `planner/planner-export-json`
+- `export-json`
+- `planner/export-json`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `planner_export_json` or equivalent (planner export json)
+- Workflow step that matches this capability: planner export json
+- Snapshot the project task graph for backup or migration.
+- Task DAG: dependencies, ready work, blocking relationships, multi-step implementation plans
+- Export/import task graph JSON for backup or migration
+- Task backlogs, roadmaps, agent task files, or issue breakdowns in any editor or folder
+
+### Summary
+
+Snapshot the project task graph for backup or migration.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

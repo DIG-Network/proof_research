@@ -1,0 +1,54 @@
+---
+description: "MCP tool verify_run_spec (Cursor server \"verify\", HTTP mount /mcp/verify). Args include required project id. When: Execute verification tied to a spec id. Slugs: verify-run-spec, verify_run_spec, mcp-verify-run-spec, tool-verify-run-spec, verify/verify-run-spec, run-spec, verify/run-spec. Relevance phrases: User or agent explicitly names `verify_run_spec` or equivalent (verify run spec) · Workflow step that matches this capability: verify run spec · Execute verification tied to a spec id. · Run recorded HTTP (or shell if enabled) checks; tie to specs; compare run outputs. Keyword index: verify_run_spec verify /mcp/verify verify-run-spec verify_run_spec mcp-verify-run-spec tool-verify-run-spec verify/verify-run-spec run-spec verify/run-spec user or agent explicitly names `verify_run_spec` or equivalent (verify run spec) workflow step that matches this capability: verify run spec execute verification tied to a spec id. run recorded http (or shell if enabled) checks; tie to specs; compare run outputs execute verification tied to a spec id."
+alwaysApply: false
+---
+
+# `verify_run_spec`
+
+**Cursor MCP server:** `verify`  
+**HTTP mount:** `/mcp/verify`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `verify-run-spec`
+- `verify_run_spec`
+- `mcp-verify-run-spec`
+- `tool-verify-run-spec`
+- `verify/verify-run-spec`
+- `run-spec`
+- `verify/run-spec`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `verify_run_spec` or equivalent (verify run spec)
+- Workflow step that matches this capability: verify run spec
+- Execute verification tied to a spec id.
+- Run recorded HTTP (or shell if enabled) checks; tie to specs; compare run outputs
+
+### Summary
+
+Execute verification tied to a spec id.
+
+## How to use
+
+- Required: `project`, `spec_id` plus verify payload per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,53 @@
+---
+description: "MCP tool memory_ref_put (Cursor server \"memory\", HTTP mount /mcp/memory). Args include required project id. When: Store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload. Slugs: memory-ref-put, memory_ref_put, mcp-memory-ref-put, tool-memory-ref-put, memory/memory-ref-put, memref-put. Relevance phrases: User or agent explicitly names `memory_ref_put` or equivalent (memory ref put) · Workflow step that matches this capability: memory ref put · Store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload. · Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload. Keyword index: memory_ref_put memory /mcp/memory memory-ref-put memory_ref_put mcp-memory-ref-put tool-memory-ref-put memory/memory-ref-put memref-put user or agent explicitly names `memory_ref_put` or equivalent (memory ref put) workflow step that matches this capability: memory ref put store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload. short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload."
+alwaysApply: false
+---
+
+# `memory_ref_put`
+
+**Cursor MCP server:** `memory`  
+**HTTP mount:** `/mcp/memory`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `memory-ref-put`
+- `memory_ref_put`
+- `mcp-memory-ref-put`
+- `tool-memory-ref-put`
+- `memory/memory-ref-put`
+- `memref-put`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `memory_ref_put` or equivalent (memory ref put)
+- Workflow step that matches this capability: memory ref put
+- Store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload.
+- Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload
+
+### Summary
+
+Store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload.
+
+## How to use
+
+- Required fields per schema (`ref_key`, `target_kind`, `target_id` / refs).
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,55 @@
+---
+description: "MCP tool scratch_unpin (Cursor server \"scratch\", HTTP mount /mcp/scratch). Args include required project id. When: Remove pin from a scratch row. Slugs: scratch-unpin, scratch_unpin, mcp-scratch-unpin, tool-scratch-unpin, scratch/scratch-unpin, unpin, scratch/unpin. Relevance phrases: User or agent explicitly names `scratch_unpin` or equivalent (scratch unpin) · Workflow step that matches this capability: scratch unpin · Remove pin from a scratch row. · Short-lived notes, hypotheses, snippets, draft bullets during an agent turn · TTL, importance, pin/unpin, compaction into one canonical scratch key. Keyword index: scratch_unpin scratch /mcp/scratch scratch-unpin scratch_unpin mcp-scratch-unpin tool-scratch-unpin scratch/scratch-unpin unpin scratch/unpin user or agent explicitly names `scratch_unpin` or equivalent (scratch unpin) workflow step that matches this capability: scratch unpin remove pin from a scratch row. short-lived notes, hypotheses, snippets, draft bullets during an agent turn ttl, importance, pin/unpin, compaction into one canonical scratch key remove pin from a scratch row."
+alwaysApply: false
+---
+
+# `scratch_unpin`
+
+**Cursor MCP server:** `scratch`  
+**HTTP mount:** `/mcp/scratch`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `scratch-unpin`
+- `scratch_unpin`
+- `mcp-scratch-unpin`
+- `tool-scratch-unpin`
+- `scratch/scratch-unpin`
+- `unpin`
+- `scratch/unpin`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `scratch_unpin` or equivalent (scratch unpin)
+- Workflow step that matches this capability: scratch unpin
+- Remove pin from a scratch row.
+- Short-lived notes, hypotheses, snippets, draft bullets during an agent turn
+- TTL, importance, pin/unpin, compaction into one canonical scratch key
+
+### Summary
+
+Remove pin from a scratch row.
+
+## How to use
+
+- Required fields per tool schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

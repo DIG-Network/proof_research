@@ -1,0 +1,54 @@
+---
+description: "MCP tool diff_baseline_set (Cursor server \"diff\", HTTP mount /mcp/diff). Args include required project id. When: Store a named JSON baseline for later regression compare. Slugs: diff-baseline-set, diff_baseline_set, mcp-diff-baseline-set, tool-diff-baseline-set, diff/diff-baseline-set, baseline-set, diff/baseline-set. Relevance phrases: User or agent explicitly names `diff_baseline_set` or equivalent (diff baseline set) · Workflow step that matches this capability: diff baseline set · Store a named JSON baseline for later regression compare. · Named JSON baselines for regression-style before/after comparison. Keyword index: diff_baseline_set diff /mcp/diff diff-baseline-set diff_baseline_set mcp-diff-baseline-set tool-diff-baseline-set diff/diff-baseline-set baseline-set diff/baseline-set user or agent explicitly names `diff_baseline_set` or equivalent (diff baseline set) workflow step that matches this capability: diff baseline set store a named json baseline for later regression compare. named json baselines for regression-style before/after comparison store a named json baseline for later regression compare."
+alwaysApply: false
+---
+
+# `diff_baseline_set`
+
+**Cursor MCP server:** `diff`  
+**HTTP mount:** `/mcp/diff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `diff-baseline-set`
+- `diff_baseline_set`
+- `mcp-diff-baseline-set`
+- `tool-diff-baseline-set`
+- `diff/diff-baseline-set`
+- `baseline-set`
+- `diff/baseline-set`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `diff_baseline_set` or equivalent (diff baseline set)
+- Workflow step that matches this capability: diff baseline set
+- Store a named JSON baseline for later regression compare.
+- Named JSON baselines for regression-style before/after comparison
+
+### Summary
+
+Store a named JSON baseline for later regression compare.
+
+## How to use
+
+- Required: `project`, baseline name/key and payload per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

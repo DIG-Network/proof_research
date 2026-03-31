@@ -1,0 +1,53 @@
+---
+description: "MCP tool handoff_save (Cursor server \"handoff\", HTTP mount /mcp/handoff). Args include required project id. When: Persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`. Slugs: handoff-save, handoff_save, mcp-handoff-save, tool-handoff-save, handoff/handoff-save. Relevance phrases: User or agent explicitly names `handoff_save` or equivalent (handoff save) · Workflow step that matches this capability: handoff save · Persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`. · Assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints · Validate workspace counts; save/list/get versioned handoff snapshots for session restore. Keyword index: handoff_save handoff /mcp/handoff handoff-save handoff_save mcp-handoff-save tool-handoff-save handoff/handoff-save user or agent explicitly names `handoff_save` or equivalent (handoff save) workflow step that matches this capability: handoff save persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`. assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints validate workspace counts; save/list/get versioned handoff snapshots for session restore persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`."
+alwaysApply: false
+---
+
+# `handoff_save`
+
+**Cursor MCP server:** `handoff`  
+**HTTP mount:** `/mcp/handoff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `handoff-save`
+- `handoff_save`
+- `mcp-handoff-save`
+- `tool-handoff-save`
+- `handoff/handoff-save`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `handoff_save` or equivalent (handoff save)
+- Workflow step that matches this capability: handoff save
+- Persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`.
+- Assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints
+- Validate workspace counts; save/list/get versioned handoff snapshots for session restore
+
+### Summary
+
+Persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`.
+
+## How to use
+
+- Required: `project`, `body_markdown`. Optional `label`, `metadata`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

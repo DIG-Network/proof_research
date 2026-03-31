@@ -1,0 +1,55 @@
+---
+description: "MCP tool spec_define (Cursor server \"spec\", HTTP mount /mcp/spec). Args include required project id. When: Create a requirement / acceptance criterion row. Slugs: spec-define, spec_define, mcp-spec-define, tool-spec-define, spec/spec-define, define, spec/define. Relevance phrases: User or agent explicitly names `spec_define` or equivalent (spec define) · Workflow step that matches this capability: spec define · Create a requirement / acceptance criterion row. · Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status · Spec rollup summary for dashboards or cron hints. Keyword index: spec_define spec /mcp/spec spec-define spec_define mcp-spec-define tool-spec-define spec/spec-define define spec/define user or agent explicitly names `spec_define` or equivalent (spec define) workflow step that matches this capability: spec define create a requirement / acceptance criterion row. requirements / acceptance criteria: define, link to planner tasks, set satisfaction status spec rollup summary for dashboards or cron hints create a requirement / acceptance criterion row."
+alwaysApply: false
+---
+
+# `spec_define`
+
+**Cursor MCP server:** `spec`  
+**HTTP mount:** `/mcp/spec`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `spec-define`
+- `spec_define`
+- `mcp-spec-define`
+- `tool-spec-define`
+- `spec/spec-define`
+- `define`
+- `spec/define`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `spec_define` or equivalent (spec define)
+- Workflow step that matches this capability: spec define
+- Create a requirement / acceptance criterion row.
+- Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status
+- Spec rollup summary for dashboards or cron hints
+
+### Summary
+
+Create a requirement / acceptance criterion row.
+
+## How to use
+
+- Required: `project` plus title/body fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,55 @@
+---
+description: "MCP tool spec_set_status (Cursor server \"spec\", HTTP mount /mcp/spec). Args include required project id. When: Update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note. Slugs: spec-set-status, spec_set_status, mcp-spec-set-status, tool-spec-set-status, spec/spec-set-status, set-status, spec/set-status. Relevance phrases: User or agent explicitly names `spec_set_status` or equivalent (spec set status) · Workflow step that matches this capability: spec set status · Update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note. · Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status · Spec rollup summary for dashboards or cron hints. Keyword index: spec_set_status spec /mcp/spec spec-set-status spec_set_status mcp-spec-set-status tool-spec-set-status spec/spec-set-status set-status spec/set-status user or agent explicitly names `spec_set_status` or equivalent (spec set status) workflow step that matches this capability: spec set status update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note. requirements / acceptance criteria: define, link to planner tasks, set satisfaction status spec rollup summary for dashboards or cron hints update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note."
+alwaysApply: false
+---
+
+# `spec_set_status`
+
+**Cursor MCP server:** `spec`  
+**HTTP mount:** `/mcp/spec`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `spec-set-status`
+- `spec_set_status`
+- `mcp-spec-set-status`
+- `tool-spec-set-status`
+- `spec/spec-set-status`
+- `set-status`
+- `spec/set-status`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `spec_set_status` or equivalent (spec set status)
+- Workflow step that matches this capability: spec set status
+- Update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note.
+- Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status
+- Spec rollup summary for dashboards or cron hints
+
+### Summary
+
+Update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note.
+
+## How to use
+
+- Required: `project`, `spec_id` and status per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,61 @@
+---
+description: "MCP tool chia_knowledge_get_rag_subgraph (Cursor server \"chia-knowledge\", HTTP mount /mcp/chia). No project argument (Chia graph only). When: You already have specific nugget `semantic_ids` and want related graph context around those seeds. Slugs: chia-knowledge-get-rag-subgraph, chia_knowledge_get_rag_subgraph, mcp-chia-knowledge-get-rag-subgraph, tool-chia-knowledge-get-rag-subgraph, chia-knowledge/chia-knowledge-get-rag-subgraph, get-rag-subgraph, ckg-get-rag-subgraph, ckg/get-rag-subgraph. Relevance phrases: Already have semantic_ids from search or prior RAG turn · User or agent explicitly names `chia_knowledge_get_rag_subgraph` or equivalent (chia knowledge get rag subgraph) · Workflow step that matches this capability: chia knowledge get rag subgraph · You already have specific nugget `semantic_ids` and want related graph context around those seeds. · User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync · Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements · CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers · Mempool policy, fees, replacement, block creation (documentation — not live mempool queries) · Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout · Need grounded citations from the knowledge graph before stating protocol facts. Keyword index: chia_knowledge_get_rag_subgraph chia-knowledge /mcp/chia chia-knowledge-get-rag-subgraph chia_knowledge_get_rag_subgraph mcp-chia-knowledge-get-rag-subgraph tool-chia-knowledge-get-rag-subgraph chia-knowledge/chia-knowledge-get-rag-subgraph get-rag-subgraph ckg-get-rag-subgraph ckg/get-rag-subgraph already have semantic_ids from search or prior rag turn user or agent explicitly names `chia_knowledge_get_rag_subgraph` or equivalent (chia knowledge get rag subgraph) workflow step that matches this capability: chia knowledge get rag subgraph you already have specific nugget `semantic_ids` and want related graph context around those seeds. user asks about chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync chialisp, clvm, opcodes, currying, standard puzzles, p2 conditions, agg_sig, announcements cats, offers, nfts, did, custody, asset issuance, wallet sdk, driver layers mempool policy, fees, replacement, block creation (documentation — not live mempool queries) editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout need grounded citations from the knowledge graph before stating protocol facts you alread…"
+alwaysApply: false
+---
+
+# `chia_knowledge_get_rag_subgraph`
+
+**Cursor MCP server:** `chia-knowledge`  
+**HTTP mount:** `/mcp/chia`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `chia-knowledge-get-rag-subgraph`
+- `chia_knowledge_get_rag_subgraph`
+- `mcp-chia-knowledge-get-rag-subgraph`
+- `tool-chia-knowledge-get-rag-subgraph`
+- `chia-knowledge/chia-knowledge-get-rag-subgraph`
+- `get-rag-subgraph`
+- `ckg-get-rag-subgraph`
+- `ckg/get-rag-subgraph`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Already have semantic_ids from search or prior RAG turn
+- User or agent explicitly names `chia_knowledge_get_rag_subgraph` or equivalent (chia knowledge get rag subgraph)
+- Workflow step that matches this capability: chia knowledge get rag subgraph
+- You already have specific nugget `semantic_ids` and want related graph context around those seeds.
+- User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync
+- Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements
+- CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers
+- Mempool policy, fees, replacement, block creation (documentation — not live mempool queries)
+- Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout
+- Need grounded citations from the knowledge graph before stating protocol facts
+
+### Summary
+
+You already have specific nugget `semantic_ids` and want related graph context around those seeds.
+
+## How to use
+
+- Pass `semantic_ids` array. Adjust `max_nuggets` and `include_reverse` for breadth.
+
+## Project
+
+Chia graph tools do **not** take `project`.

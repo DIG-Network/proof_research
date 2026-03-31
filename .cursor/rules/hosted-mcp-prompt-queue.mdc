@@ -1,0 +1,19 @@
+---
+description: When and how to use prompt-queue MCP (FIFO deferred prompts)
+alwaysApply: true
+---
+
+# MCP server: `prompt-queue` (`prompt_queue_*`)
+
+**Playbook:** **`hosted-mcp-orchestration.mdc`** (queue consumer recipe, same `project` as other mounts).
+
+Per-**project** FIFO queues for prompts another process or later turn should handle (background workers, human handoff, serializing work across sessions).
+
+| Tool | When to use |
+|------|-------------|
+| **`prompt_queue_enqueue`** | Push a **non-empty** `prompt` onto the project queue. Optional `metadata` (JSON object) for tags, source, or routing. |
+| **`prompt_queue_pop`** | **Consume** the oldest item (FIFO). Use when you are the processor for that queue. |
+| **`prompt_queue_peek`** | Read oldest item **without** removing it (inspect or duplicate-safe preview). |
+| **`prompt_queue_queue_status`** | **Always pass `project`.** Returns depth and oldest message id for **that** project only (multi-tenant isolation). |
+
+Always pass the same **`project`** string you use for other workspace MCP tools when the queue belongs to the same product/repo.

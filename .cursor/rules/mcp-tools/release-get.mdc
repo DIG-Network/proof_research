@@ -1,0 +1,52 @@
+---
+description: "MCP tool release_get (Cursor server \"release\", HTTP mount /mcp/release). Args include required project id. When: Fetch one release job row by id. Slugs: release-get, release_get, mcp-release-get, tool-release-get, release/release-get. Relevance phrases: User or agent explicitly names `release_get` or equivalent (release get) · Workflow step that matches this capability: release get · Fetch one release job row by id. · Release automation jobs: trigger, list, get status (host may disable or allowlist webhooks). Keyword index: release_get release /mcp/release release-get release_get mcp-release-get tool-release-get release/release-get user or agent explicitly names `release_get` or equivalent (release get) workflow step that matches this capability: release get fetch one release job row by id. release automation jobs: trigger, list, get status (host may disable or allowlist webhooks) fetch one release job row by id."
+alwaysApply: false
+---
+
+# `release_get`
+
+**Cursor MCP server:** `release`  
+**HTTP mount:** `/mcp/release`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `release-get`
+- `release_get`
+- `mcp-release-get`
+- `tool-release-get`
+- `release/release-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `release_get` or equivalent (release get)
+- Workflow step that matches this capability: release get
+- Fetch one release job row by id.
+- Release automation jobs: trigger, list, get status (host may disable or allowlist webhooks)
+
+### Summary
+
+Fetch one release job row by id.
+
+## How to use
+
+- Required: `project`, `id`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

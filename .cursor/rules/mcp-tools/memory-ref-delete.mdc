@@ -1,0 +1,55 @@
+---
+description: "MCP tool memory_ref_delete (Cursor server \"memory\", HTTP mount /mcp/memory). Args include required project id. When: Remove a ref key when obsolete. Slugs: memory-ref-delete, memory_ref_delete, mcp-memory-ref-delete, tool-memory-ref-delete, memory/memory-ref-delete, delete, memref-delete, memref/delete. Relevance phrases: User or agent explicitly names `memory_ref_delete` or equivalent (memory ref delete) · Workflow step that matches this capability: memory ref delete · Remove a ref key when obsolete. · Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload. Keyword index: memory_ref_delete memory /mcp/memory memory-ref-delete memory_ref_delete mcp-memory-ref-delete tool-memory-ref-delete memory/memory-ref-delete delete memref-delete memref/delete user or agent explicitly names `memory_ref_delete` or equivalent (memory ref delete) workflow step that matches this capability: memory ref delete remove a ref key when obsolete. short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload remove a ref key when obsolete."
+alwaysApply: false
+---
+
+# `memory_ref_delete`
+
+**Cursor MCP server:** `memory`  
+**HTTP mount:** `/mcp/memory`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `memory-ref-delete`
+- `memory_ref_delete`
+- `mcp-memory-ref-delete`
+- `tool-memory-ref-delete`
+- `memory/memory-ref-delete`
+- `delete`
+- `memref-delete`
+- `memref/delete`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `memory_ref_delete` or equivalent (memory ref delete)
+- Workflow step that matches this capability: memory ref delete
+- Remove a ref key when obsolete.
+- Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload
+
+### Summary
+
+Remove a ref key when obsolete.
+
+## How to use
+
+- Required fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

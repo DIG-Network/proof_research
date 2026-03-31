@@ -1,0 +1,55 @@
+---
+description: "MCP tool handoff_build (Cursor server \"handoff\", HTTP mount /mcp/handoff). Args include required project id. When: Assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints. Slugs: handoff-build, handoff_build, mcp-handoff-build, tool-handoff-build, handoff/handoff-build, build, handoff/build. Relevance phrases: User or agent explicitly names `handoff_build` or equivalent (handoff build) · Workflow step that matches this capability: handoff build · Assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints. · Assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints · Validate workspace counts; save/list/get versioned handoff snapshots for session restore. Keyword index: handoff_build handoff /mcp/handoff handoff-build handoff_build mcp-handoff-build tool-handoff-build handoff/handoff-build build handoff/build user or agent explicitly names `handoff_build` or equivalent (handoff build) workflow step that matches this capability: handoff build assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints. assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints validate workspace counts; save/list/get versioned handoff snapshots for session restore assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints."
+alwaysApply: false
+---
+
+# `handoff_build`
+
+**Cursor MCP server:** `handoff`  
+**HTTP mount:** `/mcp/handoff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `handoff-build`
+- `handoff_build`
+- `mcp-handoff-build`
+- `tool-handoff-build`
+- `handoff/handoff-build`
+- `build`
+- `handoff/build`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `handoff_build` or equivalent (handoff build)
+- Workflow step that matches this capability: handoff build
+- Assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints.
+- Assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints
+- Validate workspace counts; save/list/get versioned handoff snapshots for session restore
+
+### Summary
+
+Assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints.
+
+## How to use
+
+- Required: `project`. Tune `max_chars`, `include_planner`, `run_id`, scratch/artifact/constraint limits as needed.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

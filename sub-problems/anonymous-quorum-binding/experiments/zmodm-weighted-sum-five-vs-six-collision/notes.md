@@ -1,0 +1,5 @@
+# Notes — zmodm-weighted-sum-five-vs-six-collision
+
+- **Smallest** **nontrivial** **M** **is** **2** **for** **this** **weight** **vector** **—** **script** **stops** **at** **first** **collision;** **larger** **M** **would** **give** **richer** **aggregates** **but** **the** **point** **already** **shows** **constant-size** **modular** **linear** **summary** **need** **not** **encode** **threshold.**
+- **Follow-up** **(optional):** **fix** **M** **large** **prime** **(e.g.** **97)** **and** **search** **for** **cross-cardinality** **collision** **with** **random** **public** **weights** **—** **pigeonhole** **when** **252×210** **> M** **is** **wrong** **logic** **(different** **structure);** **still** **worth** **stress-testing** **if** **a** **scheme** **fixes** **M** **and** **weights** **from** **C.**
+- **Balances** **session** **focus** **after** **032–033** **spectral** **verifier-oracle** **runs** **—** **back** **to** **binding** **/ ** **aggregate** **thread** **in** **anonymous-quorum-binding.**

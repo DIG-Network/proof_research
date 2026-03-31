@@ -1,0 +1,52 @@
+---
+description: "MCP tool approval_get (Cursor server \"approval\", HTTP mount /mcp/approval). Args include required project id. When: Fetch one approval row. Slugs: approval-get, approval_get, mcp-approval-get, tool-approval-get, approval/approval-get. Relevance phrases: User or agent explicitly names `approval_get` or equivalent (approval get) · Workflow step that matches this capability: approval get · Fetch one approval row. · Human-in-the-loop gate before risky operations; list pending approvals. Keyword index: approval_get approval /mcp/approval approval-get approval_get mcp-approval-get tool-approval-get approval/approval-get user or agent explicitly names `approval_get` or equivalent (approval get) workflow step that matches this capability: approval get fetch one approval row. human-in-the-loop gate before risky operations; list pending approvals fetch one approval row."
+alwaysApply: false
+---
+
+# `approval_get`
+
+**Cursor MCP server:** `approval`  
+**HTTP mount:** `/mcp/approval`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `approval-get`
+- `approval_get`
+- `mcp-approval-get`
+- `tool-approval-get`
+- `approval/approval-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `approval_get` or equivalent (approval get)
+- Workflow step that matches this capability: approval get
+- Fetch one approval row.
+- Human-in-the-loop gate before risky operations; list pending approvals
+
+### Summary
+
+Fetch one approval row.
+
+## How to use
+
+- Required: `project`, `id`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

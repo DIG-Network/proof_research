@@ -1,0 +1,55 @@
+---
+description: "MCP tool memory_ref_resolve (Cursor server \"memory\", HTTP mount /mcp/memory). Args include required project id. When: Expand a ref to summary + target payload. Slugs: memory-ref-resolve, memory_ref_resolve, mcp-memory-ref-resolve, tool-memory-ref-resolve, memory/memory-ref-resolve, resolve, memref-resolve, memref/resolve. Relevance phrases: User or agent explicitly names `memory_ref_resolve` or equivalent (memory ref resolve) · Workflow step that matches this capability: memory ref resolve · Expand a ref to summary + target payload. · Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload. Keyword index: memory_ref_resolve memory /mcp/memory memory-ref-resolve memory_ref_resolve mcp-memory-ref-resolve tool-memory-ref-resolve memory/memory-ref-resolve resolve memref-resolve memref/resolve user or agent explicitly names `memory_ref_resolve` or equivalent (memory ref resolve) workflow step that matches this capability: memory ref resolve expand a ref to summary + target payload. short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload expand a ref to summary + target payload."
+alwaysApply: false
+---
+
+# `memory_ref_resolve`
+
+**Cursor MCP server:** `memory`  
+**HTTP mount:** `/mcp/memory`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `memory-ref-resolve`
+- `memory_ref_resolve`
+- `mcp-memory-ref-resolve`
+- `tool-memory-ref-resolve`
+- `memory/memory-ref-resolve`
+- `resolve`
+- `memref-resolve`
+- `memref/resolve`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `memory_ref_resolve` or equivalent (memory ref resolve)
+- Workflow step that matches this capability: memory ref resolve
+- Expand a ref to summary + target payload.
+- Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload
+
+### Summary
+
+Expand a ref to summary + target payload.
+
+## How to use
+
+- Required: `project` and `ref_key` or `id`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

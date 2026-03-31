@@ -1,0 +1,61 @@
+---
+description: "MCP tool chia_knowledge_get_rag_learning_context (Cursor server \"chia-knowledge\", HTTP mount /mcp/chia). No project argument (Chia graph only). When: You want a prerequisite-ordered learning path / curriculum for a topic name. Slugs: chia-knowledge-get-rag-learning-context, chia_knowledge_get_rag_learning_context, mcp-chia-knowledge-get-rag-learning-context, tool-chia-knowledge-get-rag-learning-context, chia-knowledge/chia-knowledge-get-rag-learning-context, get-rag-learning-context, ckg-get-rag-learning-context, ckg/get-rag-learning-context. Relevance phrases: Curriculum or prerequisite ordering for a named topic · User or agent explicitly names `chia_knowledge_get_rag_learning_context` or equivalent (chia knowledge get rag learning context) · Workflow step that matches this capability: chia knowledge get rag learning context · You want a prerequisite-ordered learning path / curriculum for a topic name. · User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync · Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements · CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers · Mempool policy, fees, replacement, block creation (documentation — not live mempool queries) · Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout · Need grounded citations from the knowledge graph before stating protocol facts. Keyword index: chia_knowledge_get_rag_learning_context chia-knowledge /mcp/chia chia-knowledge-get-rag-learning-context chia_knowledge_get_rag_learning_context mcp-chia-knowledge-get-rag-learning-context tool-chia-knowledge-get-rag-learning-context chia-knowledge/chia-knowledge-get-rag-learning-context get-rag-learning-context ckg-get-rag-learning-context ckg/get-rag-learning-context curriculum or prerequisite ordering for a named topic user or agent explicitly names `chia_knowledge_get_rag_learning_context` or equivalent (chia knowledge get rag learning context) workflow step that matches this capability: chia knowledge get rag learning context you want a prerequisite-ordered learning path / curriculum for a topic name. user asks about chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync chialisp, clvm, opcodes, currying, standard puzzles, p2 conditions, agg_sig, announcements cats, offers, nfts, did, custody, asset issuance, wallet sdk, driver layers mempool policy, fees, replacement, block creation (documentation — not live mempool queries) editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout need grounded cit…"
+alwaysApply: false
+---
+
+# `chia_knowledge_get_rag_learning_context`
+
+**Cursor MCP server:** `chia-knowledge`  
+**HTTP mount:** `/mcp/chia`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `chia-knowledge-get-rag-learning-context`
+- `chia_knowledge_get_rag_learning_context`
+- `mcp-chia-knowledge-get-rag-learning-context`
+- `tool-chia-knowledge-get-rag-learning-context`
+- `chia-knowledge/chia-knowledge-get-rag-learning-context`
+- `get-rag-learning-context`
+- `ckg-get-rag-learning-context`
+- `ckg/get-rag-learning-context`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Curriculum or prerequisite ordering for a named topic
+- User or agent explicitly names `chia_knowledge_get_rag_learning_context` or equivalent (chia knowledge get rag learning context)
+- Workflow step that matches this capability: chia knowledge get rag learning context
+- You want a prerequisite-ordered learning path / curriculum for a topic name.
+- User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync
+- Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements
+- CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers
+- Mempool policy, fees, replacement, block creation (documentation — not live mempool queries)
+- Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout
+- Need grounded citations from the knowledge graph before stating protocol facts
+
+### Summary
+
+You want a prerequisite-ordered learning path / curriculum for a topic name.
+
+## How to use
+
+- Pass `topic`. Use `max_steps` to cap path length.
+
+## Project
+
+Chia graph tools do **not** take `project`.

@@ -1,0 +1,53 @@
+---
+description: "MCP tool spec_get (Cursor server \"spec\", HTTP mount /mcp/spec). Args include required project id. When: Fetch one spec by id. Slugs: spec-get, spec_get, mcp-spec-get, tool-spec-get, spec/spec-get. Relevance phrases: User or agent explicitly names `spec_get` or equivalent (spec get) · Workflow step that matches this capability: spec get · Fetch one spec by id. · Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status · Spec rollup summary for dashboards or cron hints. Keyword index: spec_get spec /mcp/spec spec-get spec_get mcp-spec-get tool-spec-get spec/spec-get user or agent explicitly names `spec_get` or equivalent (spec get) workflow step that matches this capability: spec get fetch one spec by id. requirements / acceptance criteria: define, link to planner tasks, set satisfaction status spec rollup summary for dashboards or cron hints fetch one spec by id."
+alwaysApply: false
+---
+
+# `spec_get`
+
+**Cursor MCP server:** `spec`  
+**HTTP mount:** `/mcp/spec`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `spec-get`
+- `spec_get`
+- `mcp-spec-get`
+- `tool-spec-get`
+- `spec/spec-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `spec_get` or equivalent (spec get)
+- Workflow step that matches this capability: spec get
+- Fetch one spec by id.
+- Requirements / acceptance criteria: define, link to planner tasks, set satisfaction status
+- Spec rollup summary for dashboards or cron hints
+
+### Summary
+
+Fetch one spec by id.
+
+## How to use
+
+- Required: `project`, `spec_id`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

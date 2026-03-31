@@ -1,0 +1,53 @@
+---
+description: "MCP tool artifact_query (Cursor server \"artifact\", HTTP mount /mcp/artifact). Args include required project id. When: List artifacts with filters (task, path prefix, validity). Slugs: artifact-query, artifact_query, mcp-artifact-query, tool-artifact-query, artifact/artifact-query. Relevance phrases: User or agent explicitly names `artifact_query` or equivalent (artifact query) · Workflow step that matches this capability: artifact query · List artifacts with filters (task, path prefix, validity). · Register build outputs, image paths, bundle URIs with optional content hash and task link · Query or invalidate artifact index entries. Keyword index: artifact_query artifact /mcp/artifact artifact-query artifact_query mcp-artifact-query tool-artifact-query artifact/artifact-query user or agent explicitly names `artifact_query` or equivalent (artifact query) workflow step that matches this capability: artifact query list artifacts with filters (task, path prefix, validity). register build outputs, image paths, bundle uris with optional content hash and task link query or invalidate artifact index entries list artifacts with filters (task, path prefix, validity)."
+alwaysApply: false
+---
+
+# `artifact_query`
+
+**Cursor MCP server:** `artifact`  
+**HTTP mount:** `/mcp/artifact`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `artifact-query`
+- `artifact_query`
+- `mcp-artifact-query`
+- `tool-artifact-query`
+- `artifact/artifact-query`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `artifact_query` or equivalent (artifact query)
+- Workflow step that matches this capability: artifact query
+- List artifacts with filters (task, path prefix, validity).
+- Register build outputs, image paths, bundle URIs with optional content hash and task link
+- Query or invalidate artifact index entries
+
+### Summary
+
+List artifacts with filters (task, path prefix, validity).
+
+## How to use
+
+- Required: `project`. Optional `task_id`, `path_prefix`, `valid_only`, `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

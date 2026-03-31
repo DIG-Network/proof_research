@@ -1,0 +1,52 @@
+---
+description: "MCP tool verify_get (Cursor server \"verify\", HTTP mount /mcp/verify). Args include required project id. When: Fetch one stored verify run by id. Slugs: verify-get, verify_get, mcp-verify-get, tool-verify-get, verify/verify-get. Relevance phrases: User or agent explicitly names `verify_get` or equivalent (verify get) · Workflow step that matches this capability: verify get · Fetch one stored verify run by id. · Run recorded HTTP (or shell if enabled) checks; tie to specs; compare run outputs. Keyword index: verify_get verify /mcp/verify verify-get verify_get mcp-verify-get tool-verify-get verify/verify-get user or agent explicitly names `verify_get` or equivalent (verify get) workflow step that matches this capability: verify get fetch one stored verify run by id. run recorded http (or shell if enabled) checks; tie to specs; compare run outputs fetch one stored verify run by id."
+alwaysApply: false
+---
+
+# `verify_get`
+
+**Cursor MCP server:** `verify`  
+**HTTP mount:** `/mcp/verify`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `verify-get`
+- `verify_get`
+- `mcp-verify-get`
+- `tool-verify-get`
+- `verify/verify-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `verify_get` or equivalent (verify get)
+- Workflow step that matches this capability: verify get
+- Fetch one stored verify run by id.
+- Run recorded HTTP (or shell if enabled) checks; tie to specs; compare run outputs
+
+### Summary
+
+Fetch one stored verify run by id.
+
+## How to use
+
+- Required: `project`, `id`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

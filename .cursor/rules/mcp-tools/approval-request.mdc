@@ -1,0 +1,54 @@
+---
+description: "MCP tool approval_request (Cursor server \"approval\", HTTP mount /mcp/approval). Args include required project id. When: Human gate before a risky action; creates a pending approval. Slugs: approval-request, approval_request, mcp-approval-request, tool-approval-request, approval/approval-request, request, approval/request. Relevance phrases: User or agent explicitly names `approval_request` or equivalent (approval request) · Workflow step that matches this capability: approval request · Human gate before a risky action; creates a pending approval. · Human-in-the-loop gate before risky operations; list pending approvals. Keyword index: approval_request approval /mcp/approval approval-request approval_request mcp-approval-request tool-approval-request approval/approval-request request approval/request user or agent explicitly names `approval_request` or equivalent (approval request) workflow step that matches this capability: approval request human gate before a risky action; creates a pending approval. human-in-the-loop gate before risky operations; list pending approvals human gate before a risky action; creates a pending approval."
+alwaysApply: false
+---
+
+# `approval_request`
+
+**Cursor MCP server:** `approval`  
+**HTTP mount:** `/mcp/approval`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `approval-request`
+- `approval_request`
+- `mcp-approval-request`
+- `tool-approval-request`
+- `approval/approval-request`
+- `request`
+- `approval/request`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `approval_request` or equivalent (approval request)
+- Workflow step that matches this capability: approval request
+- Human gate before a risky action; creates a pending approval.
+- Human-in-the-loop gate before risky operations; list pending approvals
+
+### Summary
+
+Human gate before a risky action; creates a pending approval.
+
+## How to use
+
+- Required fields per schema (summary, scope, etc.).
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,6 @@
+# Notes — petersen-sixset-laplacian-spectrum-collision
+
+- **Persona unsticking:** After **022 / 024 / 031** (polynomial **k**-eval pigeonhole ladder), this iteration deliberately pivots to **verifier-oracle-model** **expander** **spectral** thread per digest **open** line — avoids a **fourth** consecutive same-structure polynomial experiment.
+- **Symmetry:** Both **S₁, S₂** are **K₅** on the outer pentagon **plus** one **spoke** leaf; the Petersen **automorphism** group moves one such configuration to another, so **isospectral** induced subgraphs are **expected** — the numerical search **confirms** **orbit**-style **degeneracy**.
+- **Implication for π fantasies:** “**Publish** **full** **Laplacian** **spectrum** **of** **G[S]**” **still** **need** **not** **fix** **S** if **G** has **symmetry** **relating** **witnesses**; **realistic** **π** **would** **also** **need** **tie-break** **or** **canonical** **labeling** **—** **not** **modeled** **here**.
+- **Next:** **Asymmetric** **labeled** **expander** **(no** **nontrivial** **automorphism** **fixing** **C)** **or** **summary** **beyond** **linear** **algebra** **of** **one** **matrix** **(e.g.** **code** **syndrome** **+** **graph).**

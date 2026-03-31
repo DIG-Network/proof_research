@@ -1,0 +1,53 @@
+---
+description: "MCP tool scratch_get (Cursor server \"scratch\", HTTP mount /mcp/scratch). Args include required project id. When: Fetch one scratch row by `id` or `key` (exactly one). Slugs: scratch-get, scratch_get, mcp-scratch-get, tool-scratch-get, scratch/scratch-get. Relevance phrases: User or agent explicitly names `scratch_get` or equivalent (scratch get) · Workflow step that matches this capability: scratch get · Fetch one scratch row by `id` or `key` (exactly one). · Short-lived notes, hypotheses, snippets, draft bullets during an agent turn · TTL, importance, pin/unpin, compaction into one canonical scratch key. Keyword index: scratch_get scratch /mcp/scratch scratch-get scratch_get mcp-scratch-get tool-scratch-get scratch/scratch-get user or agent explicitly names `scratch_get` or equivalent (scratch get) workflow step that matches this capability: scratch get fetch one scratch row by `id` or `key` (exactly one). short-lived notes, hypotheses, snippets, draft bullets during an agent turn ttl, importance, pin/unpin, compaction into one canonical scratch key fetch one scratch row by `id` or `key` (exactly one)."
+alwaysApply: false
+---
+
+# `scratch_get`
+
+**Cursor MCP server:** `scratch`  
+**HTTP mount:** `/mcp/scratch`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `scratch-get`
+- `scratch_get`
+- `mcp-scratch-get`
+- `tool-scratch-get`
+- `scratch/scratch-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `scratch_get` or equivalent (scratch get)
+- Workflow step that matches this capability: scratch get
+- Fetch one scratch row by `id` or `key` (exactly one).
+- Short-lived notes, hypotheses, snippets, draft bullets during an agent turn
+- TTL, importance, pin/unpin, compaction into one canonical scratch key
+
+### Summary
+
+Fetch one scratch row by `id` or `key` (exactly one).
+
+## How to use
+
+- Required: `project` plus one of `id` or `key`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

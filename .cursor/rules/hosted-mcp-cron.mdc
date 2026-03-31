@@ -1,0 +1,17 @@
+---
+description: Cron / scheduled agent facade tools (cron_tick_snapshot, cron_iteration_checkpoint)
+alwaysApply: true
+---
+
+# MCP server: `cron` (`cron_*`) — `/mcp/cron`
+
+**Playbook:** **`hosted-mcp-orchestration.mdc`** (tick start/end, loop vs ledger ordering).
+
+Use for **recurring agent ticks** (cron, systemd timer, CI job) so one call replaces many reads or a fragile script chaining other MCPs.
+
+| Tool | When |
+|------|------|
+| **`cron_tick_snapshot`** | **Start of tick:** load ready planner tasks, open loops + active blockers, pending approvals, spec counts, open ledger runs, and (by default) FIFO **prompt-queue** depth for the same `project`. Optional `hint_format: "markdown"` adds **`cron_hints`** bullets for the model. Tuning: `ready_task_limit`, `loop_limit`, `approval_limit`, `ledger_open_limit`, `include_prompt_queue`. |
+| **`cron_iteration_checkpoint`** | **End of tick:** optionally run **`loop_step`** then append **`ledger_run_append_event`** in one request. Pass at least one of `loop_id` or `ledger_run_id`. If both are set, **loop steps first**; if ledger append fails, the loop may already have incremented—fix ledger and continue, or document manually. Requires `ledger_summary` when `ledger_run_id` is set. Optional `ledger_kind` (default `cron`), `ledger_detail`. |
+
+After `cron_tick_snapshot`, use **domain MCPs** for writes (`prompt_queue_pop`, `planner_task_update`, `verify_run`, etc.). Chia RAG stays on **`chia-knowledge`**; these facades do not call Chia.

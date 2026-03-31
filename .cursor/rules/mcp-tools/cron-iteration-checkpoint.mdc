@@ -1,0 +1,55 @@
+---
+description: "MCP tool cron_iteration_checkpoint (Cursor server \"cron\", HTTP mount /mcp/cron). Args include required project id. When: End of tick: optionally `loop_step` then ledger append in one call. Slugs: cron-iteration-checkpoint, cron_iteration_checkpoint, mcp-cron-iteration-checkpoint, tool-cron-iteration-checkpoint, cron/cron-iteration-checkpoint, iteration-checkpoint, cron/iteration-checkpoint. Relevance phrases: User or agent explicitly names `cron_iteration_checkpoint` or equivalent (cron iteration checkpoint) · Workflow step that matches this capability: cron iteration checkpoint · End of tick: optionally `loop_step` then ledger append in one call. · Scheduled tick: single snapshot of planner + loops + approvals + specs + ledger + queue depth · End-of-tick checkpoint: loop_step and/or ledger append in one call. Keyword index: cron_iteration_checkpoint cron /mcp/cron cron-iteration-checkpoint cron_iteration_checkpoint mcp-cron-iteration-checkpoint tool-cron-iteration-checkpoint cron/cron-iteration-checkpoint iteration-checkpoint cron/iteration-checkpoint user or agent explicitly names `cron_iteration_checkpoint` or equivalent (cron iteration checkpoint) workflow step that matches this capability: cron iteration checkpoint end of tick: optionally `loop_step` then ledger append in one call. scheduled tick: single snapshot of planner + loops + approvals + specs + ledger + queue depth end-of-tick checkpoint: loop_step and/or ledger append in one call end of tick: optionally `loop_step` then ledger append in one call."
+alwaysApply: false
+---
+
+# `cron_iteration_checkpoint`
+
+**Cursor MCP server:** `cron`  
+**HTTP mount:** `/mcp/cron`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `cron-iteration-checkpoint`
+- `cron_iteration_checkpoint`
+- `mcp-cron-iteration-checkpoint`
+- `tool-cron-iteration-checkpoint`
+- `cron/cron-iteration-checkpoint`
+- `iteration-checkpoint`
+- `cron/iteration-checkpoint`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `cron_iteration_checkpoint` or equivalent (cron iteration checkpoint)
+- Workflow step that matches this capability: cron iteration checkpoint
+- End of tick: optionally `loop_step` then ledger append in one call.
+- Scheduled tick: single snapshot of planner + loops + approvals + specs + ledger + queue depth
+- End-of-tick checkpoint: loop_step and/or ledger append in one call
+
+### Summary
+
+End of tick: optionally `loop_step` then ledger append in one call.
+
+## How to use
+
+- Pass at least one of `loop_id` or `ledger_run_id`; if both, loop steps first. `ledger_summary` required when appending to ledger.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

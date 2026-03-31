@@ -1,0 +1,57 @@
+---
+description: "MCP tool coinset_post (Cursor server \"coinset\", HTTP mount /mcp/coinset). No project argument (Chia graph only). When: You need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via Coinset’s documented POST operations. Slugs: coinset-post, coinset_post, mcp-coinset-post, tool-coinset-post, coinset/coinset-post. Relevance phrases: Concrete operation name and JSON body per https://www.coinset.org/docs · User or agent explicitly names `coinset_post` or equivalent (coinset post) · Workflow step that matches this capability: coinset post · You need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via Coinset’s documented POST operations. · Live mainnet or testnet state: coin by id, puzzle hash, parent, block, peak height · Mempool contents, tx status, push_tx / spend bundle submission to the network · Coinset API operation names, request bodies, or discovery of available RPC-style endpoints · Distinguish from docs: static protocol explanation → Chia MCP; current chain → Coinset MCP. Keyword index: coinset_post coinset /mcp/coinset coinset-post coinset_post mcp-coinset-post tool-coinset-post coinset/coinset-post concrete operation name and json body per https://www.coinset.org/docs user or agent explicitly names `coinset_post` or equivalent (coinset post) workflow step that matches this capability: coinset post you need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via coinset’s documented post operations. live mainnet or testnet state: coin by id, puzzle hash, parent, block, peak height mempool contents, tx status, push_tx / spend bundle submission to the network coinset api operation names, request bodies, or discovery of available rpc-style endpoints distinguish from docs: static protocol explanation → chia mcp; current chain → coinset mcp you need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via coinset’s documented post operations."
+alwaysApply: false
+---
+
+# `coinset_post`
+
+**Cursor MCP server:** `coinset`  
+**HTTP mount:** `/mcp/coinset`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `coinset-post`
+- `coinset_post`
+- `mcp-coinset-post`
+- `tool-coinset-post`
+- `coinset/coinset-post`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Concrete operation name and JSON body per https://www.coinset.org/docs
+- User or agent explicitly names `coinset_post` or equivalent (coinset post)
+- Workflow step that matches this capability: coinset post
+- You need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via Coinset’s documented POST operations.
+- Live mainnet or testnet state: coin by id, puzzle hash, parent, block, peak height
+- Mempool contents, tx status, push_tx / spend bundle submission to the network
+- Coinset API operation names, request bodies, or discovery of available RPC-style endpoints
+- Distinguish from docs: static protocol explanation → Chia MCP; current chain → Coinset MCP
+
+### Summary
+
+You need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via Coinset’s documented POST operations.
+
+## How to use
+
+- Pass `operation` (path segment) and `body` object per Coinset docs; use `{}` when the op needs no fields.
+- Not for static protocol docs — use Chia graph RAG for documentation.
+
+## Project
+
+Chia graph tools do **not** take `project`.

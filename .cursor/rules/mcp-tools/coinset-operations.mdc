@@ -1,0 +1,58 @@
+---
+description: "MCP tool coinset_operations (Cursor server \"coinset\", HTTP mount /mcp/coinset). No project argument (Chia graph only). When: You need the catalog of Coinset HTTP operations as markdown (discovery), not a live chain call yet. Slugs: coinset-operations, coinset_operations, mcp-coinset-operations, tool-coinset-operations, coinset/coinset-operations, operations, coinset/operations. Relevance phrases: Discover Coinset operations table before calling coinset_post · User or agent explicitly names `coinset_operations` or equivalent (coinset operations) · Workflow step that matches this capability: coinset operations · You need the catalog of Coinset HTTP operations as markdown (discovery), not a live chain call yet. · Live mainnet or testnet state: coin by id, puzzle hash, parent, block, peak height · Mempool contents, tx status, push_tx / spend bundle submission to the network · Coinset API operation names, request bodies, or discovery of available RPC-style endpoints · Distinguish from docs: static protocol explanation → Chia MCP; current chain → Coinset MCP. Keyword index: coinset_operations coinset /mcp/coinset coinset-operations coinset_operations mcp-coinset-operations tool-coinset-operations coinset/coinset-operations operations coinset/operations discover coinset operations table before calling coinset_post user or agent explicitly names `coinset_operations` or equivalent (coinset operations) workflow step that matches this capability: coinset operations you need the catalog of coinset http operations as markdown (discovery), not a live chain call yet. live mainnet or testnet state: coin by id, puzzle hash, parent, block, peak height mempool contents, tx status, push_tx / spend bundle submission to the network coinset api operation names, request bodies, or discovery of available rpc-style endpoints distinguish from docs: static protocol explanation → chia mcp; current chain → coinset mcp you need the catalog of coinset http operations as markdown (discovery), not a live chain call yet."
+alwaysApply: false
+---
+
+# `coinset_operations`
+
+**Cursor MCP server:** `coinset`  
+**HTTP mount:** `/mcp/coinset`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `coinset-operations`
+- `coinset_operations`
+- `mcp-coinset-operations`
+- `tool-coinset-operations`
+- `coinset/coinset-operations`
+- `operations`
+- `coinset/operations`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Discover Coinset operations table before calling coinset_post
+- User or agent explicitly names `coinset_operations` or equivalent (coinset operations)
+- Workflow step that matches this capability: coinset operations
+- You need the catalog of Coinset HTTP operations as markdown (discovery), not a live chain call yet.
+- Live mainnet or testnet state: coin by id, puzzle hash, parent, block, peak height
+- Mempool contents, tx status, push_tx / spend bundle submission to the network
+- Coinset API operation names, request bodies, or discovery of available RPC-style endpoints
+- Distinguish from docs: static protocol explanation → Chia MCP; current chain → Coinset MCP
+
+### Summary
+
+You need the catalog of Coinset HTTP operations as markdown (discovery), not a live chain call yet.
+
+## How to use
+
+- No required args. Follow with `coinset_post` for actual RPC calls.
+
+## Project
+
+Chia graph tools do **not** take `project`.

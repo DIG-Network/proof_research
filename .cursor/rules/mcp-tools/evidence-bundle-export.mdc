@@ -1,0 +1,54 @@
+---
+description: "MCP tool evidence_bundle_export (Cursor server \"evidence\", HTTP mount /mcp/evidence). Args include required project id. When: Export a markdown bundle of evidence for handoff. Slugs: evidence-bundle-export, evidence_bundle_export, mcp-evidence-bundle-export, tool-evidence-bundle-export, evidence/evidence-bundle-export, bundle-export, evidence/bundle-export. Relevance phrases: User or agent explicitly names `evidence_bundle_export` or equivalent (evidence bundle export) · Workflow step that matches this capability: evidence bundle export · Export a markdown bundle of evidence for handoff. · Attach proof artifacts to specs/deploys/verify runs; export evidence bundles for handoff. Keyword index: evidence_bundle_export evidence /mcp/evidence evidence-bundle-export evidence_bundle_export mcp-evidence-bundle-export tool-evidence-bundle-export evidence/evidence-bundle-export bundle-export evidence/bundle-export user or agent explicitly names `evidence_bundle_export` or equivalent (evidence bundle export) workflow step that matches this capability: evidence bundle export export a markdown bundle of evidence for handoff. attach proof artifacts to specs/deploys/verify runs; export evidence bundles for handoff export a markdown bundle of evidence for handoff."
+alwaysApply: false
+---
+
+# `evidence_bundle_export`
+
+**Cursor MCP server:** `evidence`  
+**HTTP mount:** `/mcp/evidence`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `evidence-bundle-export`
+- `evidence_bundle_export`
+- `mcp-evidence-bundle-export`
+- `tool-evidence-bundle-export`
+- `evidence/evidence-bundle-export`
+- `bundle-export`
+- `evidence/bundle-export`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `evidence_bundle_export` or equivalent (evidence bundle export)
+- Workflow step that matches this capability: evidence bundle export
+- Export a markdown bundle of evidence for handoff.
+- Attach proof artifacts to specs/deploys/verify runs; export evidence bundles for handoff
+
+### Summary
+
+Export a markdown bundle of evidence for handoff.
+
+## How to use
+
+- Required: `project`. Optional filters per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

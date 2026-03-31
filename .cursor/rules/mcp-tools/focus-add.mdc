@@ -1,0 +1,52 @@
+---
+description: "MCP tool focus_add (Cursor server \"focus\", HTTP mount /mcp/focus). Args include required project id. When: Pin scratch rows into the working set to reload after context flush. Slugs: focus-add, focus_add, mcp-focus-add, tool-focus-add, focus/focus-add. Relevance phrases: User or agent explicitly names `focus_add` or equivalent (focus add) · Workflow step that matches this capability: focus add · Pin scratch rows into the working set to reload after context flush. · Working set of scratch ids to rehydrate after context window flush. Keyword index: focus_add focus /mcp/focus focus-add focus_add mcp-focus-add tool-focus-add focus/focus-add user or agent explicitly names `focus_add` or equivalent (focus add) workflow step that matches this capability: focus add pin scratch rows into the working set to reload after context flush. working set of scratch ids to rehydrate after context window flush pin scratch rows into the working set to reload after context flush."
+alwaysApply: false
+---
+
+# `focus_add`
+
+**Cursor MCP server:** `focus`  
+**HTTP mount:** `/mcp/focus`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `focus-add`
+- `focus_add`
+- `mcp-focus-add`
+- `tool-focus-add`
+- `focus/focus-add`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `focus_add` or equivalent (focus add)
+- Workflow step that matches this capability: focus add
+- Pin scratch rows into the working set to reload after context flush.
+- Working set of scratch ids to rehydrate after context window flush
+
+### Summary
+
+Pin scratch rows into the working set to reload after context flush.
+
+## How to use
+
+- Required: `project` + scratch id(s) per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

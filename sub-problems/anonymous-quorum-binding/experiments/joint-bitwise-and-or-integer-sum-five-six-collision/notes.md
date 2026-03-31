@@ -1,0 +1,5 @@
+# Notes
+
+- **20** **/** **28** **distinct** **K_and** **keys** **on** **the** **5-shell** **also** **appear** **on** **the** **6-shell** **—** **the** **integer** **sum** **coordinate** **does** **not** **disambiguate** **most** **(** **h_and,** **sum** **)** **patterns** **that** **arise** **on** **five** **points.**
+- **Same** **6-set** **(indices** **0..5,** **weights** **1..6,** **sum** **21)** **appears** **in** **both** **sample** **lines** **—** **it** **is** **a** **frequent** **collision** **partner** **because** **it** **has** **h_and=0** **and** **moderate** **h_or=7** **while** **matching** **many** **5-set** **sums.**
+- **Unsticking** **if** **this** **line** **feels** **repetitive:** **move** **to** **verifier-oracle** **(** **e.g.** **bounded-width** **parity** **pools** **)** **or** **a** **non-scalar** **summary** **(** **short** **hash** **of** **sorted** **multiset** **—** **then** **collision** **is** **birthday** **bounded,** **not** **structural** **toy** **).**

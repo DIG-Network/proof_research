@@ -1,0 +1,53 @@
+---
+description: "MCP tool scratch_list (Cursor server \"scratch\", HTTP mount /mcp/scratch). Args include required project id. When: Enumerate scratch entries with optional tag/pin/limit filters. Slugs: scratch-list, scratch_list, mcp-scratch-list, tool-scratch-list, scratch/scratch-list. Relevance phrases: User or agent explicitly names `scratch_list` or equivalent (scratch list) · Workflow step that matches this capability: scratch list · Enumerate scratch entries with optional tag/pin/limit filters. · Short-lived notes, hypotheses, snippets, draft bullets during an agent turn · TTL, importance, pin/unpin, compaction into one canonical scratch key. Keyword index: scratch_list scratch /mcp/scratch scratch-list scratch_list mcp-scratch-list tool-scratch-list scratch/scratch-list user or agent explicitly names `scratch_list` or equivalent (scratch list) workflow step that matches this capability: scratch list enumerate scratch entries with optional tag/pin/limit filters. short-lived notes, hypotheses, snippets, draft bullets during an agent turn ttl, importance, pin/unpin, compaction into one canonical scratch key enumerate scratch entries with optional tag/pin/limit filters."
+alwaysApply: false
+---
+
+# `scratch_list`
+
+**Cursor MCP server:** `scratch`  
+**HTTP mount:** `/mcp/scratch`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `scratch-list`
+- `scratch_list`
+- `mcp-scratch-list`
+- `tool-scratch-list`
+- `scratch/scratch-list`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `scratch_list` or equivalent (scratch list)
+- Workflow step that matches this capability: scratch list
+- Enumerate scratch entries with optional tag/pin/limit filters.
+- Short-lived notes, hypotheses, snippets, draft bullets during an agent turn
+- TTL, importance, pin/unpin, compaction into one canonical scratch key
+
+### Summary
+
+Enumerate scratch entries with optional tag/pin/limit filters.
+
+## How to use
+
+- Required: `project`. See schema for filter fields.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

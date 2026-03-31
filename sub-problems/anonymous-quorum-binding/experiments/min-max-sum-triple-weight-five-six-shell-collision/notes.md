@@ -1,0 +1,5 @@
+# Notes
+
+- **Contrast** **with** **064** **/** **078:** **moment** **vectors** **(Σw^k)** **are** **injective** **on** **C(10,5)∪C(10,6)** **in** **exact** **ℤ** **;** **here** **(min,max,Σ)** **—** **a** **different** **3-tuple** **—** **is** **heavily** **non-injective** **across** **shells** **(** **41** **shared** **keys** **).** **So** **“three** **scalars** **from** **the** **weights”** **is** **not** **enough** **;** **which** **functionals** **matter** **matters.**
+- **H2** **(** **M≤20** **)** **was** **conservative** **—** **actual** **first** **mod** **collision** **is** **M=2.**
+- **Next** **unsticking** **if** **stuck** **on** **scalar** **summaries:** **either** **push** **verifier-oracle** **(** **non-coordinate** **gates** **)** **or** **a** **summary** **tied** **to** **structure** **064** **uses** **(** **higher** **moments** **/** **Vandermonde** **style** **)** **but** **check** **mod** **folds** **(** **065** **lesson** **)** **before** **trusting** **compact** **certificates.**

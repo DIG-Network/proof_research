@@ -1,0 +1,56 @@
+---
+description: "MCP tool ledger_run_search (Cursor server \"ledger\", HTTP mount /mcp/ledger). Args include required project id. When: Full-text search across ledger event summaries/details. Slugs: ledger-run-search, ledger_run_search, mcp-ledger-run-search, tool-ledger-run-search, ledger/ledger-run-search, run-search, ledger/run-search. Relevance phrases: User or agent explicitly names `ledger_run_search` or equivalent (ledger run search) · Workflow step that matches this capability: ledger run search · Full-text search across ledger event summaries/details. · Episodic run log: start run, append events, search history, close run · Audit trail for cron ticks, deploys, long agent loops · Checkpoint + optional close in one ledger call. Keyword index: ledger_run_search ledger /mcp/ledger ledger-run-search ledger_run_search mcp-ledger-run-search tool-ledger-run-search ledger/ledger-run-search run-search ledger/run-search user or agent explicitly names `ledger_run_search` or equivalent (ledger run search) workflow step that matches this capability: ledger run search full-text search across ledger event summaries/details. episodic run log: start run, append events, search history, close run audit trail for cron ticks, deploys, long agent loops checkpoint + optional close in one ledger call full-text search across ledger event summaries/details."
+alwaysApply: false
+---
+
+# `ledger_run_search`
+
+**Cursor MCP server:** `ledger`  
+**HTTP mount:** `/mcp/ledger`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `ledger-run-search`
+- `ledger_run_search`
+- `mcp-ledger-run-search`
+- `tool-ledger-run-search`
+- `ledger/ledger-run-search`
+- `run-search`
+- `ledger/run-search`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `ledger_run_search` or equivalent (ledger run search)
+- Workflow step that matches this capability: ledger run search
+- Full-text search across ledger event summaries/details.
+- Episodic run log: start run, append events, search history, close run
+- Audit trail for cron ticks, deploys, long agent loops
+- Checkpoint + optional close in one ledger call
+
+### Summary
+
+Full-text search across ledger event summaries/details.
+
+## How to use
+
+- Required: `project`, `q`. Optional `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

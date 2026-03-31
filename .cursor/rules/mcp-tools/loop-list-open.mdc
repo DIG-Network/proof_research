@@ -1,0 +1,54 @@
+---
+description: "MCP tool loop_list_open (Cursor server \"loop\", HTTP mount /mcp/loop). Args include required project id. When: List open loops for the project (recent first). Slugs: loop-list-open, loop_list_open, mcp-loop-list-open, tool-loop-list-open, loop/loop-list-open, list-open, loop/list-open. Relevance phrases: User or agent explicitly names `loop_list_open` or equivalent (loop list open) · Workflow step that matches this capability: loop list open · List open loops for the project (recent first). · Agent iteration budget: open/close loop, step counter, blockers on long-running work. Keyword index: loop_list_open loop /mcp/loop loop-list-open loop_list_open mcp-loop-list-open tool-loop-list-open loop/loop-list-open list-open loop/list-open user or agent explicitly names `loop_list_open` or equivalent (loop list open) workflow step that matches this capability: loop list open list open loops for the project (recent first). agent iteration budget: open/close loop, step counter, blockers on long-running work list open loops for the project (recent first)."
+alwaysApply: false
+---
+
+# `loop_list_open`
+
+**Cursor MCP server:** `loop`  
+**HTTP mount:** `/mcp/loop`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `loop-list-open`
+- `loop_list_open`
+- `mcp-loop-list-open`
+- `tool-loop-list-open`
+- `loop/loop-list-open`
+- `list-open`
+- `loop/list-open`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `loop_list_open` or equivalent (loop list open)
+- Workflow step that matches this capability: loop list open
+- List open loops for the project (recent first).
+- Agent iteration budget: open/close loop, step counter, blockers on long-running work
+
+### Summary
+
+List open loops for the project (recent first).
+
+## How to use
+
+- Required: `project`. Optional `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

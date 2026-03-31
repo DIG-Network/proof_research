@@ -1,0 +1,27 @@
+---
+description: Tools for surviving LLM context window flushes (session, focus, memory_ref, handoff snapshots, compact)
+alwaysApply: true
+---
+
+# Context persistence MCPs
+
+**Playbook:** **`hosted-mcp-orchestration.mdc`** (before/after context flush recipe, handoff ordering).
+
+Use the same **`project`** id everywhere.
+
+## After a flush (new session)
+
+1. **`session_restore`** (**`session`**, `/mcp/session`) — one JSON: latest **`handoff_save`** excerpt (or full body), **`focus_export`**-style items, **`memory_ref_*`** summaries, pinned scratch, ready planner tasks, spec rollup, constraints, open ledger runs + recent events, broken focus hints.
+2. **`session_sanity_check`** — orphaned **`memory_ref_*`** keys, missing focus targets, backlog counts.
+
+## Before a flush (save)
+
+- **`handoff_build`** then **`handoff_save`** with the markdown body (versioned history via **`handoff_list`** / **`handoff_get`**).
+- **`focus_add`** for scratch rows that must reload next time.
+- **`memory_ref_put`** with a **short `ref_key`** (e.g. `hypothesis/auth-flow`) and **`memory_ref_resolve`** later for full content.
+- **`ledger_run_checkpoint`** to append a **compact** event and refresh run summary; optional **`close_run`**.
+- **`scratch_compact`** to archive many scratch ids and replace with one **`canonical_body`** at **`new_key`**.
+
+## Pointers
+
+- **`memory_ref_*` `target_kind`:** `scratch` | `artifact` (row **id**) | `task` | `spec` | `ledger_run` | `handoff` (snapshot **id** from **`handoff_save`**).

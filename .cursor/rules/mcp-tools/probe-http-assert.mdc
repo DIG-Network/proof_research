@@ -1,0 +1,54 @@
+---
+description: "MCP tool probe_http_assert (Cursor server \"probe\", HTTP mount /mcp/probe). Args include required project id. When: Same as probe_http plus expected status / body substring assertion. Slugs: probe-http-assert, probe_http_assert, mcp-probe-http-assert, tool-probe-http-assert, probe/probe-http-assert, http-assert, probe/http-assert. Relevance phrases: User or agent explicitly names `probe_http_assert` or equivalent (probe http assert) · Workflow step that matches this capability: probe http assert · Same as probe_http plus expected status / body substring assertion. · One-off HTTP GET/POST probe with timeout; assert status or body substring (no DB run row). Keyword index: probe_http_assert probe /mcp/probe probe-http-assert probe_http_assert mcp-probe-http-assert tool-probe-http-assert probe/probe-http-assert http-assert probe/http-assert user or agent explicitly names `probe_http_assert` or equivalent (probe http assert) workflow step that matches this capability: probe http assert same as probe_http plus expected status / body substring assertion. one-off http get/post probe with timeout; assert status or body substring (no db run row) same as probe_http plus expected status / body substring assertion."
+alwaysApply: false
+---
+
+# `probe_http_assert`
+
+**Cursor MCP server:** `probe`  
+**HTTP mount:** `/mcp/probe`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `probe-http-assert`
+- `probe_http_assert`
+- `mcp-probe-http-assert`
+- `tool-probe-http-assert`
+- `probe/probe-http-assert`
+- `http-assert`
+- `probe/http-assert`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `probe_http_assert` or equivalent (probe http assert)
+- Workflow step that matches this capability: probe http assert
+- Same as probe_http plus expected status / body substring assertion.
+- One-off HTTP GET/POST probe with timeout; assert status or body substring (no DB run row)
+
+### Summary
+
+Same as probe_http plus expected status / body substring assertion.
+
+## How to use
+
+- Required: `project`, `url`. Optional `expect_status` (default 200), `body_contains`, etc.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

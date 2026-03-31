@@ -1,0 +1,54 @@
+---
+description: "MCP tool deploy_update (Cursor server \"deploy\", HTTP mount /mcp/deploy). Args include required project id. When: Patch an existing deployment record. Slugs: deploy-update, deploy_update, mcp-deploy-update, tool-deploy-update, deploy/deploy-update, update, deploy/update. Relevance phrases: User or agent explicitly names `deploy_update` or equivalent (deploy update) · Workflow step that matches this capability: deploy update · Patch an existing deployment record. · Record or search deployment history; latest per environment; update metadata. Keyword index: deploy_update deploy /mcp/deploy deploy-update deploy_update mcp-deploy-update tool-deploy-update deploy/deploy-update update deploy/update user or agent explicitly names `deploy_update` or equivalent (deploy update) workflow step that matches this capability: deploy update patch an existing deployment record. record or search deployment history; latest per environment; update metadata patch an existing deployment record."
+alwaysApply: false
+---
+
+# `deploy_update`
+
+**Cursor MCP server:** `deploy`  
+**HTTP mount:** `/mcp/deploy`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `deploy-update`
+- `deploy_update`
+- `mcp-deploy-update`
+- `tool-deploy-update`
+- `deploy/deploy-update`
+- `update`
+- `deploy/update`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `deploy_update` or equivalent (deploy update)
+- Workflow step that matches this capability: deploy update
+- Patch an existing deployment record.
+- Record or search deployment history; latest per environment; update metadata
+
+### Summary
+
+Patch an existing deployment record.
+
+## How to use
+
+- Required ids/fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

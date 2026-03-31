@@ -1,0 +1,208 @@
+---
+description: "Always apply: exhaustive hosted MCP tool index (every tool + when). Pair with hosted-mcp-orchestration.mdc for multi-tool workflows, mounts, and ordering."
+alwaysApply: true
+---
+
+# Hosted MCP — when to use each tool
+
+Exhaustive index: **every** tool on the hosted host with a one-line “when”. For **how to chain** tools, session rules, mount paths, and workflows, read **`hosted-mcp-orchestration.mdc` first**.
+
+Prefer the matching **Cursor MCP server** (one URL path per server); do not reuse `Mcp-Session-Id` across paths.
+
+**Always-on companion rules:** `hosted-mcp-orchestration.mdc` (playbook), `hosted-mcp-overview.mdc` (wiring, secrets, limits), `hosted-mcp-chia-knowledge.mdc`, `hosted-mcp-prompt-queue.mdc`, `hosted-mcp-agent-workspace.mdc`, `hosted-mcp-cron.mdc`, `hosted-mcp-context-persistence.mdc`. Optional skill: `.cursor/skills/hosted-mcp-routing/SKILL.md`.
+
+Deeper context (slugs, triggers, how-to): `.cursor/rules/mcp-tools/<tool-with-hyphens>.mdc`. Regenerate this file and those rules together: `node tools/generate-mcp-tool-cursor-rules.mjs`.
+
+## Conventions
+
+- **`chia_knowledge_*`**: no `project` argument.
+- **All other tools**: same stable **`project`** id on every call (alphanumeric start; then letters, digits, `.`, `_`, `-`).
+- **Protocol documentation** → Chia graph tools. **Current chain / mempool / coins** → `coinset_*`.
+- **`chia_knowledge_add_nugget`** / **`chia_knowledge_rebuild_reindex`**: curated corpus + indexer; treat as **dev/ops** unless the host is known writable.
+
+## Quick routing
+
+| Goal | Cursor server | Tools (examples) |
+|------|---------------|------------------|
+| Ground Chia facts from docs | `chia-knowledge` | `chia_knowledge_graph_rag_retrieve`, `chia_knowledge_blended_knowledge_lookup` |
+| Live blockchain query | `coinset` | `coinset_post`, `coinset_operations` |
+| FIFO deferred prompts | `prompt-queue` | `prompt_queue_enqueue`, `prompt_queue_pop`, … |
+| Task DAG | `planner` | `planner_task_create`, `planner_task_next_ready`, … |
+| Run / audit log | `ledger` | `ledger_run_start`, `ledger_run_append_event`, … |
+| Working notes | `scratch` | `scratch_put`, `scratch_list`, … |
+| Requirements | `spec` | `spec_define`, `spec_set_status`, … |
+| HTTP check record | `verify` | `verify_run`, `verify_list`, … |
+| Cron tick bundle | `cron` | `cron_tick_snapshot`, `cron_iteration_checkpoint` |
+| After context flush | `session` | `session_restore`, `session_sanity_check` |
+
+## `chia-knowledge` — `/mcp/chia`
+
+- **`chia_knowledge_graph_rag_retrieve`** — You need authoritative Chia protocol / CLVM / wallet / farming documentation context from the knowledge graph, or raw RAG chunks to ground an answer.
+- **`chia_knowledge_blended_knowledge_lookup`** — You want a single synthesized article-style answer (overview → prerequisites → core → related), not a flat list of nugget blocks.
+- **`chia_knowledge_get_rag_subgraph`** — You already have specific nugget `semantic_ids` and want related graph context around those seeds.
+- **`chia_knowledge_get_rag_learning_context`** — You want a prerequisite-ordered learning path / curriculum for a topic name.
+- **`chia_knowledge_add_nugget`** — You are intentionally extending the curated nugget corpus (dev / editorial workflows), not normal Q&A.
+- **`chia_knowledge_rebuild_reindex`** — Nuggets on disk changed or after `add_nugget`; dev/ops only on hosts with indexer tooling.
+
+## `coinset` — `/mcp/coinset`
+
+- **`coinset_operations`** — You need the catalog of Coinset HTTP operations as markdown (discovery), not a live chain call yet.
+- **`coinset_post`** — You need live mainnet/testnet chain state (blocks, coins, mempool, etc.) via Coinset’s documented POST operations.
+
+## `prompt-queue` — `/mcp/queue`
+
+- **`prompt_queue_enqueue`** — Defer work to a later agent turn, human, or worker; FIFO per `project`.
+- **`prompt_queue_pop`** — You are the consumer for that queue and should remove the oldest item.
+- **`prompt_queue_peek`** — Inspect oldest queued prompt without consuming it.
+- **`prompt_queue_queue_status`** — Check depth and oldest message id for a project namespace.
+
+## `planner` — `/mcp/planner`
+
+- **`planner_task_create`** — Add a node to the task DAG (title required).
+- **`planner_task_update`** — Patch task fields after progress or scope change.
+- **`planner_task_link`** — Task B must finish before task A can be treated as ready (dependency edge).
+- **`planner_task_next_ready`** — Pick work: list tasks not done/cancelled whose dependencies are all done.
+- **`planner_task_get`** — Fetch one task row and its outgoing dependency ids.
+- **`planner_task_list`** — List/filter tasks (status, parent, limit).
+- **`planner_export_json`** — Snapshot the project task graph for backup or migration.
+- **`planner_import_json`** — Restore or merge a previously exported task graph for this project.
+
+## `ledger` — `/mcp/ledger`
+
+- **`ledger_run_start`** — Begin an episodic run (feature, cron tick, deploy) you will append events to.
+- **`ledger_run_append_event`** — Log a milestone inside an open run.
+- **`ledger_run_search`** — Full-text search across ledger event summaries/details.
+- **`ledger_run_get_summary`** — Inspect run header and last N events.
+- **`ledger_run_list`** — List runs for the project (open/closed filters as supported by schema).
+- **`ledger_run_checkpoint`** — Append a compact checkpoint event and optionally refresh run summary / close run in one call.
+- **`ledger_run_close`** — Finalize a run with optional closing summary.
+
+## `scratch` — `/mcp/scratch`
+
+- **`scratch_put`** — Store short-lived working notes, findings, or draft text keyed or tagged for this project.
+- **`scratch_get`** — Fetch one scratch row by `id` or `key` (exactly one).
+- **`scratch_list`** — Enumerate scratch entries with optional tag/pin/limit filters.
+- **`scratch_pin`** — Pin important scratch rows so they surface in focus/session flows.
+- **`scratch_unpin`** — Remove pin from a scratch row.
+- **`scratch_delete`** — Remove a scratch entry explicitly.
+- **`scratch_compact`** — Archive many scratch ids into one canonical body under a new key (cleanup before handoff).
+
+## `evict` — `/mcp/evict`
+
+- **`evict_suggest`** — Find scratch ids eligible for archive/delete (TTL, superseded, stale).
+- **`evict_archive`** — Move selected scratch rows to cold storage; optionally remove from scratch.
+- **`evict_delete`** — Hard-delete scratch rows when policy allows.
+- **`evict_supersede_register`** — Mark older scratch rows superseded by a newer id for GC heuristics.
+
+## `artifact` — `/mcp/artifact`
+
+- **`artifact_register`** — Register a build output path or URI with optional task linkage and content hash.
+- **`artifact_query`** — List artifacts with filters (task, path prefix, validity).
+- **`artifact_invalidate`** — Soft-invalidate a stale artifact record.
+
+## `constraint` — `/mcp/constraint`
+
+- **`constraint_add`** — Record an invariant the implementation must respect.
+- **`constraint_list`** — List active constraints for the project.
+- **`constraint_revoke`** — Retire a constraint that no longer applies.
+
+## `handoff` — `/mcp/handoff`
+
+- **`handoff_build`** — Assemble a token-bounded markdown handoff from planner, ledger, scratch, artifacts, constraints.
+- **`handoff_validate`** — Quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff.
+- **`handoff_save`** — Persist a markdown snapshot for `handoff_list` / `handoff_get` / `session_restore`.
+- **`handoff_list`** — List saved handoff snapshots newest first.
+- **`handoff_get`** — Fetch full body for one saved handoff id.
+
+## `deploy` — `/mcp/deploy`
+
+- **`deploy_record`** — Record a deployment (environment, version, notes) for audit trail.
+- **`deploy_list`** — List deployment records for the project.
+- **`deploy_get`** — Fetch one deployment row by id.
+- **`deploy_latest`** — Get latest deployment for an environment.
+- **`deploy_update`** — Patch an existing deployment record.
+- **`deploy_search`** — Search deployment history text/metadata.
+
+## `spec` — `/mcp/spec`
+
+- **`spec_define`** — Create a requirement / acceptance criterion row.
+- **`spec_update`** — Patch spec text, status metadata, or links.
+- **`spec_get`** — Fetch one spec by id.
+- **`spec_list`** — List specs with optional status filter.
+- **`spec_set_status`** — Update satisfaction state (unknown/satisfied/violated/waived) with optional evidence note.
+- **`spec_link_task`** — Associate a spec with a planner task.
+- **`spec_unlink_task`** — Remove spec↔task association.
+- **`spec_summary`** — Roll up spec counts/status for dashboards or cron hints.
+
+## `verify` — `/mcp/verify`
+
+- **`verify_run`** — Run a recorded HTTP check (or shell if host enables shell verification).
+- **`verify_run_spec`** — Execute verification tied to a spec id.
+- **`verify_get`** — Fetch one stored verify run by id.
+- **`verify_list`** — List recent verify runs for the project.
+- **`verify_compare`** — Diff stdout_text between two runs.
+
+## `release` — `/mcp/release`
+
+- **`release_trigger`** — Trigger release automation (webhook / EB) when host policy allows.
+- **`release_get`** — Fetch one release job row by id.
+- **`release_list`** — List recent release jobs.
+
+## `probe` — `/mcp/probe`
+
+- **`probe_http`** — Stateless GET/POST to a URL with timeout and body snippet (no persistent run record).
+- **`probe_http_assert`** — Same as probe_http plus expected status / body substring assertion.
+
+## `loop` — `/mcp/loop`
+
+- **`loop_open`** — Start an iteration-budget loop tied optionally to a ledger run.
+- **`loop_get`** — Read loop state by id.
+- **`loop_step`** — Increment iteration counter for an open loop (end-of-tick bookkeeping).
+- **`loop_close`** — Close a loop when work completes or is cancelled.
+- **`loop_blocker_add`** — Record why the loop cannot advance (human input, failing verify, etc.).
+- **`loop_blocker_clear`** — Clear blockers when resolved.
+- **`loop_list_open`** — List open loops for the project (recent first).
+
+## `diff` — `/mcp/diff`
+
+- **`diff_baseline_set`** — Store a named JSON baseline for later regression compare.
+- **`diff_baseline_get`** — Fetch one baseline by name.
+- **`diff_baseline_list`** — List baselines for the project.
+- **`diff_compare`** — Compare current JSON object to a stored baseline.
+
+## `evidence` — `/mcp/evidence`
+
+- **`evidence_attach`** — Attach proof (logs, outputs) to a spec/deploy/verify context.
+- **`evidence_list`** — List evidence rows with optional linkage filters.
+- **`evidence_bundle_export`** — Export a markdown bundle of evidence for handoff.
+
+## `approval` — `/mcp/approval`
+
+- **`approval_request`** — Human gate before a risky action; creates a pending approval.
+- **`approval_resolve`** — Approve or reject a pending approval id.
+- **`approval_get`** — Fetch one approval row.
+- **`approval_list_pending`** — List approvals awaiting human action.
+
+## `cron` — `/mcp/cron`
+
+- **`cron_tick_snapshot`** — Start of a scheduled agent tick: one JSON bundle of planner ready tasks, loops/blockers, approvals, spec rollup, ledger open runs, optional queue depth.
+- **`cron_iteration_checkpoint`** — End of tick: optionally `loop_step` then ledger append in one call.
+
+## `memory` — `/mcp/memory`
+
+- **`memory_ref_put`** — Store a short `ref_key` pointing at scratch, artifact, task, spec, ledger_run, or handoff for post-flush reload.
+- **`memory_ref_list`** — List refs for the project (recent first).
+- **`memory_ref_resolve`** — Expand a ref to summary + target payload.
+- **`memory_ref_delete`** — Remove a ref key when obsolete.
+
+## `focus` — `/mcp/focus`
+
+- **`focus_add`** — Pin scratch rows into the working set to reload after context flush.
+- **`focus_remove`** — Drop a scratch id from the focus set.
+- **`focus_list`** — List scratch ids currently in focus.
+- **`focus_export`** — Export focus rows for session bundles.
+
+## `session` — `/mcp/session`
+
+- **`session_restore`** — After a context flush: one JSON bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.).
+- **`session_sanity_check`** — Validate workspace invariants after restore (orphan refs, broken focus, etc.).

@@ -1,0 +1,54 @@
+---
+description: "MCP tool approval_list_pending (Cursor server \"approval\", HTTP mount /mcp/approval). Args include required project id. When: List approvals awaiting human action. Slugs: approval-list-pending, approval_list_pending, mcp-approval-list-pending, tool-approval-list-pending, approval/approval-list-pending, list-pending, approval/list-pending. Relevance phrases: User or agent explicitly names `approval_list_pending` or equivalent (approval list pending) · Workflow step that matches this capability: approval list pending · List approvals awaiting human action. · Human-in-the-loop gate before risky operations; list pending approvals. Keyword index: approval_list_pending approval /mcp/approval approval-list-pending approval_list_pending mcp-approval-list-pending tool-approval-list-pending approval/approval-list-pending list-pending approval/list-pending user or agent explicitly names `approval_list_pending` or equivalent (approval list pending) workflow step that matches this capability: approval list pending list approvals awaiting human action. human-in-the-loop gate before risky operations; list pending approvals list approvals awaiting human action."
+alwaysApply: false
+---
+
+# `approval_list_pending`
+
+**Cursor MCP server:** `approval`  
+**HTTP mount:** `/mcp/approval`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `approval-list-pending`
+- `approval_list_pending`
+- `mcp-approval-list-pending`
+- `tool-approval-list-pending`
+- `approval/approval-list-pending`
+- `list-pending`
+- `approval/list-pending`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `approval_list_pending` or equivalent (approval list pending)
+- Workflow step that matches this capability: approval list pending
+- List approvals awaiting human action.
+- Human-in-the-loop gate before risky operations; list pending approvals
+
+### Summary
+
+List approvals awaiting human action.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

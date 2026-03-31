@@ -1,0 +1,54 @@
+---
+description: "MCP tool constraint_revoke (Cursor server \"constraint\", HTTP mount /mcp/constraint). Args include required project id. When: Retire a constraint that no longer applies. Slugs: constraint-revoke, constraint_revoke, mcp-constraint-revoke, tool-constraint-revoke, constraint/constraint-revoke, revoke, constraint/revoke. Relevance phrases: User or agent explicitly names `constraint_revoke` or equivalent (constraint revoke) · Workflow step that matches this capability: constraint revoke · Retire a constraint that no longer applies. · Record invariants the code must satisfy; list or revoke constraints for the project. Keyword index: constraint_revoke constraint /mcp/constraint constraint-revoke constraint_revoke mcp-constraint-revoke tool-constraint-revoke constraint/constraint-revoke revoke constraint/revoke user or agent explicitly names `constraint_revoke` or equivalent (constraint revoke) workflow step that matches this capability: constraint revoke retire a constraint that no longer applies. record invariants the code must satisfy; list or revoke constraints for the project retire a constraint that no longer applies."
+alwaysApply: false
+---
+
+# `constraint_revoke`
+
+**Cursor MCP server:** `constraint`  
+**HTTP mount:** `/mcp/constraint`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `constraint-revoke`
+- `constraint_revoke`
+- `mcp-constraint-revoke`
+- `tool-constraint-revoke`
+- `constraint/constraint-revoke`
+- `revoke`
+- `constraint/revoke`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `constraint_revoke` or equivalent (constraint revoke)
+- Workflow step that matches this capability: constraint revoke
+- Retire a constraint that no longer applies.
+- Record invariants the code must satisfy; list or revoke constraints for the project
+
+### Summary
+
+Retire a constraint that no longer applies.
+
+## How to use
+
+- Required ids per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

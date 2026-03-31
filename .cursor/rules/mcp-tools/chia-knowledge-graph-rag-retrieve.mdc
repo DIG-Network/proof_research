@@ -1,0 +1,63 @@
+---
+description: "MCP tool chia_knowledge_graph_rag_retrieve (Cursor server \"chia-knowledge\", HTTP mount /mcp/chia). No project argument (Chia graph only). When: You need authoritative Chia protocol / CLVM / wallet / farming documentation context from the knowledge graph, or raw RAG chunks to ground an answer. Slugs: chia-knowledge-graph-rag-retrieve, chia_knowledge_graph_rag_retrieve, mcp-chia-knowledge-graph-rag-retrieve, tool-chia-knowledge-graph-rag-retrieve, chia-knowledge/chia-knowledge-graph-rag-retrieve, graph-rag-retrieve, ckg-graph-rag-retrieve, ckg/graph-rag-retrieve. Relevance phrases: Prefer hybrid graph RAG over guessing when accuracy matters · Tuning breadth: initial_limit, graph_hops, max_nuggets, category, complexity · User or agent explicitly names `chia_knowledge_graph_rag_retrieve` or equivalent (chia knowledge graph rag retrieve) · Workflow step that matches this capability: chia knowledge graph rag retrieve · You need authoritative Chia protocol / CLVM / wallet / farming documentation context from the knowledge graph, or raw RAG chunks to ground an answer. · User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync · Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements · CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers · Mempool policy, fees, replacement, block creation (documentation — not live mempool queries) · Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout · Need grounded citations from the knowledge graph before stating protocol facts. Keyword index: chia_knowledge_graph_rag_retrieve chia-knowledge /mcp/chia chia-knowledge-graph-rag-retrieve chia_knowledge_graph_rag_retrieve mcp-chia-knowledge-graph-rag-retrieve tool-chia-knowledge-graph-rag-retrieve chia-knowledge/chia-knowledge-graph-rag-retrieve graph-rag-retrieve ckg-graph-rag-retrieve ckg/graph-rag-retrieve prefer hybrid graph rag over guessing when accuracy matters tuning breadth: initial_limit, graph_hops, max_nuggets, category, complexity user or agent explicitly names `chia_knowledge_graph_rag_retrieve` or equivalent (chia knowledge graph rag retrieve) workflow step that matches this capability: chia knowledge graph rag retrieve you need authoritative chia protocol / clvm / wallet / farming documentation context from the knowledge graph, or raw rag chunks to ground an answer. user asks about chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync chialisp, clvm, opcodes, currying, standard puzzles, p2 conditions, agg_sig, announcements cats, offers, nfts, did, custody, asset issuance, wallet sdk, driver layers mempool policy, fees, replacement, block creation (documentation — not live mempool queries) editing or reading documentat…"
+alwaysApply: false
+---
+
+# `chia_knowledge_graph_rag_retrieve`
+
+**Cursor MCP server:** `chia-knowledge`  
+**HTTP mount:** `/mcp/chia`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `chia-knowledge-graph-rag-retrieve`
+- `chia_knowledge_graph_rag_retrieve`
+- `mcp-chia-knowledge-graph-rag-retrieve`
+- `tool-chia-knowledge-graph-rag-retrieve`
+- `chia-knowledge/chia-knowledge-graph-rag-retrieve`
+- `graph-rag-retrieve`
+- `ckg-graph-rag-retrieve`
+- `ckg/graph-rag-retrieve`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Prefer hybrid graph RAG over guessing when accuracy matters
+- Tuning breadth: initial_limit, graph_hops, max_nuggets, category, complexity
+- User or agent explicitly names `chia_knowledge_graph_rag_retrieve` or equivalent (chia knowledge graph rag retrieve)
+- Workflow step that matches this capability: chia knowledge graph rag retrieve
+- You need authoritative Chia protocol / CLVM / wallet / farming documentation context from the knowledge graph, or raw RAG chunks to ground an answer.
+- User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync
+- Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements
+- CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers
+- Mempool policy, fees, replacement, block creation (documentation — not live mempool queries)
+- Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout
+- Need grounded citations from the knowledge graph before stating protocol facts
+
+### Summary
+
+You need authoritative Chia protocol / CLVM / wallet / farming documentation context from the knowledge graph, or raw RAG chunks to ground an answer.
+
+## How to use
+
+- Pass `query` (required). Tune `initial_limit`, `graph_hops`, `max_nuggets`, `max_tokens`, `category`, `complexity`, `rerank` when you need narrower or broader context.
+- Prefer this over guessing Chia facts from memory.
+
+## Project
+
+Chia graph tools do **not** take `project`.

@@ -1,0 +1,54 @@
+---
+description: "MCP tool evict_suggest (Cursor server \"evict\", HTTP mount /mcp/evict). Args include required project id. When: Find scratch ids eligible for archive/delete (TTL, superseded, stale). Slugs: evict-suggest, evict_suggest, mcp-evict-suggest, tool-evict-suggest, evict/evict-suggest, suggest, evict/suggest. Relevance phrases: User or agent explicitly names `evict_suggest` or equivalent (evict suggest) · Workflow step that matches this capability: evict suggest · Find scratch ids eligible for archive/delete (TTL, superseded, stale). · GC hygiene: suggest stale scratch, archive to cold storage, supersede old rows. Keyword index: evict_suggest evict /mcp/evict evict-suggest evict_suggest mcp-evict-suggest tool-evict-suggest evict/evict-suggest suggest evict/suggest user or agent explicitly names `evict_suggest` or equivalent (evict suggest) workflow step that matches this capability: evict suggest find scratch ids eligible for archive/delete (ttl, superseded, stale). gc hygiene: suggest stale scratch, archive to cold storage, supersede old rows find scratch ids eligible for archive/delete (ttl, superseded, stale)."
+alwaysApply: false
+---
+
+# `evict_suggest`
+
+**Cursor MCP server:** `evict`  
+**HTTP mount:** `/mcp/evict`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `evict-suggest`
+- `evict_suggest`
+- `mcp-evict-suggest`
+- `tool-evict-suggest`
+- `evict/evict-suggest`
+- `suggest`
+- `evict/suggest`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `evict_suggest` or equivalent (evict suggest)
+- Workflow step that matches this capability: evict suggest
+- Find scratch ids eligible for archive/delete (TTL, superseded, stale).
+- GC hygiene: suggest stale scratch, archive to cold storage, supersede old rows
+
+### Summary
+
+Find scratch ids eligible for archive/delete (TTL, superseded, stale).
+
+## How to use
+
+- Required: `project`. Optional `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,62 @@
+---
+description: When and how to use planner, ledger, scratch, spec, verify, deploy, and related workspace MCP tools
+alwaysApply: true
+---
+
+# Agent workspace MCPs
+
+**Playbook:** **`hosted-mcp-orchestration.mdc`** (feature slice workflow, probe vs verify, approval + ledger patterns).
+
+All tools below require **`project`** on every call. Cursor exposes each HTTP mount as its own server; tool names use the listed prefix.
+
+## Requirements and planning
+
+| Cursor server | Prefix | When | Tools (how) |
+|---------------|--------|------|-------------|
+| **`spec`** | `spec_` | Capture or track **acceptance criteria** and link them to work. | `define` / `update` / `get` / `list` / `set_status` / `link_task` / `unlink_task` / `summary` |
+| **`planner`** | `planner_` | **DAG / task graph:** dependencies, ready work, export/import. | `task_create` / `task_update` / `task_link` / `task_next_ready` / `task_get` / `task_list` / `export_json` / `import_json` |
+
+## Execution trace and memory
+
+| Cursor server | Prefix | When | Tools (how) |
+|---------------|--------|------|-------------|
+| **`ledger`** | `ledger_` | **Run log:** start a run, append events, search, close. | `run_start` / `run_append_event` / `run_search` / `run_get_summary` / `run_list` / `run_close` |
+| **`scratch`** | `scratch_` | **Short-lived working notes** keyed in the project namespace. | `put` / `get` / `list` / `pin` / `unpin` / `delete` |
+| **`evict`** | `evict_` | **Tidy scratch:** suggest stale rows, archive, delete, supersede. | `suggest` / `archive` / `delete` / `supersede_register` |
+| **`artifact`** | `artifact_` | **Register/query** build or output paths and invalidate when stale. | `register` / `query` / `invalidate` |
+| **`constraint`** | `constraint_` | **Invariants** the implementation must respect (add/list/revoke). | `add` / `list` / `revoke` |
+| **`handoff`** | `handoff_` | **Markdown handoff pack** for another agent or human. | `build` / `validate` |
+
+## Verification and shipping
+
+| Cursor server | Prefix | When | Tools (how) |
+|---------------|--------|------|-------------|
+| **`verify`** | `verify_` | **Recorded checks** (HTTP; shell only if host allows). Tie to specs when useful. | `run` / `run_spec` / `get` / `list` / `compare` |
+| **`probe`** | `probe_` | **Stateless HTTP** probe or assert (no persistent run record). | `http` / `http_assert` |
+| **`deploy`** | `deploy_` | **Deployment history** rows (record, query, latest, update, search). | `record` / `list` / `get` / `latest` / `update` / `search` |
+| **`release`** | `release_` | **Release automation** (webhook/EB/record); may be disabled on host. | `trigger` / `get` / `list` |
+
+## Process control
+
+| Cursor server | Prefix | When | Tools (how) |
+|---------------|--------|------|-------------|
+| **`loop`** | `loop_` | **Iteration budget** and blockers for multi-step agent loops. | `open` / `get` / `step` / `close` / `blocker_add` / `blocker_clear` / `list_open` |
+| **`diff`** | `diff_` | **JSON baselines** for regression-style comparison. | `baseline_set` / `baseline_get` / `baseline_list` / `compare` |
+| **`evidence`** | `evidence_` | **Attach proof** (logs, outputs) and export bundles. | `attach` / `list` / `bundle_export` |
+| **`approval`** | `approval_` | **Human gate** before risky steps. | `request` / `resolve` / `get` / `list_pending` |
+
+**`memory`** (`memory_ref_*`) and **`focus`** (`focus_*`) mounts support durable pointers and pinned scratch for session restore — see **hosted-mcp-context-persistence**.
+
+## Suggested order for large tasks
+
+1. **`spec_*`** → **`planner_task_*`** → implement in repo.
+2. **`verify_*`** / **`probe_*`** to confirm behavior.
+3. **`deploy_*`** / **`release_*`** when recording or triggering shipping.
+4. **`ledger_*`** + **`evidence_*`** for audit trail; **`approval_*`** when policy requires sign-off.
+5. Use **`scratch_*`** / **`evict_*`** / **`handoff_*`** / **`loop_*`** / **`diff_*`** as the situation demands.
+
+Prefer each tool’s **`inputSchema`** from `tools/list` when argument shapes are unclear.
+
+**Cron facades** (scheduled iteration): **hosted-mcp-cron** — **`/mcp/cron`**.
+
+**Context flushes:** **hosted-mcp-context-persistence** — **`/mcp/session`**, **`/mcp/focus`**, **`/mcp/memory`**; extended **`handoff_*`** (**`save`** / **`list`** / **`get`**), **`scratch_compact`**, **`ledger_run_checkpoint`** on their existing mounts.

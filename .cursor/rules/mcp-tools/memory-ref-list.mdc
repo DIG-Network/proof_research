@@ -1,0 +1,53 @@
+---
+description: "MCP tool memory_ref_list (Cursor server \"memory\", HTTP mount /mcp/memory). Args include required project id. When: List refs for the project (recent first). Slugs: memory-ref-list, memory_ref_list, mcp-memory-ref-list, tool-memory-ref-list, memory/memory-ref-list, memref-list. Relevance phrases: User or agent explicitly names `memory_ref_list` or equivalent (memory ref list) · Workflow step that matches this capability: memory ref list · List refs for the project (recent first). · Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload. Keyword index: memory_ref_list memory /mcp/memory memory-ref-list memory_ref_list mcp-memory-ref-list tool-memory-ref-list memory/memory-ref-list memref-list user or agent explicitly names `memory_ref_list` or equivalent (memory ref list) workflow step that matches this capability: memory ref list list refs for the project (recent first). short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload list refs for the project (recent first)."
+alwaysApply: false
+---
+
+# `memory_ref_list`
+
+**Cursor MCP server:** `memory`  
+**HTTP mount:** `/mcp/memory`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `memory-ref-list`
+- `memory_ref_list`
+- `mcp-memory-ref-list`
+- `tool-memory-ref-list`
+- `memory/memory-ref-list`
+- `memref-list`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `memory_ref_list` or equivalent (memory ref list)
+- Workflow step that matches this capability: memory ref list
+- List refs for the project (recent first).
+- Short ref keys pointing at scratch, task, spec, ledger run, handoff for post-flush reload
+
+### Summary
+
+List refs for the project (recent first).
+
+## How to use
+
+- Required: `project`. Optional `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

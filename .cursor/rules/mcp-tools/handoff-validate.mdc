@@ -1,0 +1,55 @@
+---
+description: "MCP tool handoff_validate (Cursor server \"handoff\", HTTP mount /mcp/handoff). Args include required project id. When: Quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff. Slugs: handoff-validate, handoff_validate, mcp-handoff-validate, tool-handoff-validate, handoff/handoff-validate, validate, handoff/validate. Relevance phrases: User or agent explicitly names `handoff_validate` or equivalent (handoff validate) · Workflow step that matches this capability: handoff validate · Quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff. · Assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints · Validate workspace counts; save/list/get versioned handoff snapshots for session restore. Keyword index: handoff_validate handoff /mcp/handoff handoff-validate handoff_validate mcp-handoff-validate tool-handoff-validate handoff/handoff-validate validate handoff/validate user or agent explicitly names `handoff_validate` or equivalent (handoff validate) workflow step that matches this capability: handoff validate quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff. assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints validate workspace counts; save/list/get versioned handoff snapshots for session restore quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff."
+alwaysApply: false
+---
+
+# `handoff_validate`
+
+**Cursor MCP server:** `handoff`  
+**HTTP mount:** `/mcp/handoff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `handoff-validate`
+- `handoff_validate`
+- `mcp-handoff-validate`
+- `tool-handoff-validate`
+- `handoff/handoff-validate`
+- `validate`
+- `handoff/validate`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `handoff_validate` or equivalent (handoff validate)
+- Workflow step that matches this capability: handoff validate
+- Quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff.
+- Assemble markdown handoff pack from planner + ledger + scratch + artifacts + constraints
+- Validate workspace counts; save/list/get versioned handoff snapshots for session restore
+
+### Summary
+
+Quick sanity counts (open runs, pending tasks, invalid artifacts) before shipping a handoff.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

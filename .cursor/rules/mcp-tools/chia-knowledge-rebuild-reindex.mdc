@@ -1,0 +1,61 @@
+---
+description: "MCP tool chia_knowledge_rebuild_reindex (Cursor server \"chia-knowledge\", HTTP mount /mcp/chia). No project argument (Chia graph only). When: Nuggets on disk changed or after `add_nugget`; dev/ops only on hosts with indexer tooling. Slugs: chia-knowledge-rebuild-reindex, chia_knowledge_rebuild_reindex, mcp-chia-knowledge-rebuild-reindex, tool-chia-knowledge-rebuild-reindex, chia-knowledge/chia-knowledge-rebuild-reindex, rebuild-reindex, ckg-rebuild-reindex, ckg/rebuild-reindex. Relevance phrases: Indexer or FTS refresh after disk nugget changes (dev/ops hosts only) · User or agent explicitly names `chia_knowledge_rebuild_reindex` or equivalent (chia knowledge rebuild reindex) · Workflow step that matches this capability: chia knowledge rebuild reindex · Nuggets on disk changed or after `add_nugget`; dev/ops only on hosts with indexer tooling. · User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync · Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements · CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers · Mempool policy, fees, replacement, block creation (documentation — not live mempool queries) · Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout · Need grounded citations from the knowledge graph before stating protocol facts. Keyword index: chia_knowledge_rebuild_reindex chia-knowledge /mcp/chia chia-knowledge-rebuild-reindex chia_knowledge_rebuild_reindex mcp-chia-knowledge-rebuild-reindex tool-chia-knowledge-rebuild-reindex chia-knowledge/chia-knowledge-rebuild-reindex rebuild-reindex ckg-rebuild-reindex ckg/rebuild-reindex indexer or fts refresh after disk nugget changes (dev/ops hosts only) user or agent explicitly names `chia_knowledge_rebuild_reindex` or equivalent (chia knowledge rebuild reindex) workflow step that matches this capability: chia knowledge rebuild reindex nuggets on disk changed or after `add_nugget`; dev/ops only on hosts with indexer tooling. user asks about chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync chialisp, clvm, opcodes, currying, standard puzzles, p2 conditions, agg_sig, announcements cats, offers, nfts, did, custody, asset issuance, wallet sdk, driver layers mempool policy, fees, replacement, block creation (documentation — not live mempool queries) editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout need grounded citations from the knowledge graph before stating protocol facts nuggets on disk …"
+alwaysApply: false
+---
+
+# `chia_knowledge_rebuild_reindex`
+
+**Cursor MCP server:** `chia-knowledge`  
+**HTTP mount:** `/mcp/chia`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `chia-knowledge-rebuild-reindex`
+- `chia_knowledge_rebuild_reindex`
+- `mcp-chia-knowledge-rebuild-reindex`
+- `tool-chia-knowledge-rebuild-reindex`
+- `chia-knowledge/chia-knowledge-rebuild-reindex`
+- `rebuild-reindex`
+- `ckg-rebuild-reindex`
+- `ckg/rebuild-reindex`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Indexer or FTS refresh after disk nugget changes (dev/ops hosts only)
+- User or agent explicitly names `chia_knowledge_rebuild_reindex` or equivalent (chia knowledge rebuild reindex)
+- Workflow step that matches this capability: chia knowledge rebuild reindex
+- Nuggets on disk changed or after `add_nugget`; dev/ops only on hosts with indexer tooling.
+- User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync
+- Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements
+- CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers
+- Mempool policy, fees, replacement, block creation (documentation — not live mempool queries)
+- Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout
+- Need grounded citations from the knowledge graph before stating protocol facts
+
+### Summary
+
+Nuggets on disk changed or after `add_nugget`; dev/ops only on hosts with indexer tooling.
+
+## How to use
+
+- Optional `force`, `skip_embeddings`. Do not assume this works on every hosted instance.
+
+## Project
+
+Chia graph tools do **not** take `project`.

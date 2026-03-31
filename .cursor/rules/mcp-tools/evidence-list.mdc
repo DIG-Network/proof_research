@@ -1,0 +1,52 @@
+---
+description: "MCP tool evidence_list (Cursor server \"evidence\", HTTP mount /mcp/evidence). Args include required project id. When: List evidence rows with optional linkage filters. Slugs: evidence-list, evidence_list, mcp-evidence-list, tool-evidence-list, evidence/evidence-list. Relevance phrases: User or agent explicitly names `evidence_list` or equivalent (evidence list) · Workflow step that matches this capability: evidence list · List evidence rows with optional linkage filters. · Attach proof artifacts to specs/deploys/verify runs; export evidence bundles for handoff. Keyword index: evidence_list evidence /mcp/evidence evidence-list evidence_list mcp-evidence-list tool-evidence-list evidence/evidence-list user or agent explicitly names `evidence_list` or equivalent (evidence list) workflow step that matches this capability: evidence list list evidence rows with optional linkage filters. attach proof artifacts to specs/deploys/verify runs; export evidence bundles for handoff list evidence rows with optional linkage filters."
+alwaysApply: false
+---
+
+# `evidence_list`
+
+**Cursor MCP server:** `evidence`  
+**HTTP mount:** `/mcp/evidence`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `evidence-list`
+- `evidence_list`
+- `mcp-evidence-list`
+- `tool-evidence-list`
+- `evidence/evidence-list`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `evidence_list` or equivalent (evidence list)
+- Workflow step that matches this capability: evidence list
+- List evidence rows with optional linkage filters.
+- Attach proof artifacts to specs/deploys/verify runs; export evidence bundles for handoff
+
+### Summary
+
+List evidence rows with optional linkage filters.
+
+## How to use
+
+- Required: `project`. Optional `spec_id`, `deploy_id`, `verify_run_id`, `limit`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

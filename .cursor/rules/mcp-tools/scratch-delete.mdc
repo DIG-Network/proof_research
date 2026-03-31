@@ -1,0 +1,55 @@
+---
+description: "MCP tool scratch_delete (Cursor server \"scratch\", HTTP mount /mcp/scratch). Args include required project id. When: Remove a scratch entry explicitly. Slugs: scratch-delete, scratch_delete, mcp-scratch-delete, tool-scratch-delete, scratch/scratch-delete, delete, scratch/delete. Relevance phrases: User or agent explicitly names `scratch_delete` or equivalent (scratch delete) · Workflow step that matches this capability: scratch delete · Remove a scratch entry explicitly. · Short-lived notes, hypotheses, snippets, draft bullets during an agent turn · TTL, importance, pin/unpin, compaction into one canonical scratch key. Keyword index: scratch_delete scratch /mcp/scratch scratch-delete scratch_delete mcp-scratch-delete tool-scratch-delete scratch/scratch-delete delete scratch/delete user or agent explicitly names `scratch_delete` or equivalent (scratch delete) workflow step that matches this capability: scratch delete remove a scratch entry explicitly. short-lived notes, hypotheses, snippets, draft bullets during an agent turn ttl, importance, pin/unpin, compaction into one canonical scratch key remove a scratch entry explicitly."
+alwaysApply: false
+---
+
+# `scratch_delete`
+
+**Cursor MCP server:** `scratch`  
+**HTTP mount:** `/mcp/scratch`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `scratch-delete`
+- `scratch_delete`
+- `mcp-scratch-delete`
+- `tool-scratch-delete`
+- `scratch/scratch-delete`
+- `delete`
+- `scratch/delete`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `scratch_delete` or equivalent (scratch delete)
+- Workflow step that matches this capability: scratch delete
+- Remove a scratch entry explicitly.
+- Short-lived notes, hypotheses, snippets, draft bullets during an agent turn
+- TTL, importance, pin/unpin, compaction into one canonical scratch key
+
+### Summary
+
+Remove a scratch entry explicitly.
+
+## How to use
+
+- Required fields per tool schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

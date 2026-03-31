@@ -1,0 +1,56 @@
+---
+description: "MCP tool ledger_run_close (Cursor server \"ledger\", HTTP mount /mcp/ledger). Args include required project id. When: Finalize a run with optional closing summary. Slugs: ledger-run-close, ledger_run_close, mcp-ledger-run-close, tool-ledger-run-close, ledger/ledger-run-close, run-close, ledger/run-close. Relevance phrases: User or agent explicitly names `ledger_run_close` or equivalent (ledger run close) · Workflow step that matches this capability: ledger run close · Finalize a run with optional closing summary. · Episodic run log: start run, append events, search history, close run · Audit trail for cron ticks, deploys, long agent loops · Checkpoint + optional close in one ledger call. Keyword index: ledger_run_close ledger /mcp/ledger ledger-run-close ledger_run_close mcp-ledger-run-close tool-ledger-run-close ledger/ledger-run-close run-close ledger/run-close user or agent explicitly names `ledger_run_close` or equivalent (ledger run close) workflow step that matches this capability: ledger run close finalize a run with optional closing summary. episodic run log: start run, append events, search history, close run audit trail for cron ticks, deploys, long agent loops checkpoint + optional close in one ledger call finalize a run with optional closing summary."
+alwaysApply: false
+---
+
+# `ledger_run_close`
+
+**Cursor MCP server:** `ledger`  
+**HTTP mount:** `/mcp/ledger`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `ledger-run-close`
+- `ledger_run_close`
+- `mcp-ledger-run-close`
+- `tool-ledger-run-close`
+- `ledger/ledger-run-close`
+- `run-close`
+- `ledger/run-close`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `ledger_run_close` or equivalent (ledger run close)
+- Workflow step that matches this capability: ledger run close
+- Finalize a run with optional closing summary.
+- Episodic run log: start run, append events, search history, close run
+- Audit trail for cron ticks, deploys, long agent loops
+- Checkpoint + optional close in one ledger call
+
+### Summary
+
+Finalize a run with optional closing summary.
+
+## How to use
+
+- Required: `project`, `run_id`. Optional `summary`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

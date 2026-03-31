@@ -1,0 +1,6 @@
+# Notes
+
+- **Performance:** **Pair-NAND** **splits** **inflate** **the** **DP** **vs** **parity** **gates:** **d** **=** **10** **alone** **≈** **211–228** **s** **(** **this** **machine** **);** **d** **=** **9** **negative** **≈** **1145** **s.** **Use** **`python -u`** **or** **`PYTHONUNBUFFERED=1`** **for** **live** **progress** **(** **default** **stdout** **buffering** **hid** **lines** **in** **early** **runs** **).**
+- **Budget** **semantics:** **Timeout** **is** **checked** **between** **depth** **values** **only;** **a** **single** **`exists_tree(full, d)`** **can** **exceed** **`--budget-seconds`.**
+- **933093** **(** **`--d-min` 5,** **450** **s** **)** **was** **started** **as** **a** **shortcut** **but** **did** **not** **finish** **within** **the** **logged** **window** **—** **the** **authoritative** **certificate** **is** **the** **d=1..9** **table** **+** **`--d-min` 10** **PASS** **above.**
+- **Next** **oracle** **threads:** **pair-NOR** **(** **complement** **of** **OR** **on** **the** **2-bit** **cell** **)** **or** **other** **gates** **—** **or** **pivot** **away** **from** **bit-tree** **depth** **toward** **binding** **/** **summary** **obstructions.**

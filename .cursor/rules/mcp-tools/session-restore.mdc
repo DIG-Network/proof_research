@@ -1,0 +1,54 @@
+---
+description: "MCP tool session_restore (Cursor server \"session\", HTTP mount /mcp/session). Args include required project id. When: After a context flush: one JSON bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.). Slugs: session-restore, session_restore, mcp-session-restore, tool-session-restore, session/session-restore, restore, session/restore. Relevance phrases: User or agent explicitly names `session_restore` or equivalent (session restore) · Workflow step that matches this capability: session restore · After a context flush: one JSON bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.). · New session after flush: restore bundle; sanity-check orphaned refs and broken focus. Keyword index: session_restore session /mcp/session session-restore session_restore mcp-session-restore tool-session-restore session/session-restore restore session/restore user or agent explicitly names `session_restore` or equivalent (session restore) workflow step that matches this capability: session restore after a context flush: one json bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.). new session after flush: restore bundle; sanity-check orphaned refs and broken focus after a context flush: one json bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.)."
+alwaysApply: false
+---
+
+# `session_restore`
+
+**Cursor MCP server:** `session`  
+**HTTP mount:** `/mcp/session`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `session-restore`
+- `session_restore`
+- `mcp-session-restore`
+- `tool-session-restore`
+- `session/session-restore`
+- `restore`
+- `session/restore`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `session_restore` or equivalent (session restore)
+- Workflow step that matches this capability: session restore
+- After a context flush: one JSON bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.).
+- New session after flush: restore bundle; sanity-check orphaned refs and broken focus
+
+### Summary
+
+After a context flush: one JSON bundle (handoff excerpt, focus, memory refs, planner snapshot, etc.).
+
+## How to use
+
+- Required: `project`. Use early in a new session when resuming long-horizon work.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

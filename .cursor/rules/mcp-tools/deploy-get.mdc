@@ -1,0 +1,52 @@
+---
+description: "MCP tool deploy_get (Cursor server \"deploy\", HTTP mount /mcp/deploy). Args include required project id. When: Fetch one deployment row by id. Slugs: deploy-get, deploy_get, mcp-deploy-get, tool-deploy-get, deploy/deploy-get. Relevance phrases: User or agent explicitly names `deploy_get` or equivalent (deploy get) · Workflow step that matches this capability: deploy get · Fetch one deployment row by id. · Record or search deployment history; latest per environment; update metadata. Keyword index: deploy_get deploy /mcp/deploy deploy-get deploy_get mcp-deploy-get tool-deploy-get deploy/deploy-get user or agent explicitly names `deploy_get` or equivalent (deploy get) workflow step that matches this capability: deploy get fetch one deployment row by id. record or search deployment history; latest per environment; update metadata fetch one deployment row by id."
+alwaysApply: false
+---
+
+# `deploy_get`
+
+**Cursor MCP server:** `deploy`  
+**HTTP mount:** `/mcp/deploy`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `deploy-get`
+- `deploy_get`
+- `mcp-deploy-get`
+- `tool-deploy-get`
+- `deploy/deploy-get`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `deploy_get` or equivalent (deploy get)
+- Workflow step that matches this capability: deploy get
+- Fetch one deployment row by id.
+- Record or search deployment history; latest per environment; update metadata
+
+### Summary
+
+Fetch one deployment row by id.
+
+## How to use
+
+- Required: `project`, `id`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,54 @@
+---
+description: "MCP tool diff_baseline_list (Cursor server \"diff\", HTTP mount /mcp/diff). Args include required project id. When: List baselines for the project. Slugs: diff-baseline-list, diff_baseline_list, mcp-diff-baseline-list, tool-diff-baseline-list, diff/diff-baseline-list, baseline-list, diff/baseline-list. Relevance phrases: User or agent explicitly names `diff_baseline_list` or equivalent (diff baseline list) · Workflow step that matches this capability: diff baseline list · List baselines for the project. · Named JSON baselines for regression-style before/after comparison. Keyword index: diff_baseline_list diff /mcp/diff diff-baseline-list diff_baseline_list mcp-diff-baseline-list tool-diff-baseline-list diff/diff-baseline-list baseline-list diff/baseline-list user or agent explicitly names `diff_baseline_list` or equivalent (diff baseline list) workflow step that matches this capability: diff baseline list list baselines for the project. named json baselines for regression-style before/after comparison list baselines for the project."
+alwaysApply: false
+---
+
+# `diff_baseline_list`
+
+**Cursor MCP server:** `diff`  
+**HTTP mount:** `/mcp/diff`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `diff-baseline-list`
+- `diff_baseline_list`
+- `mcp-diff-baseline-list`
+- `tool-diff-baseline-list`
+- `diff/diff-baseline-list`
+- `baseline-list`
+- `diff/baseline-list`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `diff_baseline_list` or equivalent (diff baseline list)
+- Workflow step that matches this capability: diff baseline list
+- List baselines for the project.
+- Named JSON baselines for regression-style before/after comparison
+
+### Summary
+
+List baselines for the project.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

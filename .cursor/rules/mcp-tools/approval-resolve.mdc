@@ -1,0 +1,54 @@
+---
+description: "MCP tool approval_resolve (Cursor server \"approval\", HTTP mount /mcp/approval). Args include required project id. When: Approve or reject a pending approval id. Slugs: approval-resolve, approval_resolve, mcp-approval-resolve, tool-approval-resolve, approval/approval-resolve, resolve, approval/resolve. Relevance phrases: User or agent explicitly names `approval_resolve` or equivalent (approval resolve) · Workflow step that matches this capability: approval resolve · Approve or reject a pending approval id. · Human-in-the-loop gate before risky operations; list pending approvals. Keyword index: approval_resolve approval /mcp/approval approval-resolve approval_resolve mcp-approval-resolve tool-approval-resolve approval/approval-resolve resolve approval/resolve user or agent explicitly names `approval_resolve` or equivalent (approval resolve) workflow step that matches this capability: approval resolve approve or reject a pending approval id. human-in-the-loop gate before risky operations; list pending approvals approve or reject a pending approval id."
+alwaysApply: false
+---
+
+# `approval_resolve`
+
+**Cursor MCP server:** `approval`  
+**HTTP mount:** `/mcp/approval`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `approval-resolve`
+- `approval_resolve`
+- `mcp-approval-resolve`
+- `tool-approval-resolve`
+- `approval/approval-resolve`
+- `resolve`
+- `approval/resolve`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `approval_resolve` or equivalent (approval resolve)
+- Workflow step that matches this capability: approval resolve
+- Approve or reject a pending approval id.
+- Human-in-the-loop gate before risky operations; list pending approvals
+
+### Summary
+
+Approve or reject a pending approval id.
+
+## How to use
+
+- Required: `project`, approval id, resolution per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,53 @@
+---
+description: "MCP tool focus_export (Cursor server \"focus\", HTTP mount /mcp/focus). Args include required project id. When: Export focus rows for session bundles. Slugs: focus-export, focus_export, mcp-focus-export, tool-focus-export, focus/focus-export, export. Relevance phrases: User or agent explicitly names `focus_export` or equivalent (focus export) · Workflow step that matches this capability: focus export · Export focus rows for session bundles. · Working set of scratch ids to rehydrate after context window flush. Keyword index: focus_export focus /mcp/focus focus-export focus_export mcp-focus-export tool-focus-export focus/focus-export export user or agent explicitly names `focus_export` or equivalent (focus export) workflow step that matches this capability: focus export export focus rows for session bundles. working set of scratch ids to rehydrate after context window flush export focus rows for session bundles."
+alwaysApply: false
+---
+
+# `focus_export`
+
+**Cursor MCP server:** `focus`  
+**HTTP mount:** `/mcp/focus`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `focus-export`
+- `focus_export`
+- `mcp-focus-export`
+- `tool-focus-export`
+- `focus/focus-export`
+- `export`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `focus_export` or equivalent (focus export)
+- Workflow step that matches this capability: focus export
+- Export focus rows for session bundles.
+- Working set of scratch ids to rehydrate after context window flush
+
+### Summary
+
+Export focus rows for session bundles.
+
+## How to use
+
+- Required: `project`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

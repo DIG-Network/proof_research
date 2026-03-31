@@ -1,0 +1,25 @@
+---
+description: When and how to use chia-knowledge MCP (graph RAG tools)
+alwaysApply: true
+---
+
+# MCP server: `chia-knowledge` (`chia_knowledge_*`)
+
+**Playbook:** **`hosted-mcp-orchestration.mdc`** (when to add Coinset, how docs differ from live chain).
+
+Use **before** stating precise Chia facts (consensus, CLVM, conditions, CAT, offers, farming, `chia-sdk`, Chialisp, Rue, mempool behavior, etc.). Prefer retrieval over memory when correctness matters.
+
+| Tool | When to use |
+|------|-------------|
+| **`chia_knowledge_graph_rag_retrieve`** | Default first step: hybrid search + graph expansion → markdown context for a **question or topic**. Tune `initial_limit`, `graph_hops`, `max_nuggets`, `category`, `complexity` when the answer needs breadth or depth. |
+| **`chia_knowledge_blended_knowledge_lookup`** | Same retrieval as above but output reads like **one synthesized article** (overview → prerequisites → core → related). Use for explanations and tutorials, not raw chunk lists. |
+| **`chia_knowledge_get_rag_subgraph`** | You already have **nugget semantic IDs**; fetch those seeds plus related nuggets in one context block. |
+| **`chia_knowledge_get_rag_learning_context`** | **Ordered learning path** / curriculum-style ordering for a topic. |
+| **`chia_knowledge_add_nugget`** | **Dev / curated corpus only:** add markdown to the knowledge tree when explicitly extending the graph; avoid on read-only production hosts. |
+| **`chia_knowledge_rebuild_reindex`** | **Dev / ops only:** rebuild FTS/index from disk; requires full tooling on the server. |
+
+If retrieval returns thin results, broaden the query or reduce filters before guessing protocol details.
+
+## Live blockchain queries (`coinset_*` on **`/mcp/coinset`**)
+
+For **current chain state** (coin records, blocks, mempool, `push_tx`), call **`coinset_post`** / **`coinset_operations`** against the [Coinset API](https://www.coinset.org/docs) — not the graph RAG tools. Keep **`chia_knowledge_*`** for nugget-backed protocol documentation.

@@ -1,0 +1,52 @@
+---
+description: "MCP tool constraint_add (Cursor server \"constraint\", HTTP mount /mcp/constraint). Args include required project id. When: Record an invariant the implementation must respect. Slugs: constraint-add, constraint_add, mcp-constraint-add, tool-constraint-add, constraint/constraint-add. Relevance phrases: User or agent explicitly names `constraint_add` or equivalent (constraint add) · Workflow step that matches this capability: constraint add · Record an invariant the implementation must respect. · Record invariants the code must satisfy; list or revoke constraints for the project. Keyword index: constraint_add constraint /mcp/constraint constraint-add constraint_add mcp-constraint-add tool-constraint-add constraint/constraint-add user or agent explicitly names `constraint_add` or equivalent (constraint add) workflow step that matches this capability: constraint add record an invariant the implementation must respect. record invariants the code must satisfy; list or revoke constraints for the project record an invariant the implementation must respect."
+alwaysApply: false
+---
+
+# `constraint_add`
+
+**Cursor MCP server:** `constraint`  
+**HTTP mount:** `/mcp/constraint`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `constraint-add`
+- `constraint_add`
+- `mcp-constraint-add`
+- `tool-constraint-add`
+- `constraint/constraint-add`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `constraint_add` or equivalent (constraint add)
+- Workflow step that matches this capability: constraint add
+- Record an invariant the implementation must respect.
+- Record invariants the code must satisfy; list or revoke constraints for the project
+
+### Summary
+
+Record an invariant the implementation must respect.
+
+## How to use
+
+- Required fields per schema (project + constraint text / metadata).
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

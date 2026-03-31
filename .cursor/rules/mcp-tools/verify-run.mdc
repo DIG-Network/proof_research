@@ -1,0 +1,52 @@
+---
+description: "MCP tool verify_run (Cursor server \"verify\", HTTP mount /mcp/verify). Args include required project id. When: Run a recorded HTTP check (or shell if host enables shell verification). Slugs: verify-run, verify_run, mcp-verify-run, tool-verify-run, verify/verify-run. Relevance phrases: User or agent explicitly names `verify_run` or equivalent (verify run) · Workflow step that matches this capability: verify run · Run a recorded HTTP check (or shell if host enables shell verification). · Run recorded HTTP (or shell if enabled) checks; tie to specs; compare run outputs. Keyword index: verify_run verify /mcp/verify verify-run verify_run mcp-verify-run tool-verify-run verify/verify-run user or agent explicitly names `verify_run` or equivalent (verify run) workflow step that matches this capability: verify run run a recorded http check (or shell if host enables shell verification). run recorded http (or shell if enabled) checks; tie to specs; compare run outputs run a recorded http check (or shell if host enables shell verification)."
+alwaysApply: false
+---
+
+# `verify_run`
+
+**Cursor MCP server:** `verify`  
+**HTTP mount:** `/mcp/verify`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `verify-run`
+- `verify_run`
+- `mcp-verify-run`
+- `tool-verify-run`
+- `verify/verify-run`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `verify_run` or equivalent (verify run)
+- Workflow step that matches this capability: verify run
+- Run a recorded HTTP check (or shell if host enables shell verification).
+- Run recorded HTTP (or shell if enabled) checks; tie to specs; compare run outputs
+
+### Summary
+
+Run a recorded HTTP check (or shell if host enables shell verification).
+
+## How to use
+
+- Provide `project` and run definition per schema; shell may be disabled on hosted hosts.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

@@ -1,0 +1,55 @@
+---
+description: "MCP tool artifact_register (Cursor server \"artifact\", HTTP mount /mcp/artifact). Args include required project id. When: Register a build output path or URI with optional task linkage and content hash. Slugs: artifact-register, artifact_register, mcp-artifact-register, tool-artifact-register, artifact/artifact-register, register, artifact/register. Relevance phrases: User or agent explicitly names `artifact_register` or equivalent (artifact register) · Workflow step that matches this capability: artifact register · Register a build output path or URI with optional task linkage and content hash. · Register build outputs, image paths, bundle URIs with optional content hash and task link · Query or invalidate artifact index entries. Keyword index: artifact_register artifact /mcp/artifact artifact-register artifact_register mcp-artifact-register tool-artifact-register artifact/artifact-register register artifact/register user or agent explicitly names `artifact_register` or equivalent (artifact register) workflow step that matches this capability: artifact register register a build output path or uri with optional task linkage and content hash. register build outputs, image paths, bundle uris with optional content hash and task link query or invalidate artifact index entries register a build output path or uri with optional task linkage and content hash."
+alwaysApply: false
+---
+
+# `artifact_register`
+
+**Cursor MCP server:** `artifact`  
+**HTTP mount:** `/mcp/artifact`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `artifact-register`
+- `artifact_register`
+- `mcp-artifact-register`
+- `tool-artifact-register`
+- `artifact/artifact-register`
+- `register`
+- `artifact/register`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `artifact_register` or equivalent (artifact register)
+- Workflow step that matches this capability: artifact register
+- Register a build output path or URI with optional task linkage and content hash.
+- Register build outputs, image paths, bundle URIs with optional content hash and task link
+- Query or invalidate artifact index entries
+
+### Summary
+
+Register a build output path or URI with optional task linkage and content hash.
+
+## How to use
+
+- Required: `project`, `path`. Optional `role`, `task_id`, `content_hash`, `metadata`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

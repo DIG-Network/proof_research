@@ -1,0 +1,37 @@
+---
+description: >-
+  Hosted MCP wiring: separate Streamable HTTP mounts, project id, secrets, production limits. Companion
+  to hosted-mcp-orchestration (workflows) and mcp-tools-when-to-use-always (full tool index).
+alwaysApply: true
+---
+
+# Hosted MCP (Cursor)
+
+These tools come from **separate** remote MCP servers (Streamable HTTP), each with its own URL path under `https://d3ob29frtjgqt9.cloudfront.net/mcp/...`. In Cursor they appear as **distinct server entries** (for example `chia-knowledge`, `coinset`, `prompt-queue`, `planner`, `ledger`, `spec`, `cron`, `session`). **Do not assume one session shares state with another**; use the server that matches the tool prefix you need.
+
+## Where to look (split by concern)
+
+| Need | Rule file |
+|------|-----------|
+| **Order of operations, mount matrix, recipes, anti-patterns** | **`hosted-mcp-orchestration.mdc`** (start here for multi-tool work) |
+| **Every tool name + one-line when** | **`mcp-tools-when-to-use-always.mdc`** (regenerate: `node tools/generate-mcp-tool-cursor-rules.mjs`) |
+| **One tool’s slugs, triggers, how-to** | **`.cursor/rules/mcp-tools/<tool-with-hyphens>.mdc`** |
+| **Chia vs Coinset, queue, workspace tables, cron, session** | Companion **`hosted-mcp-*.mdc`** files listed below |
+
+## Shared rules
+
+- **`project` argument:** Required on **every** workspace and queue tool. Use one stable id per product/repo (alphanumeric start; then letters, digits, `.`, `_`, `-`; length 1–128). **Chia graph tools do not use `project`.**
+- **Chia graph vs live chain vs workspace:** **`chia-knowledge`** for graph RAG (documentation nuggets). **`coinset`** (mount `/mcp/coinset`) for **live** on-chain lookups via [Coinset](https://www.coinset.org/docs). **`prompt-queue`**, **`planner`**, **`ledger`**, and the other workspace mounts for deferred prompts, specs, tasks, verification, deploy records, etc.
+- **Secrets:** Never paste `Authorization` / API keys into chat, commits, or issues.
+- **Production limits:** Treat **`chia_knowledge_add_nugget`** and **`chia_knowledge_rebuild_reindex`** as dev-only unless the deployment is known to have a writable tree and indexer. **`verify_*` shell** and **`release_*` AWS/webhook** paths only work if the host enables them (env-gated); if a tool errors as disabled, stop and explain instead of retrying blindly.
+
+## Companion rules (always apply)
+
+- **`hosted-mcp-orchestration.mdc`** — **playbook** for chaining tools and picking mounts.
+- **`hosted-mcp-chia-knowledge.mdc`** — Chia graph RAG tools.
+- **`hosted-mcp-prompt-queue.mdc`** — FIFO prompt queue.
+- **`hosted-mcp-agent-workspace.mdc`** — planner, ledger, scratch, spec, verify, deploy, and related workspace tools.
+- **`hosted-mcp-cron.mdc`** — cron tick facades on `/mcp/cron`.
+- **`hosted-mcp-context-persistence.mdc`** — session restore, focus, memory refs, handoff around context flushes.
+
+Optional skill (explicit workflow): **`hosted-mcp-routing`** — `.cursor/skills/hosted-mcp-routing/SKILL.md`.

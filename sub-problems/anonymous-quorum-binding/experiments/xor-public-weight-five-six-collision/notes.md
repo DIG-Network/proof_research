@@ -1,0 +1,5 @@
+# Notes
+
+- **Unsticking** **applied:** **encoding** **change** **from** **additive** **/ ** **modular** **moments** **to** **bitwise** **XOR** — **still** **PASS** **(collision)** **with** **the** **recurring** **(0..5)** **six-block**.
+- **Interpretation:** **Cheap** **public** **per-index** **combines** **(sum,** **sumsq,** **xor,** **…)** **on** **fixed** **weights** **remain** **vulnerable** **to** **structured** **5-vs-6** **agreement** **at** **n=10**; **binding** **needs** **either** **non-public** **weights,** **interaction** **with** **commitment** **/ ** **signatures,** **or** **a** **summary** **outside** **this** **scalar** **family**.
+- **Next** **(binding):** **pair** **XOR** **with** **a** **second** **noncommuting** **statistic** **(e.g.** **sum** **mod** **p** **with** **p** **odd** **and** **compare** **joint** **injectivity)** **—** **or** **document** **a** **short** **“attractor”** **lemma** **for** **initial** **block** **weights** **1..k** **vs** **tail** **subsets** **and** **close** **the** **homomorphic** **branch** **in** **the** **digest**.

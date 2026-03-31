@@ -1,0 +1,63 @@
+---
+description: "MCP tool chia_knowledge_add_nugget (Cursor server \"chia-knowledge\", HTTP mount /mcp/chia). No project argument (Chia graph only). When: You are intentionally extending the curated nugget corpus (dev / editorial workflows), not normal Q&A. Slugs: chia-knowledge-add-nugget, chia_knowledge_add_nugget, mcp-chia-knowledge-add-nugget, tool-chia-knowledge-add-nugget, chia-knowledge/chia-knowledge-add-nugget, add-nugget, ckg-add-nugget, ckg/add-nugget. Relevance phrases: Authoring new nugget markdown; corpus extension (not routine Q&A) · User or agent explicitly names `chia_knowledge_add_nugget` or equivalent (chia knowledge add nugget) · Workflow step that matches this capability: chia knowledge add nugget · You are intentionally extending the curated nugget corpus (dev / editorial workflows), not normal Q&A. · User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync · Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements · CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers · Mempool policy, fees, replacement, block creation (documentation — not live mempool queries) · Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout · Need grounded citations from the knowledge graph before stating protocol facts. Keyword index: chia_knowledge_add_nugget chia-knowledge /mcp/chia chia-knowledge-add-nugget chia_knowledge_add_nugget mcp-chia-knowledge-add-nugget tool-chia-knowledge-add-nugget chia-knowledge/chia-knowledge-add-nugget add-nugget ckg-add-nugget ckg/add-nugget authoring new nugget markdown; corpus extension (not routine q&a) user or agent explicitly names `chia_knowledge_add_nugget` or equivalent (chia knowledge add nugget) workflow step that matches this capability: chia knowledge add nugget you are intentionally extending the curated nugget corpus (dev / editorial workflows), not normal q&a. user asks about chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync chialisp, clvm, opcodes, currying, standard puzzles, p2 conditions, agg_sig, announcements cats, offers, nfts, did, custody, asset issuance, wallet sdk, driver layers mempool policy, fees, replacement, block creation (documentation — not live mempool queries) editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout need grounded citations from the knowledge graph before stating protocol facts you are intentionally extending the curated nugget corpus (dev / edi…"
+alwaysApply: false
+---
+
+# `chia_knowledge_add_nugget`
+
+**Cursor MCP server:** `chia-knowledge`  
+**HTTP mount:** `/mcp/chia`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `chia-knowledge-add-nugget`
+- `chia_knowledge_add_nugget`
+- `mcp-chia-knowledge-add-nugget`
+- `tool-chia-knowledge-add-nugget`
+- `chia-knowledge/chia-knowledge-add-nugget`
+- `add-nugget`
+- `ckg-add-nugget`
+- `ckg/add-nugget`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- Authoring new nugget markdown; corpus extension (not routine Q&A)
+- User or agent explicitly names `chia_knowledge_add_nugget` or equivalent (chia knowledge add nugget)
+- Workflow step that matches this capability: chia knowledge add nugget
+- You are intentionally extending the curated nugget corpus (dev / editorial workflows), not normal Q&A.
+- User asks about Chia blockchain concepts: consensus, farming, plots, pooling, timelord, full node, wallet sync
+- Chialisp, CLVM, opcodes, currying, standard puzzles, P2 conditions, AGG_SIG, announcements
+- CATs, offers, NFTs, DID, custody, asset issuance, wallet SDK, driver layers
+- Mempool policy, fees, replacement, block creation (documentation — not live mempool queries)
+- Editing or reading documentation, knowledge-base markdown, or protocol notes in any repo layout
+- Need grounded citations from the knowledge graph before stating protocol facts
+
+### Summary
+
+You are intentionally extending the curated nugget corpus (dev / editorial workflows), not normal Q&A.
+
+## How to use
+
+- Requires `semantic_id`, `title`, `category`, `complexity`, `content`; optional `requires`, `enables`, `tags`.
+- After adding content on a writable host, call `chia_knowledge_rebuild_reindex` so search/FTS sees it.
+- Avoid on read-only production unless deployment is known writable.
+
+## Project
+
+Chia graph tools do **not** take `project`.

@@ -1,0 +1,54 @@
+---
+description: "MCP tool deploy_record (Cursor server \"deploy\", HTTP mount /mcp/deploy). Args include required project id. When: Record a deployment (environment, version, notes) for audit trail. Slugs: deploy-record, deploy_record, mcp-deploy-record, tool-deploy-record, deploy/deploy-record, record, deploy/record. Relevance phrases: User or agent explicitly names `deploy_record` or equivalent (deploy record) · Workflow step that matches this capability: deploy record · Record a deployment (environment, version, notes) for audit trail. · Record or search deployment history; latest per environment; update metadata. Keyword index: deploy_record deploy /mcp/deploy deploy-record deploy_record mcp-deploy-record tool-deploy-record deploy/deploy-record record deploy/record user or agent explicitly names `deploy_record` or equivalent (deploy record) workflow step that matches this capability: deploy record record a deployment (environment, version, notes) for audit trail. record or search deployment history; latest per environment; update metadata record a deployment (environment, version, notes) for audit trail."
+alwaysApply: false
+---
+
+# `deploy_record`
+
+**Cursor MCP server:** `deploy`  
+**HTTP mount:** `/mcp/deploy`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `deploy-record`
+- `deploy_record`
+- `mcp-deploy-record`
+- `tool-deploy-record`
+- `deploy/deploy-record`
+- `record`
+- `deploy/record`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `deploy_record` or equivalent (deploy record)
+- Workflow step that matches this capability: deploy record
+- Record a deployment (environment, version, notes) for audit trail.
+- Record or search deployment history; latest per environment; update metadata
+
+### Summary
+
+Record a deployment (environment, version, notes) for audit trail.
+
+## How to use
+
+- Required fields per schema (project + deployment payload).
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

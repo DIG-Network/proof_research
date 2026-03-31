@@ -1,0 +1,55 @@
+---
+description: "MCP tool artifact_invalidate (Cursor server \"artifact\", HTTP mount /mcp/artifact). Args include required project id. When: Soft-invalidate a stale artifact record. Slugs: artifact-invalidate, artifact_invalidate, mcp-artifact-invalidate, tool-artifact-invalidate, artifact/artifact-invalidate, invalidate, artifact/invalidate. Relevance phrases: User or agent explicitly names `artifact_invalidate` or equivalent (artifact invalidate) · Workflow step that matches this capability: artifact invalidate · Soft-invalidate a stale artifact record. · Register build outputs, image paths, bundle URIs with optional content hash and task link · Query or invalidate artifact index entries. Keyword index: artifact_invalidate artifact /mcp/artifact artifact-invalidate artifact_invalidate mcp-artifact-invalidate tool-artifact-invalidate artifact/artifact-invalidate invalidate artifact/invalidate user or agent explicitly names `artifact_invalidate` or equivalent (artifact invalidate) workflow step that matches this capability: artifact invalidate soft-invalidate a stale artifact record. register build outputs, image paths, bundle uris with optional content hash and task link query or invalidate artifact index entries soft-invalidate a stale artifact record."
+alwaysApply: false
+---
+
+# `artifact_invalidate`
+
+**Cursor MCP server:** `artifact`  
+**HTTP mount:** `/mcp/artifact`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `artifact-invalidate`
+- `artifact_invalidate`
+- `mcp-artifact-invalidate`
+- `tool-artifact-invalidate`
+- `artifact/artifact-invalidate`
+- `invalidate`
+- `artifact/invalidate`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `artifact_invalidate` or equivalent (artifact invalidate)
+- Workflow step that matches this capability: artifact invalidate
+- Soft-invalidate a stale artifact record.
+- Register build outputs, image paths, bundle URIs with optional content hash and task link
+- Query or invalidate artifact index entries
+
+### Summary
+
+Soft-invalidate a stale artifact record.
+
+## How to use
+
+- Required: `project`, `id` (per schema).
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

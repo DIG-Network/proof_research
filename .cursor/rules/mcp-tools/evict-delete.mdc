@@ -1,0 +1,54 @@
+---
+description: "MCP tool evict_delete (Cursor server \"evict\", HTTP mount /mcp/evict). Args include required project id. When: Hard-delete scratch rows when policy allows. Slugs: evict-delete, evict_delete, mcp-evict-delete, tool-evict-delete, evict/evict-delete, delete, evict/delete. Relevance phrases: User or agent explicitly names `evict_delete` or equivalent (evict delete) · Workflow step that matches this capability: evict delete · Hard-delete scratch rows when policy allows. · GC hygiene: suggest stale scratch, archive to cold storage, supersede old rows. Keyword index: evict_delete evict /mcp/evict evict-delete evict_delete mcp-evict-delete tool-evict-delete evict/evict-delete delete evict/delete user or agent explicitly names `evict_delete` or equivalent (evict delete) workflow step that matches this capability: evict delete hard-delete scratch rows when policy allows. gc hygiene: suggest stale scratch, archive to cold storage, supersede old rows hard-delete scratch rows when policy allows."
+alwaysApply: false
+---
+
+# `evict_delete`
+
+**Cursor MCP server:** `evict`  
+**HTTP mount:** `/mcp/evict`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `evict-delete`
+- `evict_delete`
+- `mcp-evict-delete`
+- `tool-evict-delete`
+- `evict/evict-delete`
+- `delete`
+- `evict/delete`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `evict_delete` or equivalent (evict delete)
+- Workflow step that matches this capability: evict delete
+- Hard-delete scratch rows when policy allows.
+- GC hygiene: suggest stale scratch, archive to cold storage, supersede old rows
+
+### Summary
+
+Hard-delete scratch rows when policy allows.
+
+## How to use
+
+- Required fields per schema.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

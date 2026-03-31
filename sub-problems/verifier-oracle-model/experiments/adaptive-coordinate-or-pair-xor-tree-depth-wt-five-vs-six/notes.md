@@ -1,0 +1,5 @@
+# Notes — mixed coordinate + pair-XOR
+
+- **Unsticking** **(** **digest** **“Next:** **mixed** **…”** **):** **implemented** **coordinate** **∪** **pair-XOR** **(** **skipped** **pair-AND** **—** **048** **).** **For** **shells** **5** **vs** **6** **with** **t=6,** **the** **049** **XOR-only** **impossibility** **requires** **n=2t−1=11;** **here** **n=10** **so** **that** **lemma** **does** **not** **apply** **—** **this** **experiment** **tests** **mixed** **gates** **vs** **045’s** **coordinate** **lower** **barrier** **only.**
+- **Interpretation:** **Allowing** **F₂** **pair** **differences** **as** **first-class** **queries** **lets** **the** **verifier** **oracle** **simulate** **non-axis** **splits** **—** **relevant** **when** **asking** **whether** **cheap** **local** **linear** **pools** **+** **bits** **can** **beat** **pure** **coordinate** **probing** **(** **045** **barrier** **).**
+- **Next:** **optional** **witness** **tree** **printer;** **pair-OR** **+** **coordinate** **mix;** **or** **return** **to** **binding** **compression** **with** **this** **oracle** **insight** **in** **mind.**

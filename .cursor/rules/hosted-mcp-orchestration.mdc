@@ -1,0 +1,133 @@
+---
+description: >-
+  Hosted MCP orchestration: mount paths, project id, session-per-URL, decision tree Chia vs Coinset vs
+  workspace, multi-tool workflows (cron, handoff, spec→planner→verify→deploy, queue consumer), probe vs
+  verify, ledger/loop ordering, anti-patterns. Read before chaining tools.
+alwaysApply: true
+---
+
+# Hosted MCP — orchestration playbook
+
+Use this file to **choose servers**, **order calls**, and **avoid foot-guns**. Exhaustive per-tool text lives in **`mcp-tools-when-to-use-always.mdc`**; argument hints in **`.cursor/rules/mcp-tools/<tool-with-hyphens>.mdc`**.
+
+## Reading order (for the agent)
+
+1. This file — **how to combine** tools and **which mount** to use.
+2. **`mcp-tools-when-to-use-always.mdc`** — every tool name + one-line “when”.
+3. **`hosted-mcp-overview.mdc`** — secrets, production limits, short wiring recap.
+4. Domain companions — **`hosted-mcp-chia-knowledge`**, **`hosted-mcp-prompt-queue`**, **`hosted-mcp-agent-workspace`**, **`hosted-mcp-cron`**, **`hosted-mcp-context-persistence`**.
+
+## Transport and sessions
+
+- **One Streamable HTTP URL per mount** (each path below is a separate MCP `Server` in the client).
+- **Never reuse `Mcp-Session-Id`** from one path on another; state does not carry across mounts.
+- **Auth:** same Bearer or API key pattern your deployment expects on every request to mounts you use (never paste secrets into chat or commits).
+- **Stdio (local):** a single process may expose **all** namespaces at once; still mentally separate by **tool prefix** the same way as HTTP.
+
+## Mount matrix (orchestrate by path + prefix)
+
+Base URL is your host (e.g. CloudFront) — paths are **suffix only**.
+
+| Path | Tool prefix | `project` | Role |
+|------|-------------|-----------|------|
+| `/mcp/chia` | `chia_knowledge_*` | **no** | Graph RAG / nuggets (protocol docs). |
+| `/mcp/coinset` | `coinset_*` | **no** | Live chain via Coinset API (`coinset_operations` then `coinset_post`). |
+| `/mcp/queue` | `prompt_queue_*` | **yes** | FIFO deferred prompts. |
+| `/mcp/planner` | `planner_*` | **yes** | Task DAG, ready work, import/export. |
+| `/mcp/ledger` | `ledger_*` | **yes** | Run log, append events, checkpoint, close. |
+| `/mcp/scratch` | `scratch_*` | **yes** | Short-lived notes, pin, compact. |
+| `/mcp/evict` | `evict_*` | **yes** | Scratch hygiene, archive, supersede. |
+| `/mcp/artifact` | `artifact_*` | **yes** | Build/output registration, invalidate. |
+| `/mcp/constraint` | `constraint_*` | **yes** | Invariants for the implementation. |
+| `/mcp/handoff` | `handoff_*` | **yes** | Build/validate/save handoff markdown packs. |
+| `/mcp/deploy` | `deploy_*` | **yes** | Deployment history rows. |
+| `/mcp/spec` | `spec_*` | **yes** | Acceptance criteria, link to tasks, status. |
+| `/mcp/verify` | `verify_*` | **yes** | Recorded checks (HTTP; shell if host allows). |
+| `/mcp/release` | `release_*` | **yes** | Release automation (may be disabled). |
+| `/mcp/probe` | `probe_*` | **yes** | One-off HTTP probe/assert — **no** persistent run row. |
+| `/mcp/loop` | `loop_*` | **yes** | Iteration budget, blockers. |
+| `/mcp/diff` | `diff_*` | **yes** | JSON baselines, compare. |
+| `/mcp/evidence` | `evidence_*` | **yes** | Attach proof to runs/specs/deploys. |
+| `/mcp/approval` | `approval_*` | **yes** | Human gate before risky steps. |
+| `/mcp/cron` | `cron_*` | **yes** | Tick snapshot + iteration checkpoint facades. |
+| `/mcp/memory` | `memory_ref_*` | **yes** | Short refs → scratch, tasks, specs, handoffs, etc. |
+| `/mcp/focus` | `focus_*` | **yes** | Pin scratch ids for session bundles. |
+| `/mcp/session` | `session_*` | **yes** | Restore/sanity-check after context flush. |
+
+Use **one stable `project` string** on every row that requires it (same id across planner, ledger, queue, …).
+
+## Intent → where to start
+
+| User / task intent | Start here | Notes |
+|--------------------|------------|--------|
+| Explain Chia protocol, CLVM, CAT, offers, farming (docs) | `chia_knowledge_graph_rag_retrieve` or `chia_knowledge_blended_knowledge_lookup` | Not for live mempool/height. |
+| Current coins, blocks, mempool, push tx | `coinset_*` | Discover ops with `coinset_operations` if needed. |
+| Defer work to later / another worker | `prompt_queue_enqueue` | Consumer uses `pop` / `peek` / `queue_status`. |
+| Break down implementation, dependencies | `planner_task_*` | `task_next_ready` to pull runnable work. |
+| Requirements + satisfaction | `spec_*` | Link specs to planner tasks when useful. |
+| Audit trail for a feature or tick | `ledger_run_*` | Start run early; append milestones; checkpoint/close. |
+| Quick HTTP check without recording | `probe_*` | |
+| Recorded check, CI-style | `verify_*` | Tie to `spec` when helpful. |
+| Scheduled agent tick | `cron_tick_snapshot` | Then domain tools; end with `cron_iteration_checkpoint` when appropriate. |
+| New chat / context flushed | `session_restore` | Then `session_sanity_check`. |
+| Human must approve risky action | `approval_request` before work | Resolve after. |
+
+## Multi-tool workflows (recipes)
+
+### A. Grounded Chia answer (docs + optional chain)
+
+1. **`chia_knowledge_*`** retrieve or blended lookup for protocol/documentation.
+2. If the user needs **live** state, **`coinset_post`** (after **`coinset_operations`** if you do not know operation names).
+
+### B. Feature / task slice (requirements → work → proof)
+
+1. **`spec_define`** / **`spec_update`** as needed.
+2. **`planner_task_create`**, **`planner_task_link`** for ordering.
+3. Implement in repo (no MCP).
+4. **`verify_run`** or **`probe_http`** to confirm; **`evidence_attach`** when you need proof on record.
+5. **`deploy_record`** / **`deploy_update`** if shipping metadata matters.
+6. **`spec_set_status`** when acceptance is satisfied.
+
+### C. Queue consumer (worker or later turn)
+
+1. **`prompt_queue_queue_status`** or **`prompt_queue_peek`**.
+2. **`prompt_queue_pop`** when you will process the item.
+3. **`scratch_put`** / **`planner_task_update`** / **`ledger_run_append_event`** as the unit of work requires.
+
+### D. Cron tick (scheduled agent)
+
+1. **`cron_tick_snapshot`** — ingest planner/loop/approval/ledger/queue summary (and optional markdown hints).
+2. Do domain writes with the right mounts: e.g. **`prompt_queue_pop`**, **`planner_task_update`**, **`verify_run`**, etc.
+3. **`cron_iteration_checkpoint`** when closing the tick — if both **`loop_id`** and **`ledger_run_id`** are set, **loop steps first**; if ledger append fails after a loop step, reconcile state before retrying blindly.
+
+### E. Context flush — save then restore
+
+**Before flush:** **`handoff_build`** → **`handoff_save`**; **`focus_add`** for must-reload scratch; **`memory_ref_put`** for durable pointers; **`ledger_run_checkpoint`** for a compact line in the run; **`scratch_compact`** if many rows should collapse to one key.
+
+**After flush:** **`session_restore`** → **`session_sanity_check`**.
+
+### F. Handoff to another agent or human
+
+1. **`handoff_build`** (pulls planner, ledger, scratch, artifacts, constraints as configured).
+2. **`handoff_save`** for a versioned snapshot; **`handoff_list`** / **`handoff_get`** to read history.
+
+### G. Risky or policy-sensitive change
+
+1. **`approval_request`** with clear summary.
+2. After human **`approval_resolve`**, perform operations; **`ledger_run_append_event`** / **`evidence_attach`** as policy requires.
+
+## Composition rules
+
+- **`probe_*`** vs **`verify_*`:** probe = fast, no ledger row; verify = recorded, good for regression and spec linkage.
+- **`cron_*`** facades do **not** call Chia RAG — use **`chia-knowledge`** separately when the tick needs docs.
+- **`chia_knowledge_add_nugget`** then **`chia_knowledge_rebuild_reindex`** on hosts that are writable and have an indexer; otherwise treat as dev-only.
+- **`release_*`** and shell-backed **`verify_*`** may be **disabled** on the host — stop and explain, do not spam retries.
+
+## Anti-patterns
+
+- Using **`chia_knowledge_*`** for **current** chain or mempool state.
+- Omitting **`project`** on any workspace or queue tool.
+- Assuming **`Mcp-Session-Id`** is portable across **`/mcp/*`** paths.
+- Calling **`coinset_post`** without checking **`coinset_operations`** when operation names are unknown.
+
+When argument shapes are unclear, use **`tools/list`** and each tool’s **`inputSchema`** on the relevant server.

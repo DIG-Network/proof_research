@@ -1,0 +1,54 @@
+---
+description: "MCP tool evict_archive (Cursor server \"evict\", HTTP mount /mcp/evict). Args include required project id. When: Move selected scratch rows to cold storage; optionally remove from scratch. Slugs: evict-archive, evict_archive, mcp-evict-archive, tool-evict-archive, evict/evict-archive, archive, evict/archive. Relevance phrases: User or agent explicitly names `evict_archive` or equivalent (evict archive) · Workflow step that matches this capability: evict archive · Move selected scratch rows to cold storage; optionally remove from scratch. · GC hygiene: suggest stale scratch, archive to cold storage, supersede old rows. Keyword index: evict_archive evict /mcp/evict evict-archive evict_archive mcp-evict-archive tool-evict-archive evict/evict-archive archive evict/archive user or agent explicitly names `evict_archive` or equivalent (evict archive) workflow step that matches this capability: evict archive move selected scratch rows to cold storage; optionally remove from scratch. gc hygiene: suggest stale scratch, archive to cold storage, supersede old rows move selected scratch rows to cold storage; optionally remove from scratch."
+alwaysApply: false
+---
+
+# `evict_archive`
+
+**Cursor MCP server:** `evict`  
+**HTTP mount:** `/mcp/evict`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `evict-archive`
+- `evict_archive`
+- `mcp-evict-archive`
+- `tool-evict-archive`
+- `evict/evict-archive`
+- `archive`
+- `evict/archive`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `evict_archive` or equivalent (evict archive)
+- Workflow step that matches this capability: evict archive
+- Move selected scratch rows to cold storage; optionally remove from scratch.
+- GC hygiene: suggest stale scratch, archive to cold storage, supersede old rows
+
+### Summary
+
+Move selected scratch rows to cold storage; optionally remove from scratch.
+
+## How to use
+
+- Required: `project`, `scratch_ids`. Optional `remove_after`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).

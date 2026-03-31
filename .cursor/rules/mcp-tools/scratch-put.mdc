@@ -1,0 +1,53 @@
+---
+description: "MCP tool scratch_put (Cursor server \"scratch\", HTTP mount /mcp/scratch). Args include required project id. When: Store short-lived working notes, findings, or draft text keyed or tagged for this project. Slugs: scratch-put, scratch_put, mcp-scratch-put, tool-scratch-put, scratch/scratch-put. Relevance phrases: User or agent explicitly names `scratch_put` or equivalent (scratch put) · Workflow step that matches this capability: scratch put · Store short-lived working notes, findings, or draft text keyed or tagged for this project. · Short-lived notes, hypotheses, snippets, draft bullets during an agent turn · TTL, importance, pin/unpin, compaction into one canonical scratch key. Keyword index: scratch_put scratch /mcp/scratch scratch-put scratch_put mcp-scratch-put tool-scratch-put scratch/scratch-put user or agent explicitly names `scratch_put` or equivalent (scratch put) workflow step that matches this capability: scratch put store short-lived working notes, findings, or draft text keyed or tagged for this project. short-lived notes, hypotheses, snippets, draft bullets during an agent turn ttl, importance, pin/unpin, compaction into one canonical scratch key store short-lived working notes, findings, or draft text keyed or tagged for this project."
+alwaysApply: false
+---
+
+# `scratch_put`
+
+**Cursor MCP server:** `scratch`  
+**HTTP mount:** `/mcp/scratch`
+
+## Cursor routing (read this)
+
+- There is **no separate frontmatter field** for substring or keyword matching. These rules use **`description`** (for Apply intelligently) and the body below.
+- For **Apply intelligently**, Cursor presents **`description`** to the Agent so it can decide relevance (tool name, server, mount, slugs, and user-intent phrases).
+
+## Orchestration
+
+- **Multi-step flows, mount matrix, ordering, anti-patterns:** `hosted-mcp-orchestration.mdc` (always apply).
+- **Exhaustive tool list:** `mcp-tools-when-to-use-always.mdc`.
+
+## When to use
+
+### Slugs
+
+Use this tool when labels, tags, routing keys, or internal references match any of:
+
+- `scratch-put`
+- `scratch_put`
+- `mcp-scratch-put`
+- `tool-scratch-put`
+- `scratch/scratch-put`
+
+### Triggers
+
+Prefer this tool when any of the following apply:
+
+- User or agent explicitly names `scratch_put` or equivalent (scratch put)
+- Workflow step that matches this capability: scratch put
+- Store short-lived working notes, findings, or draft text keyed or tagged for this project.
+- Short-lived notes, hypotheses, snippets, draft bullets during an agent turn
+- TTL, importance, pin/unpin, compaction into one canonical scratch key
+
+### Summary
+
+Store short-lived working notes, findings, or draft text keyed or tagged for this project.
+
+## How to use
+
+- Required: `project`, `body`. Optional `key` (upsert), `tags`, `ttl_seconds`, `importance`, `pinned`.
+
+## Project
+
+Pass the same stable `project` string on every tool call for this mount (alphanumeric start; then letters, digits, `.`, `_`, `-`).
