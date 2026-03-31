@@ -41,3 +41,5 @@
 **Script:** `script.py`. **Modes:** full sweep; `--baseline-only`; `--r-single R`; `--union-rs "2,3,4"`; `--skip-baseline` for shard runs.
 
 **Repro:** Baseline: `python3 script.py --baseline-only`. Shard single-arity: e.g. `python3 script.py --skip-baseline --r-single 6`. Full sweep **without** sharding **OOM**’d on this environment (prior run killed after ~400 s).
+
+**Follow-up (2026-03-31, automation host):** Re-ran `python3 script.py --skip-baseline --r-single 5` and `--r-single 7` in fresh processes. Both were **killed (exit 137)** after **~200–210 s** wall time — **no change** to the **OOM** conclusion for standalone **`r=5`** / **`r=7`** on this cgroup. Journal: `research-journal/entries/2026-03-31-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12-rerun-r5-r7.md`.

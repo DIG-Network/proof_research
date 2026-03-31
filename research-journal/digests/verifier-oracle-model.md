@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-03-31 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12
+**Last updated:** 2026-03-31 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12-rerun-r5-r7
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12-rerun-r5-r7` | INCONCLUSIVE | **Automation** **rerun** **`--r-single`** **5** **/** **7** **:** **still** **exit** **137** **(** **~3** **min** **)** **—** **no** **standalone** **`min_d(5),min_d(7)`** **on** **this** **host** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12` | PASS | **`n=12`**, **wt∈{6,7}** **(** **1716** **masks** **):** **standalone** **`min_d(r)`** **for** **`r∈{2,3,4,6,8,9,10,11}`** **(** **6,4,3,2,3,4,3,2** **)** **;** **`r=5,7`** **OOM** **here** **;** **unions** **`r≤4`** **`→3`**, **`r≤5`** **`→3`**, **`r∈{2..11}`** **`→2`** **(** **101** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-five-six-n11` | PASS | **`n=11`**, **wt∈{5,6}** **(** **924** **masks** **):** **`min_d`:** **6,5,4,3,3,3,4,3,2** **(** **`r=2..10`** **)** **—** **no** **`min_d(6),min_d(7)>min_d(5)`** **(** **unlike** **099** **)** **;** **bump** **`r=8`** **;** **union** **`r≤5`** **`→3`** **(** **was** **`2`** **on** **`n=10`** **)** **,** **`r≤10`** **`→2`** **(** **100** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-five-six-n10` | PASS | **`n=10`**, **wt∈{5,6}** **(** **462** **masks** **):** **full** **`r=2..9`** **`min_d`:** **5,4,3,2,3,4,3,2** **—** **`min_d(6),min_d(7) > min_d(5)`** **(** **non-monotone** **on** **canonical** **row** **;** **066→093** **was** **only** **prefix** **)** **;** **unions** **`r≤5`** **/** **`r≤9`** **`→2`** **(** **099** **/** **BREAKTHROUGHS** **)** |

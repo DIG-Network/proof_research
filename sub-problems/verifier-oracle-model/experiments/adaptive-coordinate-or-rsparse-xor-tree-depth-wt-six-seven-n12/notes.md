@@ -9,3 +9,5 @@
 - **Compare `n=11` `{5,6}` (100):** There **`r=5,6,7`** **plateaued** at **`min_d=3`** with **`r=8`** bump to **4**. Here **`r=6`** already **`2`**; **`r=11`** also **`2`**. **Pattern:** **threshold-adjacent** shells **`{t−1,t}`** **with** **`n=2t−2`** **(**here **12,7** **)** **may** **favor** **mid-high** **`r`** **(** **6** **)** **for** **cheap** **parity** **splits** **—** **speculative** **.**
 
 - **Next:** If **standalone** **`min_d(5)`**/**`min_d(7)`** **matter** **for** **the** **BREAKTHROUGHS** **narrative** **,** **rerun** **on** **a** **machine** **with** **≥** **32 GiB** **RAM** **or** **port** **the** **DP** **to** **a** **bounded** **cache** **/** **disk-backed** **memo** **(** **not** **done** **here** **).**
+
+- **2026-03-31 rerun:** **`--r-single 5`** and **`--r-single 7`** **again** **exit** **137** **after** **~3.1** **min** **/** **~3.0** **min** **—** **confirms** **host** **limit** **;** **see** **journal** **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-six-seven-n12-rerun-r5-r7`** **.**
