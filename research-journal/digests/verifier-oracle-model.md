@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-three-min
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-thirty-min
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-thirty-min` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **(** **`timeout 1800`**, **`--lru-maxsize 0`** **)** **—** **exit** **124** **~1800** **s**, **still** **`probing d=3 …`** **(** **no** **`feasible=`** **)** **;** **10×** **the** **3-min** **budget** **unchanged** **—** **multi-hour** **class** **like** **`r=9` `d=3`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-three-min` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **(** **`timeout 180`**, **`--lru-maxsize 0`** **)** **—** **exit** **124** **after** **`probing d=3 …`** **(** **no** **`feasible=`** **line** **)** **;** **wrapper** **`script.py`** **reproduces** **—** **`d=3`** **still** **open** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r234-d2` | PASS | **`n=14`**, **`{7,8}`**, **`r∈{2,3,4}`:** **`d=2`** **infeasible** **(** **`d=2`-only** **shards** **,** **`lru-maxsize 0`**, **sub-second** **to** **~3** **s** **)** **⇒** **`min_d(r)≥3`** **;** **prior** **`r=2..4`** **timeouts** **were** **deeper-** **`d`** **probes** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d2` | PASS | **`n=14`**, **`{7,8}`**, **`r=5`:** **`d=2`** **infeasible** **(** **`--d-min 2 --d-max 2`**, **`lru-maxsize 0`**, **~17 s** **)** **⇒** **`min_d(5)≥3`** **;** **`d=3`** **still** **open** **(** **prior** **timeouts** **)** |
