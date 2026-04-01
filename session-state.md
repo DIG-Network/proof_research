@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-01 — after **adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-r12-r13-d3-exists-budget-5e6**
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-r12-r13-d3-exists-budget-5e6` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-r12-r13-d3-exists-budget-5e6`)
-**Last outcome:** PASS
+**Last updated:** 2026-04-01 — after **adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-d3-exists-budget-2e7**
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-d3-exists-budget-2e7` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-d3-exists-budget-2e7`)
+**Last outcome:** FAIL
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`r∈{5,6}`** **`d=3`** remain the **priority** **hard** **region** (**unbounded** **memo** **/** **shard** **/** **pruning**). **`r=11`** is a **new** **named** **hard** **pocket** at **5e6** between **`r=10`** and **easy** **`r=12,13`**. Optional: **`r=11`** **longer** **budget** **or** **theory** **why** **364** **splits** **blow** **up** **vs** **91**.
+**Next action:** **`r=11`**: **`d=3`** is **infeasible** for **coord+11xor** (**completed** **probe** at **2×10⁷** **`exists_tree`** **—** **`min_d≥4`** **)** **;** **priority** **remains** **`r∈{5,6}`** **`d=3`** **(** **unbounded** **memo** **/** **shard** **)** **.** **Optional:** **`r=11`** **`d=4`-only** **shard** **to** **pin** **`min_d(11)`** **exactly** **.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
