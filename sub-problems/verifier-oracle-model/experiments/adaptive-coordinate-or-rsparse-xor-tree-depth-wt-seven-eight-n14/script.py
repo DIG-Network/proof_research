@@ -18,6 +18,10 @@ N = 14
 SHELLS = (7, 8)
 
 
+class _BudgetExceeded(Exception):
+    """Raised when --max-exists-calls budget is exhausted inside exists_tree."""
+
+
 def popc(m: int) -> int:
     return m.bit_count()
 
@@ -104,15 +108,23 @@ def min_depth_for_language(
     d_max: int,
     lru_maxsize: int | None,
     d_min: int = 1,
-) -> tuple[int | None, list[tuple[int, bool, float]]]:
+    max_exists_calls: int | None = None,
+    log_cache_after_each_d: bool = False,
+) -> tuple[int | None, list[tuple[int, bool, float]], bool]:
     dom = len(masks)
     full_bits = (1 << dom) - 1
     log: list[tuple[int, bool, float]] = []
 
     memo_max = None if lru_maxsize is None or lru_maxsize <= 0 else lru_maxsize
+    miss_calls = 0
 
     @lru_cache(maxsize=memo_max)  # type: ignore[arg-type]
     def exists_tree(bits: int, depth_remaining: int) -> bool:
+        nonlocal miss_calls
+        if max_exists_calls is not None:
+            miss_calls += 1
+            if miss_calls > max_exists_calls:
+                raise _BudgetExceeded()
         if pure_bits(bits, masks):
             return True
         if depth_remaining <= 0:
@@ -135,13 +147,30 @@ def min_depth_for_language(
         exists_tree.cache_clear()
         t0 = time.perf_counter()
         print(f"  probing d={d} ...", flush=True)
-        ok = exists_tree(full_bits, d)
+        try:
+            ok = exists_tree(full_bits, d)
+        except _BudgetExceeded:
+            elapsed = time.perf_counter() - t0
+            log.append((d, False, elapsed))
+            print(
+                f"  PARTIAL: exceeded max_exists_calls={max_exists_calls} "
+                f"(exists_tree invocations; LRU currsize={exists_tree.cache_info().currsize}) "
+                f"after {elapsed:.4f}s",
+                flush=True,
+            )
+            return None, log, True
         elapsed = time.perf_counter() - t0
         log.append((d, ok, elapsed))
         if ok:
             min_d = d
             break
-    return min_d, log
+        if log_cache_after_each_d:
+            print(
+                f"  exists_tree_cache_misses_after_d={d}: "
+                f"{exists_tree.cache_info().currsize}",
+                flush=True,
+            )
+    return min_d, log, False
 
 
 def main() -> None:
@@ -197,31 +226,64 @@ def main() -> None:
         metavar="D",
         help="last depth to probe (default n)",
     )
+    p.add_argument(
+        "--max-exists-calls",
+        type=int,
+        default=None,
+        metavar="K",
+        help=(
+            "stop after K recursive evaluations of exists_tree (each call hits lru_cache; "
+            "counts hits and misses — budget on total DP work units); "
+            "exit 2 with PARTIAL if exceeded mid-probe. Default: unlimited."
+        ),
+    )
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     r_max = min(args.r_max, N - 1)
     d_min = max(1, args.d_min)
     d_max = max(d_min, min(args.d_max, N))
+    exists_budget: int | None = args.max_exists_calls
+    log_cache_after_d = exists_budget is not None
 
     masks = build_masks()
     coord_parts = build_coord_partition_masks(masks)
 
     def baseline() -> tuple[int | None, int | None]:
-        md0, log0 = min_depth_for_language(
-            masks, coord_parts, [], N, lru_cap, d_min=1
+        md0, log0, part0 = min_depth_for_language(
+            masks,
+            coord_parts,
+            [],
+            N,
+            lru_cap,
+            d_min=1,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         print(f"coord_only min_d={md0} (d_max={N})", flush=True)
         for d, ok, sec in log0:
             print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
+        if part0:
+            print("PARTIAL: baseline coord_only hit max_exists_calls", flush=True)
+            sys.exit(2)
 
         full_par_parts = build_r_xor_partition_masks(masks, N)
         assert len(full_par_parts) == 1
-        md_full, log_full = min_depth_for_language(
-            masks, coord_parts, [full_par_parts], N, lru_cap, d_min=1
+        md_full, log_full, partf = min_depth_for_language(
+            masks,
+            coord_parts,
+            [full_par_parts],
+            N,
+            lru_cap,
+            d_min=1,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         print(f"coord_plus_full_{N}xor min_d={md_full}", flush=True)
         for d, ok, sec in log_full:
             print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
+        if partf:
+            print("PARTIAL: baseline full_n_xor hit max_exists_calls", flush=True)
+            sys.exit(2)
         return md0, md_full
 
     md0: int | None = None
@@ -246,8 +308,15 @@ def main() -> None:
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         t1 = time.perf_counter()
-        md, lg = min_depth_for_language(
-            masks, coord_parts, [xp], d_max, lru_cap, d_min=d_min
+        md, lg, partial = min_depth_for_language(
+            masks,
+            coord_parts,
+            [xp],
+            d_max,
+            lru_cap,
+            d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         t2 = time.perf_counter()
         print(
@@ -257,6 +326,9 @@ def main() -> None:
         )
         for d, ok, sec in lg:
             print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
+        if partial:
+            print("PARTIAL: r_single probe hit max_exists_calls", flush=True)
+            sys.exit(2)
         if not args.skip_baseline and (
             md0 is None or md_full is None or md_full != 1
         ):
@@ -274,8 +346,15 @@ def main() -> None:
         xor_lists = [build_r_xor_partition_masks(masks, r) for r in rs]
         total = sum(len(x) for x in xor_lists)
         t0 = time.perf_counter()
-        md_u, _ = min_depth_for_language(
-            masks, coord_parts, xor_lists, d_max, lru_cap, d_min=d_min
+        md_u, _, part_u = min_depth_for_language(
+            masks,
+            coord_parts,
+            xor_lists,
+            d_max,
+            lru_cap,
+            d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         t1 = time.perf_counter()
         print(
@@ -283,6 +362,9 @@ def main() -> None:
             f"dp_sec={t1-t0:.3f}",
             flush=True,
         )
+        if part_u:
+            print("PARTIAL: union_rs probe hit max_exists_calls", flush=True)
+            sys.exit(2)
         if not args.skip_baseline and (
             md0 is None or md_full is None or md_full != 1
         ):
@@ -295,8 +377,15 @@ def main() -> None:
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         t1 = time.perf_counter()
-        md, lg = min_depth_for_language(
-            masks, coord_parts, [xp], d_max, lru_cap, d_min=d_min
+        md, lg, part_r = min_depth_for_language(
+            masks,
+            coord_parts,
+            [xp],
+            d_max,
+            lru_cap,
+            d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         t2 = time.perf_counter()
         print(
@@ -306,39 +395,62 @@ def main() -> None:
         )
         for d, ok, sec in lg:
             print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
+        if part_r:
+            print(f"PARTIAL: r={r} sweep hit max_exists_calls", flush=True)
+            sys.exit(2)
 
     parts_by_r = {r: build_r_xor_partition_masks(masks, r) for r in range(2, r_max + 1)}
     if r_max >= 4:
         p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
-        md_234, _ = min_depth_for_language(
-            masks, coord_parts, [p2, p3, p4], d_max, lru_cap, d_min=d_min
+        md_234, _, part234 = min_depth_for_language(
+            masks,
+            coord_parts,
+            [p2, p3, p4],
+            d_max,
+            lru_cap,
+            d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         print(f"coord_plus_r2_r3_r4 min_d={md_234}", flush=True)
+        if part234:
+            print("PARTIAL: r2_r3_r4 union hit max_exists_calls", flush=True)
+            sys.exit(2)
     else:
         print("coord_plus_r2_r3_r4 skipped (r-max < 4)", flush=True)
 
     if r_max >= 5:
         p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
-        md_2345, _ = min_depth_for_language(
+        md_2345, _, part2345 = min_depth_for_language(
             masks,
             coord_parts,
             [p2, p3, p4, parts_by_r[5]],
             d_max,
             lru_cap,
             d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         print(f"coord_plus_r2_through_r5 min_d={md_2345}", flush=True)
+        if part2345:
+            print("PARTIAL: r2_through_r5 hit max_exists_calls", flush=True)
+            sys.exit(2)
 
     if r_max >= N - 1:
-        md_all, _ = min_depth_for_language(
+        md_all, _, part_all = min_depth_for_language(
             masks,
             coord_parts,
             [parts_by_r[r] for r in range(2, N)],
             d_max,
             lru_cap,
             d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
         )
         print(f"coord_plus_r2_through_r{r_max} min_d={md_all}", flush=True)
+        if part_all:
+            print("PARTIAL: r2_through_r_max hit max_exists_calls", flush=True)
+            sys.exit(2)
 
     if md0 is None or md_full is None or md_full != 1:
         print("FAIL", flush=True)

@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-two-hour
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e6
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e6` | FAIL | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only**, **`--max-exists-calls 5e6`**, **`lru-maxsize 0`** **—** **PARTIAL** **~38.6** **s**, **LRU** **≈5e6** **states** **;** **quantifies** **how** **tiny** **5×10⁶** **`exists_tree`** **invocations** **are** **vs** **multi-hour** **timeouts** **(** **parent** **gains** **`--max-exists-calls`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-two-hour` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **(** **`timeout 7200`**, **`--lru-maxsize 0`** **)** **—** **exit** **124** **~7200** **s**, **still** **`probing d=3 …`** **(** **no** **`feasible=`** **)** **;** **4×** **the** **30-min** **budget** **fails** **too** **—** **overnight** **/** **shard** **/** **new** **idea** **next** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-thirty-min` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **(** **`timeout 1800`**, **`--lru-maxsize 0`** **)** **—** **exit** **124** **~1800** **s**, **still** **`probing d=3 …`** **(** **no** **`feasible=`** **)** **;** **10×** **the** **3-min** **budget** **unchanged** **—** **multi-hour** **class** **like** **`r=9` `d=3`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-three-min` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **(** **`timeout 180`**, **`--lru-maxsize 0`** **)** **—** **exit** **124** **after** **`probing d=3 …`** **(** **no** **`feasible=`** **line** **)** **;** **wrapper** **`script.py`** **reproduces** **—** **`d=3`** **still** **open** |

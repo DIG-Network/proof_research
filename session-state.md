@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-01 (automation, main) — after **2 h** **`r=5` `d=3`** probe
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-two-hour` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-two-hour`)
-**Last outcome:** INCONCLUSIVE
+**Last updated:** 2026-04-01 09:50 (UTC approx.) — after **adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e6**
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e6` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e6`)
+**Last outcome:** FAIL
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`r=5` `d=3`** **decision** now requires **overnight-scale** wall-clock (**≥8 h** or **unbounded** on **large-RAM**) **or** **process sharding** / **different** memo strategy — **not** another **2 h→4 h** hop on the **same** host class. In parallel: **`r=9` `d=3`** and **union** **`{2,3,4}`** / **`2..5`** / **`2..13`** on **`n=14` `{7,8}`** remain **heavy**; prioritize **one** overnight **shard** if boolean **`min_d(5)`** is blocking.
+**Next action:** **`r=5` `d=3`** full decision still needs **overnight-scale** wall-clock, **large-RAM**, or **process sharding**; optional: run **larger** `--max-exists-calls` partials on a big host to extrapolate **total invocations** vs the **~38.6 s / 5×10⁶** calibration from the exists-budget experiment.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
