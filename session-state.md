@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-01 16:45 UTC
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-partition-shard-scan-400` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-partition-shard-scan-400`)
+**Last updated:** 2026-04-01 17:15 UTC
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-partition-shard-scan-offset-100` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-partition-shard-scan-offset-100`)
 **Last outcome:** PASS
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`r=5` full-menu `d=3`:** XOR contiguous **five-shard** scan found **no** `feasible=True` witness (**negatives are not a full-menu impossibility proof**). Options: **off-host / larger RAM** full DP, **non-contiguous** or **random** shard ensembles for positive-only search, **algorithmic** memo improvements, or pivot to other **`r`** / **`n=14`** rows per digest.
+**Next action:** **`r=5` `d=3`:** **0-origin** and **+100 phase-shift** contiguous XOR shard scans both found **no** `feasible=True` (**negatives ≠ full-menu proof**). Next: **non-contiguous / random** XOR **5-tuple** ensembles, **off-host / larger RAM** full DP, **algorithmic** memo improvements, or other **`r`** / **`n=14`** rows per digest.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none after push of this session
