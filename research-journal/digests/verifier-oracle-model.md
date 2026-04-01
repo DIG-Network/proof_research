@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-random-xor-400x3-seeds91011
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-6e7-lru-8m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-6e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`6×10⁷`** **`exists_tree`** **`+`** **`8M`** **LRU** **—** **PARTIAL** **~** **569** **s** **,** **LRU** **at** **cap** **;** **+20%** **over** **5e7** **still** **no** **root** **decision** **(** **not** **a** **near-threshold** **cutoff** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-random-xor-400x3-seeds91011` | PASS | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **random** **400×3** **(** **seeds** **9,10,11** **)** **on** **`C(14,9)=2002`** **—** **all** **`feasible=False`**, **LRU** **8M** **each** **;** **~** **9.0** **min** **total** **;** **with** **seeds** **0–8** **⇒** **nine** **independent** **`r=9`** **random** **menus** **,** **still** **no** **small-menu** **`d=3`** **witness** **(** **full-menu** **`r=9`** **`d=3`** **still** **PARTIAL** **at** **5e7/8M** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-random-xor-400x3-seeds678` | PASS | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **random** **400×3** **(** **seeds** **6,7,8** **)** **on** **`C(14,9)=2002`** **—** **all** **`feasible=False`**, **LRU** **8M** **each** **;** **~** **8.7** **min** **total** **;** **with** **seeds** **0–2** **⇒** **six** **independent** **`r=9`** **random** **menus** **,** **still** **no** **small-menu** **`d=3`** **witness** **(** **full-menu** **`r=9`** **`d=3`** **still** **PARTIAL** **at** **5e7/8M** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-random-xor-400x3-seeds345` | PASS | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **random** **400×3** **(** **seeds** **3,4,5** **)** **—** **all** **`feasible=False`**, **LRU** **8M** **full** **each** **;** **~** **8.5** **min** **total** **;** **with** **seeds** **0–2** **⇒** **six** **independent** **random** **menus** **,** **still** **no** **small-menu** **`d=3`** **witness** **(** **full** **2002** **still** **open** **)** |
