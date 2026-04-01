@@ -23,7 +23,7 @@ Completed shards (PASS printed by script; baseline not re-run):
 | 8 | 3003 | 3 | dp ~397 s |
 | 7 | 3432 | 2 | |
 | 6 | 3003 | 3 | dp ~419 s |
-| 5 | 2002 | — | **`timeout 2400` (40 min) on `d=3`** — no PASS/FAIL line (process killed) |
+| 5 | 2002 | **≥3** | **`d=2` decided false (2026-04-01):** **`--skip-baseline --r-single 5 --d-min 2 --d-max 2 --lru-maxsize 0`** → **`d=2 feasible=False`**, **`dp_sec≈14`**. **`d=3`** still **open** here (**prior `timeout 2400` on `d=3`**). |
 | 4 | 1001 | — | **`timeout 900` with LRU 0 and LRU 4M** — stuck on `d=3` |
 | 3 | 364 | — | **`timeout 3600` (1 h)** — reached `d=4` probe, killed mid-run |
 | 2 | 91 | — | **`timeout 600`** after long `d=5` — no completion |
@@ -32,7 +32,9 @@ Completed shards (PASS printed by script; baseline not re-run):
 
 `min_d(13)=2, min_d(12)=3, min_d(11)=4, min_d(10)=3, min_d(9)=?, min_d(8)=3, min_d(7)=2, min_d(6)=3`.
 
-Equivalently, scanning `r=2..13` left-to-right, positions **r=2..5** are **unknown**; **`r=9`:** **`d=1,2` false**; **`d=3` not decided** within **90 min** wall on **`d=3`-only** run (**unbounded** memo).
+**Update (2026-04-01):** **`r=5`:** **`d=2` false** (**fast**); **`d=3`** still **not** **decided** on this track (**timeouts**).
+
+Equivalently, scanning `r=2..13` left-to-right, positions **r=2..4** are **unknown**; **`r=5`:** **`d=2` false**, **`d=3` open**; **`r=9`:** **`d=1,2` false**; **`d=3` not decided** within **90 min** wall on **`d=3`-only** run (**unbounded** memo).
 
 ## Unions (all `--skip-baseline`, LRU 4M)
 
