@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-01 16:45 UTC
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r10-d3-exists-budget-5e7-lru-8m` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r10-d3-exists-budget-5e7-lru-8m`)
-**Last outcome:** PASS
+**Last updated:** 2026-04-01 16:55 UTC
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r4-d3-exists-budget-5e7-lru-8m` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r4-d3-exists-budget-5e7-lru-8m`)
+**Last outcome:** INCONCLUSIVE (PARTIAL at 5e7/8M)
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`r=10`** at **5e7/8M** **PASS** (**1001** splits, **~55 s**); **`C(14,10)=1001`**, not **2002**. Next: **`r=4`** (**1001**, dual to **`r=10`**) same envelope; or **`r=7`** (**3432**) for **>**3003 menu; **`r=5`/`r=9`** **PARTIAL** at **2002** remains the stuck band.
+**Next action:** **`r=4`** **PARTIAL** at **5e7/8M** despite **1001** splits (**dual** to **`r=10` PASS ~55 s**) — **binomial count ≠ DP hardness**. Next: **`r=7`** (**3432** splits) at same envelope, or larger budget for **`r=4`** if a definite **`d=3`** bit is required.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
