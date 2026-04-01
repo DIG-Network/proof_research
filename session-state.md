@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-01 20:00 UTC
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-7e7-lru-8m` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-7e7-lru-8m`)
+**Last updated:** 2026-04-01 20:25 UTC
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-7e7-lru-8m` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-7e7-lru-8m`)
 **Last outcome:** INCONCLUSIVE
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`r=5`** **7e7/8M** run **PARTIAL** **~644** **s** **(** **+40%** **over** **5e7** **)** **—** run **mirror** **`r=9`** **`7e7/8M`**, then **8e7+** / **unbounded** memo / **algorithmic** change or **anonymous-quorum-binding** thread.
+**Next action:** Full-menu **`r∈{5,9}` `d=3`** **PARTIAL** at **7e7/8M** **(** **`r=5` ~644** **s** **,** **`r=9` ~595** **s** **)** **—** next **8e7+** **/** **unbounded** **/** **sharded** memo **/** **algorithmic** change **/** **anonymous-quorum-binding** thread.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)

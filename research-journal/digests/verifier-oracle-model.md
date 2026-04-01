@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-7e7-lru-8m
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-7e7-lru-8m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-7e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`7×10⁷`** **`exists_tree`** **`+`** **`8M`** **LRU** **—** **PARTIAL** **~** **595** **s** **(** **~** **49** **s** **faster** **than** **`r=5`** **at** **same** **budget** **)** **;** **2002** **dual** **band** **still** **open** **at** **7e7/8M** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-7e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`7×10⁷`** **`exists_tree`** **`+`** **`8M`** **LRU** **—** **PARTIAL** **~** **644** **s** **(** **+40%** **over** **5e7** **)** **;** **+10M** **beyond** **6e7** **cost** **~** **74** **s** **(** **vs** **~** **149** **s** **for** **5e7→6e7** **)** **—** **still** **no** **root** **decision** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-6e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`6×10⁷`** **`exists_tree`** **`+`** **`8M`** **LRU** **—** **PARTIAL** **~** **562** **s** **(** **mirror** **`r=5`** **6e7** **)** **;** **2002** **band** **still** **open** **for** **both** **`r∈{5,9}`** **at** **+20%** **over** **5e7** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-6e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`6×10⁷`** **`exists_tree`** **`+`** **`8M`** **LRU** **—** **PARTIAL** **~** **569** **s** **,** **LRU** **at** **cap** **;** **+20%** **over** **5e7** **still** **no** **root** **decision** **(** **not** **a** **near-threshold** **cutoff** **)** |
