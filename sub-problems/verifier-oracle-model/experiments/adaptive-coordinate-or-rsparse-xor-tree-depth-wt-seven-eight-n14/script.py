@@ -103,6 +103,7 @@ def min_depth_for_language(
     xor_parts_list: list[list[tuple[int, int]]],
     d_max: int,
     lru_maxsize: int | None,
+    d_min: int = 1,
 ) -> tuple[int | None, list[tuple[int, bool, float]]]:
     dom = len(masks)
     full_bits = (1 << dom) - 1
@@ -127,8 +128,10 @@ def min_depth_for_language(
                     return True
         return False
 
+    lo = max(1, d_min)
+    hi = max(lo, d_max)
     min_d: int | None = None
-    for d in range(1, d_max + 1):
+    for d in range(lo, hi + 1):
         exists_tree.cache_clear()
         t0 = time.perf_counter()
         print(f"  probing d={d} ...", flush=True)
@@ -180,15 +183,33 @@ def main() -> None:
         metavar="N",
         help="LRU cap for DP memo (0 = unbounded; default 4M avoids OOM on heavy shards)",
     )
+    p.add_argument(
+        "--d-min",
+        type=int,
+        default=1,
+        metavar="D",
+        help="first depth to probe (default 1; use with --d-max to narrow a stuck range)",
+    )
+    p.add_argument(
+        "--d-max",
+        type=int,
+        default=N,
+        metavar="D",
+        help="last depth to probe (default n)",
+    )
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     r_max = min(args.r_max, N - 1)
+    d_min = max(1, args.d_min)
+    d_max = max(d_min, min(args.d_max, N))
 
     masks = build_masks()
     coord_parts = build_coord_partition_masks(masks)
 
     def baseline() -> tuple[int | None, int | None]:
-        md0, log0 = min_depth_for_language(masks, coord_parts, [], N, lru_cap)
+        md0, log0 = min_depth_for_language(
+            masks, coord_parts, [], N, lru_cap, d_min=1
+        )
         print(f"coord_only min_d={md0} (d_max={N})", flush=True)
         for d, ok, sec in log0:
             print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
@@ -196,7 +217,7 @@ def main() -> None:
         full_par_parts = build_r_xor_partition_masks(masks, N)
         assert len(full_par_parts) == 1
         md_full, log_full = min_depth_for_language(
-            masks, coord_parts, [full_par_parts], N, lru_cap
+            masks, coord_parts, [full_par_parts], N, lru_cap, d_min=1
         )
         print(f"coord_plus_full_{N}xor min_d={md_full}", flush=True)
         for d, ok, sec in log_full:
@@ -225,7 +246,9 @@ def main() -> None:
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         t1 = time.perf_counter()
-        md, lg = min_depth_for_language(masks, coord_parts, [xp], N, lru_cap)
+        md, lg = min_depth_for_language(
+            masks, coord_parts, [xp], d_max, lru_cap, d_min=d_min
+        )
         t2 = time.perf_counter()
         print(
             f"coord_plus_{r}xor count={len(xp)} min_d={md} "
@@ -251,7 +274,9 @@ def main() -> None:
         xor_lists = [build_r_xor_partition_masks(masks, r) for r in rs]
         total = sum(len(x) for x in xor_lists)
         t0 = time.perf_counter()
-        md_u, _ = min_depth_for_language(masks, coord_parts, xor_lists, N, lru_cap)
+        md_u, _ = min_depth_for_language(
+            masks, coord_parts, xor_lists, d_max, lru_cap, d_min=d_min
+        )
         t1 = time.perf_counter()
         print(
             f"coord_plus_union_rs={rs} total_splits={total} min_d={md_u} "
@@ -270,7 +295,9 @@ def main() -> None:
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         t1 = time.perf_counter()
-        md, lg = min_depth_for_language(masks, coord_parts, [xp], N, lru_cap)
+        md, lg = min_depth_for_language(
+            masks, coord_parts, [xp], d_max, lru_cap, d_min=d_min
+        )
         t2 = time.perf_counter()
         print(
             f"coord_plus_{r}xor count={len(xp)} min_d={md} "
@@ -283,7 +310,9 @@ def main() -> None:
     parts_by_r = {r: build_r_xor_partition_masks(masks, r) for r in range(2, r_max + 1)}
     if r_max >= 4:
         p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
-        md_234, _ = min_depth_for_language(masks, coord_parts, [p2, p3, p4], N, lru_cap)
+        md_234, _ = min_depth_for_language(
+            masks, coord_parts, [p2, p3, p4], d_max, lru_cap, d_min=d_min
+        )
         print(f"coord_plus_r2_r3_r4 min_d={md_234}", flush=True)
     else:
         print("coord_plus_r2_r3_r4 skipped (r-max < 4)", flush=True)
@@ -291,7 +320,12 @@ def main() -> None:
     if r_max >= 5:
         p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
         md_2345, _ = min_depth_for_language(
-            masks, coord_parts, [p2, p3, p4, parts_by_r[5]], N, lru_cap
+            masks,
+            coord_parts,
+            [p2, p3, p4, parts_by_r[5]],
+            d_max,
+            lru_cap,
+            d_min=d_min,
         )
         print(f"coord_plus_r2_through_r5 min_d={md_2345}", flush=True)
 
@@ -300,8 +334,9 @@ def main() -> None:
             masks,
             coord_parts,
             [parts_by_r[r] for r in range(2, N)],
-            N,
+            d_max,
             lru_cap,
+            d_min=d_min,
         )
         print(f"coord_plus_r2_through_r{r_max} min_d={md_all}", flush=True)
 
