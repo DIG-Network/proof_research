@@ -171,9 +171,16 @@ class Embedder:
         self._use_openai = bool(key)
         self._client = None
         if self._use_openai and key:
-            from openai import OpenAI
+            try:
+                from openai import OpenAI
 
-            self._client = OpenAI(api_key=key)
+                self._client = OpenAI(api_key=key)
+            except ModuleNotFoundError:
+                self._use_openai = False
+                print(
+                    "WARNING: OPENAI_KEY set but `openai` package missing — using hash embeddings.",
+                    file=sys.stderr,
+                )
 
     def embed_batch(self, texts: list[str]) -> list[bytes]:
         if not texts:

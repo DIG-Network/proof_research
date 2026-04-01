@@ -4,6 +4,7 @@
 
 | Date       | Slug                                   | Context                 | Outcome | Entry file |
 |------------|----------------------------------------|-------------------------|---------|------------|
+| 2026-04-01 | adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r234-d2 | verifier-oracle-model | PASS    | [entries/2026-04-01-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r234-d2.md](entries/2026-04-01-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r234-d2.md) |
 | 2026-04-01 | adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d2 | verifier-oracle-model | PASS    | [entries/2026-04-01-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d2.md](entries/2026-04-01-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d2.md) |
 | 2026-03-31 | adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-ninety-min | verifier-oracle-model | INCONCLUSIVE | [entries/2026-03-31-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-ninety-min.md](entries/2026-03-31-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-ninety-min.md) |
 | 2026-03-31 | adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14 | verifier-oracle-model | INCONCLUSIVE | [entries/2026-03-31-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14.md](entries/2026-03-31-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14.md) |

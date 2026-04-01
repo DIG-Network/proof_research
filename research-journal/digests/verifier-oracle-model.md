@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d2
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r234-d2
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r234-d2` | PASS | **`n=14`**, **`{7,8}`**, **`r∈{2,3,4}`:** **`d=2`** **infeasible** **(** **`d=2`-only** **shards** **,** **`lru-maxsize 0`**, **sub-second** **to** **~3** **s** **)** **⇒** **`min_d(r)≥3`** **;** **prior** **`r=2..4`** **timeouts** **were** **deeper-** **`d`** **probes** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d2` | PASS | **`n=14`**, **`{7,8}`**, **`r=5`:** **`d=2`** **infeasible** **(** **`--d-min 2 --d-max 2`**, **`lru-maxsize 0`**, **~17 s** **)** **⇒** **`min_d(5)≥3`** **;** **`d=3`** **still** **open** **(** **prior** **timeouts** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-ninety-min` | INCONCLUSIVE | **`n=14`**, **`r=9`**, **`d=3`-only** **probe** **(** **`--d-min 3`**, **`--lru-maxsize 0`**, **`timeout 5400`** **)** **—** **no** **feasibility** **line** **(** **exit** **124** **)** **;** **`script.py`** **gains** **`--d-min`/`--d-max`** **(** **baseline** **still** **`1..n`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14` | INCONCLUSIVE | **`n=14`**, **wt∈{7,8}** **(** **6435** **masks** **)** **:** **baseline** **PASS** **(** **coord** **`min_d=14`**, **full** **14-XOR** **`min_d=1`** **)** **;** **partial** **`min_d(r)`** **for** **`r∈{6,7,8,10,11,12,13}`** **;** **`r=5`:** **`d=2` out** **(** **2026-04-01** **shard** **)** **;** **`r=9`** **`d=3`** **still** **open** **after** **20** **and** **90** **min** **unbounded** **memo** **—** **`r∈{2..4}`**, **`r=5` `d=3`**, **`r=9` `d=3`**, **unions** **still** **heavy** **(** **see** **`results.md`** **)** |

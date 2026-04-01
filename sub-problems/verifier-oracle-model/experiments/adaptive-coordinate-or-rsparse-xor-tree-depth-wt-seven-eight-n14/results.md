@@ -24,9 +24,9 @@ Completed shards (PASS printed by script; baseline not re-run):
 | 7 | 3432 | 2 | |
 | 6 | 3003 | 3 | dp ~419 s |
 | 5 | 2002 | **≥3** | **`d=2` decided false (2026-04-01):** **`--skip-baseline --r-single 5 --d-min 2 --d-max 2 --lru-maxsize 0`** → **`d=2 feasible=False`**, **`dp_sec≈14`**. **`d=3`** still **open** here (**prior `timeout 2400` on `d=3`**). |
-| 4 | 1001 | — | **`timeout 900` with LRU 0 and LRU 4M** — stuck on `d=3` |
-| 3 | 364 | — | **`timeout 3600` (1 h)** — reached `d=4` probe, killed mid-run |
-| 2 | 91 | — | **`timeout 600`** after long `d=5` — no completion |
+| 4 | 1001 | **≥3** | **`d=2` decided false (2026-04-01):** **`--skip-baseline --r-single 4 --d-min 2 --d-max 2 --lru-maxsize 0`** → **`d=2 feasible=False`**, **`dp_sec≈2.8`**. Prior full-row timeouts were deeper-**`d`** probes, not **`d=2`** isolation. |
+| 3 | 364 | **≥3** | **`d=2` decided false (2026-04-01):** **`dp_sec≈0.43`**. |
+| 2 | 91 | **≥3** | **`d=2` decided false (2026-04-01):** **`dp_sec≈0.03`**. |
 
 **Prefix actually known:** `r=13..6` only, in order of increasing `r` index in the full row:
 
@@ -34,7 +34,7 @@ Completed shards (PASS printed by script; baseline not re-run):
 
 **Update (2026-04-01):** **`r=5`:** **`d=2` false** (**fast**); **`d=3`** still **not** **decided** on this track (**timeouts**).
 
-Equivalently, scanning `r=2..13` left-to-right, positions **r=2..4** are **unknown**; **`r=5`:** **`d=2` false**, **`d=3` open**; **`r=9`:** **`d=1,2` false**; **`d=3` not decided** within **90 min** wall on **`d=3`-only** run (**unbounded** memo).
+Equivalently, scanning `r=2..13` left-to-right, positions **`r=2..4`:** **`d=2` false** ⇒ **`min_d≥3`** (**fast** **shards**, **2026-04-01**); **`r=5`:** **`d=2` false**, **`d=3` open**; **`r=9`:** **`d=1,2` false**; **`d=3` not decided** within **90 min** wall on **`d=3`-only** run (**unbounded** memo). **Automation note:** **`r=5` `d=3`** did not finish within **`timeout 300`** (**5 min**) on one cron host (**exit 124**).
 
 ## Unions (all `--skip-baseline`, LRU 4M)
 
@@ -57,6 +57,6 @@ The **completed tail** `r∈{6,7,8,10,11,12,13}` on **`n=14`** does **not** matc
 
 ## Next steps
 
-1. **Dedicated host** with **large RAM** and **multi-hour** wall-clock for **`r=2,3,4,5,9`** (process-per-**`r`**, **`--lru-maxsize 0`**). **`r=9` `d=3`** exceeded **90 min** on this automation host even when **skipping** **`d=1,2`** (**`--d-min 3`**).
+1. **Dedicated host** with **large RAM** and **multi-hour** wall-clock for **`r=5,9`** **`d=3`** and **union** probes (**`--lru-maxsize 0`**). **`r∈{2,3,4}`** **`d=2`** is **decided**; interior **`min_d`** values for **`r=2..4`** still need **`d≥3`** completion runs if the full row is desired. **`r=9` `d=3`** exceeded **90 min** on a prior host even when **skipping** **`d=1,2`** (**`--d-min 3`**).
 2. Optional: **disk-backed** or **distributed** memo (prior **`disk-memo-microbench`** was negative for this DP shape — sharding preferred).
 3. If **`n=14`** row stabilizes, compare to **`n=13`** and **`n=12 {6,7}`** for scaling trends.
