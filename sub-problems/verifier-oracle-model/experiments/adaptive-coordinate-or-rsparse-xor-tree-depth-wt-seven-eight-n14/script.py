@@ -237,6 +237,19 @@ def main() -> None:
             "exit 2 with PARTIAL if exceeded mid-probe. Default: unlimited."
         ),
     )
+    p.add_argument(
+        "--xor-index-range",
+        type=str,
+        default=None,
+        metavar="START:END",
+        help=(
+            "with --r-single only: after building the r-sparse XOR partition list, "
+            "use only half-open slice [START,END) (Python slice semantics). "
+            "If any shard finds d feasible, the full menu is at least as expressive "
+            "(same coord splits + superset of XOR splits), so min_d for the full "
+            "language is <= d for that witness."
+        ),
+    )
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     r_max = min(args.r_max, N - 1)
@@ -305,8 +318,32 @@ def main() -> None:
         if not (2 <= r <= N - 1):
             print(f"FAIL: r-single must be in 2..{N-1}", flush=True)
             sys.exit(1)
+        xor_slice: slice | None = None
+        if args.xor_index_range is not None:
+            if ":" not in args.xor_index_range:
+                print("FAIL: --xor-index-range must be START:END", flush=True)
+                sys.exit(1)
+            a, b = args.xor_index_range.split(":", 1)
+            try:
+                start = int(a) if a.strip() != "" else 0
+                end = int(b) if b.strip() != "" else None
+            except ValueError:
+                print("FAIL: --xor-index-range START and END must be integers", flush=True)
+                sys.exit(1)
+            xor_slice = slice(start, end)
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
+        if xor_slice is not None:
+            total_xp = len(xp)
+            xp = xp[xor_slice]
+            print(
+                f"xor_index_range={xor_slice.start}:{xor_slice.stop} "
+                f"using {len(xp)}/{total_xp} r-sparse XOR partitions",
+                flush=True,
+            )
+            if len(xp) == 0:
+                print("FAIL: empty XOR partition slice", flush=True)
+                sys.exit(1)
         t1 = time.perf_counter()
         md, lg, partial = min_depth_for_language(
             masks,

@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-75e6-lru-0
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-partition-shard-scan-400
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-partition-shard-scan-400` | PASS | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **parent** **`--xor-index-range`** **slices** **2002** **XOR** **splits** **into** **five** **~400-wide** **shards** **(** **`8M`** **LRU**, **`5.5×10⁷`** **budget** **)** **—** **all** **complete** **`feasible=False`** **at** **`d=3`** **;** **no** **positive** **witness** **for** **full** **menu** **(** **negatives** **not** **logically** **conclusive** **)** **;** **~9.7** **min** **total** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-75e6-lru-0` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only**, **`7.5×10⁷`** **`exists_tree`**, **`lru-maxsize 0`** **(** **unbounded** **memo** **)** **—** **~5085** **s** **(** **~85** **min** **)** **then** **exit** **247** **(** **SIGKILL** **class** **)** **;** **no** **`feasible=`** **/** **`PARTIAL:`** **;** **`timeout 14400`** **not** **hit** **(** **not** **124** **)** **—** **still** **not** **a** **`d=3`** **verdict** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-75e6-lru-12m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only**, **`7.5×10⁷`** **`exists_tree`**, **LRU** **12×10⁶** **—** **~8** **min** **wall** **then** **SIGKILL** **(** **exit** **247** **)** **;** **no** **`PARTIAL:`** **⇒** **12M** **LRU** **OOM** **class** **on** **this** **host** **;** **not** **a** **feasibility** **verdict** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-1e8-lru-16m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only**, **`10⁸`** **`exists_tree`**, **LRU** **16×10⁶** **(** **2×** **over** **5e7/8M** **)** **—** **~95** **min** **wall** **then** **host** **exit** **247** **;** **no** **`feasible=`** **or** **`PARTIAL:`** **line** **⇒** **heavier** **than** **421** **s** **PARTIAL** **at** **8M** **;** **`r=5`** **`d=3`** **still** **open** |
