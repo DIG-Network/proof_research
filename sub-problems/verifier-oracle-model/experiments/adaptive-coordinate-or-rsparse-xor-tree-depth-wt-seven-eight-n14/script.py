@@ -13,6 +13,7 @@ import sys
 import time
 from functools import lru_cache
 from itertools import combinations
+from typing import Sequence
 
 N = 14
 SHELLS = (7, 8)
@@ -250,6 +251,17 @@ def main() -> None:
             "language is <= d for that witness."
         ),
     )
+    p.add_argument(
+        "--xor-index-indices",
+        type=str,
+        default=None,
+        metavar="I,J,K,...",
+        help=(
+            "with --r-single only: after building the full r-sparse XOR partition list "
+            "(canonical order from itertools.combinations), keep only these 0-based "
+            "indices (comma-separated). Mutually exclusive with --xor-index-range."
+        ),
+    )
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     r_max = min(args.r_max, N - 1)
@@ -318,7 +330,14 @@ def main() -> None:
         if not (2 <= r <= N - 1):
             print(f"FAIL: r-single must be in 2..{N-1}", flush=True)
             sys.exit(1)
+        if args.xor_index_range is not None and args.xor_index_indices is not None:
+            print(
+                "FAIL: use only one of --xor-index-range and --xor-index-indices",
+                flush=True,
+            )
+            sys.exit(1)
         xor_slice: slice | None = None
+        xor_pick: Sequence[int] | None = None
         if args.xor_index_range is not None:
             if ":" not in args.xor_index_range:
                 print("FAIL: --xor-index-range must be START:END", flush=True)
@@ -331,6 +350,19 @@ def main() -> None:
                 print("FAIL: --xor-index-range START and END must be integers", flush=True)
                 sys.exit(1)
             xor_slice = slice(start, end)
+        elif args.xor_index_indices is not None:
+            raw = [x.strip() for x in args.xor_index_indices.split(",") if x.strip()]
+            try:
+                xor_pick = sorted(set(int(x) for x in raw))
+            except ValueError:
+                print(
+                    "FAIL: --xor-index-indices must be comma-separated integers",
+                    flush=True,
+                )
+                sys.exit(1)
+            if not xor_pick:
+                print("FAIL: --xor-index-indices is empty", flush=True)
+                sys.exit(1)
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         if xor_slice is not None:
@@ -344,6 +376,23 @@ def main() -> None:
             if len(xp) == 0:
                 print("FAIL: empty XOR partition slice", flush=True)
                 sys.exit(1)
+        elif xor_pick is not None:
+            total_xp = len(xp)
+            bad = [i for i in xor_pick if i < 0 or i >= total_xp]
+            if bad:
+                print(
+                    f"FAIL: xor_index_indices out of range [0,{total_xp}): {bad[:8]}…",
+                    flush=True,
+                )
+                sys.exit(1)
+            xp = [xp[i] for i in xor_pick]
+            head = ",".join(str(i) for i in xor_pick[:12])
+            tail = f",…({len(xor_pick)} total)" if len(xor_pick) > 12 else ""
+            print(
+                f"xor_index_indices count={len(xor_pick)}/{total_xp} "
+                f"first=[{head}{tail}]",
+                flush=True,
+            )
         t1 = time.perf_counter()
         md, lg, partial = min_depth_for_language(
             masks,
