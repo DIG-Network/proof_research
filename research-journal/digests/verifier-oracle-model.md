@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r6-d3-exists-budget-5e7-lru-8m
+**Last updated:** 2026-04-01 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-1e8-lru-16m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-1e8-lru-16m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only**, **`10⁸`** **`exists_tree`**, **LRU** **16×10⁶** **(** **2×** **over** **5e7/8M** **)** **—** **~95** **min** **wall** **then** **host** **exit** **247** **;** **no** **`feasible=`** **or** **`PARTIAL:`** **line** **⇒** **heavier** **than** **421** **s** **PARTIAL** **at** **8M** **;** **`r=5`** **`d=3`** **still** **open** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r6-d3-exists-budget-5e7-lru-8m` | PASS | **`n=14`**, **`{7,8}`**, **`r=6`**, **`d=3`-only**, **same** **`5×10⁷`** **`exists_tree`** **+** **LRU** **8×10⁶** **as** **`r=5`** **shard** **—** **`d=3 feasible=True`**, **`min_d=3`**, **DP** **~435** **s** **(** **3003** **splits** **)** **;** **`r=5`** **still** **PARTIAL** **at** **this** **scale** **⇒** **`r=6`** **easier** **than** **`r=5`** **here** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only**, **`5×10⁷`** **`exists_tree`**, **`lru-maxsize`** **8×10⁶** **—** **PARTIAL** **~420.6** **s**, **LRU** **at** **cap** **;** **10×** **the** **5e6** **budget** **still** **no** **root** **decision** **(** **~1.2×10⁵** **inv/s** **)** **;** **`r=6`** **mirror** **now** **PASS** **(** **above** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r11-d3-exists-budget-2e7` | FAIL | **`n=14`**, **`{7,8}`**, **`r=11`**, **`d=3`-only**, **`2×10⁷`** **`exists_tree`** **cap** **—** **probe** **completes** **`d=3 feasible=False`** **(** **~8.29×10⁶** **LRU** **states** **)** **;** **prior** **`r=11`** **PARTIAL** **at** **5e6** **was** **truncated** **on** **infeasible** **`d=3`**, **not** **“almost** **feasible** **”** **—** **`min_d≥4`** **for** **coord+11xor** **(** **vs** **`r=12`** **`d=3`** **easy** **)** |
