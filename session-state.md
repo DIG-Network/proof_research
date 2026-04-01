@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-01 18:15 UTC
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-5e7-lru-8m` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-5e7-lru-8m`)
-**Last outcome:** INCONCLUSIVE
+**Last updated:** 2026-04-01 18:30 UTC
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r8-d3-exists-budget-5e7-lru-8m` (journal: `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r8-d3-exists-budget-5e7-lru-8m`)
+**Last outcome:** PASS
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`r=9` `d=3`:** **5e7+8M** **PARTIAL** **~542 s** (**like `r=5`**, **unlike `r=6` PASS**). Next: **`r=8`/`r=10`** **same envelope**, **larger budget**, **union** menus, **random XOR submenus** for **`r=9`**, or **off-host** full DP on **2002** splits.
+**Next action:** At **5e7+8M**, **`r=8`** **PASS** (**3003** splits, ~**510** s) like **`r=6`**; **`r=5`/`r=9`** **PARTIAL** (**2002**). Next: **`r=10`** (**2002**) same envelope to test **2002 band**, or **`r=7`** (**3432**) for **>**3003 **menu**; optional **larger budget** for **`r=9` `d=3`** definite bit.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none after push of this session
