@@ -5,6 +5,10 @@ Initialize ./memory.db using the schema and indexing flow described in persona.m
 
 Skips H8 (constraint derivation — requires judgment) and H9 (lineage inference).
 
+After journal changes, use **`--force`** to rebuild `memory.db` from scratch: sqlite-vec
+`vec0` rejects duplicate primary keys even with `INSERT OR IGNORE`, so incremental
+re-runs without `--force` can raise `UNIQUE constraint failed`.
+
 Embedding model: OpenAI `text-embedding-3-small` (1536 dims) when `OPENAI_KEY` or
 `OPENAI_API_KEY` is set; otherwise deterministic hash embeddings (not semantically meaningful).
 """
