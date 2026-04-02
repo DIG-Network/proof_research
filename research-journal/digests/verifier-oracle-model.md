@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-11e7-lru-10m
+**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-12e7-lru-10m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,8 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-12e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`1.2×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **965** **s** **DP** **(** **+** **~** **54** **s** **over** **11e7** **;** **milder** **marginal** **than** **`r=5`** **12e7** **)** **;** **dual** **2002** **still** **open** |
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-12e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`1.2×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **1077** **s** **DP** **(** **+** **~** **85** **s** **over** **11e7** **~** **992** **s** **)** **;** **still** **no** **`d=3`** **completion** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-11e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`1.1×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **911** **s** **DP** **(** **faster** **than** **`10e7/10M`** **~** **957** **s** **;** **opposite** **marginal** **sign** **to** **`r=5`** **11e7** **)** **;** **dual** **2002** **still** **open** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-11e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`1.1×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **992** **s** **DP** **(** **+** **~** **154** **s** **over** **`10e7/10M`** **~** **838** **s** **;** **~** **15.4** **µs** **/** **extra** **call** **at** **LRU** **cap** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-10e7-lru-12m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`10⁸`** **`+`** **`12M`** **LRU** **—** **exit** **247** **~** **473** **s** **(** **OOM** **)** **;** **mirrors** **`r=5`** **`10e7/12M`** **~** **464** **s** **—** **not** **r-asymmetric** **;** **12M** **off-limits** **on** **this** **host** **for** **full** **2002** **menu** |
