@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-r9-d3-xor-step2-start1-1001-each-12e7-lru-8m
+**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-15e7-each-lru-10m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-15e7-each-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **contiguous** **half-shards** **`[0:1001)`** **`+`** **`[1001:2002)`**, **`1.5×10⁸`** **`exists_tree`** **each**, **`10M`** **LRU**, **sequential** **—** **both** **PARTIAL** **(** **~** **1167** **s** **+** **~** **1118** **s** **DP** **,** **~** **38** **min** **total** **)** **;** **no** **`d=3`** **witness** **;** **`+25%`** **budget** **over** **`12e7/10M`** **halves** **still** **does** **not** **complete** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-r9-d3-xor-step2-start1-1001-each-12e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`** **then** **`r=9`**, **`d=3`-only** **:** **complementary** **1001** **XOR** **indices** **`1,3,…,2001`** **(** **vs** **sibling** **`0,2,…,2000`** **)** **,** **`12e7/8M`** **each** **—** **both** **PARTIAL** **(** **~** **976** **s** **`+`** **~** **860** **s** **DP** **,** **~** **30.6** **min** **total** **)** **;** **no** **`d=3`** **witness** **;** **coset** **swap** **does** **not** **unlock** **`d=3`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-r9-d3-xor-odd-indices-1001-each-12e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`** **then** **`r=9`**, **`d=3`-only** **:** **non-contiguous** **1001** **XOR** **splits** **(** **indices** **`0,2,…,2000`** **in** **canonical** **order** **)** **,** **`12e7/8M`** **each** **—** **both** **PARTIAL** **(** **~** **941** **s** **DP** **each** **,** **~** **31.4** **min** **total** **)** **;** **no** **speed-up** **vs** **contiguous** **half-shards** **;** **no** **`d=3`** **witness** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-12e7-each-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **mirror** **`r=5`** **12e7/8M** **half-shards** **`[0:1001)`** **`+`** **`[1001:2002)`**, **sequential** **—** **both** **PARTIAL** **(** **~** **974** **s** **+** **~** **912** **s** **DP** **)** **;** **no** **`d=3`** **witness** **;** **~** **32.6** **min** **total** **;** **aggregate** **~** **2** **%** **slower** **than** **`r=5`** **halves** **(** **full-menu** **`r=9`** **often** **faster** **—** **half-shard** **geometry** **breaks** **ordering** **)** |
