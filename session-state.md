@@ -1,6 +1,6 @@
 # Session State
 
-**Last updated:** 2026-04-02 ~09:50 UTC — **Cron tick:** **`python3 tools/index_memory_db.py --force`** (hash embeddings; **mem=313**, **notes=376**, **raw_data=1796**); regression **`adjacent-hamming-shells-global-parity-lemma-regression`** **PASS** (~**0.75** s). Prior line of record: **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m`** **INCONCLUSIVE** (both XOR halves **PARTIAL** at **7e7/8M**).
+**Last updated:** 2026-04-02 ~09:55 UTC — **Cron tick:** local **`main`** fast-forwarded to **`f001abd`**; **`adjacent-hamming-shells-global-parity-lemma-regression`** **PASS** (~**0.75** s). Prior full reindex tick: **`python3 tools/index_memory_db.py --force`** (**mem=313**, **notes=376**, **raw_data=1796**). Research line: **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m`** **INCONCLUSIVE** (both XOR halves **PARTIAL** at **7e7/8M**).
 **Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m`
 **Last outcome:** INCONCLUSIVE
 **Current focus:** sub-problems/verifier-oracle-model (`n=14` **`{7,8}`** band — **`r=5`/`r=9`** **`d=3`** still **PARTIAL** on full **2002** menus; **`r=3`** **closed** **`d=3`** **False**)
@@ -12,7 +12,7 @@
 **Pending commits:** none
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
-**Ledger run id:** (cron session — no new open run)
+**Ledger run id:** (cron session — `session_restore` / `session_sanity_check` ok; no new open run)
 
 **Git delivery:** Work is committed and pushed to **`main`** only (authoritative policy).
 
