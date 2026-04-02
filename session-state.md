@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-02 UTC — **r=9** **contiguous** **XOR** **half-shards** **12e7×2** **/ 10M** **(** **~35** **min** **seq** **)**
+**Last updated:** 2026-04-02 UTC — cron tick: **memory.db** FTS **rebuild** + **integrity_check** **ok** (on **main**)
 **Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-12e7-each-lru-10m`
 **Last outcome:** INCONCLUSIVE
 **Current focus:** sub-problems/verifier-oracle-model (n=14 dual-2002 **d=3** band)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Optional **parallel** two **12e7** half-shard processes to halve wall-clock; or raise per-half budget **>** **12e7** (**long**); or pivot **anonymous-quorum-binding**. Re-run **`tools/index_memory_db.py --force`** after this commit. **`12M`** LRU remains **OOM**-risk on this host.
+**Next action:** Optional **parallel** two **12e7** half-shard processes to halve wall-clock; or raise per-half budget **>** **12e7** (**long**); or pivot **anonymous-quorum-binding**. **`memory.db`** FTS indexes rebuilt this session; full reindex only if **`research-journal/index.md`** outgrows **`mem`** count. **`12M`** LRU remains **OOM**-risk on this host.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
