@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-15e7-each-lru-10m
+**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-18e7-lru-10m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -8,10 +8,13 @@
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
 
+**`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`**: full **2002**-split menu still **PARTIAL** at **`10M`** LRU through **`1.8×10⁸`** **`exists_tree`** calls (**~27.4 min** DP); linear extrapolation suggests **`~24e7`** would need **~45 min** at similar marginal **µs**/call — dual **2002** with **`r=5`** at **`18e7`** remains a symmetry check.
+
 ## Approaches tried (ranked by recency in new journal)
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-18e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **,** **full** **2002** **XOR** **menu** **:** **`1.8×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **1644.6** **s** **DP** **(** **~** **27.4** **min** **)** **;** **+6×10⁷** **over** **`12e7/10M`** **~** **965** **s** **adds** **~** **679** **s** **;** **no** **complete** **`d=3`** **verdict** **(** **truncated** **`feasible=False`** **not** **sound** **for** **`min_d>3`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-15e7-each-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **contiguous** **half-shards** **`[0:1001)`** **`+`** **`[1001:2002)`**, **`1.5×10⁸`** **`exists_tree`** **each**, **`10M`** **LRU**, **sequential** **—** **both** **PARTIAL** **(** **~** **1167** **s** **+** **~** **1118** **s** **DP** **,** **~** **38** **min** **total** **)** **;** **no** **`d=3`** **witness** **;** **`+25%`** **budget** **over** **`12e7/10M`** **halves** **still** **does** **not** **complete** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-r9-d3-xor-step2-start1-1001-each-12e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`** **then** **`r=9`**, **`d=3`-only** **:** **complementary** **1001** **XOR** **indices** **`1,3,…,2001`** **(** **vs** **sibling** **`0,2,…,2000`** **)** **,** **`12e7/8M`** **each** **—** **both** **PARTIAL** **(** **~** **976** **s** **`+`** **~** **860** **s** **DP** **,** **~** **30.6** **min** **total** **)** **;** **no** **`d=3`** **witness** **;** **coset** **swap** **does** **not** **unlock** **`d=3`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-r9-d3-xor-odd-indices-1001-each-12e7-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`** **then** **`r=9`**, **`d=3`-only** **:** **non-contiguous** **1001** **XOR** **splits** **(** **indices** **`0,2,…,2000`** **in** **canonical** **order** **)** **,** **`12e7/8M`** **each** **—** **both** **PARTIAL** **(** **~** **941** **s** **DP** **each** **,** **~** **31.4** **min** **total** **)** **;** **no** **speed-up** **vs** **contiguous** **half-shards** **;** **no** **`d=3`** **witness** |
