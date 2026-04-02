@@ -1,18 +1,18 @@
 # Session State
 
-**Last updated:** 2026-04-02 ~17:15 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-18e7-lru-10m`** **INCONCLUSIVE** (**full** **2002** **menu**, **`1.8×10⁸`** **`exists_tree`**, **`10M`** **LRU** — **PARTIAL** **~1492.2** **s** **DP**, **~24.9** **min**; **~9%** **faster** **than** **`r=9`** **18e7** **mirror**; **no** **complete** **`d=3`** **verdict**).
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-18e7-lru-10m`
+**Last updated:** 2026-04-02 ~18:10 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-24e7-lru-10m`** **INCONCLUSIVE** (**full** **2002** **menu**, **`2.4×10⁸`** **`exists_tree`**, **`10M`** **LRU** — **PARTIAL** **~2118.2** **s** **DP**, **~35.3** **min**; **+473.6** **s** **vs** **`r=9`** **18e7**; **no** **complete** **`d=3`** **verdict**).
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-24e7-lru-10m`
 **Last outcome:** INCONCLUSIVE
-**Current focus:** sub-problems/verifier-oracle-model (`n=14` **`{7,8}`** — **`r=5`** **`18e7/10M`** **done** **PARTIAL**; **`r=9`** **`24e7/10M`** **(~45** **min** **class)** **or** **DP** **structure** **next**)
+**Current focus:** sub-problems/verifier-oracle-model (`n=14` **`{7,8}`** — **`r=9`** **`24e7/10M`** **done** **PARTIAL**; **`r=5`** **`24e7/10M`** **mirror** **or** **`r=9`** **`30e7`** **`/10M`** **or** **DP/memo** **next**)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Run **`r=9`** **`--max-exists-calls`** **`240000000`** **`+`** **`10M`** **LRU** **full-menu** **`d=3`-only** **if** **~45** **min** **wall** **acceptable**, **or** **attack** **DP/memo** **structure** **for** **2002** **band**; **avoid** **only** **+10%** **half-shards** **at** **`10M`** **LRU**.
+**Next action:** Run **`r=5`** **`24e7/10M`** **full-menu** **`d=3`-only** **to** **pair** **`r=9`** **`24e7`**, **or** **push** **`r=9`** **to** **`30e7/10M`**, **or** **attack** **DP/memo** **structure** **for** **2002** **band**; **avoid** **parallel** **dual** **10M** **LRU** **(** **OOM** **risk** **)**.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
-**Ledger run id:** `bb4ce8eb-a769-4448-8d95-98e1e71060dc` (cron session)
+**Ledger run id:** (cron session — not updated this tick)
 
 **Git delivery:** Work is committed and pushed to **`main`** only (authoritative policy).
 

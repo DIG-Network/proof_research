@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-18e7-lru-10m
+**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-24e7-lru-10m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -8,12 +8,13 @@
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
 
-**`n=14`**, **`{7,8}`**, **`r∈{5,9}`**, **`d=3`**: full **2002**-split menu still **PARTIAL** at **`10M`** LRU through **`1.8×10⁸`** **`exists_tree`** for **both** lanes — **`r=9`** **~1644.6 s**, **`r=5`** **~1492.2 s** (**~9%** faster despite **`C(14,5)=C(14,9)`**); linear extrapolation for **`r=9`** **`~24e7`** still **~45 min** class; **`r=5`** **`24e7`** may land **slightly** below that **if** marginal **µs**/call tracks **18e7** gap.
+**`n=14`**, **`{7,8}`**, **`r∈{5,9}`**, **`d=3`**: full **2002**-split menu still **PARTIAL** at **`10M`** LRU through **`2.4×10⁸`** **`exists_tree`** for **`r=9`** (**~2118.2 s** **DP** **~35.3 min**) — **`r=5`** lane still capped at **18e7** in latest digest row below; **`r=9`** **24e7** **+473.6 s** over **18e7** (**~7.9 µs**/extra call at LRU cap); naive **~45 min** extrapolation **overshot** actual **35 min** wall.
 
 ## Approaches tried (ranked by recency in new journal)
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-24e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **,** **full** **2002** **XOR** **menu** **:** **`2.4×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **2118.2** **s** **DP** **(** **~** **35.3** **min** **)** **;** **+** **473.6** **s** **over** **18e7** **(** **~** **7.9** **µs** **/** **extra** **call** **)** **;** **no** **complete** **`d=3`** **verdict** **(** **truncated** **`feasible=False`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-18e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **,** **full** **2002** **XOR** **menu** **:** **`1.8×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **1492.2** **s** **DP** **(** **~** **24.9** **min** **)** **;** **mirror** **`r=9`** **18e7** **but** **~** **9%** **faster** **wall** **;** **no** **complete** **`d=3`** **verdict** **(** **truncated** **`feasible=False`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-18e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **,** **full** **2002** **XOR** **menu** **:** **`1.8×10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **1644.6** **s** **DP** **(** **~** **27.4** **min** **)** **;** **+6×10⁷** **over** **`12e7/10M`** **~** **965** **s** **adds** **~** **679** **s** **;** **no** **complete** **`d=3`** **verdict** **(** **truncated** **`feasible=False`** **not** **sound** **for** **`min_d>3`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-15e7-each-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **contiguous** **half-shards** **`[0:1001)`** **`+`** **`[1001:2002)`**, **`1.5×10⁸`** **`exists_tree`** **each**, **`10M`** **LRU**, **sequential** **—** **both** **PARTIAL** **(** **~** **1167** **s** **+** **~** **1118** **s** **DP** **,** **~** **38** **min** **total** **)** **;** **no** **`d=3`** **witness** **;** **`+25%`** **budget** **over** **`12e7/10M`** **halves** **still** **does** **not** **complete** |
