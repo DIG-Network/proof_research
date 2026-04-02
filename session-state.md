@@ -6,10 +6,10 @@
 **Current focus:** sub-problems/verifier-oracle-model
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **`memory.db`** **rebuild** **`tools/index_memory_db.py --force`** **after** **r=9** **journal** **commit** **;** then **larger LRU**, **unbounded**/sharded memo, **algorithmic** change, or **anonymous-quorum-binding**. **Dual 2002** **PARTIAL** at **10e7**/8M: **r=5** **~917** **s** **(+~90** **s** **over** **9e7** **)**, **r=9** **~850** **s** **(+~35** **s** **)** **—** **asymmetric** **marginal**.
+**Next action:** **Larger LRU**, **unbounded**/sharded memo on high-RAM host, **algorithmic** change, or **anonymous-quorum-binding** thread. **Dual 2002** **PARTIAL** at **10⁸**/8M: **r=5** **~917** **s** **DP** **(+~90** **s** **over** **9e7** **)**, **r=9** **~850** **s** **(+~35** **s** **)** **—** **asymmetric** **marginal** **(** **r=9** **milder** **9e7→10e7** **)** **.**
 **Attractor warning:** none
 **Pending journal writes:** none (after r9 commit)
-**Pending commits:** `memory.db` rebuild + session-state if needed
+**Pending commits:** none (after memory.db push)
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
 **Ledger run id:** `981e8f1f-fbaa-492a-80ce-6f73bc6f00a0` (cron session)
