@@ -1,15 +1,15 @@
 # Session State
 
-**Last updated:** 2026-04-02 09:05 UTC — **`main`** synced **`origin/main`** @ **`a06386b`** then **new** experiment **PASS** (**`n=14` `r=3` `d=3` ⇒ False** at **5e7/8M**, ~82 s DP); **`memory.db`** rebuilt via **`python3 tools/index_memory_db.py --force`**.
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r3-d3-exists-budget-5e7-lru-8m`
-**Last outcome:** PASS
-**Current focus:** sub-problems/verifier-oracle-model (`n=14` **`{7,8}`** band — **`r=5`/`r=9` `d=3`** still **PARTIAL**; **`r=3`** now **closed** at **`d=3`**)
+**Last updated:** 2026-04-02 ~09:45 UTC — **`main`**: experiment **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m`** **INCONCLUSIVE** (both XOR halves **PARTIAL** at **7e7/8M**, ~**540**/**537** s DP; ~**18** min sequential); journal + digest updated; re-run **`python3 tools/index_memory_db.py --force`** before push.
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m`
+**Last outcome:** INCONCLUSIVE
+**Current focus:** sub-problems/verifier-oracle-model (`n=14` **`{7,8}`** band — **`r=5`/`r=9`** **`d=3`** still **PARTIAL** on full **2002** menus; **`r=3`** **closed** **`d=3`** **False**)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** On a **larger** host: continue **sequential** XOR half-shards or raise **`exists_tree`** budget for **`n=14` `r∈{5,9}` `d=3`**; optionally run **`r=3` `d=4`-only** to pin **`min_d(3)`**; **do not** run **two** **10M** LRU DP workers in parallel on memory-bounded agents.
+**Next action:** On a larger host: try **`r=5`** half-shards at **`12e7/8M`** sequential (two runs, ~**35+** min if similar to full-menu **12e7** scaling), or continue **`r=9`** pressure with **8M** LRU variants; **do not** run two **10M** LRU DP workers in parallel on memory-bounded agents.
 **Attractor warning:** none
 **Pending journal writes:** none
-**Pending commits:** none
+**Pending commits:** none (after index rebuild + git push)
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
 **Ledger run id:** (cron session — no new open run)

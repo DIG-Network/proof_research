@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r3-d3-exists-budget-5e7-lru-8m
+**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-halves-7e7-each-lru-8m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **two** **contiguous** **half-shards** **`[0:1001)`** **`+`** **`[1001:2002)`**, **`7×10⁷`** **`exists_tree`** **each**, **`8M`** **LRU**, **sequential** **—** **both** **PARTIAL** **(** **~** **540** **s** **+** **~** **537** **s** **DP** **)** **;** **no** **`d=3`** **witness** **;** **~** **18** **min** **total** **;** **per-half** **time** **≈** **84** **%** **of** **full-menu** **`7e7/8M`** **~** **644** **s** **(** **not** **½** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r3-d3-exists-budget-5e7-lru-8m` | PASS | **`n=14`**, **`{7,8}`**, **`r=3`**, **`d=3`-only** **,** **`5×10⁷`** **`+`** **`8M`** **LRU** **—** **`C(14,3)=364`**, **`d=3 feasible=False`** **(** **~** **82** **s** **DP** **,** **LRU** **saturated** **8M** **misses** **but** **complete** **)** **;** **low-** **`r`** **not** **open** **at** **`d=3`** **(** **vs** **`r=4`** **PARTIAL** **,** **`r=5`/`r=9`** **PARTIAL** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-12e7-each-lru-10m-parallel` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **same** **12e7×2** **half-shards** **but** **two** **subprocesses** **in** **parallel** **—** **shard0** **SIGKILL** **(** **-9** **~** **4849** **s** **)** **;** **shard1** **PARTIAL** **~** **5838** **s** **DP** **(** **~** **6×** **sequential** **half** **)** **;** **wall** **~** **98** **min** **;** **dual** **10M** **LRU** **unsafe** **on** **this** **host** **(** **OOM** **/** **contention** **)** **;** **script** **maps** **-9** **→** **exit** **2** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-halves-12e7-each-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **two** **contiguous** **half-shards** **`[0:1001)`** **`+`** **`[1001:2002)`**, **`1.2×10⁸`** **`exists_tree`** **each**, **`10M`** **LRU** **—** **both** **PARTIAL** **(** **~** **1034** **s** **+** **~** **992** **s** **DP** **)** **;** **no** **`d=3`** **witness** **;** **~** **35** **min** **total** **sequential** |
