@@ -1,5 +1,7 @@
 # Digest: anonymous-quorum-binding
 
+**Last updated:** 2026-04-02 after experiment joint-min-max-product-weight-five-six-shell-collision
+
 **Status:** IN PROGRESS (`sub-problems/anonymous-quorum-binding/status.md`)
 
 ## Current understanding
@@ -7,6 +9,8 @@
 Need a primitive binding a threshold signing event to a **static** set commitment **C** with **sublinear** **|π|**, no SNARK verifier, standard assumptions — or documented failure modes. **`Link(C, K)`** is the recurring bottleneck (**002**, **003**, **008**).
 
 ## Recent experiments (see legacy `research-journal.md` for full list)
+
+- **Entry** **092** **(** **`joint-min-max-product-weight-five-six-shell-collision`** **):** **`K(S)=(min w,` `max w,` `∏ w)`** **exact** **integers,** **`w_i=i+1,` `n=10.`** **Distinct** **keys:** **226** **(** **5-shell** **)** **,** **181** **(** **6-shell** **)** **;** **31** **exact** **cross-shell** **keys** **(** **vs** **41** **for** **(min,max,Σ)** **in** **091** **).** **Sample** **`(1,7,840)`** **:** **5-set** **`(0,3,4,5,6)`** **vs** **6-set** **`(0,1,2,3,4,6)`** **.** **`K_M=(min,max,∏ mod M)`** **:** **first** **collision** **`M=2`** **(** **15** **shared** **keys** **)** **—** **same** **modulus** **floor** **as** **091** **`(min,max,Σ mod M)`** **(** **`M=2`** **,** **25** **keys** **)** **.** **⇒** **multiplicative** **third** **coordinate** **does** **not** **restore** **shell** **separation** **;** **parity** **of** **∏** **collapses** **at** **`M=2`**.
 
 - **Entry** **091** **(** **`min-max-sum-triple-weight-five-six-shell-collision`** **):** **`K(S)=(min w_i,` `max w_i,` `Σ w_i)`** **exact** **integers,** **`w_i=i+1,` `n=10.`** **Distinct** **keys:** **126** **(** **5-shell** **)** **,** **95** **(** **6-shell** **)** **;** **41** **cross-shell** **shared** **`K`** **keys** **(** **e.g.** **`(1,7,22)`** **:** **5-set** **1,3,5,6,7** **vs** **6-set** **1,2,3,4,5,7** **).** **`K_M=(min,` `max,` `Σ mod M):`** **first** **5-vs-6** **collision** **at** **`M=2`** **(** **25** **shared** **`K_2`** **keys** **).** **⇒** **extrema+mass** **summary** **does** **not** **separate** **shells** **;** **contrasts** **064** **exact** **moment** **triple** **(** **injective** **on** **union** **)** **.**
 - **Entry 090** (`lcm-public-weight-five-six-shell-collision`): **Dual** **to** **089** **on** **divisibility** **lattice:** **h_lcm(S)=lcm(w_i:** **i∈S),** **w_i=i+1,** **n=10.** **6-shell** **has** **23** **distinct** **LCMs;** **all** **23** **also** **hit** **by** **some** **5-set** **(** **cross_shell_lcm=23** **).** **Joint** **(h_lcm,** **Σw):** **80** **cross-shell** **keys** **(** **vs** **20** **for** **(gcd,Σw)** **in** **089** **).** **Sample** **LCM** **24:** **5-set** **(0,1,2,3,7)** **vs** **6-set** **(0,1,2,3,5,7).** **⇒** **join-side** **symmetric** **statistic** **does** **not** **separate** **shells;** **encoding** **change** **meet→join** **fails** **harder** **than** **gcd** **branch.**
@@ -52,6 +56,6 @@ Need a primitive binding a threshold signing event to a **static** set commitmen
 - **Combinatorial group testing** — see `verifier-oracle-model` digest / **021** for **linear F₂ pool** limitation.
 - **Tropical / bottleneck** **(sibling** **digest):** **030** **`verifier-oracle-model`** — **h(S)=min_{i∈S}c_i** **with** **public** **c_i** **can** **agree** **for** **|S|<t** **and** **|S|≥t** **if** **both** **contain** **the** **global** **argmin**.
 
-**Last new-folder experiment in this slug:** `min-max-sum-triple-weight-five-six-shell-collision` (**091**).
+**Last new-folder experiment in this slug:** `joint-min-max-product-weight-five-six-shell-collision` (**092**).
 
-**Most promising direction:** **continue** **verifier-oracle-model** **(** **non-coordinate** **or** **richer** **XOR** **trees** **)** **when** **binding** **line** **needs** **fresh** **encoding** **;** **for** **weight-summary** **toys,** **064-style** **moments** **separate** **exact** **ℤ** **but** **mod** **uniform** **folds** **(** **065** **)** **—** **091** **shows** **(min,max,Σ)** **is** **weaker** **than** **(p₁,p₂,p₃)** **even** **before** **mod.**
+**Most promising direction:** **continue** **verifier-oracle-model** **(** **non-coordinate** **or** **richer** **XOR** **trees** **)** **when** **binding** **line** **needs** **fresh** **encoding** **;** **for** **weight-summary** **toys,** **064-style** **moments** **separate** **exact** **ℤ** **but** **mod** **uniform** **folds** **(** **065** **)** **—** **091** **/** **092** **:** **(min,max,Σ)** **and** **(min,max,∏)** **both** **fail** **as** **threshold** **certificates** **(** **exact** **cross-shell** **;** **`M=2`** **mod** **floor** **)** **;** **full** **moment** **triples** **064** **still** **the** **strong** **exact** **separator** **in** **this** **family.**
