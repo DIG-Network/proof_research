@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-10e7-lru-12m
+**Last updated:** 2026-04-02 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-10e7-lru-12m
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -12,6 +12,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-10e7-lru-12m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`10⁸`** **`+`** **`12M`** **LRU** **—** **exit** **247** **~** **473** **s** **(** **OOM** **)** **;** **mirrors** **`r=5`** **`10e7/12M`** **~** **464** **s** **—** **not** **r-asymmetric** **;** **12M** **off-limits** **on** **this** **host** **for** **full** **2002** **menu** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-10e7-lru-12m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`10⁸`** **`+`** **`12M`** **LRU** **—** **exit** **247** **~** **464** **s** **(** **OOM** **)** **;** **worse** **than** **`10M`** **which** **reaches** **PARTIAL** **~** **838** **s** **at** **10e7** **—** **12M** **LRU** **crosses** **memory** **cliff** **here** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-exists-budget-10e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=9`**, **`d=3`-only** **:** **`10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **957** **s** **DP** **(** **slower** **than** **`8M`** **~** **850** **s** **at** **10e7** **;** **opposite** **sign** **to** **`r=5`** **8M→10M** **)** **;** **dual** **2002** **still** **open** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-10e7-lru-10m` | INCONCLUSIVE | **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`-only** **:** **`10⁸`** **`exists_tree`** **`+`** **`10M`** **LRU** **—** **PARTIAL** **~** **838** **s** **DP** **(** **faster** **than** **`8M`** **~** **917** **s** **;** **still** **no** **`d=3`** **completion** **)** |

@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+"""
+n=14 {7,8}: r=9, d=3-only with --max-exists-calls 100_000_000, --lru-maxsize 12_000_000.
+
+Mirror r=5 10e7/12M probe; prior 10e7/10M r=9 PARTIAL ~957 s DP.
+
+Parent: adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14/script.py
+"""
+
+from __future__ import annotations
+
+import subprocess
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[4]
+PARENT = (
+    REPO_ROOT
+    / "sub-problems"
+    / "verifier-oracle-model"
+    / "experiments"
+    / "adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14"
+    / "script.py"
+)
+
+
+def main() -> None:
+    if not PARENT.is_file():
+        print(f"FAIL: missing parent script {PARENT}", flush=True)
+        sys.exit(1)
+    cmd = [
+        sys.executable,
+        str(PARENT),
+        "--skip-baseline",
+        "--r-single",
+        "9",
+        "--d-min",
+        "3",
+        "--d-max",
+        "3",
+        "--lru-maxsize",
+        "12000000",
+        "--max-exists-calls",
+        "100000000",
+    ]
+    print("Running:", " ".join(cmd), flush=True)
+    p = subprocess.run(cmd, cwd=str(REPO_ROOT))
+    sys.exit(p.returncode)
+
+
+if __name__ == "__main__":
+    main()
