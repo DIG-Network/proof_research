@@ -102,12 +102,15 @@ def min_depth_for_language(
     coord_parts: list[tuple[int, int]],
     xor_parts_list: list[list[tuple[int, int]]],
     d_max: int,
+    lru_maxsize: int | None,
 ) -> tuple[int | None, list[tuple[int, bool, float]]]:
     dom = len(masks)
     full_bits = (1 << dom) - 1
     log: list[tuple[int, bool, float]] = []
 
-    @lru_cache(maxsize=None)
+    memo_max = None if lru_maxsize is None or lru_maxsize <= 0 else lru_maxsize
+
+    @lru_cache(maxsize=memo_max)  # type: ignore[arg-type]
     def exists_tree(bits: int, depth_remaining: int) -> bool:
         if pure_bits(bits, masks):
             return True
@@ -169,26 +172,34 @@ def main() -> None:
         action="store_true",
         help="only run coord-only + coord+full-n-XOR (no r sweep; fast sanity)",
     )
+    p.add_argument(
+        "--lru-maxsize",
+        type=int,
+        default=4_000_000,
+        metavar="N",
+        help="LRU cap for DP memo (0 = unbounded; default 4M avoids OOM on heavy shards)",
+    )
     args = p.parse_args()
+    lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     r_max = min(args.r_max, N - 1)
 
     masks = build_masks()
     coord_parts = build_coord_partition_masks(masks)
 
     def baseline() -> tuple[int | None, int | None]:
-        md0, log0 = min_depth_for_language(masks, coord_parts, [], N)
-        print(f"coord_only min_d={md0} (d_max={N})")
+        md0, log0 = min_depth_for_language(masks, coord_parts, [], N, lru_cap)
+        print(f"coord_only min_d={md0} (d_max={N})", flush=True)
         for d, ok, sec in log0:
-            print(f"  d={d} feasible={ok} sec={sec:.4f}")
+            print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
 
         full_par_parts = build_r_xor_partition_masks(masks, N)
         assert len(full_par_parts) == 1
         md_full, log_full = min_depth_for_language(
-            masks, coord_parts, [full_par_parts], N
+            masks, coord_parts, [full_par_parts], N, lru_cap
         )
-        print(f"coord_plus_full_{N}xor min_d={md_full}")
+        print(f"coord_plus_full_{N}xor min_d={md_full}", flush=True)
         for d, ok, sec in log_full:
-            print(f"  d={d} feasible={ok} sec={sec:.4f}")
+            print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
         return md0, md_full
 
     md0: int | None = None
@@ -196,7 +207,7 @@ def main() -> None:
     if not args.skip_baseline:
         md0, md_full = baseline()
     else:
-        print("skip_baseline=1 (coord-only and full parity not run)")
+        print("skip_baseline=1 (coord-only and full parity not run)", flush=True)
 
     if args.baseline_only:
         if md0 is None or md_full is None or md_full != 1:
@@ -213,14 +224,15 @@ def main() -> None:
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         t1 = time.perf_counter()
-        md, lg = min_depth_for_language(masks, coord_parts, [xp], N)
+        md, lg = min_depth_for_language(masks, coord_parts, [xp], N, lru_cap)
         t2 = time.perf_counter()
         print(
             f"coord_plus_{r}xor count={len(xp)} min_d={md} "
-            f"build_sec={t1-t0:.3f} dp_sec={t2-t1:.3f}"
+            f"build_sec={t1-t0:.3f} dp_sec={t2-t1:.3f}",
+            flush=True,
         )
         for d, ok, sec in lg:
-            print(f"  d={d} feasible={ok} sec={sec:.4f}")
+            print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
         if not args.skip_baseline and (
             md0 is None or md_full is None or md_full != 1
         ):
@@ -238,11 +250,12 @@ def main() -> None:
         xor_lists = [build_r_xor_partition_masks(masks, r) for r in rs]
         total = sum(len(x) for x in xor_lists)
         t0 = time.perf_counter()
-        md_u, _ = min_depth_for_language(masks, coord_parts, xor_lists, N)
+        md_u, _ = min_depth_for_language(masks, coord_parts, xor_lists, N, lru_cap)
         t1 = time.perf_counter()
         print(
             f"coord_plus_union_rs={rs} total_splits={total} min_d={md_u} "
-            f"dp_sec={t1-t0:.3f}"
+            f"dp_sec={t1-t0:.3f}",
+            flush=True,
         )
         if not args.skip_baseline and (
             md0 is None or md_full is None or md_full != 1
@@ -256,29 +269,30 @@ def main() -> None:
         t0 = time.perf_counter()
         xp = build_r_xor_partition_masks(masks, r)
         t1 = time.perf_counter()
-        md, lg = min_depth_for_language(masks, coord_parts, [xp], N)
+        md, lg = min_depth_for_language(masks, coord_parts, [xp], N, lru_cap)
         t2 = time.perf_counter()
         print(
             f"coord_plus_{r}xor count={len(xp)} min_d={md} "
-            f"build_sec={t1-t0:.3f} dp_sec={t2-t1:.3f}"
+            f"build_sec={t1-t0:.3f} dp_sec={t2-t1:.3f}",
+            flush=True,
         )
         for d, ok, sec in lg:
-            print(f"  d={d} feasible={ok} sec={sec:.4f}")
+            print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
 
     parts_by_r = {r: build_r_xor_partition_masks(masks, r) for r in range(2, r_max + 1)}
     if r_max >= 4:
         p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
-        md_234, _ = min_depth_for_language(masks, coord_parts, [p2, p3, p4], N)
-        print(f"coord_plus_r2_r3_r4 min_d={md_234}")
+        md_234, _ = min_depth_for_language(masks, coord_parts, [p2, p3, p4], N, lru_cap)
+        print(f"coord_plus_r2_r3_r4 min_d={md_234}", flush=True)
     else:
-        print("coord_plus_r2_r3_r4 skipped (r-max < 4)")
+        print("coord_plus_r2_r3_r4 skipped (r-max < 4)", flush=True)
 
     if r_max >= 5:
         p2, p3, p4 = parts_by_r[2], parts_by_r[3], parts_by_r[4]
         md_2345, _ = min_depth_for_language(
-            masks, coord_parts, [p2, p3, p4, parts_by_r[5]], N
+            masks, coord_parts, [p2, p3, p4, parts_by_r[5]], N, lru_cap
         )
-        print(f"coord_plus_r2_through_r5 min_d={md_2345}")
+        print(f"coord_plus_r2_through_r5 min_d={md_2345}", flush=True)
 
     if r_max >= N - 1:
         md_all, _ = min_depth_for_language(
@@ -286,8 +300,9 @@ def main() -> None:
             coord_parts,
             [parts_by_r[r] for r in range(2, N)],
             N,
+            lru_cap,
         )
-        print(f"coord_plus_r2_through_r{r_max} min_d={md_all}")
+        print(f"coord_plus_r2_through_r{r_max} min_d={md_all}", flush=True)
 
     if md0 is None or md_full is None or md_full != 1:
         print("FAIL", flush=True)
