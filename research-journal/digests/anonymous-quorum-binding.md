@@ -1,6 +1,6 @@
 # Digest: anonymous-quorum-binding
 
-**Last updated:** 2026-04-02 after experiment joint-min-max-product-weight-five-six-shell-collision
+**Last updated:** 2026-04-03 after experiment joint-min-max-sum-product-quadruple-weight-five-six-shell-collision
 
 **Status:** IN PROGRESS (`sub-problems/anonymous-quorum-binding/status.md`)
 
@@ -10,6 +10,7 @@ Need a primitive binding a threshold signing event to a **static** set commitmen
 
 ## Recent experiments (see legacy `research-journal.md` for full list)
 
+- **Entry** **093** **(** **`joint-min-max-sum-product-quadruple-weight-five-six-shell-collision`** **):** **`K(S)=(min w,` `max w,` `Σw,` `∏w)`** **exact** **integers,** **`w_i=i+1,` `n=10.`** **Cross-shell** **(** **5** **vs** **6** **)** **collisions** **`0`** **—** **`K`** **injective** **on** **`C(10,5)∪C(10,6)`** **(** **`252`** **+** **`210`** **distinct** **keys** **)** **.** **Contrasts** **063** **`(Σ,Π)`** **(** **37** **cross-shell** **)** **and** **091**/**092** **`(min,max,·)`** **with** **one** **third** **statistic** **.** **FAIL** **for** **“collision** **exists”** **hypothesis** **(** **repo** **exit** **`1`** **)** **.**
 - **Entry** **092** **(** **`joint-min-max-product-weight-five-six-shell-collision`** **):** **`K(S)=(min w,` `max w,` `∏ w)`** **exact** **integers,** **`w_i=i+1,` `n=10.`** **Distinct** **keys:** **226** **(** **5-shell** **)** **,** **181** **(** **6-shell** **)** **;** **31** **exact** **cross-shell** **keys** **(** **vs** **41** **for** **(min,max,Σ)** **in** **091** **).** **Sample** **`(1,7,840)`** **:** **5-set** **`(0,3,4,5,6)`** **vs** **6-set** **`(0,1,2,3,4,6)`** **.** **`K_M=(min,max,∏ mod M)`** **:** **first** **collision** **`M=2`** **(** **15** **shared** **keys** **)** **—** **same** **modulus** **floor** **as** **091** **`(min,max,Σ mod M)`** **(** **`M=2`** **,** **25** **keys** **)** **.** **⇒** **multiplicative** **third** **coordinate** **does** **not** **restore** **shell** **separation** **;** **parity** **of** **∏** **collapses** **at** **`M=2`**.
 
 - **Entry** **091** **(** **`min-max-sum-triple-weight-five-six-shell-collision`** **):** **`K(S)=(min w_i,` `max w_i,` `Σ w_i)`** **exact** **integers,** **`w_i=i+1,` `n=10.`** **Distinct** **keys:** **126** **(** **5-shell** **)** **,** **95** **(** **6-shell** **)** **;** **41** **cross-shell** **shared** **`K`** **keys** **(** **e.g.** **`(1,7,22)`** **:** **5-set** **1,3,5,6,7** **vs** **6-set** **1,2,3,4,5,7** **).** **`K_M=(min,` `max,` `Σ mod M):`** **first** **5-vs-6** **collision** **at** **`M=2`** **(** **25** **shared** **`K_2`** **keys** **).** **⇒** **extrema+mass** **summary** **does** **not** **separate** **shells** **;** **contrasts** **064** **exact** **moment** **triple** **(** **injective** **on** **union** **)** **.**
@@ -56,6 +57,6 @@ Need a primitive binding a threshold signing event to a **static** set commitmen
 - **Combinatorial group testing** — see `verifier-oracle-model` digest / **021** for **linear F₂ pool** limitation.
 - **Tropical / bottleneck** **(sibling** **digest):** **030** **`verifier-oracle-model`** — **h(S)=min_{i∈S}c_i** **with** **public** **c_i** **can** **agree** **for** **|S|<t** **and** **|S|≥t** **if** **both** **contain** **the** **global** **argmin**.
 
-**Last new-folder experiment in this slug:** `joint-min-max-product-weight-five-six-shell-collision` (**092**).
+**Last new-folder experiment in this slug:** `joint-min-max-sum-product-quadruple-weight-five-six-shell-collision` (**093**).
 
-**Most promising direction:** **continue** **verifier-oracle-model** **(** **non-coordinate** **or** **richer** **XOR** **trees** **)** **when** **binding** **line** **needs** **fresh** **encoding** **;** **for** **weight-summary** **toys,** **064-style** **moments** **separate** **exact** **ℤ** **but** **mod** **uniform** **folds** **(** **065** **)** **—** **091** **/** **092** **:** **(min,max,Σ)** **and** **(min,max,∏)** **both** **fail** **as** **threshold** **certificates** **(** **exact** **cross-shell** **;** **`M=2`** **mod** **floor** **)** **;** **full** **moment** **triples** **064** **still** **the** **strong** **exact** **separator** **in** **this** **family.**
+**Most promising direction:** **verifier-oracle-model** **(** **XOR** **/** **adaptive** **menu** **line** **)** **for** **binding** **encoding** **freshness** **;** **for** **weight-summary** **toys** **on** **`n=10,` `w_i=i+1`**, **exact** **`(min,max,Σ,Π)`** **separates** **`|S|=5`** **vs** **`6`** **(** **093** **)** **—** **still** **not** **a** **compact** **`Link(C,K)`** **primitive** **;** **next** **probes** **:** **mod** **folds** **on** **the** **quadruple** **,** **larger** **`n`**, **or** **alternate** **weights** **.** **064** **/** **078** **remain** **the** **strong** **exact** **moment** **rows** **for** **pure** **power-sum** **families** **without** **extrema** **.**
