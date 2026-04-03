@@ -9,6 +9,7 @@ Threshold slice for majority t=8: wt 7 vs wt 8.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 import time
 from functools import lru_cache
@@ -35,6 +36,22 @@ def build_masks() -> list[int]:
 
 def _lowbit_index(lsb: int) -> int:
     return lsb.bit_length() - 1
+
+
+def read_vm_rss_kb() -> int | None:
+    """Best-effort resident set size from Linux /proc (kB)."""
+    if os.name != "posix":
+        return None
+    try:
+        with open("/proc/self/status", encoding="utf-8") as f:
+            for line in f:
+                if line.startswith("VmRSS:"):
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        return int(parts[1])
+    except OSError:
+        return None
+    return None
 
 
 def pure_bits(bits: int, masks: list[int]) -> bool:
@@ -112,6 +129,8 @@ def min_depth_for_language(
     max_exists_calls: int | None = None,
     log_cache_after_each_d: bool = False,
     memo_dict: bool = False,
+    log_rss: bool = False,
+    progress_every: int = 0,
 ) -> tuple[int | None, list[tuple[int, bool, float]], bool]:
     dom = len(masks)
     full_bits = (1 << dom) - 1
@@ -129,6 +148,20 @@ def min_depth_for_language(
             # Match lru_cache budget semantics: count every invocation (hits + misses).
             if max_exists_calls is not None:
                 miss_calls += 1
+                if (
+                    progress_every > 0
+                    and miss_calls % progress_every == 0
+                ):
+                    extra = ""
+                    if log_rss:
+                        rk = read_vm_rss_kb()
+                        if rk is not None:
+                            extra = f" VmRSS_kB={rk}"
+                    print(
+                        f"  progress exists_calls={miss_calls} "
+                        f"memo_dict_size={len(memo_local)}{extra}",
+                        flush=True,
+                    )
                 if miss_calls > max_exists_calls:
                     raise _BudgetExceeded()
             if key in memo_local:
@@ -174,6 +207,17 @@ def min_depth_for_language(
             nonlocal miss_calls
             if max_exists_calls is not None:
                 miss_calls += 1
+                if progress_every > 0 and miss_calls % progress_every == 0:
+                    extra = ""
+                    if log_rss:
+                        rk = read_vm_rss_kb()
+                        if rk is not None:
+                            extra = f" VmRSS_kB={rk}"
+                    print(
+                        f"  progress exists_calls={miss_calls} "
+                        f"lru_currsize={exists_tree_lru.cache_info().currsize}{extra}",
+                        flush=True,
+                    )
                 if miss_calls > max_exists_calls:
                     raise _BudgetExceeded()
             if pure_bits(bits, masks):
@@ -202,6 +246,7 @@ def min_depth_for_language(
     lo = max(1, d_min)
     hi = max(lo, d_max)
     min_d: int | None = None
+    peak_rss_kb: int | None = None
     for d in range(lo, hi + 1):
         clear_memo()
         t0 = time.perf_counter()
@@ -218,9 +263,18 @@ def min_depth_for_language(
                 f"after {elapsed:.4f}s",
                 flush=True,
             )
+            if log_rss:
+                rss = read_vm_rss_kb()
+                if rss is not None:
+                    print(f"  VmRSS_after_partial_d={d}_kb={rss}", flush=True)
             return None, log, True
         elapsed = time.perf_counter() - t0
         log.append((d, ok, elapsed))
+        if log_rss:
+            rss = read_vm_rss_kb()
+            if rss is not None:
+                peak_rss_kb = rss if peak_rss_kb is None else max(peak_rss_kb, rss)
+                print(f"  VmRSS_after_d={d}_kb={rss}", flush=True)
         if ok:
             min_d = d
             break
@@ -230,6 +284,8 @@ def min_depth_for_language(
                 f"  {label}_after_d={d}: {memo_size()}",
                 flush=True,
             )
+    if log_rss and peak_rss_kb is not None:
+        print(f"  VmRSS_peak_kb={peak_rss_kb}", flush=True)
     return min_d, log, False
 
 
@@ -307,6 +363,24 @@ def main() -> None:
         ),
     )
     p.add_argument(
+        "--log-rss",
+        action="store_true",
+        help=(
+            "after each depth probe (and on PARTIAL), print VmRSS from /proc/self/status "
+            "(Linux only; no-op if unavailable)."
+        ),
+    )
+    p.add_argument(
+        "--progress-every",
+        type=int,
+        default=0,
+        metavar="K",
+        help=(
+            "when --max-exists-calls is set, print progress every K exists_tree invocations "
+            "(0 = disabled). With --log-rss, append VmRSS."
+        ),
+    )
+    p.add_argument(
         "--xor-index-range",
         type=str,
         default=None,
@@ -333,11 +407,13 @@ def main() -> None:
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     memo_dict_flag = bool(args.memo_dict)
+    log_rss_flag = bool(args.log_rss)
     r_max = min(args.r_max, N - 1)
     d_min = max(1, args.d_min)
     d_max = max(d_min, min(args.d_max, N))
     exists_budget: int | None = args.max_exists_calls
     log_cache_after_d = exists_budget is not None
+    progress_every = max(0, args.progress_every)
 
     masks = build_masks()
     coord_parts = build_coord_partition_masks(masks)
@@ -353,6 +429,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         print(f"coord_only min_d={md0} (d_max={N})", flush=True)
         for d, ok, sec in log0:
@@ -373,6 +451,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         print(f"coord_plus_full_{N}xor min_d={md_full}", flush=True)
         for d, ok, sec in log_full:
@@ -475,6 +555,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         t2 = time.perf_counter()
         print(
@@ -514,6 +596,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         t1 = time.perf_counter()
         print(
@@ -546,6 +630,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         t2 = time.perf_counter()
         print(
@@ -572,6 +658,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         print(f"coord_plus_r2_r3_r4 min_d={md_234}", flush=True)
         if part234:
@@ -592,6 +680,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         print(f"coord_plus_r2_through_r5 min_d={md_2345}", flush=True)
         if part2345:
@@ -609,6 +699,8 @@ def main() -> None:
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
             memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
         )
         print(f"coord_plus_r2_through_r{r_max} min_d={md_all}", flush=True)
         if part_all:
