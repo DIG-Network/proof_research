@@ -4,6 +4,7 @@
 
 | Date       | Slug                                   | Context                 | Outcome | Entry file |
 |------------|----------------------------------------|-------------------------|---------|------------|
+| 2026-04-03 | joint-min-max-sum-product-quadruple-weight-five-six-shell-n12 | anonymous-quorum-binding | PASS    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-weight-five-six-shell-n12.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-weight-five-six-shell-n12.md) |
 | 2026-04-03 | joint-min-max-sum-mod-product-mod-m-five-six-first-collision-n12 | anonymous-quorum-binding | PASS    | [entries/2026-04-03-joint-min-max-sum-mod-product-mod-m-five-six-first-collision-n12.md](entries/2026-04-03-joint-min-max-sum-mod-product-mod-m-five-six-first-collision-n12.md) |
 | 2026-04-03 | joint-min-max-sum-mod-product-mod-m-five-six-first-collision | anonymous-quorum-binding | PASS    | [entries/2026-04-03-joint-min-max-sum-mod-product-mod-m-five-six-first-collision.md](entries/2026-04-03-joint-min-max-sum-mod-product-mod-m-five-six-first-collision.md) |
 | 2026-04-03 | joint-min-max-sum-product-quadruple-weight-five-six-shell-collision | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-weight-five-six-shell-collision.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-weight-five-six-shell-collision.md) |

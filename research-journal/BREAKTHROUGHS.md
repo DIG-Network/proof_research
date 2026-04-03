@@ -183,3 +183,25 @@ Oracle / narrative claims should cite **`n∈{6,…,14}`** (or **`n≥6`**) for 
 
 **Open questions it raises:**
 Whether **adding weight-**`3`** masks at **`n=5`** (all **`26`** nontrivial masks) restores a **`min_d=2`** **separator** for a **`t=3`** **vs** **`t=2`** **story** **orthogonal** **to** **the** **`{2}`**-only **slice**.
+
+---
+
+## [2026-04-03] Closed-form 5-vs-6 cross-shell collision for exact (min,max,Σ,Π) at n=12
+
+**Type:** Constraint
+
+**Discovered in:** `sub-problems/anonymous-quorum-binding/experiments/joint-min-max-sum-product-quadruple-weight-five-six-shell-n12`
+
+**Description:**
+Fix public weights **`w_i=i+1`** on **`n=12`** and shells **`|S|∈{5,6}`**. Let **`K(S)=(min,max,Σ,Π)`** in **ℤ**. For any **`m∈{11,12}`**, the **5-set** **`{1,5,6,8,m}`** and the **6-set** **`{1,2,3,4,10,m}`** share the same **`K`**: **`min=1`**, **`max=m`**, **`Σ=20+m`**, **`Π=240m`**. Hence **`K`** is **not** injective on **`C(12,5)∪C(12,6)`** despite **093** showing **injectivity** at **`n=10`** for the same statistic and weights.
+
+**Why this is novel:**
+**093** was summarized as a strong “joint extrema + both masses” separator in the toy; this gives an **explicit parametric** cross-shell equality that **only appears** once **`n`** is large enough to host **`m≥11`**, so **injectivity is not monotone** in **`n`**.
+
+**Novelty confidence:** Medium (elementary arithmetic; project-specific framing).
+
+**Implications:**
+Claims that **exact** **`(min,max,Σ,Π)`** separates **`|S|=5`** vs **`|S|=6`** for **`w_i=i+1`** must be **qualified by `n`**. Modular-collapse experiments at **`n=12`** (**095**) sit in a regime where **integer** collisions already exist without any modulus.
+
+**Open questions it raises:**
+For which **`n>10`** does the first cross-shell collision appear for this **`K`**, and whether other **`w_i`** schedules avoid this **family** on **`{5,6}`** shells.

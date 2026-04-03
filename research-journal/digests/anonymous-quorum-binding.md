@@ -1,6 +1,6 @@
 # Digest: anonymous-quorum-binding
 
-**Last updated:** 2026-04-03 after experiment joint-min-max-sum-mod-product-mod-m-five-six-first-collision-n12
+**Last updated:** 2026-04-03 after experiment joint-min-max-sum-product-quadruple-weight-five-six-shell-n12
 
 **Status:** IN PROGRESS (`sub-problems/anonymous-quorum-binding/status.md`)
 
@@ -10,6 +10,7 @@ Need a primitive binding a threshold signing event to a **static** set commitmen
 
 ## Recent experiments (see legacy `research-journal.md` for full list)
 
+- **Entry** **096** **(** **`joint-min-max-sum-product-quadruple-weight-five-six-shell-n12`** **):** **Exact** **`K=(min,` `max,` `Σ,` `Π)`** **(** **integers** **),** **`n=12,` `w_i=i+1,`** **shells** **5**/**6.** **`cross_shell_exact=2`** **—** **witness** **family** **5-set** **`{1,5,6,8,m}`** **vs** **6-set** **`{1,2,3,4,10,m}`** **for** **`m∈{11,12}`** **(** **`Π=240m`** **both** **sides** **).** **PASS** **for** **“collision** **exists”.** **⇒** **093** **injectivity** **at** **`n=10`** **does** **not** **carry** **to** **`n=12`:** **shell** **separation** **by** **this** **quadruple** **is** **not** **monotone** **in** **universe** **size.**
 - **Entry** **095** **(** **`joint-min-max-sum-mod-product-mod-m-five-six-first-collision-n12`** **):** **Same** **`K_M`** **as** **094** **but** **`n=12,` `w_i=i+1,`** **shells** **5**/**6.** **First** **5-vs-6** **collision** **still** **`M=2`,** **same** **key** **`(1,6,1,0)`** **and** **same** **witness** **indices** **on** **prefix** **`0..5`** **(** **PASS** **for** **“first** **`M`** **is** **2”** **).** **⇒** **enlarging** **the** **universe** **does** **not** **delay** **the** **parity** **floor** **for** **this** **joint** **tag** **—** **collision** **supported** **inside** **first** **six** **weights.**
 - **Entry** **094** **(** **`joint-min-max-sum-mod-product-mod-m-five-six-first-collision`** **):** **`K_M=(min,` `max,` `Σ mod M,` `Π mod M),`** **`w_i=i+1,` `n=10,`** **shells** **5** **/** **6.** **Lex** **scan** **`M≥2`:** **first** **5-vs-6** **collision** **`M=2`,** **key** **`(1,6,1,0)`** **—** **5-set** **indices** **`(0,1,2,4,5)`** **vs** **6-set** **`(0..5)`** **(** **both** **odd** **sum** **mod** **2,** **even** **product** **mod** **2** **).** **PASS** **for** **hypothesis** **“first** **`M`** **is** **2”.** **⇒** **exact** **093** **quadruple** **injectivity** **does** **not** **survive** **uniform** **mod** **fold** **on** **both** **masses;** **floor** **matches** **091**/**092** **single-fold** **triples.**
 - **Entry** **093** **(** **`joint-min-max-sum-product-quadruple-weight-five-six-shell-collision`** **):** **`K(S)=(min w,` `max w,` `Σw,` `∏w)`** **exact** **integers,** **`w_i=i+1,` `n=10.`** **Cross-shell** **(** **5** **vs** **6** **)** **collisions** **`0`** **—** **`K`** **injective** **on** **`C(10,5)∪C(10,6)`** **(** **`252`** **+** **`210`** **distinct** **keys** **)** **.** **Contrasts** **063** **`(Σ,Π)`** **(** **37** **cross-shell** **)** **and** **091**/**092** **`(min,max,·)`** **with** **one** **third** **statistic** **.** **FAIL** **for** **“collision** **exists”** **hypothesis** **(** **repo** **exit** **`1`** **)** **.**
