@@ -18,3 +18,7 @@
 **Analogy pass summary:** **096**/**095**/**093** **rows** **;** **same** **`{4,5}`** **shells** **,** **vary** **`n∈{8,9}`** **.**
 
 **Invented space:** none.
+
+---
+
+**Update (2026-04-03):** The experiment folder’s **`script.py`** was rebased to the **`n=10`**-style CLI (**`--union-rs`**, **`--lru-maxsize`**, etc.). Journal certification of the **full** multi-arity union **`coord + ⋃_{r=2}^{8} XOR_r`** (**501** splits, **`min_d=2`**) is in **`2026-04-03-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-four-five-n9-full-r2-r8-union-min-d.md`** (index row dated 2026-04-03).
