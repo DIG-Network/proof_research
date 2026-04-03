@@ -161,3 +161,25 @@ On the **462** masks with **n=10** and **popcount ∈ {5,6}**, run the same **`e
 
 **Open questions it raises:**
 **Closed** **form** **or** **symmetry** **explanation** **for** **which** **`r`** **are** **local** **minima** **of** **`min_d(r)`** **on** **`(n,{t−1,t})`** **;** **relation** **to** **dual** **codes** **/** **MacWilliams** **style** **identities** **(** **speculative** **)** **.**
+
+---
+
+## [2026-04-03] Full XOR union min_d=2 certificate does not extend to n=5 on the {2} shell
+
+**Type:** Constraint
+
+**Discovered in:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-n5-full-r2-r3-union-min-d/`
+
+**Description:**
+On **`n=5`**, restrict to the **`10`** weight-**`2`** Hamming masks (**`C(5,2)`**). Run the same **`exists_tree`** DP as the **`n≥6`** ladder: coordinate splits plus the **full multi-arity XOR union** **`⋃_{r=2}^{3} XOR_r`** (**`C(5,2)+C(5,3)=20`** parity splits). With default **`4M`** LRU memo, **`coord_only`**, **`coord_plus_full_5xor`**, and the **union** language all have **`min_d=1`**. Thus the **`min_d=2`** phenomenon documented for **`coord + ⋃_{r=2}^{n-2} XOR_r`** on the majority-adjacent shells **starts at `n=6`**, not **`n=5`**.
+
+**Why this is novel:**
+Prior digest text flagged **`n=5`** as an **optional** downward extension **without** a measured verdict. This experiment **closes** that gap with a **clean negative**: the **same** menu template **fails** to produce depth-**`2`** **minimality** at **`n=5`** on the natural **`{2}`** slice for **`t=3`**.
+
+**Novelty confidence:** Medium (small **`n`**, but definitive for this shell and menu).
+
+**Implications:**
+Oracle / narrative claims should cite **`n∈{6,…,14}`** (or **`n≥6`**) for this **`min_d=2`** **full-union** fact — **not** **`n≥5`**. Any **`n=5`** certificate needs a **different** mask family or split library.
+
+**Open questions it raises:**
+Whether **adding weight-**`3`** masks at **`n=5`** (all **`26`** nontrivial masks) restores a **`min_d=2`** **separator** for a **`t=3`** **vs** **`t=2`** **story** **orthogonal** **to** **the** **`{2}`**-only **slice**.
