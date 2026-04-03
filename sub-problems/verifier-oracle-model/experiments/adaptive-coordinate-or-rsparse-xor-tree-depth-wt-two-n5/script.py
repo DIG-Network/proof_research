@@ -1,30 +1,32 @@
 #!/usr/bin/env python3
 """
-n=5, popcount in {2} only (C(5,2)=10 masks).
+n=5 driver: coord + r-sparse XOR r=2..(n-1), unions, full n-XOR.
 
-Same DP as n=6 {2,3} driver: coord + r-sparse XOR r=2..(n-1), unions, full n-XOR.
-Majority threshold t=3: shell is weight-2 masks only (no weight-3 in this slice).
+Default shell is popcount in {2} only (C(5,2)=10 masks). Use --shells to include
+other weights, e.g. --shells 2,3 for twenty {2,3} masks (mirrors n=6 shell slice).
 """
 
 from __future__ import annotations
 
 import argparse
+import math
 import sys
 import time
 from functools import lru_cache
 from itertools import combinations
 
 N = 5
-SHELLS = (2,)
 
 
 def popc(m: int) -> int:
     return m.bit_count()
 
 
-def build_masks() -> list[int]:
-    masks = [m for m in range(1 << N) if popc(m) in SHELLS]
-    assert len(masks) == 10
+def build_masks(shells: tuple[int, ...]) -> list[int]:
+    masks = [m for m in range(1 << N) if popc(m) in shells]
+    expected = sum(math.comb(N, w) for w in shells)
+    if len(masks) != expected:
+        raise RuntimeError(f"mask count mismatch: got {len(masks)}, expected {expected}")
     return masks
 
 
@@ -179,11 +181,27 @@ def main() -> None:
         metavar="N",
         help="LRU cap for DP memo (0 = unbounded; default 4M avoids OOM on heavy shards)",
     )
+    p.add_argument(
+        "--shells",
+        type=str,
+        default="2",
+        metavar="LIST",
+        help='comma-separated Hamming weights included in mask shell, e.g. "2" (default) or "2,3"',
+    )
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
     r_max = min(args.r_max, N - 1)
 
-    masks = build_masks()
+    shells = tuple(int(x.strip()) for x in args.shells.split(",") if x.strip())
+    if not shells:
+        print("FAIL: --shells must be non-empty", flush=True)
+        sys.exit(1)
+    for w in shells:
+        if not (1 <= w <= N):
+            print(f"FAIL: shell weight {w} must be in 1..{N}", flush=True)
+            sys.exit(1)
+
+    masks = build_masks(shells)
     coord_parts = build_coord_partition_masks(masks)
 
     def baseline() -> tuple[int | None, int | None]:
