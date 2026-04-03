@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-03 — experiment **119** `joint-min-max-sum-product-quadruple-pow2-fib-primes-n75-only` (FAIL: no collision at **n=75** for **pow2** / **fib** / **primes** on exact **K**; combined **101–119** → **no** collision **n=11..75** for those three)
-**Last experiment:** `sub-problems/anonymous-quorum-binding/experiments/joint-min-max-sum-product-quadruple-pow2-fib-primes-n75-only`
-**Last outcome:** FAIL (hypothesis: at least one schedule collides at n=75; none do)
-**Current focus:** sub-problems/anonymous-quorum-binding — **n=76** is next single-`n` step; or verifier-oracle-model line
+**Last updated:** 2026-04-03 — experiment **120** `joint-min-max-sum-product-quadruple-pow2-fib-primes-n76-only` (FAIL: no collision at **n=76** for **pow2** / **fib** / **primes** on exact **K**; combined **101–120** → **no** collision **n=11..76** for those three)
+**Last experiment:** `sub-problems/anonymous-quorum-binding/experiments/joint-min-max-sum-product-quadruple-pow2-fib-primes-n76-only`
+**Last outcome:** FAIL (hypothesis: at least one schedule collides at n=76; none do)
+**Current focus:** sub-problems/anonymous-quorum-binding — **n=77** is next single-`n` step; or verifier-oracle-model line
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Budgeted single-`n` probe **n=76** for **pow2** / **fib** / **primes** under same **K**, or continue verifier-oracle experiments per open questions there
+**Next action:** Budgeted single-`n` probe **n=77** for **pow2** / **fib** / **primes** under same **K**, or continue verifier-oracle experiments per open questions there
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
@@ -18,4 +18,4 @@
 
 **Note:** `.mcp` contains `project_name=proof_researcher` for hosted MCP when enabled.
 
-**Vector memory:** Rebuild with `python3 tools/index_memory_db.py --force` after journal/index update for experiment **119**.
+**Vector memory:** Rebuild with `python3 tools/index_memory_db.py --force` after journal/index update for experiment **120**.
