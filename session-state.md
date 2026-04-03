@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-quarters-6e7-each-lru-8m`** **PASS** (**~1491 s** sequential; **all** **`d=3 feasible=False`**, **wrapper exit 1**)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-quarters-6e7-each-lru-8m`
-**Last outcome:** PASS (journal) — **wrapper** exit **1** (no **`feasible=True`** witness; convention matches half-shard wrappers)
-**Current focus:** sub-problems/verifier-oracle-model — **`n=14`**, **`r=5`/`r=9`**, full **2002** **`d=3`** still **open**; **quarter-shards** **~500** splits **complete** **`d=3`** **False** at **6e7/8M** (vs **12e7** **halves** **PARTIAL**)
+**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-quarters-6e7-each-lru-8m`** **PASS** (**~1419 s** sequential; **all** **`d=3 feasible=False`**, **wrapper exit 1**)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r9-d3-xor-shard-quarters-6e7-each-lru-8m`
+**Last outcome:** PASS (journal) — **wrapper** exit **1** (no **`feasible=True`** witness; convention matches **`r=5`** quarter wrapper)
+**Current focus:** sub-problems/verifier-oracle-model — **`n=14`**, **`r=5`/`r=9`**, full **2002** **`d=3`** still **open**; **quarter-shards** **~500** splits **complete** **`d=3`** **False** at **6e7/8M** for **both** **`r=5`** **and** **`r=9`** (**dual** **2002-band** **parity**)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **Algorithmic** / **larger-RAM** **`--memo-dict`** **or** **`r=9`** **quarter** mirror **6e7×4** **;** avoid **full-menu** **dict** **10⁸+** **on** **~15 GB** **hosts** **(** **OOM** **)** **;** optional **non-contiguous** **~500-split** **witness** **hunt** **if** **hypothesis** **warrants**
+**Next action:** **Full-menu** **`d=3`** **still** **open** **—** **avoid** **full-menu** **`--memo-dict`** **`10⁸`** **on** **~15 GB** **hosts** **(** **OOM** **)** **;** consider **smaller** **dict** **budgets** **/** **more** **RAM** **/** **algorithmic** **DP** **changes** **;** optional **other** **`r`** **or** **union** **languages** **if** **hypothesis** **warrants**
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
