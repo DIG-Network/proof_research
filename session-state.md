@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-full-r2-r4-union-min-d`** **FAIL**
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-full-r2-r4-union-min-d`
-**Last outcome:** FAIL (hypothesis `min_d=1` falsified; observed union **`min_d=2`**)
-**Current focus:** sub-problems/verifier-oracle-model — **refine** **`n=5`** **story** **(** **`min_d`** **is** **shell-dependent** **)** **;** **optional** **ablations** **(** **which** **enlargement** **first** **forces** **`min_d=2`** **)**
+**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-n5-shell2-union-r2-r4-min-d`** **PASS**
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-n5-shell2-union-r2-r4-min-d`
+**Last outcome:** PASS (**`n=5`**, **`{2}`** shell **10** masks, union **`r=2..4`** **25** splits → **`min_d=1`**; **`r=4`** alone does not explain **`min_d=2`** at **`{2,3}`** shell)
+**Current focus:** sub-problems/verifier-oracle-model — **optional** **`{2,3}`** **+** **union** **`r=2..3`** **only** **(** **does** **weight-3** **force** **`min_d=2`** **without** **`r=4`** **?** **)**
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **Optional:** **ablate** **`n=5`** **(** **`--shells`** **)** **—** **e.g.** **20** **masks** **but** **union** **only** **`r=2..3`** **,** **or** **10** **masks** **+** **`r=2..4`** **—** **to** **localize** **the** **`min_d`** **jump** **;** **or** **resume** **anonymous-quorum-binding**
+**Next action:** **Optional:** run **`n=5`** parent **`--shells 2,3 --union-rs 2,3`** **(** **not** **`2,3,4`** **)** **with** **wrapper** **/** **journal** **if** **worth** **pinning** **;** **or** **resume** **anonymous-quorum-binding**
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
