@@ -322,6 +322,14 @@ def main() -> None:
         help="only run coord-only + coord+full-n-XOR (no r sweep; fast sanity)",
     )
     p.add_argument(
+        "--full-r2-r13-union-only",
+        action="store_true",
+        help=(
+            "after baseline, skip per-r and partial-union probes; run a single DP over "
+            "coord + every r-sparse XOR partition menu for r=2..n-1 (full combined language)."
+        ),
+    )
+    p.add_argument(
         "--lru-maxsize",
         type=int,
         default=4_000_000,
@@ -473,6 +481,49 @@ def main() -> None:
         if md0 is None or md_full is None or md_full != 1:
             print("FAIL", flush=True)
             sys.exit(1)
+        print("PASS", flush=True)
+        return
+
+    if args.full_r2_r13_union_only:
+        if args.r_single is not None or args.union_rs is not None:
+            print(
+                "FAIL: --full-r2-r13-union-only is incompatible with "
+                "--r-single / --union-rs",
+                flush=True,
+            )
+            sys.exit(1)
+        parts_by_r = {r: build_r_xor_partition_masks(masks, r) for r in range(2, N)}
+        xor_lists = [parts_by_r[r] for r in range(2, N)]
+        total_splits = sum(len(x) for x in xor_lists)
+        t0 = time.perf_counter()
+        md_all, lg_all, part_all = min_depth_for_language(
+            masks,
+            coord_parts,
+            xor_lists,
+            d_max,
+            lru_cap,
+            d_min=d_min,
+            max_exists_calls=exists_budget,
+            log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
+            log_rss=log_rss_flag,
+            progress_every=progress_every,
+        )
+        t1 = time.perf_counter()
+        print(
+            f"coord_plus_r2_through_r{N - 1} total_splits={total_splits} min_d={md_all} "
+            f"dp_sec={t1 - t0:.3f}",
+            flush=True,
+        )
+        for d, ok, sec in lg_all:
+            print(f"  d={d} feasible={ok} sec={sec:.4f}", flush=True)
+        if part_all:
+            print("PARTIAL: full r2..r13 union hit max_exists_calls", flush=True)
+            sys.exit(2)
+        if not args.skip_baseline:
+            if md0 is None or md_full is None or md_full != 1:
+                print("FAIL", flush=True)
+                sys.exit(1)
         print("PASS", flush=True)
         return
 
