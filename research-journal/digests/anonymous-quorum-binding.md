@@ -1,6 +1,6 @@
 # Digest: anonymous-quorum-binding
 
-**Last updated:** 2026-04-03 after experiment joint-min-max-sum-product-quadruple-pow2-fib-primes-n76-only
+**Last updated:** 2026-04-03 after experiment joint-min-max-sum-product-quadruple-pow2-fib-primes-n77-only
 
 **Status:** IN PROGRESS (`sub-problems/anonymous-quorum-binding/status.md`)
 
@@ -10,6 +10,7 @@ Need a primitive binding a threshold signing event to a **static** set commitmen
 
 ## Recent experiments (see legacy `research-journal.md` for full list)
 
+- **Entry** **121** **(** **`joint-min-max-sum-product-quadruple-pow2-fib-primes-n77-only`** **):** **Single-`n`** **probe** **`n=77`** **for** **the** **same** **three** **schedules** **and** **exact** **`K=(min,max,Σ,Π)`** **5-vs-6** **cross-shell** **collision.** **No** **collision** **for** **any** **schedule** **(** **~756** **s** **wall** **)** **.** **Hypothesis** **“at** **least** **one** **collides** **at** **`n=77`”** **⇒** **FAIL** **.** **Together** **with** **101–120** **:** **no** **collision** **`n∈[11,77]`** **for** **these** **three** **schedules** **under** **`K`.**
 - **Entry** **120** **(** **`joint-min-max-sum-product-quadruple-pow2-fib-primes-n76-only`** **):** **Single-`n`** **probe** **`n=76`** **for** **the** **same** **three** **schedules** **and** **exact** **`K=(min,max,Σ,Π)`** **5-vs-6** **cross-shell** **collision.** **No** **collision** **for** **any** **schedule** **(** **~678** **s** **wall** **)** **.** **Hypothesis** **“at** **least** **one** **collides** **at** **`n=76`”** **⇒** **FAIL** **.** **Together** **with** **101–119** **:** **no** **collision** **`n∈[11,76]`** **for** **these** **three** **schedules** **under** **`K`.**
 - **Entry** **119** **(** **`joint-min-max-sum-product-quadruple-pow2-fib-primes-n75-only`** **):** **Single-`n`** **probe** **`n=75`** **for** **the** **same** **three** **schedules** **and** **exact** **`K=(min,max,Σ,Π)`** **5-vs-6** **cross-shell** **collision.** **No** **collision** **for** **any** **schedule** **(** **~637** **s** **wall** **)** **.** **Hypothesis** **“at** **least** **one** **collides** **at** **`n=75`”** **⇒** **FAIL** **.** **Together** **with** **101–118** **:** **no** **collision** **`n∈[11,75]`** **for** **these** **three** **schedules** **under** **`K`.**
 - **Entry** **118** **(** **`joint-min-max-sum-product-quadruple-pow2-fib-primes-n74-only`** **):** **Single-`n`** **probe** **`n=74`** **for** **the** **same** **three** **schedules** **and** **exact** **`K=(min,max,Σ,Π)`** **5-vs-6** **cross-shell** **collision.** **No** **collision** **for** **any** **schedule** **(** **~581** **s** **wall** **)** **.** **Hypothesis** **“at** **least** **one** **collides** **at** **`n=74`”** **⇒** **FAIL** **.** **Together** **with** **101–117** **:** **no** **collision** **`n∈[11,74]`** **for** **these** **three** **schedules** **under** **`K`.**
