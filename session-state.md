@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e7-memo-dict-log-rss`** **INCONCLUSIVE** (**exit 247** **~134 s**, **~3.8×10⁷** **`exists_calls`**, **`VmRSS` ~15 GB**)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-exists-budget-5e7-memo-dict-log-rss`
-**Last outcome:** INCONCLUSIVE (exit **247** — OOM/SIGKILL before **5×10⁷** budget; progress table in **`results.md`**)
-**Current focus:** sub-problems/verifier-oracle-model — **`n=14`**, **`{7,8}`**, **`r=5`**, **`d=3`** full **2002** menu; **dict** path needs **sharding** or **≥~20 GB** RAM for **5×10⁷+** invocations (RSS ~ tracks **`memo_dict_size`**)
+**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-quarters-6e7-each-lru-8m`** **PASS** (**~1491 s** sequential; **all** **`d=3 feasible=False`**, **wrapper exit 1**)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14-r5-d3-xor-shard-quarters-6e7-each-lru-8m`
+**Last outcome:** PASS (journal) — **wrapper** exit **1** (no **`feasible=True`** witness; convention matches half-shard wrappers)
+**Current focus:** sub-problems/verifier-oracle-model — **`n=14`**, **`r=5`/`r=9`**, full **2002** **`d=3`** still **open**; **quarter-shards** **~500** splits **complete** **`d=3`** **False** at **6e7/8M** (vs **12e7** **halves** **PARTIAL**)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Continue **`d=3`** line with **XOR half-shards** or **LRU-capped** budgets; for **`--memo-dict`** runs use **`--progress-every`** (and **`python3 -u`**) so OOM vs **PARTIAL** is obvious — avoid raw **5×10⁷–10⁸** dict on **~15 GB** hosts.
+**Next action:** **Algorithmic** / **larger-RAM** **`--memo-dict`** **or** **`r=9`** **quarter** mirror **6e7×4** **;** avoid **full-menu** **dict** **10⁸+** **on** **~15 GB** **hosts** **(** **OOM** **)** **;** optional **non-contiguous** **~500-split** **witness** **hunt** **if** **hypothesis** **warrants**
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
@@ -18,4 +18,4 @@
 
 **Note:** `.mcp` contains `project_name=proof_researcher` for hosted MCP when enabled. Rebuild **`memory.db`** with **`python3 tools/index_memory_db.py --force`** after journal update.
 
-**Parent tooling:** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14/script.py` now supports **`--log-rss`**, **`--progress-every K`**.
+**Parent tooling:** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-seven-eight-n14/script.py` — **`--memo-dict`**, **`--log-rss`**, **`--progress-every`**, **`--xor-index-range`**.
