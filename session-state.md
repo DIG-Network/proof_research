@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-three-four-n8-full-r2-r7-union-min-d`** **PASS**
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-three-four-n8-full-r2-r7-union-min-d`
+**Last updated:** 2026-04-03 — after **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-r5-union-min-d`** **PASS**
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-r5-union-min-d`
 **Last outcome:** PASS
-**Current focus:** sub-problems/verifier-oracle-model — **`min_d=2`** **on** **full** **XOR** **union** **now** **includes** **`n∈{8,9,10,11,12,13,14}`** **(** **`{3,4}`** **/** **`{4,5}`** **/** **`{5,6}`** **/** **`{6,7}`** **/** **`{7,8}`** **shells** **)**
+**Current focus:** sub-problems/verifier-oracle-model — **`min_d=2`** **on** **full** **XOR** **union** **now** **includes** **`n∈{7,8,9,10,11,12,13,14}`** **(** **`{2,3}`** **/** **`{3,4}`** **/** **`{4,5}`** **/** **`{5,6}`** **/** **`{6,7}`** **/** **`{7,8}`** **shells** **)**
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** **Optional** **continue** **`n`** **ladder** **downward** **`n=7`** **`{2,3}`** **full** **`r=2..6`** **union** **;** **or** **resume** **anonymous-quorum-binding** **thread** **;** **or** **tighten** **oracle** **wording** **to** **cite** **`n∈{8..14}`**
+**Next action:** **Optional** **continue** **`n`** **ladder** **downward** **`n=6`** **`{2,3}`** **full** **`r=2..5`** **union** **;** **or** **resume** **anonymous-quorum-binding** **thread** **;** **or** **tighten** **oracle** **wording** **to** **cite** **`n∈{7..14}`**
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
@@ -18,4 +18,4 @@
 
 **Note:** `.mcp` contains `project_name=proof_researcher` for hosted MCP when enabled. Rebuild **`memory.db`** with **`python3 tools/index_memory_db.py --force`** after journal update.
 
-**Parent tooling:** **`n=8`** **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-three-four-n8/script.py`** **`--union-rs`** **`2,3,…,7`** **`--lru-maxsize 4000000`** (wrapper: **`...-full-r2-r7-union-min-d/script.py`**).
+**Parent tooling:** **`n=7`** **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7/script.py`** **`--union-rs`** **`2,3,…,5`** **`--lru-maxsize 4000000`** (wrapper: **`...-full-r2-r5-union-min-d/script.py`**).
