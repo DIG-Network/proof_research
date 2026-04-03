@@ -4,6 +4,7 @@
 
 | Date       | Slug                                   | Context                 | Outcome | Entry file |
 |------------|----------------------------------------|-------------------------|---------|------------|
+| 2026-04-03 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n46-50-scan | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-pow2-fib-primes-n46-50-scan.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-pow2-fib-primes-n46-50-scan.md) |
 | 2026-04-03 | joint-min-max-sum-product-quadruple-four-schedules-extended-n45-scan | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-four-schedules-extended-n45-scan.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-four-schedules-extended-n45-scan.md) |
 | 2026-04-03 | joint-min-max-sum-product-quadruple-four-schedules-extended-n35-scan | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-four-schedules-extended-n35-scan.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-four-schedules-extended-n35-scan.md) |
 | 2026-04-03 | joint-min-max-sum-product-quadruple-square-weights-extended-n-scan | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-square-weights-extended-n-scan.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-square-weights-extended-n-scan.md) |
