@@ -111,6 +111,7 @@ def min_depth_for_language(
     d_min: int = 1,
     max_exists_calls: int | None = None,
     log_cache_after_each_d: bool = False,
+    memo_dict: bool = False,
 ) -> tuple[int | None, list[tuple[int, bool, float]], bool]:
     dom = len(masks)
     full_bits = (1 << dom) - 1
@@ -119,43 +120,101 @@ def min_depth_for_language(
     memo_max = None if lru_maxsize is None or lru_maxsize <= 0 else lru_maxsize
     miss_calls = 0
 
-    @lru_cache(maxsize=memo_max)  # type: ignore[arg-type]
-    def exists_tree(bits: int, depth_remaining: int) -> bool:
-        nonlocal miss_calls
-        if max_exists_calls is not None:
-            miss_calls += 1
-            if miss_calls > max_exists_calls:
-                raise _BudgetExceeded()
-        if pure_bits(bits, masks):
-            return True
-        if depth_remaining <= 0:
-            return False
-        for i in range(N):
-            b0, b1 = split_bits(bits, coord_parts, i)
-            if recurse_children_bits(exists_tree, b0, b1, depth_remaining):
+    if memo_dict:
+
+        def exists_tree_dict(bits: int, depth_remaining: int) -> bool:
+            nonlocal miss_calls
+            key = (bits, depth_remaining)
+            memo_local: dict[tuple[int, int], bool] = exists_tree_dict.memo  # type: ignore[attr-defined]
+            # Match lru_cache budget semantics: count every invocation (hits + misses).
+            if max_exists_calls is not None:
+                miss_calls += 1
+                if miss_calls > max_exists_calls:
+                    raise _BudgetExceeded()
+            if key in memo_local:
+                return memo_local[key]
+            if pure_bits(bits, masks):
+                out = True
+            elif depth_remaining <= 0:
+                out = False
+            else:
+                out = False
+                for i in range(N):
+                    b0, b1 = split_bits(bits, coord_parts, i)
+                    if recurse_children_bits(exists_tree_dict, b0, b1, depth_remaining):
+                        out = True
+                        break
+                if not out:
+                    for xor_parts in xor_parts_list:
+                        for pi in range(len(xor_parts)):
+                            b0, b1 = split_bits(bits, xor_parts, pi)
+                            if recurse_children_bits(
+                                exists_tree_dict, b0, b1, depth_remaining
+                            ):
+                                out = True
+                                break
+                        if out:
+                            break
+            memo_local[key] = out
+            return out
+
+        exists_tree_dict.memo = {}  # type: ignore[attr-defined]
+
+        def clear_memo() -> None:
+            exists_tree_dict.memo.clear()  # type: ignore[attr-defined]
+
+        def memo_size() -> int:
+            return len(exists_tree_dict.memo)  # type: ignore[attr-defined]
+
+        exists_tree_fn = exists_tree_dict
+    else:
+
+        @lru_cache(maxsize=memo_max)  # type: ignore[arg-type]
+        def exists_tree_lru(bits: int, depth_remaining: int) -> bool:
+            nonlocal miss_calls
+            if max_exists_calls is not None:
+                miss_calls += 1
+                if miss_calls > max_exists_calls:
+                    raise _BudgetExceeded()
+            if pure_bits(bits, masks):
                 return True
-        for xor_parts in xor_parts_list:
-            for pi in range(len(xor_parts)):
-                b0, b1 = split_bits(bits, xor_parts, pi)
-                if recurse_children_bits(exists_tree, b0, b1, depth_remaining):
+            if depth_remaining <= 0:
+                return False
+            for i in range(N):
+                b0, b1 = split_bits(bits, coord_parts, i)
+                if recurse_children_bits(exists_tree_lru, b0, b1, depth_remaining):
                     return True
-        return False
+            for xor_parts in xor_parts_list:
+                for pi in range(len(xor_parts)):
+                    b0, b1 = split_bits(bits, xor_parts, pi)
+                    if recurse_children_bits(exists_tree_lru, b0, b1, depth_remaining):
+                        return True
+            return False
+
+        def clear_memo() -> None:
+            exists_tree_lru.cache_clear()
+
+        def memo_size() -> int:
+            return exists_tree_lru.cache_info().currsize
+
+        exists_tree_fn = exists_tree_lru
 
     lo = max(1, d_min)
     hi = max(lo, d_max)
     min_d: int | None = None
     for d in range(lo, hi + 1):
-        exists_tree.cache_clear()
+        clear_memo()
         t0 = time.perf_counter()
         print(f"  probing d={d} ...", flush=True)
         try:
-            ok = exists_tree(full_bits, d)
+            ok = exists_tree_fn(full_bits, d)
         except _BudgetExceeded:
             elapsed = time.perf_counter() - t0
             log.append((d, False, elapsed))
+            label = "memo_dict_size" if memo_dict else "LRU currsize"
             print(
                 f"  PARTIAL: exceeded max_exists_calls={max_exists_calls} "
-                f"(exists_tree invocations; LRU currsize={exists_tree.cache_info().currsize}) "
+                f"(exists_tree invocations; {label}={memo_size()}) "
                 f"after {elapsed:.4f}s",
                 flush=True,
             )
@@ -166,9 +225,9 @@ def min_depth_for_language(
             min_d = d
             break
         if log_cache_after_each_d:
+            label = "memo_dict_entries" if memo_dict else "exists_tree_cache_misses"
             print(
-                f"  exists_tree_cache_misses_after_d={d}: "
-                f"{exists_tree.cache_info().currsize}",
+                f"  {label}_after_d={d}: {memo_size()}",
                 flush=True,
             )
     return min_d, log, False
@@ -239,6 +298,15 @@ def main() -> None:
         ),
     )
     p.add_argument(
+        "--memo-dict",
+        action="store_true",
+        help=(
+            "use a plain dict for (bits, depth) memo instead of functools.lru_cache — "
+            "no eviction; can reduce repeated work vs a capped LRU on deep searches "
+            "(RAM grows with distinct states)."
+        ),
+    )
+    p.add_argument(
         "--xor-index-range",
         type=str,
         default=None,
@@ -264,6 +332,7 @@ def main() -> None:
     )
     args = p.parse_args()
     lru_cap: int | None = None if args.lru_maxsize == 0 else args.lru_maxsize
+    memo_dict_flag = bool(args.memo_dict)
     r_max = min(args.r_max, N - 1)
     d_min = max(1, args.d_min)
     d_max = max(d_min, min(args.d_max, N))
@@ -283,6 +352,7 @@ def main() -> None:
             d_min=1,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         print(f"coord_only min_d={md0} (d_max={N})", flush=True)
         for d, ok, sec in log0:
@@ -302,6 +372,7 @@ def main() -> None:
             d_min=1,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         print(f"coord_plus_full_{N}xor min_d={md_full}", flush=True)
         for d, ok, sec in log_full:
@@ -403,6 +474,7 @@ def main() -> None:
             d_min=d_min,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         t2 = time.perf_counter()
         print(
@@ -441,6 +513,7 @@ def main() -> None:
             d_min=d_min,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         t1 = time.perf_counter()
         print(
@@ -472,6 +545,7 @@ def main() -> None:
             d_min=d_min,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         t2 = time.perf_counter()
         print(
@@ -497,6 +571,7 @@ def main() -> None:
             d_min=d_min,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         print(f"coord_plus_r2_r3_r4 min_d={md_234}", flush=True)
         if part234:
@@ -516,6 +591,7 @@ def main() -> None:
             d_min=d_min,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         print(f"coord_plus_r2_through_r5 min_d={md_2345}", flush=True)
         if part2345:
@@ -532,6 +608,7 @@ def main() -> None:
             d_min=d_min,
             max_exists_calls=exists_budget,
             log_cache_after_each_d=log_cache_after_d,
+            memo_dict=memo_dict_flag,
         )
         print(f"coord_plus_r2_through_r{r_max} min_d={md_all}", flush=True)
         if part_all:
