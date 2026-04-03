@@ -205,3 +205,25 @@ Claims that **exact** **`(min,max,Σ,Π)`** separates **`|S|=5`** vs **`|S|=6`**
 
 **Open questions it raises:**
 For which **`n>10`** does the first cross-shell collision appear for this **`K`**, and whether other **`w_i`** schedules avoid this **family** on **`{5,6}`** shells.
+
+---
+
+## [2026-04-03] Minimal universe for exact (min,max,Σ,Π) 5-vs-6 cross-shell collision is n=11 (linear weights)
+
+**Type:** Constraint
+
+**Discovered in:** `sub-problems/anonymous-quorum-binding/experiments/joint-min-max-sum-product-quadruple-weight-five-six-minimal-n11-scan`
+
+**Description:**
+Fix **`w_i=i+1`** and **`K(S)=(min,max,Σ,Π)`** on shells **`|S|∈{5,6}`**. Exhaustive scan: **`n=10`** (**093**) has **no** cross-shell key collision; **`n=11`** has **exactly one** shared key **`(1,11,31,2640)`** with witness **5-set** weights **`{1,5,6,8,11}`** vs **6-set** **`{1,2,3,4,10,11}`** (0-based indices **`(0,4,5,7,10)`** vs **`(0,1,2,3,9,10)`**). Hence the **smallest** **`n>10`** with a **5-vs-6** collision is **`11`**, not **`12`**. At **`n=11`**, each shell still has **`462`** distinct internal keys (full rank within shell), but the two shells are not disjoint in **`K`**-space.
+
+**Why this is novel:**
+**096** documented a **closed-form** collision family at **`n=12`**; this pins the **first** **`n`** where separation fails for this quadruple and weight schedule, and shows the **`n=12`** phenomenon is **not** the minimal threshold — a **different** witness already appears at **`n=11`**.
+
+**Novelty confidence:** Medium (finite exhaustive check; sharp minimality statement).
+
+**Implications:**
+Narratives that “**`K`** breaks when moving from **10** to **12** validators” should read “breaks by **11**”; **096**’s family is an **additional** collision mechanism at **`n≥12`**, not the **first**.
+
+**Open questions it raises:**
+Characterize **all** minimal **`n`** witnesses for other **`w_i`** (non-linear schedules); relate **`n=11`** collision to **mod-2** / **095** floor (same **`n`** regime).
