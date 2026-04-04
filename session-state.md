@@ -1,23 +1,23 @@
 # Session State
 
-**Last updated:** 2026-04-04 — experiment **139** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-singleton-r3-scan-all-triples` (FAIL: **no** singleton triple + full `r=2` achieves `min_d=2`; **all 20** give `min_d=3`)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-singleton-r3-scan-all-triples`
-**Last outcome:** FAIL (falsified universal singleton sufficiency; contrasts `n=5` where every singleton worked)
-**Current focus:** sub-problems/verifier-oracle-model — optional: **minimal k** triples + full `r=2` for `min_d=2` at `n=6`, or pair-of-triples scan; anonymous-quorum-binding **n=92** joint-min-max still queued if resources allow
+**Last updated:** 2026-04-04 — experiment **140** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-pair-r3-scan-all-pairs` (PASS: **10/190** unordered `r=3` pairs + full `r=2` give `min_d=2` — exactly **complementary** 3+3 partitions; **180** pairs stay `min_d=3`)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-pair-r3-scan-all-pairs`
+**Last outcome:** PASS
+**Current focus:** sub-problems/verifier-oracle-model — optional: prove or scan **non-complementary** pairs classification; anonymous-quorum-binding **n=92** joint-min-max still queued if resources allow
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** If continuing verifier-oracle thread: binary-search or small-**k** scan for **smallest** subset of `r=3` splits (with full `r=2`) that yields `min_d=2` at `n=6`, `{2,3}` shell — or document that **full** `r=3` menu is minimal
+**Next action:** Optional: formal note that **only** disjoint complementary triple pairs achieve `min_d=2` with two `r=3` + full `r=2` at `n=6`, or extend to `n=7` pair scans; otherwise resume anonymous-quorum-binding ladder
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
-**Ledger run id:** (cron automation — experiment 139)
+**Ledger run id:** (cron automation — experiment 140)
 
 **Git delivery:** Work is committed and pushed to **`main`** only (authoritative policy).
 
 **Note:** `.mcp` contains `project_name=proof_researcher` for hosted MCP when enabled.
 
-**Vector memory:** Rebuild with `python3 tools/index_memory_db.py --force` after journal/index update for experiment **139**.
+**Vector memory:** Rebuilt with `python3 tools/index_memory_db.py --force` after journal/index update for experiment **140**.
 
-**Parent change:** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6/script.py` now supports **`--union-r3-indices`** (aligned with `n=5` parent).
+**Branch sync:** Local **`main`** fast-forwarded to match **`origin/main`** (included prior experiment **139**); new work committed on **`main`**.
