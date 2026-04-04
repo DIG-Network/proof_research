@@ -4,6 +4,7 @@
 
 | Date       | Slug                                   | Context                 | Outcome | Entry file |
 |------------|----------------------------------------|-------------------------|---------|------------|
+| 2026-04-04 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n81-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n81-only.md](entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n81-only.md) |
 | 2026-04-04 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n80-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n80-only.md](entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n80-only.md) |
 | 2026-04-03 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n79-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-pow2-fib-primes-n79-only.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-pow2-fib-primes-n79-only.md) |
 | 2026-04-03 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n78-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-03-joint-min-max-sum-product-quadruple-pow2-fib-primes-n78-only.md](entries/2026-04-03-joint-min-max-sum-product-quadruple-pow2-fib-primes-n78-only.md) |
