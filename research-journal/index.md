@@ -4,6 +4,7 @@
 
 | Date       | Slug                                   | Context                 | Outcome | Entry file |
 |------------|----------------------------------------|-------------------------|---------|------------|
+| 2026-04-04 | adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-union-r2-only-min-d | verifier-oracle-model | FAIL    | [entries/2026-04-04-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-union-r2-only-min-d.md](entries/2026-04-04-adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-union-r2-only-min-d.md) |
 | 2026-04-04 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n91-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n91-only.md](entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n91-only.md) |
 | 2026-04-04 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n90-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n90-only.md](entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n90-only.md) |
 | 2026-04-04 | joint-min-max-sum-product-quadruple-pow2-fib-primes-n89-only | anonymous-quorum-binding | FAIL    | [entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n89-only.md](entries/2026-04-04-joint-min-max-sum-product-quadruple-pow2-fib-primes-n89-only.md) |
