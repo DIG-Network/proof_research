@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-min-r3-splits-for-min-d2
+**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-singleton-r3-scan-all-triples
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-04):** **`n=5`**, **`{2,3}`**, **full** **`r=2`** **+** **each** **singleton** **`r=3`** **(** **`10`** **scans** **,** **`11`** **splits** **each** **)** **—** **all** **indices** **`0..9`** **give** **`min_d=2`** **;** **hypothesis** **“only** **index** **`0`”** **falsified** **(** **experiment** **`…-n5-singleton-r3-scan-all-triples`** **)** **.** **Prior** **first** **witness** **`(0,1,2)`** **was** **lex** **search-order** **,** **not** **uniqueness** **.**
 
 **New (2026-04-04):** **`n=5`**, **`{2,3}`**, **full** **`r=2`** **menu** **(** **`10`** **splits** **)** **+** **one** **`r=3`** **split** **(** **index** **`0`**, **triple** **`(0,1,2)`** **)** **—** **`min_d=2`** **(** **`11`** **splits** **total** **)** **;** **parent** **`n=5`** **driver** **adds** **`--union-r3-indices`** **(** **experiment** **`…-n5-min-r3-splits-for-min-d2`** **,** **FAIL** **hypothesis** **“minimal** **`k≥2`”** **)** **.** **Refines** **prior** **row** **:** **triple-XOR** **is** **needed** **vs** **pair-only** **(** **`min_d`** **`3→2`** **)** **,** **but** **a** **single** **well-chosen** **triple** **parity** **can** **suffice** **—** **not** **all** **`10`** **triples** **are** **individually** **necessary** **.**
 
@@ -18,6 +20,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-singleton-r3-scan-all-triples` | FAIL | **`n=5`**, **`{2,3}`**, **full** **`r=2`** **+** **any** **one** **`r=3`** **(** **`10/10`** **singletons** **)**, **`min_d=2`** **;** **“only** **idx** **`0`”** **falsified** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-min-r3-splits-for-min-d2` | FAIL | **`n=5`**, **`{2,3}`**, **full** **`r=2`** **+** **one** **`r=3`** **(** **idx** **`0`** **)**, **`11`** **splits** **—** **`min_d=2`** **;** **hypothesis** **`k≥2`** **falsified** **;** **parent** **`--union-r3-indices`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-union-r2-only-min-d` | FAIL | **`n=5`**, **`{2,3}`**, **`--union-rs`** **`2`** **only** **(** **`10`** **splits** **)**, **`4M`** **LRU** **—** **`min_d=3`** **;** **`r=3`** **XOR** **splits** **load-bearing** **for** **`min_d=2`** **vs** **`r=2..3`** **union** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n5-union-r2-r3-only-min-d` | PASS | **`n=5`**, **`{2,3}`** **(** **`20`** **masks** **)**, **`--union-rs`** **`2,3`** **only** **(** **`20`** **splits** **)**, **`4M`** **LRU** **—** **`min_d=2`** **;** **`r=4`** **not** **needed** **(** **weight-3** **+** **`r=2..3`** **XOR** **suffices** **)** |
