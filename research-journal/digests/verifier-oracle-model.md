@@ -1,6 +1,6 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quintuple-r3-random-sample-200
+**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quintuple-r3-scan-all-quintuples
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
@@ -8,7 +8,9 @@
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
 
-**New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **five** **`r=3`** **splits** **—** **random** **`200/324632`** **unordered** **quintuples** **(** **`seed=0`** **)** **:** **`witness_min_d2_count=0`** **;** **~** **0.49** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-quintuple-r3-random-sample-200`** **(** **FAIL** **)** **—** **no** **depth-** **`2`** **hit** **in** **this** **sample** **(** **not** **exhaustive** **`C(35,5)`** **)** **;** **next** **:** **full** **`324632`** **scan** **or** **larger** **sample** **.**
+**New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **five** **`r=3`** **splits** **—** **exhaustive** **`C(35,5)=324632`** **unordered** **quintuples** **:** **`witness_min_d2_count=0`** **(** **every** **quint** **`min_d=3`** **)** **;** **~** **766** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-quintuple-r3-scan-all-quintuples`** **(** **FAIL** **)** **—** **closes** **the** **finite** **`C(35,5)`** **envelope** **(** **random** **sample** **was** **not** **proof** **)** **;** **next** **:** **`C(35,6)`** **sextuples** **(** **~** **1.62M** **)** **or** **different** **split** **family** **.**
+
+**New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **five** **`r=3`** **splits** **—** **random** **`200/324632`** **unordered** **quintuples** **(** **`seed=0`** **)** **:** **`witness_min_d2_count=0`** **;** **~** **0.49** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-quintuple-r3-random-sample-200`** **(** **FAIL** **)** **—** **superseded** **as** **evidence** **by** **full** **`C(35,5)`** **scan** **(** **`…-scan-all-quintuples`** **)** **.**
 
 **New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **four** **`r=3`** **splits** **—** **exhaustive** **`C(35,4)=52360`** **unordered** **quadruples** **:** **`witness_min_d2_count=0`** **(** **every** **quad** **`min_d=3`** **)** **;** **~** **132** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-quadruple-r3-scan-all-quadruples`** **(** **FAIL** **)** **—** **even** **four** **triple-XOR** **parities** **do** **not** **unlock** **`min_d=2`** **on** **this** **sparse** **menu** **(** **extends** **the** **triple-scan** **negative** **)** **.**
 
@@ -34,7 +36,8 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
-| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quintuple-r3-random-sample-200` | FAIL | **`n=7`**, **`200`** **random** **quints** **`min_d=3`** **only** **(** **`0`** **`min_d=2`** **)** **;** **~** **0.5** **s** **;** **not** **`C(35,5)`** **exhaustive** |
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quintuple-r3-scan-all-quintuples` | FAIL | **`n=7`**, **`324632/324632`** **quints** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **five** **`r=3`** **)** **;** **~** **766** **s** **wall** |
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quintuple-r3-random-sample-200` | FAIL | **`n=7`**, **`200`** **random** **quints** **`min_d=3`** **only** **(** **`0`** **`min_d=2`** **)** **;** **~** **0.5** **s** **;** **superseded** **by** **full** **`C(35,5)`** **scan** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quadruple-r3-scan-all-quadruples` | FAIL | **`n=7`**, **`52360/52360`** **quads** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **four** **`r=3`** **)** **;** **~** **132** **s** **wall** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-triple-r3-scan-all-triples` | FAIL | **`n=7`**, **`6545/6545`** **triples** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **three** **`r=3`** **)** **;** **~** **18** **s** **wall** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-pair-r3-biconditional-scan-all-pairs` | FAIL | **`n=7`**, **`595/595`** **pairs** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **;** **`70`** **disjoint** **pairs** **all** **`min_d=3`** **(** **full** **scan** **)** |
