@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-pair-r3-complementary-iff-min-d2
+**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-pair-r3-random-sample-biconditional-check
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **two** **`r=3`** **splits** **—** **naive** **lift** **of** **the** **`n=6`** **biconditional** **fails** **:** **random** **sample** **`200/595`** **pairs** **(** **seed** **`0`** **)** **found** **`23`** **cases** **with** **disjoint** **triples** **but** **`min_d=3`** **(** **not** **`2`** **)** **;** **experiment** **`…-n7-pair-r3-random-sample-biconditional-check`** **(** **FAIL** **)** **.** **So** **“disjoint** **triples”** **is** **not** **equivalent** **to** **`min_d=2`** **at** **`n=7`** **for** **this** **minimal** **language** **(** **complementary** **`3+3`** **vs** **one** **left-out** **vertex** **matters** **)** **.**
 
 **New (2026-04-04):** **`n=6`**, **`{2,3}`**, **full** **`r=2`** **+** **two** **`r=3`** **splits** **—** **`min_d=2`** **iff** **the** **two** **triples** **are** **disjoint** **(** **complementary** **3+3** **)** **:** **`190/190`** **pairs** **consistent** **(** **`violations=0`** **,** **experiment** **`…-n6-pair-r3-complementary-iff-min-d2`** **)** **;** **upgrades** **the** **prior** **`10/190`** **witness** **listing** **to** **an** **exact** **predicate** **equivalence** **(** **still** **within** **this** **DP** **model** **)** **.**
 
@@ -26,6 +28,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-pair-r3-random-sample-biconditional-check` | FAIL | **`n=7`**, **`{2,3}`**, **two** **`r=3`** **splits** **:** **random** **`200/595`** **—** **`23`** **disjoint** **pairs** **with** **`min_d=3`** **;** **n=6** **biconditional** **does** **not** **lift** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-pair-r3-complementary-iff-min-d2` | PASS | **`n=6`**, **`{2,3}`**, **full** **`r=2`** **+** **two** **`r=3`** **:** **`min_d=2`** **iff** **disjoint** **triples** **(** **`190`** **pairs** **,** **`violations=0`** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-pair-r3-scan-all-pairs` | PASS | **`n=6`**, **`{2,3}`**, **full** **`r=2`** **+** **two** **`r=3`** **splits** **—** **`10/190`** **unordered** **pairs** **achieve** **`min_d=2`** **(** **complementary** **3+3** **cuts** **only** **)** **;** **180** **pairs** **`min_d=3`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-singleton-r3-scan-all-triples` | FAIL | **`n=6`**, **`{2,3}`**, **full** **`r=2`** **+** **any** **one** **`r=3`** **(** **`20/20`** **)** **—** **all** **`min_d=3`** **;** **singleton** **universality** **from** **`n=5`** **fails** **;** **parent** **`--union-r3-indices`** |
