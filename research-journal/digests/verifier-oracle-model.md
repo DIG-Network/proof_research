@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-union-r2-r3-only-vs-r2-r4-only-min-d
+**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-septuple-r3-random-sample-400
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **seven** **`r=3`** **splits** **—** **random** **`400/6724520`** **unordered** **septuples** **(** **`seed=0`** **,** **`C(35,7)`** **universe** **)** **:** **`witness_min_d2_count=0`** **;** **~** **1.09** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-septuple-r3-random-sample-400`** **(** **FAIL** **)** **—** **evidence** **only** **(** **not** **exhaustive** **`C(35,7)`** **)** **;** **next** **:** **full** **`6724520`** **scan** **or** **smarter** **witness** **search** **.**
 
 **New (2026-04-04):** **`n=7`**, **`{2,3}`**, **union** **`r∈{2,3}`** **only** **vs** **`r∈{2,4}`** **only** **(** **`56`** **splits** **each** **,** **`4M`** **LRU** **)** **—** **both** **`min_d=3`** **(** **`dp_sec` ~0.0036** **/** **~0.0024** **)** **;** **experiment** **`…-n7-union-r2-r3-only-vs-r2-r4-only-min-d`** **(** **PASS** **primary** **:** **`{2,3}`** **only** **`≥3`** **)** **—** **full** **`r=4`** **is** **necessary** **for** **`min_d=2`** **vs** **`{2,3,4}`** **(** **`91`** **)** **,** **and** **symmetrically** **`r=2+r=4`** **without** **full** **`r=3`** **also** **`min_d=3`** **(** **multi-arity** **overlap** **is** **load-bearing** **)** **.**
 
@@ -42,6 +44,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-septuple-r3-random-sample-400` | FAIL | **`n=7`**, **`400`** **random** **septs** **`min_d=3`** **only** **(** **`0`** **`min_d=2`** **)** **;** **~** **1.1** **s** **;** **not** **proof** **vs** **`C(35,7)`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-union-r2-r3-only-vs-r2-r4-only-min-d` | PASS | **`n=7`**, **`{2,3}`** **:** **`union`** **`{2,3}`** **only** **`min_d=3`** **;** **`union`** **`{2,4}`** **only** **`min_d=3`** **(** **`56`** **splits** **each** **)** **—** **both** **`r=3`** **and** **`r=4`** **full** **menus** **needed** **for** **`{2,3,4}`** **`min_d=2`** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-sextuple-r3-scan-all-sextuples` | FAIL | **`n=7`**, **`1623160/1623160`** **sexts** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **six** **`r=3`** **)** **;** **~** **3661** **s** **wall** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-union-r2-r3-r4-min-d` | PASS | **`n=7`**, **`{2,3}`**, **`--union-rs`** **`2,3,4`** **(** **`91`** **splits** **)**, **`4M`** **LRU** **—** **`min_d=2`** **(** **`dp_sec` ~0.002** **)** **;** **`r=5`** **XOR** **menu** **not** **needed** **vs** **`r=2..5`** **union** |
