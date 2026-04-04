@@ -17,7 +17,7 @@
 
 For `n=5`, masks with popcount in `{2,3}` (20 masks), **coord + XOR union with only `r=2`** (10 pair splits) still has **`min_d=2`** (same as `r=2..3` union with 20 splits). If true, the **`r=3` XOR splits are not necessary** for the depth-2 certificate in that shell slice.
 
-**Opposite outcome:** If `min_d=1` with `r=2` only, then **`r=3` XOR splits were load-bearing** for `min_d=2` in the prior experiment.
+**Opposite outcome:** If `min_d≠2` with `r=2` only, then **`r=3` XOR splits were load-bearing** for `min_d=2` in the prior experiment. **Observed:** `min_d=3` (strictly worse than `2`).
 
 ## Parent / lineage
 
