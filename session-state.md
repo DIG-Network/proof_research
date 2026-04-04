@@ -1,21 +1,21 @@
 # Session State
 
-**Last updated:** 2026-04-03 — experiment **122** `joint-min-max-sum-product-quadruple-pow2-fib-primes-n78-only` (FAIL: no collision at **n=78** for **pow2** / **fib** / **primes** on exact **K**; combined **101–122** → **no** collision **n=11..78** for those three)
-**Last experiment:** `sub-problems/anonymous-quorum-binding/experiments/joint-min-max-sum-product-quadruple-pow2-fib-primes-n78-only`
-**Last outcome:** FAIL (hypothesis: at least one schedule collides at n=78; none do)
-**Current focus:** sub-problems/anonymous-quorum-binding — **n=79** is next single-`n` step; or verifier-oracle-model line
+**Last updated:** 2026-04-03 — experiment **123** `joint-min-max-sum-product-quadruple-pow2-fib-primes-n79-only` (FAIL: no collision at **n=79** for **pow2** / **fib** / **primes** on exact **K**; combined **101–123** → **no** collision **n=11..79** for those three)
+**Last experiment:** `sub-problems/anonymous-quorum-binding/experiments/joint-min-max-sum-product-quadruple-pow2-fib-primes-n79-only`
+**Last outcome:** FAIL (hypothesis: at least one schedule collides at n=79; none do)
+**Current focus:** sub-problems/anonymous-quorum-binding — **n=80** is next single-`n` step; or verifier-oracle-model line
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Budgeted single-`n` probe **n=79** for **pow2** / **fib** / **primes** under same **K**, or continue verifier-oracle experiments per open questions there
+**Next action:** Budgeted single-`n` probe **n=80** for **pow2** / **fib** / **primes** under same **K**, or continue verifier-oracle experiments per open questions there
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
-**Ledger run id:** (optional — cron tick)
+**Ledger run id:** cc2199ca-e46e-4043-8575-0fe7c3aa5d71
 
 **Git delivery:** Work is committed and pushed to **`main`** only (authoritative policy).
 
 **Note:** `.mcp` contains `project_name=proof_researcher` for hosted MCP when enabled.
 
-**Vector memory:** Rebuild with `python3 tools/index_memory_db.py --force` after journal/index update for experiment **122**.
+**Vector memory:** Rebuild with `python3 tools/index_memory_db.py --force` after journal/index update for experiment **123**.
