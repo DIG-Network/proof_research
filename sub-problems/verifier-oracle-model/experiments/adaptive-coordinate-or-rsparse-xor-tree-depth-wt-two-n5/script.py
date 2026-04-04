@@ -165,6 +165,16 @@ def main() -> None:
         help='comma-separated r values for one mixed language, e.g. "2,3" (coord + those r-sparse XOR menus)',
     )
     p.add_argument(
+        "--union-r3-indices",
+        type=str,
+        default=None,
+        metavar="LIST",
+        help=(
+            "when union-rs includes 3: comma-separated 0-based indices into the C(n,3) triple-XOR "
+            "splits (lex order on combinations(range(n),3)). Omit to use all triple splits."
+        ),
+    )
+    p.add_argument(
         "--skip-baseline",
         action="store_true",
         help="with --r-single or --union-rs, skip coord-only and full-n-XOR checks",
@@ -265,7 +275,24 @@ def main() -> None:
             if not (2 <= r <= N - 1):
                 print(f"FAIL: union-rs entries must be in 2..{N-1}", flush=True)
                 sys.exit(1)
-        xor_lists = [build_r_xor_partition_masks(masks, r) for r in rs]
+        if args.union_r3_indices is not None and 3 not in rs:
+            print("FAIL: --union-r3-indices requires 3 in --union-rs", flush=True)
+            sys.exit(1)
+        xor_lists: list[list[tuple[int, int]]] = []
+        for r in rs:
+            xp = build_r_xor_partition_masks(masks, r)
+            if r == 3 and args.union_r3_indices is not None:
+                idxs = [int(x.strip()) for x in args.union_r3_indices.split(",") if x.strip()]
+                n3 = math.comb(N, 3)
+                for i in idxs:
+                    if not (0 <= i < n3):
+                        print(
+                            f"FAIL: union-r3-indices must be in 0..{n3-1}, got {i}",
+                            flush=True,
+                        )
+                        sys.exit(1)
+                xp = [xp[i] for i in idxs]
+            xor_lists.append(xp)
         total = sum(len(x) for x in xor_lists)
         t0 = time.perf_counter()
         md_u, _ = min_depth_for_language(masks, coord_parts, xor_lists, N, lru_cap)
