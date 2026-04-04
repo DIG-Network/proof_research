@@ -79,18 +79,18 @@ def cross_shell_collision_at_n_sqlite(
                 kmin INTEGER NOT NULL,
                 kmax INTEGER NOT NULL,
                 ksum INTEGER NOT NULL,
-                kprod INTEGER NOT NULL,
+                kprod TEXT NOT NULL,
                 idx5 BLOB NOT NULL,
                 PRIMARY KEY (kmin, kmax, ksum, kprod)
             ) WITHOUT ROWID
             """
         )
         ins = "INSERT OR IGNORE INTO k5 VALUES (?,?,?,?,?)"
-        batch: list[tuple[int, int, int, int, bytes]] = []
+        batch: list[tuple[int, int, int, str, bytes]] = []
         BSZ = 50_000
         for comb5 in combinations(range(n), 5):
             a, b, s, p = quad(ws, comb5)
-            batch.append((a, b, s, p, struct.pack("5H", *comb5)))
+            batch.append((a, b, s, str(p), struct.pack("5H", *comb5)))
             if len(batch) >= BSZ:
                 conn.executemany(ins, batch)
                 batch.clear()
@@ -102,7 +102,7 @@ def cross_shell_collision_at_n_sqlite(
             a, b, s, p = quad(ws, comb6)
             row = conn.execute(
                 "SELECT idx5 FROM k5 WHERE kmin=? AND kmax=? AND ksum=? AND kprod=?",
-                (a, b, s, p),
+                (a, b, s, str(p)),
             ).fetchone()
             if row is not None:
                 i5 = struct.unpack("5H", row[0])
