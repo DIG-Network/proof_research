@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-triple-r3-scan-all-triples
+**Last updated:** 2026-04-04 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quadruple-r3-scan-all-quadruples
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **four** **`r=3`** **splits** **—** **exhaustive** **`C(35,4)=52360`** **unordered** **quadruples** **:** **`witness_min_d2_count=0`** **(** **every** **quad** **`min_d=3`** **)** **;** **~** **132** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-quadruple-r3-scan-all-quadruples`** **(** **FAIL** **)** **—** **even** **four** **triple-XOR** **parities** **do** **not** **unlock** **`min_d=2`** **on** **this** **sparse** **menu** **(** **extends** **the** **triple-scan** **negative** **)** **.**
 
 **New (2026-04-04):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **three** **`r=3`** **splits** **—** **exhaustive** **`C(35,3)=6545`** **unordered** **triples** **:** **`witness_min_d2_count=0`** **(** **every** **triple** **`min_d=3`** **)** **;** **~** **18** **s** **wall** **(** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-triple-r3-scan-all-triples`** **(** **FAIL** **)** **—** **a** **third** **triple-XOR** **parity** **does** **not** **unlock** **`min_d=2`** **on** **this** **sparse** **menu** **(** **strengthens** **the** **two-triple** **uniform** **`min_d=3`** **picture** **)** **.**
 
@@ -30,6 +32,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-quadruple-r3-scan-all-quadruples` | FAIL | **`n=7`**, **`52360/52360`** **quads** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **four** **`r=3`** **)** **;** **~** **132** **s** **wall** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-triple-r3-scan-all-triples` | FAIL | **`n=7`**, **`6545/6545`** **triples** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **three** **`r=3`** **)** **;** **~** **18** **s** **wall** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-pair-r3-biconditional-scan-all-pairs` | FAIL | **`n=7`**, **`595/595`** **pairs** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **;** **`70`** **disjoint** **pairs** **all** **`min_d=3`** **(** **full** **scan** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-pair-r3-random-sample-biconditional-check` | FAIL | **`n=7`**, **`{2,3}`**, **two** **`r=3`** **splits** **:** **random** **`200/595`** **—** **`23`** **disjoint** **pairs** **with** **`min_d=3`** **;** **subset** **of** **the** **`70`** **disjoint** **universe** |
