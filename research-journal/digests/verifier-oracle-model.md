@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-wedge-or-compsymdiff-inter2-only
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symdiff-inter01-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **off-diagonal** **`|T_i∩T_j|∈{0,1}`** **(** **`13475`** **cells** **)** **:** **test** **`min_d=2`** **⇔** **`Q=T_i△T_j`** **:** **FAIL** **(** **`wall_sec≈32`**, **`4M`** **LRU** **)** **—** **`viol`** **`d2_s0=140`**, **`d2_not_symdiff=630`**, **`symdiff_not_d2=315`** **(** **`1085`** **total** **)** **;** **within** **stratum** **`min_d=2=770`**, **`Q=symdiff`** **hits** **`315`** **;** **experiment** **`…-offdiag-symdiff-inter01-biconditional`** **—** **the** **`s∈{0,1}`** **patchwork** **symdiff** **piece** **is** **not** **a** **standalone** **`min_d=2`** **biconditional** **(** **not** **only** **`s=2`** **that** **breaks** **patchwork** **)** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **restricted** **to** **off-diagonal** **`|T_i∩T_j|=2`** **(** **`7350`** **cells** **)** **:** **test** **`min_d=2`** **⇔** **`Q∈{W,C}`** **(** **wedge** **`W=(T_i\T_j)∪([7]\(T_i∪T_j))`**, **`C=[7]\(T_i△T_j)`** **)** **:** **FAIL** **(** **`wall_sec≈32.0`**, **`4M`** **LRU** **)** **—** **`420`** **`min_d=2`** **vs** **`210`** **predicate** **hits** **(** **`2×`** **gap** **)** **;** **`C`** **is** **a** **5-set** **when** **`|T_i△T_j|=2`** **so** **hits** **are** **wedge-only** **;** **experiment** **`…-offdiag-wedge-or-compsymdiff-inter2-only`** **.**
 
@@ -60,6 +62,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symdiff-inter01-biconditional` | FAIL | **`n=7`**, **`|∩|∈{0,1}`** **stratum** **`13475`** **:** **`min_d=2`** **⇔** **`Q=symdiff`** **false** **(** **`140`** **`s=0`** **`d=2`**, **`630`** **`s=1`** **`d=2`** **`Q≠Δ`**, **`315`** **`Q=Δ`** **`md=3`** **)** **;** **`~32`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symmetric-diff-predicate` | FAIL | **`n=7`**, **doubleton** **`r=3`** **+** **`r=4`** **:** **`Q=T_i△T_j`** **not** **char** **`min_d=2`** **(** **`315`** **false** **positives** **,** **many** **`|∩|=2`** **depth-2** **)** **;** **`~31.3`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-structure-scan` | PASS | **`n=7`**, **full** **`r=2`** **+** **multiset** **pair** **`r=3`** **+** **singleton** **`r=4`** **:** **`22050`** **cells** **;** **`1225`** **`min_d=2`** **(** **`35`** **diag** **,** **`1190`** **`i<j`** **)** **;** **`~30.6`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-complement-iff-check` | PASS | **`n=7`**, **full** **`r=2`** **+** **singleton** **`r=3`** **+** **singleton** **`r=4`** **:** **machine** **iff** **`min_d=2`** **⇔** **complement** **on** **`1225`** **cells** **(** **`~1.65`** **s** **)** |
