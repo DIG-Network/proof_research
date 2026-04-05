@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-s2-wedges-complement-biconditional
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **full** **off-diagonal** **`s=|T_i∩T_j|∈{0,1,2}`** **(** **`20825`** **cells** **)** **:** **`min_d=2`** **⇔** **`Q∈{W_ij,W_ji}`** **(** **ordered** **wedge** **pair** **only** **)** **:** **PASS** **(** **`wall_sec≈30.4`**, **`4M`** **LRU** **)** **—** **`1190`** **`min_d=2`**, **`1190`** **predicate** **hits** **,** **`pred_wij=595`**, **`pred_wji=595`**, **`0`** **violations** **;** **unifies** **`s∈{0,1}`** **(** **162** **)** **and** **`s=2`** **(** **164** **,** **`C`** **vacuous** **)** **into** **one** **global** **certificate** **without** **stratifying** **on** **`s`** **(** **experiment** **`…-offdiag-unified-wedge-pair-all-strata-biconditional`** **)** **—** **next** **:** **other** **`n`**, **diagonal** **`i=j`** **slice** **,** **or** **richer** **XOR** **menus** **.**
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
 
@@ -70,6 +72,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional` | PASS | **`n=7`**, **off-diagonal** **`s∈{0,1,2}`** **`20825`** **:** **`min_d=2`** **⇔** **`W_ij∨W_ji`** **only** **;** **`1190/1190`**, **`0`** **viol** **;** **`~30.4`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-s2-wedges-complement-biconditional` | PASS | **`n=7`**, **`|∩|=2`** **stratum** **`7350`** **:** **`min_d=2`** **⇔** **`W∨W_rev∨C`** **(** **`C`** **vacuous** **5-set** **)** **⇔** **`W∨W_rev`** **;** **`420/420`**, **`0`** **viol** **;** **`~30.2`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-stratified-inter012-predicate-biconditional` | FAIL | **`n=7`**, **off-diagonal** **global** **:** **`min_d=2`** **⇔** **stratified** **`s01:W∨W_rev; s2:W∨C`** **false** **(** **`210`** **`d2∧¬pred`**, **`Q=W_ji`** **on** **`s=2`** **)** **;** **`~31.1`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-ordered-wedge-inter01-biconditional` | FAIL | **`n=7`**, **`|∩|∈{0,1}`** **:** **`min_d=2`** **⇔** **`Q=W(i,j)`** **false** **(** **`770`** **`d=2`**, **`385`** **`Q=W`**, **`385`** **`Q≠W`**, **`wedge_not_d2=0`** **)** **;** **`~30.5`** **s** |
