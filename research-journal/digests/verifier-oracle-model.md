@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-wedge-or-reversewedge-inter01-biconditional
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-stratified-inter012-predicate-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **global** **off-diagonal** **stratified** **predicate** **(** **`s∈{0,1}`** **:** **`W∨W_rev`** **;** **`s=2`** **:** **`W_ij∨C_ij`** **only** **)** **vs** **`min_d=2`** **:** **FAIL** **(** **`wall_sec≈31.1`**, **`4M`** **LRU** **)** **—** **`20825`** **cells** **,** **`1190`** **`min_d=2`**, **`980`** **predicate** **hits** **,** **`210`** **`d2∧¬pred`**, **`0`** **false** **positives** **;** **violations** **are** **`s=2`** **with** **`Q=W_ji`** **missed** **because** **the** **`s=2`** **branch** **omitted** **`W_ji`** **(** **experiment** **`…-offdiag-stratified-inter012-predicate-biconditional`** **)** **—** **next** **:** **test** **`s=2`** **chart** **`{W_ij,W_ji,C_ij}`** **or** **prove** **minimal** **symmetric** **envelope** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **off-diagonal** **`|T_i∩T_j|∈{0,1}`** **:** **symmetrized** **ordered** **wedges** **`Q∈{W(i,j),W(j,i)}`** **with** **`W(a,b)=(T_a\T_b)∪([7]\(T_a∪T_b))`** **:** **PASS** **(** **`wall_sec≈30.3`**, **`4M`** **LRU** **)** **—** **`770`** **`min_d=2`**, **`770`** **predicate** **hits** **,** **`385`** **`W_ij`**, **`385`** **`W_ji`**, **`pred_both=0`**, **`0`** **violations** **;** **experiment** **`…-offdiag-wedge-or-reversewedge-inter01-biconditional`** **—** **completes** **the** **`|∩|∈{0,1}`** **slice** **after** **ordered-wedge** **alone** **was** **incomplete** **(** **161** **)** **.**
 
@@ -66,6 +68,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-stratified-inter012-predicate-biconditional` | FAIL | **`n=7`**, **off-diagonal** **global** **:** **`min_d=2`** **⇔** **stratified** **`s01:W∨W_rev; s2:W∨C`** **false** **(** **`210`** **`d2∧¬pred`**, **`Q=W_ji`** **on** **`s=2`** **)** **;** **`~31.1`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-ordered-wedge-inter01-biconditional` | FAIL | **`n=7`**, **`|∩|∈{0,1}`** **:** **`min_d=2`** **⇔** **`Q=W(i,j)`** **false** **(** **`770`** **`d=2`**, **`385`** **`Q=W`**, **`385`** **`Q≠W`**, **`wedge_not_d2=0`** **)** **;** **`~30.5`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symdiff-inter01-biconditional` | FAIL | **`n=7`**, **`|∩|∈{0,1}`** **stratum** **`13475`** **:** **`min_d=2`** **⇔** **`Q=symdiff`** **false** **(** **`140`** **`s=0`** **`d=2`**, **`630`** **`s=1`** **`d=2`** **`Q≠Δ`**, **`315`** **`Q=Δ`** **`md=3`** **)** **;** **`~32`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symmetric-diff-predicate` | FAIL | **`n=7`**, **doubleton** **`r=3`** **+** **`r=4`** **:** **`Q=T_i△T_j`** **not** **char** **`min_d=2`** **(** **`315`** **false** **positives** **,** **many** **`|∩|=2`** **depth-2** **)** **;** **`~31.3`** **s** |
