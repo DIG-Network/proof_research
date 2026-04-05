@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-ordered-wedge-inter01-biconditional
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-wedge-or-reversewedge-inter01-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **off-diagonal** **`|T_i∩T_j|∈{0,1}`** **:** **symmetrized** **ordered** **wedges** **`Q∈{W(i,j),W(j,i)}`** **with** **`W(a,b)=(T_a\T_b)∪([7]\(T_a∪T_b))`** **:** **PASS** **(** **`wall_sec≈30.3`**, **`4M`** **LRU** **)** **—** **`770`** **`min_d=2`**, **`770`** **predicate** **hits** **,** **`385`** **`W_ij`**, **`385`** **`W_ji`**, **`pred_both=0`**, **`0`** **violations** **;** **experiment** **`…-offdiag-wedge-or-reversewedge-inter01-biconditional`** **—** **completes** **the** **`|∩|∈{0,1}`** **slice** **after** **ordered-wedge** **alone** **was** **incomplete** **(** **161** **)** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **off-diagonal** **`|T_i∩T_j|∈{0,1}`** **:** **ordered** **wedge** **`W=(T_i\T_j)∪([7]\(T_i∪T_j))`** **with** **first** **triple** **`T_i`** **:** **test** **`min_d=2`** **⇔** **`Q=W`** **:** **FAIL** **(** **`wall_sec≈30.5`**, **`4M`** **LRU** **)** **—** **`770`** **stratum** **`min_d=2`**, **`385`** **with** **`Q=W`**, **`385`** **`min_d=2`** **`Q≠W`** **;** **`wedge_not_d2=0`** **(** **sound** **one-way** **predicate** **,** **not** **biconditional** **)** **;** **experiment** **`…-offdiag-ordered-wedge-inter01-biconditional`**.
 
