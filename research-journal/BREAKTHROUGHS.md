@@ -227,3 +227,25 @@ Narratives that “**`K`** breaks when moving from **10** to **12** validators�
 
 **Open questions it raises:**
 Characterize **all** minimal **`n`** witnesses for other **`w_i`** (non-linear schedules); relate **`n=11`** collision to **mod-2** / **095** floor (same **`n`** regime).
+
+---
+
+## [2026-04-05] At n=7 on {2,3}, one quartic XOR split after full triple menu always reaches min_d=2
+
+**Type:** Constraint
+
+**Discovered in:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-r3-plus-each-r4-split-once`
+
+**Description:**
+On the **`56`** masks with **`n=7`** and **`popcount ∈ {2,3}`**, consider the adaptive DP language **coordinate splits** plus **all `r=2` XOR partitions** (**21**) plus **all `r=3` XOR partitions** (**35**). Append **exactly one** **`r=4` XOR partition** from the **`C(7,4)=35`** quartic family. For **every** quartic index, the memoized `min_depth` DP reports **`min_d = 2`** (**`35/35`**), with **`57`** splits total and **`4M`** LRU. This is **strictly sparser** than taking the full **`union r∈{2,3,4}`** menu (**`91`** splits) known to achieve **`min_d=2`**. It **contrasts** with the **closed** sparse **`r=3` ladder** on top of full **`r=2`**: exhaustive **`C(35,7)`** choices of **seven** extra **`r=3`** splits still left **`min_d=3`** everywhere.
+
+**Why this is novel:**
+It sharpens the **`n=7`** **`{2,3}`** story beyond “**`r=4` menu overlap matters vs `{2,3}`/`{2,4}`-only unions**”: **arity-4** content can be **singleton** once **full arity-3** coverage is present, while **stacking arity-3** parities **without** **arity-4** stayed **stuck** at **`min_d=3`** through **`k=7`**.
+
+**Novelty confidence:** Medium (finite exhaustive check; strong uniform statement).
+
+**Implications:**
+Treat **`r=4`** as a **phase-change knob** for **`min_d`** in this toy model: **more triples** **≠** **one quartic**; certificate design should **not** assume** minimal **`r=4`** **cardinality** matches the full **`35`**-split menu when **`r=3`** is **saturated**.
+
+**Open questions it raises:**
+Minimal **`|r=3|`** **submenus** that still let **some** **`r=4`** split force **`min_d=2`**; combinatorial explanation tied to majority **`t=4`** on **`n=7`**.

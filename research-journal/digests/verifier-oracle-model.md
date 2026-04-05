@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-septuple-r3-scan-all-septuples
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-r3-plus-each-r4-split-once
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **coord** **+** **full** **`r=2`** **(** **`21`** **)** **+** **full** **`r=3`** **(** **`35`** **)** **+** **one** **`r=4`** **XOR** **split** **(** **all** **`C(7,4)=35`** **choices** **)** **—** **`witness_min_d2_count=35`**, **`min_d_ge3_count=0`**, **`57`** **splits** **each** **,** **`wall_sec≈0.053`**, **`4M`** **LRU** **;** **experiment** **`…-n7-full-r2-r3-plus-each-r4-split-once`** **(** **FAIL** **on** **pre-registered** **“no** **`min_d=2`** **witness”** **)** **—** **every** **singleton** **quartic** **parity** **forces** **`min_d=2`** **once** **the** **full** **triple** **menu** **is** **present** **(** **much** **sparser** **than** **the** **`91`** **-split** **`union`** **`r∈{2,3,4}`** **certificate** **)** **;** **sharp** **contrast** **with** **the** **closed** **`r=3`** **-only** **ladder** **(** **seven** **extra** **triples** **still** **`min_d=3`** **everywhere** **)** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **full** **`r=2`** **+** **seven** **`r=3`** **splits** **—** **exhaustive** **`C(35,7)=6724520`** **unordered** **septuples** **:** **`witness_min_d2_count=0`** **(** **every** **sept** **`min_d=3`** **)** **;** **~** **14123** **s** **wall** **(** **~** **3.92** **h** **,** **`4M`** **LRU** **)** **;** **experiment** **`…-n7-septuple-r3-scan-all-septuples`** **(** **FAIL** **)** **—** **closes** **the** **finite** **`C(35,7)`** **envelope** **on** **this** **sparse** **triple** **ladder** **(** **supersedes** **random** **`400`** **draw** **as** **proof** **)** **;** **next** **:** **non-ladder** **(** **e.g.** **full** **`r=4`** **/** **union** **menus** **already** **known** **to** **reach** **`min_d=2`** **)** **or** **different** **split** **family** **.**
 
@@ -46,6 +48,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-r3-plus-each-r4-split-once` | FAIL | **`n=7`**, **full** **`r=2`+`r=3`** **+** **one** **`r=4`** **:** **`35/35`** **`min_d=2`**, **`57`** **splits**, **`~0.05`** **s** **wall** **(** **hypothesis** **“no** **`min_d=2`** **”** **falsified** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-septuple-r3-scan-all-septuples` | FAIL | **`n=7`**, **`6724520/6724520`** **septs** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **seven** **`r=3`** **)** **;** **~** **14123** **s** **wall** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-septuple-r3-random-sample-400` | FAIL | **`n=7`**, **`400`** **random** **septs** **`min_d=3`** **only** **(** **`0`** **`min_d=2`** **)** **;** **~** **1.1** **s** **;** **superseded** **by** **full** **`C(35,7)`** **scan** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-union-r2-r3-only-vs-r2-r4-only-min-d` | PASS | **`n=7`**, **`{2,3}`** **:** **`union`** **`{2,3}`** **only** **`min_d=3`** **;** **`union`** **`{2,4}`** **only** **`min_d=3`** **(** **`56`** **splits** **each** **)** **—** **both** **`r=3`** **and** **`r=4`** **full** **menus** **needed** **for** **`{2,3,4}`** **`min_d=2`** |
