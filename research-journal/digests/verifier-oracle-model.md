@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-patchwork-inter012-template
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-wedge-or-compsymdiff-inter2-only
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **restricted** **to** **off-diagonal** **`|T_i∩T_j|=2`** **(** **`7350`** **cells** **)** **:** **test** **`min_d=2`** **⇔** **`Q∈{W,C}`** **(** **wedge** **`W=(T_i\T_j)∪([7]\(T_i∪T_j))`**, **`C=[7]\(T_i△T_j)`** **)** **:** **FAIL** **(** **`wall_sec≈32.0`**, **`4M`** **LRU** **)** **—** **`420`** **`min_d=2`** **vs** **`210`** **predicate** **hits** **(** **`2×`** **gap** **)** **;** **`C`** **is** **a** **5-set** **when** **`|T_i△T_j|=2`** **so** **hits** **are** **wedge-only** **;** **experiment** **`…-offdiag-wedge-or-compsymdiff-inter2-only`** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **patchwork** **classifier** **by** **`s=|T_i∩T_j|`** **:** **symdiff** **if** **`s∈{0,1}`** **,** **ordered** **wedge** **`(T_i\T_j)∪([7]\(T_i∪T_j))`** **if** **`s=2`** **(** **plus** **diagonal** **complement** **)** **:** **FAIL** **(** **`wall_sec≈30.5`**, **`4M`** **LRU** **)** **—** **only** **`525`** **off-diagonal** **cells** **match** **the** **mask** **predicate** **vs** **`1190`** **`min_d=2`** **off-diagonal** **witnesses** **;** **many** **predicate-true** **`md=3`** **;** **`min_d=2`** **often** **has** **`Q`** **like** **`complement(T_i△T_j)`** **when** **`|∩|=2`** **;** **experiment** **`…-offdiag-patchwork-inter012-template`** **.**
 
