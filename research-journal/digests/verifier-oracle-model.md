@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-grid-scan
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-complement-iff-check
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`35×35`** **grid** **as** **`…-grid-scan`** **—** **programmatic** **iff** **check** **:** **`min_d=2`** **iff** **`r=4`** **subset** **=** **complement(`r=3`)** **on** **all** **`1225`** **cells** **(** **`0`** **violations** **,** **`wall_sec≈1.65`**, **`4M`** **LRU** **)** **;** **experiment** **`…-n7-full-r2-singleton-r3-singleton-r4-complement-iff-check`** **(** **PASS** **)** **—** **machine-checks** **the** **prior** **narrative** **structure** **from** **`…-grid-scan`** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **coord** **+** **full** **`r=2`** **+** **one** **`r=3`** **+** **one** **`r=4`** **—** **exhaustive** **`35×35`** **grid** **:** **`min_d=2`** **on** **exactly** **`35`** **pairs** **,** **`min_d=3`** **on** **`1190`** **(** **`wall_sec≈1.69`**, **`4M`** **LRU** **)** **;** **experiment** **`…-n7-full-r2-singleton-r3-singleton-r4-grid-scan`** **(** **PASS** **)** **—** **depth-** **`2`** **iff** **the** **quartic** **subset** **is** **the** **set** **complement** **of** **the** **triple** **(** **`3+4`** **partition** **of** **`[7]`** **)** **;** **contrasts** **with** **full** **`r=3`** **+** **any** **singleton** **`r=4`** **(** **all** **`min_d=2`** **)** **—** **triple** **menu** **redundancy** **was** **load-bearing** **for** **that** **uniformity** **.**
 
@@ -50,6 +52,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-complement-iff-check` | PASS | **`n=7`**, **full** **`r=2`** **+** **singleton** **`r=3`** **+** **singleton** **`r=4`** **:** **machine** **iff** **`min_d=2`** **⇔** **complement** **on** **`1225`** **cells** **(** **`~1.65`** **s** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-grid-scan` | PASS | **`n=7`**, **full** **`r=2`** **+** **singleton** **`r=3`** **+** **singleton** **`r=4`** **:** **`1190/1225`** **`min_d=3`**, **`35/1225`** **`min_d=2`** **iff** **quad** **=** **complement(triple)** **;** **`~1.7`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-r3-plus-each-r4-split-once` | FAIL | **`n=7`**, **full** **`r=2`+`r=3`** **+** **one** **`r=4`** **:** **`35/35`** **`min_d=2`**, **`57`** **splits**, **`~0.05`** **s** **wall** **(** **hypothesis** **“no** **`min_d=2`** **”** **falsified** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-septuple-r3-scan-all-septuples` | FAIL | **`n=7`**, **`6724520/6724520`** **septs** **`min_d=3`** **;** **`0`** **depth-** **`2`** **witnesses** **(** **full** **`r=2`** **+** **seven** **`r=3`** **)** **;** **~** **14123** **s** **wall** |
