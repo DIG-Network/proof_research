@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-diag-ij-complement-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **diagonal** **`i=j`** **slice** **(** **`35×35=1225`** **cells** **,** **duplicate** **`T_i`** **on** **both** **`r=3`** **slots** **)** **:** **`min_d=2`** **⇔** **`Q=[7]\setminus T_i`** **:** **PASS** **(** **`wall_sec≈1.68`**, **`4M`** **LRU** **)** **—** **`35`** **`min_d=2`**, **`35`** **complement** **hits** **,** **`0`** **violations** **;** **matches** **singleton-triple** **complement** **law** **(** **experiment** **`…-diag-ij-complement-biconditional`** **)** **—** **full** **`22050`** **grid** **law** **is** **piecewise** **:** **diag** **=** **complement** **,** **off-diag** **`s∈{0,1,2}`** **=** **`W_ij∨W_ji`** **(** **165** **)** **;** **next** **:** **`n=6`** **`/`** **`n=8`** **ports** **or** **single** **global** **predicate** **statement** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **grid** **—** **full** **off-diagonal** **`s=|T_i∩T_j|∈{0,1,2}`** **(** **`20825`** **cells** **)** **:** **`min_d=2`** **⇔** **`Q∈{W_ij,W_ji}`** **(** **ordered** **wedge** **pair** **only** **)** **:** **PASS** **(** **`wall_sec≈30.4`**, **`4M`** **LRU** **)** **—** **`1190`** **`min_d=2`**, **`1190`** **predicate** **hits** **,** **`pred_wij=595`**, **`pred_wji=595`**, **`0`** **violations** **;** **unifies** **`s∈{0,1}`** **(** **162** **)** **and** **`s=2`** **(** **164** **,** **`C`** **vacuous** **)** **into** **one** **global** **certificate** **without** **stratifying** **on** **`s`** **(** **experiment** **`…-offdiag-unified-wedge-pair-all-strata-biconditional`** **)** **—** **next** **:** **other** **`n`**, **diagonal** **`i=j`** **slice** **,** **or** **richer** **XOR** **menus** **.**
 
