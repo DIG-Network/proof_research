@@ -1,12 +1,14 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-structure-scan
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symmetric-diff-predicate
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
 
 The verifier may depend only on **(C, m, π)** and public parameters. Sound threshold verification appears to require an efficient **`Link(C, K)`**-grade object or equivalent; naive **constant-size** black-box checks separate from **C** (**journal 002–004**). **Sublinear** **|π|** clashes with naive per-signer Merkle material at majority **t** (**003**, **012**). **Standard compute** for the sound **R1** Merkle phase scales **Θ(n log n)** hash units (**019**).
+
+**New (2026-04-05):** **`n=7`**, **`{2,3}`**, **same** **`22050`** **doubleton-triple** **+** **singleton-quartic** **grid** **—** **test** **whether** **off-diagonal** **`min_d=2`** **⇔** **`|T_i∩T_j|=1`** **and** **`Q=T_i△T_j`** **:** **FAIL** **(** **`wall_sec≈31.3`**, **`4M`** **LRU** **)** **—** **counterexamples** **both** **ways** **(** **`min_d=2`** **with** **`|∩|∈{1,2}`** **but** **`Q≠T_i△T_j`** **in** **many** **`|∩|=1`** **cases** **;** **`315`** **cells** **with** **`|∩|=1`** **and** **`Q=T_i△T_j`** **have** **`min_d=3`** **)** **;** **experiment** **`…-offdiag-symmetric-diff-predicate`** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **coord** **+** **full** **`r=2`** **+** **two** **`r=3`** **XOR** **splits** **(** **unordered** **multiset** **pair** **,** **`630`** **choices** **)** **+** **one** **`r=4`** **(** **`35`** **)** **—** **full** **`630×35=22050`** **grid** **:** **`min_d=2`** **on** **`1225`** **cells** **,** **`min_d=3`** **on** **`20825`** **(** **`wall_sec≈30.6`**, **`4M`** **LRU** **)** **;** **of** **depth-** **`2`** **cells** **,** **`35`** **have** **duplicate** **triple** **index** **`i=j`** **(** **one** **informative** **triple** **)** **and** **`1190`** **have** **distinct** **`i<j`** **—** **so** **non-diagonal** **two-triple** **menus** **still** **admit** **`min_d=2`** **certificates** **(** **not** **reducible** **to** **singleton** **`3+4`** **complement** **law** **alone** **)** **;** **experiment** **`…-n7-full-r2-doubleton-r3-singleton-r4-structure-scan`** **(** **PASS** **)** **.**
 
@@ -54,6 +56,7 @@ The verifier may depend only on **(C, m, π)** and public parameters. Sound thre
 
 | Approach / experiment | Outcome | One-line |
 |----------------------|---------|----------|
+| `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-offdiag-symmetric-diff-predicate` | FAIL | **`n=7`**, **doubleton** **`r=3`** **+** **`r=4`** **:** **`Q=T_i△T_j`** **not** **char** **`min_d=2`** **(** **`315`** **false** **positives** **,** **many** **`|∩|=2`** **depth-2** **)** **;** **`~31.3`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-structure-scan` | PASS | **`n=7`**, **full** **`r=2`** **+** **multiset** **pair** **`r=3`** **+** **singleton** **`r=4`** **:** **`22050`** **cells** **;** **`1225`** **`min_d=2`** **(** **`35`** **diag** **,** **`1190`** **`i<j`** **)** **;** **`~30.6`** **s** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-complement-iff-check` | PASS | **`n=7`**, **full** **`r=2`** **+** **singleton** **`r=3`** **+** **singleton** **`r=4`** **:** **machine** **iff** **`min_d=2`** **⇔** **complement** **on** **`1225`** **cells** **(** **`~1.65`** **s** **)** |
 | `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-singleton-r3-singleton-r4-grid-scan` | PASS | **`n=7`**, **full** **`r=2`** **+** **singleton** **`r=3`** **+** **singleton** **`r=4`** **:** **`1190/1225`** **`min_d=3`**, **`35/1225`** **`min_d=2`** **iff** **quad** **=** **complement(triple)** **;** **`~1.7`** **s** |
