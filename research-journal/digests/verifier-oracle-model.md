@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r7-k2-exhaustive-all-28-offdiag-structure-scan
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r7-k1-exhaustive-all-8-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=7`** **submenu** **`K=1`** **(** **`8`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`total_wall_sec≈204.9`** **(** **experiment** **`…-partial-r7-k1-exhaustive-all-8-offdiag-structure-scan`** **)** **—** **with** **prior** **`K∈{2,3,4}`** **exhaustive** **scans** **,** **every** **nonempty** **partial** **`r=7`** **submenu** **at** **`n=8`** **matches** **full** **`r=7`** **saturation** **on** **`stratum_min_d2`** **;** **next** **:** **partial** **`r=5`** **`/`** **`r=6`** **submenus** **or** **new** **`n=8`** **certificate** **family** **.**
 
 **New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=7`** **submenu** **`K=2`** **(** **`C(8,2)=28`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`total_wall_sec≈597.0`** **(** **experiment** **`…-partial-r7-k2-exhaustive-all-28-offdiag-structure-scan`** **)** **—** **`K=2`** **still** **saturates** **like** **`K∈{3,4}`** **;** **next** **:** **`K=1`** **(** **`8`** **)** **exhaustive** **scan** **or** **partial** **`r=5`** **`/`** **`r=6`** **submenus** **.**
 
