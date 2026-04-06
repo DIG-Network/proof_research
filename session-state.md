@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-06 — experiment **169** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-plus-full-r5-r6-r7-offdiag-unified-wedge-pair-all-strata-biconditional` (FAIL: enriched menu ⇒ **`107800/107800`** **`min_d=2`**, wedge pred **`0`**, **`107800`** **`d2∧¬pred`**; **`≈37.4s`** wall)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-plus-full-r5-r6-r7-offdiag-unified-wedge-pair-all-strata-biconditional`
-**Last outcome:** FAIL (wedge biconditional broken by universal depth-2 after full `r=5,6,7` menus)
-**Current focus:** sub-problems/verifier-oracle-model — n=8 wedge story is **biphasic** (sparse ⇒ vacuous PASS; `+full r5–r7` ⇒ universal `min_d=2` ⇒ FAIL)
+**Last updated:** 2026-04-06 — experiment **170** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-strict-subsets-r5-r6-r7-offdiag-structure-scan` (FAIL: **no** `0<stratum_min_d2<107800`; **all 6** strict `{r5,r6,r7}` masks ⇒ **`107800/107800`** `min_d=2`, wedge pred **`0`**; **≈524s** wall sequential)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-strict-subsets-r5-r6-r7-offdiag-structure-scan`
+**Last outcome:** FAIL (hypothesis “partial high-menu witness set” falsified — **cliff** at first full `r∈{5,6,7}` menu)
+**Current focus:** sub-problems/verifier-oracle-model — n=8 needs **new** certificate family or **partial-submenu** search inside fixed arity (not full `C(8,r)` lists)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Search **strict subsets** of full `r=5,r=6,r=7` menus (or alternate augmentations) that yield a **nonempty proper** subset of stratum cells with `min_d=2`, then refit predicates; or pivot to an n=8-specific certificate family.
+**Next action:** Design a bounded experiment for **sparse** `r=7` (or `r=6`/`r=5`) **submenus** (e.g. random or structured samples) measuring `stratum_min_d2`, or pivot to an n=8-specific predicate unrelated to the n=7 wedge port.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
