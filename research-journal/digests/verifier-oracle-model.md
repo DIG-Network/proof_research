@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start50-batch4-offdiag-structure-scan
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start54-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **fifteenth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=54`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(0,55)`**, **`(1,2)…(1,4)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`860s`** **(** **journal** **`…-partial-r5-k2-menu-start54-batch4-offdiag-structure-scan`** **)** **—** **crosses** **the** **`(0,*)`** **/** **`(1,*)`** **boundary** **(** **`(0,55)`** **is** **last** **`(0,*)`** **pair** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=58`**, **`MAX_MENUS=4`** **.**
 
 **New (2026-04-06):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **fourteenth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=50`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(0,51)…(0,54)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`375s`** **(** **journal** **`…-partial-r5-k2-menu-start50-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **`(0,*)`** **prefix** **evidence** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=54`**, **`MAX_MENUS=4`** **.**
 
