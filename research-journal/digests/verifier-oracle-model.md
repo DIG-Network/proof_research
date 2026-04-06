@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r7-k4-exhaustive-all-70-offdiag-structure-scan
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r7-k3-exhaustive-all-56-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=7`** **submenu** **`K=3`** **(** **`C(8,3)=56`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`total_wall_sec≈1052.0`** **(** **experiment** **`…-partial-r7-k3-exhaustive-all-56-offdiag-structure-scan`** **)** **—** **`K=3`** **already** **saturates** **like** **`K=4`** **/** **full** **`r=7`** **;** **next** **:** **`K=2`** **(** **`28`** **)** **and** **`K=1`** **(** **`8`** **)** **exhaustive** **scans** **or** **partial** **`r=5`** **`/`** **`r=6`** **submenus** **.**
 
 **New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=7`** **submenu** **`K=4`** **(** **`C(8,4)=70`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`total_wall_sec≈1233.1`** **(** **experiment** **`…-partial-r7-k4-exhaustive-all-70-offdiag-structure-scan`** **)** **—** **finite** **proof** **that** **`K=4`** **partial** **`r=7`** **universally** **matches** **full** **`r=7`** **saturation** **on** **this** **statistic** **(** **not** **only** **the** **16** **-** **trial** **random** **sample** **)** **;** **next** **:** **`K∈{1,2,3}`** **exhaustive** **`/`** **random** **probes** **or** **partial** **`r=5`** **`/`** **`r=6`** **submenus** **.**
 
