@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **`{2,3}`**, **same** **language** **as** **n=7** **165** **(** **coord** **+** **full** **`r=2`** **+** **doubleton** **`r=3`** **+** **singleton** **`r=4`** **)** **—** **off-diagonal** **`s∈{0,1,2}`** **(** **`107800`** **cells** **)** **:** **port** **of** **`min_d=2`** **⇔** **`Q∈{W_ij,W_ji}`** **:** **PASS** **(** **`wall_sec≈755.7`**, **`4M`** **LRU** **)** **—** **`stratum_min_d2=0`**, **`stratum_pred=0`**, **`0`** **violations** **:** **vacuous** **truth** **(** **no** **cell** **satisfies** **either** **side** **)** **,** **unlike** **n=7** **(** **`1190`** **nontrivial** **matches** **)** **;** **experiment** **`…-n8-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`** **—** **next** **:** **richer** **n=8** **menu** **to** **recover** **a** **non-empty** **depth-** **`2`** **stratum** **before** **wedge** **laws** **are** **meaningful** **.**
 
 **New (2026-04-05):** **`n=6`**, **`{2,3}`**, **same** **language** **as** **n=7** **165** **(** **coord** **+** **full** **`r=2`** **+** **doubleton** **`r=3`** **+** **singleton** **`r=4`** **)** **—** **off-diagonal** **`s∈{0,1,2}`** **(** **`2850`** **cells** **)** **:** **port** **of** **`min_d=2`** **⇔** **`Q∈{W_ij,W_ji}`** **:** **FAIL** **(** **`wall_sec≈0.77`**, **`4M`** **LRU** **)** **—** **`W_ij`**, **`W_ji`** **are** **always** **3-sets** **,** **never** **quartics** **,** **so** **predicate** **has** **`0`** **hits** **;** **yet** **`min_d=2`** **on** **all** **`2850`** **stratum** **cells** **(** **`2850`** **`d2∧¬pred`** **)** **;** **experiment** **`…-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`** **—** **the** **n=7** **quartic–wedge** **certificate** **does** **not** **uniformize** **across** **`n`** **without** **retyping** **/** **new** **certificates** **.**
 

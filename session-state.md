@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-05 — experiment **167** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional` (FAIL: n=6 port of n=7 wedge certificate — **W_ij always 3-set**, **0** quartic hits, **2850** `d2∧¬pred`, **`min_d=2` universal** on stratum)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`
-**Last outcome:** FAIL
-**Current focus:** sub-problems/verifier-oracle-model — n=7 piecewise law stands; **n=6** needs **different** depth-2 certificate than quartic **W_ij∨W_ji**; consider **n=8** port or **n=6**-typed predicates
+**Last updated:** 2026-04-06 — experiment **168** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional` (PASS **vacuous**: `min_d=2` count **0**, wedge predicate **0** hits on **`107800`** off-diagonal stratum cells; **`≈755.7s`** wall)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`
+**Last outcome:** PASS (vacuous — no structural certificate like n=7’s **`1190`** matches)
+**Current focus:** sub-problems/verifier-oracle-model — n=7 wedge law is **size-specific**; n=8 same menu has **empty** depth-2 off-diagonal regime
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Port unified off-diagonal wedge test to **n=8** (expect quartic wedges possible like n=7), or search an **n=6**-specific biconditional when **min_d=2** is ubiquitous on this menu.
+**Next action:** Enrich **n=8** XOR menu (e.g. union of arities, extra splits, or diagonal slice) until **`min_d=2`** witnesses reappear, then re-test wedge/complement certificates; or formalize **n-dependent** depth threshold for this shell.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
