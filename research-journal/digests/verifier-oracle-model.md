@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r6-k2-exhaustive-all-378-offdiag-structure-scan
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-random-trials-16-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **random** **partial** **`r=5`** **submenu** **`K=2`** **(** **`NUM_TRIALS=16`**, **`SEED=0`** **)** **—** **structure** **scan** **:** **PASS** **(** **`0<stratum_min_d2<107800`** **for** **every** **trial** **)** **—** **uniform** **`stratum_min_d2=7630`** **(** **not** **`3850`** **from** **`K=1`**, **not** **`107800`** **from** **`r=6`** **`K=2`** **)** **,** **`stratum_pred=0`**, **`7630`** **`d2∧¬pred`** **;** **`total_wall_sec≈3867.9`** **(** **experiment** **`…-partial-r5-k2-random-trials-16-offdiag-structure-scan`** **)** **—** **strong** **hint** **of** **a** **`K=2`** **intermediate** **plateau** **;** **exhaustive** **`C(56,2)=1540`** **still** **open** **for** **universality** **;** **numerology** **`2×3850−70=7630`** **(** **`70=len(p4)`** **)** **warrants** **theory** **.**
 
 **New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=6`** **submenu** **`K=2`** **(** **`C(28,2)=378`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`WORKERS=4`**, **`wall_clock_sec≈6018.7`**, **`sum_menu_wall_sec≈24028.8`** **(** **experiment** **`…-partial-r6-k2-exhaustive-all-378-offdiag-structure-scan`** **)** **—** **finite** **closure** **:** **all** **`K∈{1,2}`** **partial** **`r=6`** **submenus** **saturate** **like** **`K=1`** **on** **this** **statistic** **;** **next** **:** **`K=2`** **partial** **`r=5`** **(** **`1540`** **)** **,** **theory** **for** **`3850`**, **or** **new** **`n=8`** **certificate** **family** **.**
 
