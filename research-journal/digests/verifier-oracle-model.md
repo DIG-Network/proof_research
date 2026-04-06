@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r7-k1-exhaustive-all-8-offdiag-structure-scan
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r6-k1-exhaustive-all-28-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=6`** **submenu** **`K=1`** **(** **`C(8,6)=28`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`total_wall_sec≈2025.0`** **(** **experiment** **`…-partial-r6-k1-exhaustive-all-28-offdiag-structure-scan`** **)** **—** **a** **single** **`r=6`** **XOR** **split** **already** **matches** **full** **`r=6`** **saturation** **on** **this** **statistic** **(** **same** **all-or-nothing** **pattern** **as** **partial** **`r=7`** **)** **;** **next** **:** **`K≥2`** **partial** **`r=6`** **or** **`K=1`** **exhaustive** **partial** **`r=5`** **(** **`56`** **)** **or** **new** **predicate** **/** **stratum** **.**
 
 **New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=7`** **submenu** **`K=1`** **(** **`8`** **menus** **)** **—** **structure** **scan** **:** **FAIL** **(** **`0<stratum_min_d2<107800`** **never** **occurs** **)** **—** **every** **menu** **:** **`stratum_min_d2=107800`**, **`stratum_pred=0`**, **`107800`** **`d2∧¬pred`** **;** **`total_wall_sec≈204.9`** **(** **experiment** **`…-partial-r7-k1-exhaustive-all-8-offdiag-structure-scan`** **)** **—** **with** **prior** **`K∈{2,3,4}`** **exhaustive** **scans** **,** **every** **nonempty** **partial** **`r=7`** **submenu** **at** **`n=8`** **matches** **full** **`r=7`** **saturation** **on** **`stratum_min_d2`** **;** **next** **:** **partial** **`r=5`** **`/`** **`r=6`** **submenus** **or** **new** **`n=8`** **certificate** **family** **.**
 
