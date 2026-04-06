@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-06 ~19:30 UTC — experiment **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan`** (INCONCLUSIVE: full **1540** menus not run; smoke **2** menus ⇒ **7630** each; **~50 h** wall est. at **4** workers)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan`
-**Last outcome:** INCONCLUSIVE (compute-bound; universality of **7630** over **C(56,2)** still open)
-**Current focus:** sub-problems/verifier-oracle-model — run full **1540**-menu exhaustive **`r=5` `K=2`** on a long-job machine **or** closed-form **2×3850−70** vs **len(p4)=70**
+**Last updated:** 2026-04-06 ~20:00 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start2-batch4-offdiag-structure-scan`** (PASS: menus `(0,3)…(0,6)` all **`stratum_min_d2=7630`**; driver **`MENU_START`** added)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan` (same folder; follow-up batch + script env)
+**Last outcome:** PASS (finite batch; **1540**-menu universality still open)
+**Current focus:** sub-problems/verifier-oracle-model — full **1540** run on long-job host **or** combinatorial **`2×3850−70`** vs **`len(p4)=70`**; optional further **`MENU_START`** windows
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** On a host with multi-day CPU budget, run `WORKERS=<n> python3 sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan/script.py` with no `MAX_MENUS`; alternatively pursue a combinatorial proof of **7630** before spending that compute.
+**Next action:** Run `WORKERS=<n> python3 sub-problems/verifier-oracle-model/experiments/…-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan/script.py` with no `MAX_MENUS` on a multi-day host, **or** prove **7630** closed form; for partial windows use `MENU_START` + `MAX_MENUS`.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none after push

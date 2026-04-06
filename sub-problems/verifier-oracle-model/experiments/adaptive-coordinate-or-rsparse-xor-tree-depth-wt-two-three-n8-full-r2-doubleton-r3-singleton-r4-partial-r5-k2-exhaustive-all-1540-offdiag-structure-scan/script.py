@@ -12,7 +12,8 @@ two splits only to coord + full r=2 + doubleton r=3 + singleton r=4, and aggrega
 Uses multiprocessing (default WORKERS=4, override with env WORKERS).
 
 Optional smoke / partial runs:
-  MAX_MENUS=<int>  — only the first N menus (deterministic order from itertools.combinations)
+  MAX_MENUS=<int>  — only the first N menus after MENU_START (deterministic order from itertools.combinations)
+  MENU_START=<int> — skip the first S menus in that order (default 0); use with MAX_MENUS to sample later pairs
 
 Hypothesis: some menu yields 0 < stratum_min_d2 < 107800 (same success criterion as the random K=2 probe).
 
@@ -186,6 +187,9 @@ def main() -> None:
     if max_menus_env:
         max_menus = max(1, int(max_menus_env))
 
+    menu_start_env = os.environ.get("MENU_START", "").strip()
+    menu_start = max(0, int(menu_start_env)) if menu_start_env else 0
+
     mod = _load_parent()
     assert mod.N == N_EXPECT
 
@@ -214,11 +218,18 @@ def main() -> None:
 
     menus_all = list(combinations(range(len(p5)), K_P5))
     assert len(menus_all) == 1540
-    menus = menus_all if max_menus is None else menus_all[:max_menus]
+    if menu_start > len(menus_all):
+        print(f"FAIL: MENU_START={menu_start} >= total menus {len(menus_all)}", flush=True)
+        sys.exit(1)
+    tail = menus_all[menu_start:]
+    if max_menus is None:
+        menus = tail
+    else:
+        menus = tail[:max_menus]
 
     print(
         f"workers={workers} STRATUM_TOTAL={STRATUM_TOTAL} menus={len(menus)} "
-        f"of_full={len(menus_all)} k_p5={K_P5} max_menus={max_menus!r}",
+        f"of_full={len(menus_all)} k_p5={K_P5} menu_start={menu_start} max_menus={max_menus!r}",
         flush=True,
     )
     print(

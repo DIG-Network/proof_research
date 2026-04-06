@@ -30,3 +30,24 @@
 with **no** **`MAX_MENUS`** on a long-job host.
 
 **Script:** `script.py` (smoke: exit **0**).
+
+---
+
+## Follow-up partial batch (2026-04-06): `MENU_START=2`, `MAX_MENUS=4`
+
+**Driver change:** `script.py` accepts **`MENU_START`** (skip the first *S* menus in `itertools.combinations` order) together with **`MAX_MENUS`** for contiguous windows.
+
+**Run:** `MENU_START=2 MAX_MENUS=4 WORKERS=2 python3 …/script.py`
+
+| Quantity | Value |
+|----------|-------|
+| Menus | 4 — `p5_indices` `(0,3)`, `(0,4)`, `(0,5)`, `(0,6)` |
+| `stratum_min_d2` (each) | **7630** |
+| `stratum_pred` (each) | **0** |
+| `viol_d2_not_pred` (each) | **7630** |
+| `min_stratum_d2_across_menus` / `max_…` | **7630** / **7630** |
+| `sum_menu_wall_sec` | **1697.639** |
+| `wall_clock_sec` | **868.629** |
+| Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
+
+**Conclusion:** The **7630** intermediate statistic persists for this **next** block of four menus after `(0,1)` and `(0,2)`; **1540**-menu universality is still not proven.

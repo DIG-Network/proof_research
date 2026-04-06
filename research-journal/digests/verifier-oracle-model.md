@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan
+**Last updated:** 2026-04-06 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start2-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-06):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **follow-up** **batch** **after** **first** **two** **`combinations`** **menus** **:** **driver** **now** **supports** **`MENU_START`** **+** **`MAX_MENUS`** **;** **`MENU_START=2`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(0,3)…(0,6)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`869s`** **(** **journal** **`…-partial-r5-k2-menu-start2-batch4-offdiag-structure-scan`** **)** **—** **strengthens** **finite** **evidence** **that** **`7630`** **is** **not** **only** **the** **first** **pair** **block** **;** **full** **`1540`** **still** **open** **.**
 
 **New (2026-04-06):** **`n=8`**, **same** **stratum** **,** **base** **`{2,3,4}`** **,** **exhaustive** **partial** **`r=5`** **`K=2`** **(** **`C(56,2)=1540`** **menus** **)** **—** **INCONCLUSIVE** **in** **this** **session** **(** **full** **enumeration** **not** **run** **)** **—** **production** **`script.py`** **(** **`WORKERS`**, **`MAX_MENUS`** **smoke** **)** **;** **smoke** **`MAX_MENUS=2`**, **`WORKERS=2`** **:** **`(0,1)`** **and** **`(0,2)`** **both** **`stratum_min_d2=7630`** **;** **per-menu** **~** **`470s`** **CPU** **⇒** **order** **`~50h`** **wall** **at** **`WORKERS=4`** **for** **all** **`1540`** **(** **experiment** **`…-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan`** **)** **—** **universality** **of** **`7630`** **still** **open** **;** **long-job** **host** **should** **run** **without** **`MAX_MENUS`** **.**
 
