@@ -51,3 +51,22 @@ with **no** **`MAX_MENUS`** on a long-job host.
 | Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
 
 **Conclusion:** The **7630** intermediate statistic persists for this **next** block of four menus after `(0,1)` and `(0,2)`; **1540**-menu universality is still not proven.
+
+---
+
+## Follow-up partial batch (2026-04-06): `MENU_START=6`, `MAX_MENUS=4`
+
+**Run:** `MENU_START=6 MAX_MENUS=4 WORKERS=2 python3 …/script.py`
+
+| Quantity | Value |
+|----------|-------|
+| Menus | 4 — `p5_indices` `(0,7)`, `(0,8)`, `(0,9)`, `(0,10)` |
+| `stratum_min_d2` (each) | **7630** |
+| `stratum_pred` (each) | **0** |
+| `viol_d2_not_pred` (each) | **7630** |
+| `min_stratum_d2_across_menus` / `max_…` | **7630** / **7630** |
+| `sum_menu_wall_sec` | **1566.734** |
+| `wall_clock_sec` | **798.529** |
+| Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
+
+**Conclusion:** The **7630** statistic persists for **`(0,7)…(0,10)`**; **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=10`**, **`MAX_MENUS=4`**.

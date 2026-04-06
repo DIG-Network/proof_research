@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-06 ~20:00 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start2-batch4-offdiag-structure-scan`** (PASS: menus `(0,3)…(0,6)` all **`stratum_min_d2=7630`**; driver **`MENU_START`** added)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan` (same folder; follow-up batch + script env)
+**Last updated:** 2026-04-06 ~20:50 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start6-batch4-offdiag-structure-scan`** (PASS: menus `(0,7)…(0,10)` all **`stratum_min_d2=7630`**)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan` (same folder; **`MENU_START=6`** batch)
 **Last outcome:** PASS (finite batch; **1540**-menu universality still open)
-**Current focus:** sub-problems/verifier-oracle-model — full **1540** run on long-job host **or** combinatorial **`2×3850−70`** vs **`len(p4)=70`**; optional further **`MENU_START`** windows
+**Current focus:** sub-problems/verifier-oracle-model — full **1540** run on long-job host **or** next window **`MENU_START=10`**, **`MAX_MENUS=4`**; combinatorial **`2×3850−70`** vs **`len(p4)=70`**
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Run `WORKERS=<n> python3 sub-problems/verifier-oracle-model/experiments/…-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan/script.py` with no `MAX_MENUS` on a multi-day host, **or** prove **7630** closed form; for partial windows use `MENU_START` + `MAX_MENUS`.
+**Next action:** Run `MENU_START=10 MAX_MENUS=4 WORKERS=2 python3 sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan/script.py`, **or** full **1540** without **`MAX_MENUS`** on a multi-day host.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none after push
