@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-05 — experiment **166** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-diag-ij-complement-biconditional` (PASS: diagonal **`1225`** cells — **`min_d=2` ⇔ `Q=[7]\T_i`**; **`35`** witnesses; **`wall_sec≈1.68`**)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-diag-ij-complement-biconditional`
-**Last outcome:** PASS
-**Current focus:** sub-problems/verifier-oracle-model — piecewise global law for **`n=7`** is now **diag = complement**, **off-diag `s∈{0,1,2}` = `W_ij∨W_ji`**; next port wedge side to **`n=6`/`n=8`** or seek a unified closed form
+**Last updated:** 2026-04-05 — experiment **167** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional` (FAIL: n=6 port of n=7 wedge certificate — **W_ij always 3-set**, **0** quartic hits, **2850** `d2∧¬pred`, **`min_d=2` universal** on stratum)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`
+**Last outcome:** FAIL
+**Current focus:** sub-problems/verifier-oracle-model — n=7 piecewise law stands; **n=6** needs **different** depth-2 certificate than quartic **W_ij∨W_ji**; consider **n=8** port or **n=6**-typed predicates
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Build **`n=6`** or **`n=8`** analog of experiment **165** (off-diagonal wedge biconditional) on the corresponding doubleton-triple + singleton-quartic grid, or document the **`n=7`** piecewise certificate as a formal lemma.
+**Next action:** Port unified off-diagonal wedge test to **n=8** (expect quartic wedges possible like n=7), or search an **n=6**-specific biconditional when **min_d=2** is ubiquitous on this menu.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)

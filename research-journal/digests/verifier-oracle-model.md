@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n7-full-r2-doubleton-r3-singleton-r4-diag-ij-complement-biconditional
+**Last updated:** 2026-04-05 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-05):** **`n=6`**, **`{2,3}`**, **same** **language** **as** **n=7** **165** **(** **coord** **+** **full** **`r=2`** **+** **doubleton** **`r=3`** **+** **singleton** **`r=4`** **)** **—** **off-diagonal** **`s∈{0,1,2}`** **(** **`2850`** **cells** **)** **:** **port** **of** **`min_d=2`** **⇔** **`Q∈{W_ij,W_ji}`** **:** **FAIL** **(** **`wall_sec≈0.77`**, **`4M`** **LRU** **)** **—** **`W_ij`**, **`W_ji`** **are** **always** **3-sets** **,** **never** **quartics** **,** **so** **predicate** **has** **`0`** **hits** **;** **yet** **`min_d=2`** **on** **all** **`2850`** **stratum** **cells** **(** **`2850`** **`d2∧¬pred`** **)** **;** **experiment** **`…-n6-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`** **—** **the** **n=7** **quartic–wedge** **certificate** **does** **not** **uniformize** **across** **`n`** **without** **retyping** **/** **new** **certificates** **.**
 
 **New (2026-04-05):** **`n=7`**, **`{2,3}`**, **diagonal** **`i=j`** **slice** **(** **`35×35=1225`** **cells** **,** **duplicate** **`T_i`** **on** **both** **`r=3`** **slots** **)** **:** **`min_d=2`** **⇔** **`Q=[7]\setminus T_i`** **:** **PASS** **(** **`wall_sec≈1.68`**, **`4M`** **LRU** **)** **—** **`35`** **`min_d=2`**, **`35`** **complement** **hits** **,** **`0`** **violations** **;** **matches** **singleton-triple** **complement** **law** **(** **experiment** **`…-diag-ij-complement-biconditional`** **)** **—** **full** **`22050`** **grid** **law** **is** **piecewise** **:** **diag** **=** **complement** **,** **off-diag** **`s∈{0,1,2}`** **=** **`W_ij∨W_ji`** **(** **165** **)** **;** **next** **:** **`n=6`** **`/`** **`n=8`** **ports** **or** **single** **global** **predicate** **statement** **.**
 
