@@ -1,18 +1,18 @@
 # Session State
 
-**Last updated:** 2026-04-06 — experiment **168** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional` (PASS **vacuous**: `min_d=2` count **0**, wedge predicate **0** hits on **`107800`** off-diagonal stratum cells; **`≈755.7s`** wall)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-offdiag-unified-wedge-pair-all-strata-biconditional`
-**Last outcome:** PASS (vacuous — no structural certificate like n=7’s **`1190`** matches)
-**Current focus:** sub-problems/verifier-oracle-model — n=7 wedge law is **size-specific**; n=8 same menu has **empty** depth-2 off-diagonal regime
+**Last updated:** 2026-04-06 — experiment **169** `adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-plus-full-r5-r6-r7-offdiag-unified-wedge-pair-all-strata-biconditional` (FAIL: enriched menu ⇒ **`107800/107800`** **`min_d=2`**, wedge pred **`0`**, **`107800`** **`d2∧¬pred`**; **`≈37.4s`** wall)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-plus-full-r5-r6-r7-offdiag-unified-wedge-pair-all-strata-biconditional`
+**Last outcome:** FAIL (wedge biconditional broken by universal depth-2 after full `r=5,6,7` menus)
+**Current focus:** sub-problems/verifier-oracle-model — n=8 wedge story is **biphasic** (sparse ⇒ vacuous PASS; `+full r5–r7` ⇒ universal `min_d=2` ⇒ FAIL)
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Enrich **n=8** XOR menu (e.g. union of arities, extra splits, or diagonal slice) until **`min_d=2`** witnesses reappear, then re-test wedge/complement certificates; or formalize **n-dependent** depth threshold for this shell.
+**Next action:** Search **strict subsets** of full `r=5,r=6,r=7` menus (or alternate augmentations) that yield a **nonempty proper** subset of stratum cells with `min_d=2`, then refit predicates; or pivot to an n=8-specific certificate family.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none (after push)
 **Key scratch pins:** none
 **Open planner tasks:** not tracked (hosted MCP optional)
-**Ledger run id:** (set next session if using ledger)
+**Ledger run id:** (optional next session)
 
 **Git delivery:** Work is committed and pushed to **`main`** only (authoritative policy).
 

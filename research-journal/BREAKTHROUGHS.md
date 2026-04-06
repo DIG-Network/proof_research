@@ -249,3 +249,25 @@ Treat **`r=4`** as a **phase-change knob** for **`min_d`** in this toy model: **
 
 **Open questions it raises:**
 Minimal **`|r=3|`** **submenus** that still let **some** **`r=4`** split force **`min_d=2`**; combinatorial explanation tied to majority **`t=4`** on **`n=7`**.
+
+---
+
+## [2026-04-06] n=8 {2,3,4} wedge biconditional is biphasic in XOR-menu strength
+
+**Type:** Constraint
+
+**Discovered in:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-plus-full-r5-r6-r7-offdiag-unified-wedge-pair-all-strata-biconditional`
+
+**Description:**
+Fix **`n=8`**, masks with **`popcount ∈ {2,3}`** for the DP universe and **`popcount(Q)=4`** for the quartic branch in the wedge grid. On the off-diagonal stratum **`i<j`**, **`s=|T_i∩T_j|∈{0,1,2}`** (**`107800`** cells), test the same certificate as **`n=7`**: **`min_d=2 ⇔ Q∈{W_ij,W_ji}`** with **`W`** the ordered wedge masks. **(A)** Under the **sparse** menu **coord + full `r=2` + doubleton `r=3` + singleton `r=4`**, **`min_d=2` never occurs** on the stratum (**`stratum_min_d2=0`**), so the biconditional holds **vacuously** (prior experiment). **(B)** Append **full** XOR split menus for **`r=5,r=6,r=7`** to that same cell language. Then **`min_d=2` holds on every stratum cell** (**`107800/107800`**), while **`Q∈{W_ij,W_ji}`** remains **impossible** (**wedges are never 4-sets**), producing **`107800`** violations **`d2 ∧ ¬pred`**. Wall time **`≈37.4s`**, **`4M`** LRU.
+
+**Why this is novel:**
+It shows that **restoring** a nonempty **`min_d=2`** stratum by adding the **same higher-arity splits** that make the **global** `{2,3}` shell hit **`min_d=2`** can **destroy** a sharp **geometric** **IFF** certificate that was valid at **`n=7`**. The failure mode is not a few counterexamples but **complete saturation** of depth-2 feasibility on the stratum.
+
+**Novelty confidence:** Medium (finite exhaustive grid; clear structural mechanism).
+
+**Implications:**
+Wedge-style certificates are **not monotone** under “add splits until the global depth certificate appears.” Designing **`n=8`** statements may require **partial** menus (strict subsets of **`r=5..7`**) or a **different** predicate family—not a direct port of the **`n=7`** wedge law onto the enriched language.
+
+**Open questions it raises:**
+Smallest **`r=5..7`** submenus that yield **some** but not **all** **`min_d=2`** witnesses on this stratum; whether any **refined** predicate recovers a biconditional in an **intermediate** proof-strength window.
