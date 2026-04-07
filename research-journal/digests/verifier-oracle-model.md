@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start262-batch4-offdiag-structure-scan
+**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start266-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **sixty-eighth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=266`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(5,7)…(5,10)`** **(** **as** **printed** **by** **the** **driver** **)** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`783s`** **(** **`sum_menu_wall_sec=1534.755`** **,** **`wall_clock_sec≈783.2`** **)** **(** **journal** **`…-partial-r5-k2-menu-start266-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **`(5,*)`** **segment** **after** **`(5,6)`** **;** **per-menu** **wall** **~** **`356–395s`** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=270`**, **`MAX_MENUS=4`** **.**
 
 **New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **sixty-seventh** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=262`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(4,53)…(4,55)`** **and** **`(5,6)`** **(** **as** **printed** **by** **the** **driver** **)** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`586s`** **(** **`sum_menu_wall_sec=941.260`** **,** **`wall_clock_sec≈586.0`** **)** **(** **journal** **`…-partial-r5-k2-menu-start262-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **sweep** **after** **`(4,49)…(4,52)`** **;** **per-menu** **wall** **~** **`176–401s`** **(** **three** **`(4,*)`** **faster** **;** **`(5,6)`** **heavier** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=266`**, **`MAX_MENUS=4`** **.**
 
