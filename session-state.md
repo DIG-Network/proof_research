@@ -1,12 +1,12 @@
 # Session State
 
-**Last updated:** 2026-04-07 ~08:25 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start178-batch4-offdiag-structure-scan`** (PASS: menus **`(3,20)…(3,23)`** all **`stratum_min_d2=7630`**; **`sum_menu_wall_sec=1214.264`**, wall **`~608 s`** **`WORKERS=2`** — fifth **`(3,*)`** block of four; next **`MENU_START=182`**, **`MAX_MENUS=4`**)
-**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan` (env **`MENU_START=178`**, **`MAX_MENUS=4`**, **`WORKERS=2`**)
+**Last updated:** 2026-04-07 ~08:35 UTC — **`adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start182-batch4-offdiag-structure-scan`** (PASS: menus **`(3,24)…(3,27)`** all **`stratum_min_d2=7630`**; **`sum_menu_wall_sec=1156.717`**, wall **`~579 s`** **`WORKERS=2`** — sixth **`(3,*)`** block of four; next **`MENU_START=186`**, **`MAX_MENUS=4`**)
+**Last experiment:** `sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan` (env **`MENU_START=182`**, **`MAX_MENUS=4`**, **`WORKERS=2`**)
 **Last outcome:** PASS (finite batch; **1540**-menu universality still open)
-**Current focus:** sub-problems/verifier-oracle-model — next window **`MENU_START=182`**, **`MAX_MENUS=4`**, **`WORKERS=2`**; or full **1540** without **`MAX_MENUS`** on a long-job host
+**Current focus:** sub-problems/verifier-oracle-model — next window **`MENU_START=186`**, **`MAX_MENUS=4`**, **`WORKERS=2`**; or full **1540** without **`MAX_MENUS`** on a long-job host
 **Active sub-problems:** verifier-oracle-model (IN PROGRESS), anonymous-quorum-binding (IN PROGRESS)
 **Blocking sub-problems:** none (main-problem not advanced)
-**Next action:** Run `MENU_START=182 MAX_MENUS=4 WORKERS=2 python3 sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan/script.py`, **or** full **1540** without **`MAX_MENUS`** on a multi-day host.
+**Next action:** Run `MENU_START=186 MAX_MENUS=4 WORKERS=2 python3 sub-problems/verifier-oracle-model/experiments/adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-full-r2-doubleton-r3-singleton-r4-partial-r5-k2-exhaustive-all-1540-offdiag-structure-scan/script.py`, **or** full **1540** without **`MAX_MENUS`** on a multi-day host.
 **Attractor warning:** none
 **Pending journal writes:** none
 **Pending commits:** none after push
