@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start138-batch4-offdiag-structure-scan
+**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start142-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **thirty-seventh** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=142`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(2,36)…(2,39)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`480s`** **(** **`sum_menu_wall_sec≈956.8`** **)** **(** **journal** **`…-partial-r5-k2-menu-start142-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **`(2,*)`** **block** **;** **per-menu** **wall** **~** **`235–242s`** **(** **faster** **than** **`(2,32)…(2,35)`** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=146`**, **`MAX_MENUS=4`** **.**
 
 **New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **thirty-sixth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=138`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(2,32)…(2,35)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`529s`** **(** **`sum_menu_wall_sec≈1052.2`** **)** **(** **journal** **`…-partial-r5-k2-menu-start138-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **`(2,*)`** **block** **;** **per-menu** **wall** **~** **`252–271s`** **(** **faster** **than** **`(2,28)…(2,31)`** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=142`**, **`MAX_MENUS=4`** **.**
 
