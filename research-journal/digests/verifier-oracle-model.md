@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start158-batch4-offdiag-structure-scan
+**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start162-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **forty-second** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=162`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(3,4)…(3,7)`** **(** **first** **`(3,*)`** **block** **)** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`798s`** **(** **`sum_menu_wall_sec≈1591.4`** **)** **(** **journal** **`…-partial-r5-k2-menu-start162-batch4-offdiag-structure-scan`** **)** **—** **extends** **into** **`(3,*)`** **;** **per-menu** **wall** **~** **`393–405s`** **(** **heavier** **than** **late** **`(2,*)`** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=166`**, **`MAX_MENUS=4`** **.**
 
 **New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **forty-first** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=158`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(2,52)…(2,55)`** **(** **last** **`(2,*)`** **pairs** **)** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`367s`** **(** **`sum_menu_wall_sec≈728.0`** **)** **(** **journal** **`…-partial-r5-k2-menu-start158-batch4-offdiag-structure-scan`** **)** **—** **completes** **the** **`(2,*)`** **segment** **;** **per-menu** **wall** **~** **`174–187s`** **(** **faster** **than** **`(2,48)…(2,51)`** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=162`**, **`MAX_MENUS=4`** **(** **`(3,*)`** **block** **)** **.**
 
