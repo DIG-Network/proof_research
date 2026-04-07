@@ -545,3 +545,22 @@ with **no** **`MAX_MENUS`** on a long-job host.
 | Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
 
 **Conclusion:** The **7630** statistic persists for the **last four** **`(2,*)`** pairs **`(2,52)…(2,55)`** (**`WORKERS=2`**, per-menu wall **~174–187 s**). **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=162`**, **`MAX_MENUS=4`** (**enters** the **`(3,*)`** block in `combinations` order).
+
+---
+
+## Follow-up partial batch (2026-04-07): `MENU_START=194`, `MAX_MENUS=4`
+
+**Run:** `MENU_START=194 MAX_MENUS=4 WORKERS=2 python3 …/script.py`
+
+| Quantity | Value |
+|----------|-------|
+| Menus | 4 — `p5_indices` `(3, 36)`, `(3, 37)`, `(3, 38)`, `(3, 39)` |
+| `stratum_min_d2` (each) | **7630** |
+| `stratum_pred` (each) | **0** |
+| `viol_d2_not_pred` (each) | **7630** |
+| `min_stratum_d2_across_menus` / `max_…` | **7630** / **7630** |
+| `sum_menu_wall_sec` | **956.941** |
+| `wall_clock_sec` | **479.193** |
+| Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
+
+**Conclusion:** The **7630** statistic persists for the **ninth** **`(3,*)`** block of four (**`(3,36)…(3,39)`**); per-menu wall **~231–247 s** (**`WORKERS=2`**, faster than **`(3,32)…(3,35)`**). **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=198`**, **`MAX_MENUS=4`**.
