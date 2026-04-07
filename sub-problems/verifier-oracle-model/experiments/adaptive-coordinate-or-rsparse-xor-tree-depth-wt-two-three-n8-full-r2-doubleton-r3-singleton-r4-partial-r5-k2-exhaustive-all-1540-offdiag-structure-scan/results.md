@@ -279,3 +279,41 @@ with **no** **`MAX_MENUS`** on a long-job host.
 | Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
 
 **Conclusion:** The **7630** statistic persists for **`(1,45)…(1,48)`**; **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=102`**, **`MAX_MENUS=4`**.
+
+---
+
+## Follow-up partial batch (2026-04-07): `MENU_START=102`, `MAX_MENUS=4`
+
+**Run:** `MENU_START=102 MAX_MENUS=4 WORKERS=2 python3 …/script.py`
+
+| Quantity | Value |
+|----------|-------|
+| Menus | 4 — `p5_indices` `(1, 49)`, `(1, 50)`, `(1, 51)`, `(1, 52)` |
+| `stratum_min_d2` (each) | **7630** |
+| `stratum_pred` (each) | **0** |
+| `viol_d2_not_pred` (each) | **7630** |
+| `min_stratum_d2_across_menus` / `max_…` | **7630** / **7630** |
+| `sum_menu_wall_sec` | **786.7** (see journal `…-menu-start102-batch4-offdiag-structure-scan`) |
+| `wall_clock_sec` | **~395** (**`WORKERS=2`**) |
+| Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
+
+**Conclusion:** The **7630** statistic persists for **`(1,49)…(1,52)`**; **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=106`**, **`MAX_MENUS=4`**.
+
+---
+
+## Follow-up partial batch (2026-04-07): `MENU_START=106`, `MAX_MENUS=4`
+
+**Run:** `MENU_START=106 MAX_MENUS=4 WORKERS=2 python3 …/script.py`
+
+| Quantity | Value |
+|----------|-------|
+| Menus | 4 — `p5_indices` `(1, 53)`, `(1, 54)`, `(1, 55)`, `(2, 3)` |
+| `stratum_min_d2` (each) | **7630** |
+| `stratum_pred` (each) | **0** |
+| `viol_d2_not_pred` (each) | **7630** |
+| `min_stratum_d2_across_menus` / `max_…` | **7630** / **7630** |
+| `sum_menu_wall_sec` | **978.424** |
+| `wall_clock_sec` | **628.432** |
+| Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
+
+**Conclusion:** The **7630** statistic persists for **`(1,53)…(1,55)`** and **`(2,3)`**; menu **`(2,3)`** dominates wall time (**~447 s**) vs **`(1,*)`** (**~172–181 s** each). **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=110`**, **`MAX_MENUS=4`**.
