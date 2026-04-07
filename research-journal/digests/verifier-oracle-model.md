@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start130-batch4-offdiag-structure-scan
+**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start134-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **thirty-fifth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=134`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(2,28)…(2,31)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`552s`** **(** **`sum_menu_wall_sec≈1102.6`** **)** **(** **journal** **`…-partial-r5-k2-menu-start134-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **`(2,*)`** **block** **;** **per-menu** **wall** **~** **`272–279s`** **(** **slightly** **faster** **than** **`(2,24)…(2,27)`** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=138`**, **`MAX_MENUS=4`** **.**
 
 **New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **thirty-fourth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=130`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **menus** **`(2,24)…(2,27)`** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`571s`** **(** **`sum_menu_wall_sec≈1141.7`** **)** **(** **journal** **`…-partial-r5-k2-menu-start130-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **`(2,*)`** **block** **;** **per-menu** **wall** **similar** **to** **`(2,20)…(2,23)`** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=134`**, **`MAX_MENUS=4`** **.**
 
