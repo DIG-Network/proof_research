@@ -507,3 +507,22 @@ with **no** **`MAX_MENUS`** on a long-job host.
 | Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
 
 **Conclusion:** The **7630** statistic persists for **`(2,40)…(2,43)`**; per-menu wall **~220–230 s** (**`WORKERS=2`**, faster than **`(2,36)…(2,39)`**). **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=150`**, **`MAX_MENUS=4`**.
+
+---
+
+## Follow-up partial batch (2026-04-07): `MENU_START=154`, `MAX_MENUS=4`
+
+**Run:** `MENU_START=154 MAX_MENUS=4 WORKERS=2 python3 …/script.py`
+
+| Quantity | Value |
+|----------|-------|
+| Menus | 4 — `p5_indices` `(2, 48)`, `(2, 49)`, `(2, 50)`, `(2, 51)` |
+| `stratum_min_d2` (each) | **7630** |
+| `stratum_pred` (each) | **0** |
+| `viol_d2_not_pred` (each) | **7630** |
+| `min_stratum_d2_across_menus` / `max_…` | **7630** / **7630** |
+| `sum_menu_wall_sec` | **795.937** |
+| `wall_clock_sec` | **400.268** |
+| Script exit | **0** (**PASS** on **0 < stratum_min_d2 < 107800**) |
+
+**Conclusion:** The **7630** statistic persists for **`(2,48)…(2,51)`**; per-menu wall **~192–204 s** (**`WORKERS=2`**, faster than **`(2,44)…(2,47)`**). **1540**-menu universality remains unproven. Next contiguous window: **`MENU_START=158`**, **`MAX_MENUS=4`**.
