@@ -1,10 +1,12 @@
 # Digest: verifier-oracle-model
 
-**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start226-batch4-offdiag-structure-scan
+**Last updated:** 2026-04-07 after experiment adaptive-coordinate-or-rsparse-xor-tree-depth-wt-two-three-n8-partial-r5-k2-menu-start230-batch4-offdiag-structure-scan
 
 **Status:** IN PROGRESS (see `sub-problems/verifier-oracle-model/status.md`)
 
 ## Current understanding
+
+**New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **fifty-ninth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=230`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **split-index** **pairs** **`(4,21)…(4,24)`** **(** **as** **printed** **by** **the** **driver** **)** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`592s`** **(** **`sum_menu_wall_sec≈1183.4`** **,** **`wall_clock_sec≈591.8`** **)** **(** **journal** **`…-partial-r5-k2-menu-start230-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **sweep** **after** **`(4,17)…(4,20)`** **;** **per-menu** **wall** **~** **`288–303s`** **(** **faster** **than** **prior** **four-menu** **block** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=234`**, **`MAX_MENUS=4`** **.**
 
 **New (2026-04-07):** **`n=8`**, **same** **stratum** **/** **shell** **`{2,3,4}`** **,** **partial** **`r=5`** **`K=2`** **—** **fifty-eighth** **contiguous** **`MENU_START`** **window** **:** **`MENU_START=226`**, **`MAX_MENUS=4`**, **`WORKERS=2`** **⇒** **split-index** **pairs** **`(4,17)…(4,20)`** **(** **as** **printed** **by** **the** **driver** **)** **all** **`stratum_min_d2=7630`** **(** **`min=max=7630`** **)** **,** **wall** **~** **`663s`** **(** **`sum_menu_wall_sec≈1305.7`** **,** **`wall_clock_sec≈663.3`** **)** **(** **journal** **`…-partial-r5-k2-menu-start226-batch4-offdiag-structure-scan`** **)** **—** **extends** **the** **sweep** **after** **`(4,13)…(4,16)`** **;** **per-menu** **wall** **~** **`302–340s`** **(** **faster** **than** **prior** **four-menu** **block** **)** **;** **full** **`1540`** **still** **open** **;** **next** **window** **`MENU_START=230`**, **`MAX_MENUS=4`** **.**
 
